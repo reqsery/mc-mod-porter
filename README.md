@@ -1,6 +1,8 @@
 # mc-mod-porter
 
-A source-backed system for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
+A tool for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Includes:
 - **auto-porter** — CLI tool that applies known API changes automatically
@@ -10,18 +12,42 @@ Includes:
 
 ---
 
-## Getting Started
+## Using with AI (Recommended)
+
+The easiest way to use this tool is to let an AI run it for you. The best tools for this are ones that run **on your PC inside your editor** — they can read your mod folder, execute the porter, and fix remaining errors automatically.
+
+| Tool | Notes |
+|------|-------|
+| [Claude Code](https://claude.ai/claude-code) | Terminal agent. Best for autonomous multi-step tasks. **Max plan** handles large mods. |
+| [Cursor](https://cursor.sh) | AI-powered VS Code fork. Open your mod, chat with it directly. **Pro plan** recommended. |
+| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Good free tier, paid for larger context. |
+| [GitHub Copilot](https://github.com/features/copilot) | Built into VS Code / JetBrains. Best for fixing individual files. |
+
+> Paid plans are worth it. Free tiers cut off on anything larger than a small mod.
+
+Once you have one set up, see **[AI_GUIDE.md](AI_GUIDE.md)** for the exact workflow and what to say.
+
+---
+
+## Getting Started (Manual)
+
+If you want to run the tool yourself without AI:
 
 ### Step 1 — Clone the repository
 
 ```bash
 git clone https://github.com/reqsery/mc-mod-porter.git
+```
+
+This creates a folder called `mc-mod-porter`. Open it in your terminal:
+
+```bash
 cd mc-mod-porter
 ```
 
 ### Step 2 — Build the auto-porter
 
-Make sure you have **Java 21+** installed, then:
+You need **Java 21+** installed. Then:
 
 ```bash
 cd auto-porter
@@ -30,10 +56,7 @@ cd auto-porter
 
 > Windows: use `gradlew.bat build` instead of `./gradlew build`
 
-The built JAR will be at:
-```
-auto-porter/build/libs/auto-porter-1.0.0.jar
-```
+The built JAR will be at `auto-porter/build/libs/auto-porter-1.0.0.jar`.
 
 ### Step 3 — Check supported versions
 
@@ -43,13 +66,11 @@ java -jar auto-porter/build/libs/auto-porter-1.0.0.jar --list-versions
 
 ### Step 4 — Dry run first (always)
 
-Before touching your mod, run a dry run to see exactly what would change:
+See exactly what would change without touching any files:
 
 ```bash
 java -jar auto-porter/build/libs/auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
 ```
-
-This prints every change that would be applied — without modifying any files.
 
 ### Step 5 — Port your mod
 
@@ -57,75 +78,18 @@ This prints every change that would be applied — without modifying any files.
 java -jar auto-porter/build/libs/auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5
 ```
 
-Your original mod is never touched. A copy is created at `C:/path/to/mymod-ported-1_20_5`.
+Your original mod is never modified. The ported copy is created at `C:/path/to/mymod-ported-1_20_5`.
 
 The tool will:
 1. Update `build.gradle` plugin versions
 2. Update `gradle.properties` dependency versions
-3. Patch Java source files (renames, import changes, signature updates)
+3. Patch Java source files (renames, imports, signature changes)
 4. Update `fabric.mod.json` / `mods.toml` metadata
-5. Attempt a Gradle build and report any remaining errors
+5. Attempt a Gradle build and report remaining errors
 
-### Step 6 — Fix what the tool can't (use an AI)
+### Step 6 — Fix remaining errors
 
-The auto-porter handles mechanical changes — renames, import swaps, signature updates. Anything that requires actual logic changes (refactoring a callback, rewriting event handling) will show up as a build error. This is where you bring in an AI.
-
-The knowledge-base files are designed to be dropped directly into an AI as verified context. The AI applies documented changes instead of guessing.
-
-#### Recommended tools (all run locally on your PC, inside your editor)
-
-| Tool | Notes |
-|------|-------|
-| [Cursor](https://cursor.sh) | AI-powered IDE (VS Code fork). Open your mod folder, paste the KB file in chat. **Pro plan recommended** — free tier has short context. |
-| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Good free tier, paid for larger files. |
-| [Claude Code](https://claude.ai/claude-code) | Terminal agent. Point it at your mod folder and it reads, edits, and builds autonomously. **Max plan** handles large mods well. |
-| [GitHub Copilot](https://github.com/features/copilot) | Built into VS Code and JetBrains. Good for fixing individual files. |
-
-> Paid plans are worth it for real mods. Free tiers cut off mid-file on anything large.
-
-#### What to tell the AI
-
-Open `knowledge-base/minecraft/<from>_to_<to>.md` for your version hop and paste it with the broken file:
-
-```
-I am porting a Fabric mod from [FROM] to [TO].
-The auto-porter already applied mechanical renames. The following file still has build errors.
-
-Here is the verified migration guide for this transition:
----
-[paste the knowledge-base file]
----
-
-Here is the file with errors:
----
-[paste the .java file]
----
-
-Fix only what is documented in the migration guide. Do not guess or invent changes.
-```
-
-If you are porting across several versions at once, paste each step file in order and apply one at a time.
-
-### Example
-
-```
-I am porting a Fabric mod from 1.20.4 to 1.20.5.
-
-Here is the verified migration guide for this transition:
----
-[paste knowledge-base/minecraft/1.20.4_to_1.20.5.md]
----
-
-Here is my source file:
----
-[paste MyHudOverlay.java]
----
-
-Apply only the changes documented in the migration guide.
-Do not guess or invent any API changes not listed above.
-```
-
-If you are porting across multiple versions (e.g. 1.19.4 → 1.21), paste each step file in order and apply one at a time.
+The auto-porter handles mechanical changes. Anything requiring logic rewrites shows up as a build error. Open the relevant `knowledge-base/minecraft/` file for that version hop and follow the migration notes — or hand the errors to an AI using the prompt template in [AI_GUIDE.md](AI_GUIDE.md).
 
 ---
 
@@ -207,11 +171,9 @@ templates/
 
 ## Supported Versions
 
-### 1.x Format
-`1.16` – `1.16.5` | `1.17.1` | `1.18` – `1.18.2` | `1.19` – `1.19.4` | `1.20` – `1.20.6` | `1.21` – `1.21.11`
+**1.x format:** `1.16` – `1.16.5` · `1.17.1` · `1.18` – `1.18.2` · `1.19` – `1.19.4` · `1.20` – `1.20.6` · `1.21` – `1.21.11`
 
-### 26.x Format (calendar-based, from 2026)
-`26.1` | `26.1.1` | `26.1.2`
+**26.x format** (calendar versioning, from 2026): `26.1` · `26.1.1` · `26.1.2`
 
 See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 
@@ -232,7 +194,6 @@ See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 
 > **The knowledge-base is the single source of truth.**
 > If any rule in `auto-porter` conflicts with a knowledge-base file, the rule must be fixed or removed.
-> Never add version data outside the knowledge-base without a verified source.
 
 See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the full accuracy policy.
 
@@ -243,12 +204,6 @@ See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the full accuracy policy.
 | File | What it covers |
 |------|----------------|
 | [AI_GUIDE.md](AI_GUIDE.md) | How to use this repo with any AI assistant |
-| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | How to add or update version data, formatting rules, source requirements |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | How to add or update version data |
 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common build errors and how to fix them |
-| [docs/FAQ.md](docs/FAQ.md) | Why the version format changed, loader vs MC versioning, common questions |
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+| [docs/FAQ.md](docs/FAQ.md) | Common questions about versioning and loaders |

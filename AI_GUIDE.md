@@ -1,118 +1,104 @@
-# mc-mod-porter — AI Guide
+# AI Guide — How to port your mod using AI
 
-> ## ⚠️ CRITICAL RULE: DO NOT GUESS
-> **Every version number, class name, method signature, and API change in this repo must come from the knowledge-base or a verified source.**
-> **Never invent, assume, or extrapolate version data. If it is not in the knowledge-base, say so and look it up before proceeding.**
+This guide is for using an AI tool to port your mod with mc-mod-porter.
+The AI runs the porter for you, reads the output, and fixes what the tool couldn't handle automatically.
+
+---
+
+## What AI to use
+
+You need an AI that runs **on your PC** and can execute terminal commands. Web-based chat (pasting into a browser) won't work here.
+
+| Tool | Notes |
+|------|-------|
+| [Claude Code](https://claude.ai/claude-code) | Best for this. Runs in your terminal, reads files, executes commands. **Max plan** recommended for large mods. |
+| [Cursor](https://cursor.sh) | AI-powered VS Code fork. Open the mc-mod-porter folder, use the built-in chat. **Pro plan** recommended. |
+| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Free tier works for smaller mods. |
+| [GitHub Copilot](https://github.com/features/copilot) | Works inside VS Code / JetBrains. Better for fixing individual files after the tool runs. |
+
+---
+
+## How to use it
+
+### Step 1 — Open the AI in the mc-mod-porter folder
+
+Point your AI tool at the `mc-mod-porter` folder on your PC. For example in Claude Code:
+
+```bash
+cd C:/Users/yourname/Desktop/mc-mod-porter
+claude
+```
+
+In Cursor or Windsurf: open the `mc-mod-porter` folder as your project.
+
+### Step 2 — Tell the AI what you want
+
+Give it your mod path and the versions you want to port between. No need to paste any files — just give it the path.
+
+**Example prompt:**
+
+```
+I have a Fabric mod at C:/Users/yourname/Desktop/mymod.
+I want to port it from 1.20.4 to 1.20.5.
+
+The auto-porter JAR is at auto-porter/build/libs/auto-porter-1.0.0.jar.
+If it hasn't been built yet, build it first with: cd auto-porter && ./gradlew build
+
+Then:
+1. Run a dry run to show what would change
+2. Run the actual port
+3. Read the build output
+4. Fix any remaining errors using the knowledge-base files in knowledge-base/minecraft/
+```
+
+The AI will:
+1. Build the tool if needed
+2. Run the dry run and show you the planned changes
+3. Port the mod (creates a copy — your original is never touched)
+4. Read the build errors
+5. Look up the relevant knowledge-base file and fix what the tool couldn't
+
+### Step 3 — Review the result
+
+The ported mod will be at `C:/Users/yourname/Desktop/mymod-ported-1_20_5`.
+Open it, check the changes, and test it in-game.
+
+---
+
+## Porting across multiple versions
+
+If you're jumping more than one version (e.g. 1.19.4 → 1.21.4), tell the AI to port one step at a time:
+
+```
+I have a Fabric mod at C:/Users/yourname/Desktop/mymod.
+I want to port it from 1.19.4 to 1.21.4 step by step.
+
+Port it one version at a time in this order:
+1.19.4 → 1.20
+1.20 → 1.20.1
+1.20.1 → 1.20.2
+... and so on
+
+After each step, fix any build errors using the matching knowledge-base file before moving to the next step.
+The auto-porter JAR is at auto-porter/build/libs/auto-porter-1.0.0.jar.
+```
+
+---
+
+## If something goes wrong
+
+Tell the AI to look at the knowledge-base file for that version hop:
+
+```
+The build failed after porting from 1.20.4 to 1.20.5.
+Read knowledge-base/minecraft/1.20.4_to_1.20.5.md and fix the remaining errors in the ported mod.
+Do not guess — only apply changes that are documented in that file.
+```
+
+---
+
+## Rules for AI working on this repo
+
+> **DO NOT GUESS.** Every version number, class name, and API change must come from the knowledge-base or a verified source. If something is not documented, say so — do not invent it.
 >
-> ## 📖 SOURCE OF TRUTH
-> **The knowledge-base is the single source of truth.**
-> If any auto-porter rule conflicts with a knowledge-base file, the rule must be fixed or removed.
-> The knowledge-base always wins.
-
-This repo contains three standalone Java tools for Minecraft mod development. Each lives in its own subfolder with its own Gradle build.
-
----
-
-## Repo Layout
-
-```
-mc-mod-porter/
-├── auto-porter/        # Ports mods between MC versions (1.16 → 26.x)
-├── visual-tester/      # Fabric mod: in-game screenshots + automated UI testing
-├── deep-debugger/      # Static analysis + fuzz-test generator for mod source
-├── knowledge-base/     # Verified MC/Fabric/NeoForge migration notes (markdown)
-├── examples/           # Before/after Java files showing real migrations
-├── patterns/           # Quick-reference method renames, class moves, signatures
-├── docs/               # CONTRIBUTING, FAQ, TROUBLESHOOTING, INDEX
-├── java/               # Java 17/21/25 change notes relevant to MC mods
-└── templates/          # Version template format (not version data — that's in auto-porter)
-```
-
----
-
-## auto-porter
-
-**Purpose:** Given a mod folder and a target MC version, produces a new `<mod>-ported-<version>` folder with all known API changes applied. Never modifies the original.
-
-**Build:**
-```bash
-cd auto-porter
-./gradlew build
-# → build/libs/auto-porter-1.0.0.jar
-```
-
-**Key commands:**
-```bash
-java -jar auto-porter-1.0.0.jar --list-versions
-java -jar auto-porter-1.0.0.jar <modPath> <fromVersion> <toVersion>
-java -jar auto-porter-1.0.0.jar <modPath> <fromVersion> <toVersion> --dry-run
-java -jar auto-porter-1.0.0.jar <modPath> <fromVersion> <toVersion> --no-build
-java -jar auto-porter-1.0.0.jar --setup-templates   # regenerate gradle.properties templates
-```
-
-**Key source files:**
-- `VersionDatabase.java` — all supported MC versions (1.16–26.1.x) with Fabric/NeoForge version numbers
-- `ApiChangeRule.java` — text/import/signature rules applied during a port (e.g. KeyEvent, PlayerSkin, blit signatures)
-- `AutoPorterMain.java` — CLI entry point; `portMod()` copies then patches
-- `BuildFilePatcher.java` — patches `build.gradle` for structural changes (26.1 Loom plugin rename, mappings removal, Java 25)
-- `GradlePropertiesPatcher.java` — updates version numbers in `gradle.properties`
-- `SourcePatcher.java` — applies `ApiChangeRule` list to all `.java` files
-- `ModMetaPatcher.java` — updates `fabric.mod.json` / `mods.toml`
-- `TemplateManager.java` — reads/writes per-version `gradle.properties` templates
-
-**Adding a new MC version:**
-1. Add a row to `VersionDatabase.java` `static { }` block
-2. Add migration rules to `ApiChangeRule.java` (use `addBidirectional` for two-way, or `new ApiChangeRule(from, to, ...)` for one-way)
-3. Run `--setup-templates` to generate the template files
-4. Rebuild
-
-**Version coverage:** 1.16 through 26.1.2. Templates auto-generated for all versions in the DB.
-
----
-
-## visual-tester
-
-**Purpose:** Fabric mod that runs inside Minecraft. Reads `test-commands.json` from the working directory, executes UI actions (open screen, click, type), and saves screenshots to `test-screenshots/`.
-
-**Working directory under Fabric Loom:** `<projectDir>/run/` — all file paths in the mod must be relative to that (i.e., `new File("test-screenshots")` resolves to `run/test-screenshots` — do NOT prefix with `run/`).
-
-**Key source files:**
-- `CommandProcessor.java` — polls `test-commands.json` and dispatches actions
-- `ScreenshotManager.java` — captures and saves PNG screenshots
-- `VisualTesterMod.java` — mod init, registers tick handler
-
----
-
-## deep-debugger
-
-**Purpose:** Scans mod source, generates fuzz tests, reports unreachable branches and null-risk paths.
-
-**Config:** Copy `debugger-config.example.json` → `debugger-config.json` and fill in `modPath` and `package`.
-
----
-
-## knowledge-base
-
-Verified migration notes. Never guess — if a version change is not confirmed by an official source, mark it `— **verify before use**` or omit it.
-
-Structure:
-```
-knowledge-base/
-├── minecraft/      # Per-version migration docs (1.16_to_1.17.md, etc.)
-└── loaders/
-    ├── fabric/versions.md      # Fabric Loader + Fabric API version table
-    └── neoforge/versions.md    # NeoForge version table + format notes
-```
-
----
-
-## Important facts to remember
-
-- **26.1 is calendar-versioned** — `YY.drop.hotfix`. First unobfuscated MC release. Requires Java 25.
-- **Fabric Loom 26.1 breaking change:** plugin ID `fabric-loom` → `net.fabricmc.fabric-loom`; remove `mappings` line; `modImplementation` → `implementation` for fabric-api.
-- **NeoForge 26.1 version format:** four-component — `26.1.0.<build>[-beta]`
-- **`KeyMapping.Category`** first appeared in MC 1.21.9 (NeoForge) / 1.21.10 (Fabric). Pre-1.21.9 uses a plain `String` category.
-- **`PlayerSkin`** is at `net.minecraft.client.resources` in ≤1.21.8, moved to `net.minecraft.world.entity.player` in 1.21.9+.
-- **`GuiGraphics.blit`** takes `RenderType::guiTextured` as first arg in 1.21.4–1.21.5, then it was removed in 1.21.6+.
-- **Empty-string replace bug:** never use `String.replace("", something)` — it inserts `something` between every character. Always check that `oldPattern` is non-empty before adding a rule.
-- **auto-porter copies first** — `portMod()` always creates `<mod>-ported-<version>` and patches the copy. The original is never touched.
+> **The knowledge-base is the source of truth.** If any rule in `auto-porter` conflicts with a knowledge-base file, the rule must be fixed, not the knowledge-base.
