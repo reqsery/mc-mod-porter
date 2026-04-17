@@ -66,57 +66,45 @@ The tool will:
 4. Update `fabric.mod.json` / `mods.toml` metadata
 5. Attempt a Gradle build and report any remaining errors
 
-### Step 6 — Fix what the tool can't
+### Step 6 — Fix what the tool can't (use an AI)
 
-The auto-porter handles straightforward renames. Anything that requires actual logic changes will show up as a build error. Open the relevant knowledge-base file for that version hop and follow the migration notes, or hand it to an AI (see below).
+The auto-porter handles mechanical changes — renames, import swaps, signature updates. Anything that requires actual logic changes (refactoring a callback, rewriting event handling) will show up as a build error. This is where you bring in an AI.
 
----
+The knowledge-base files are designed to be dropped directly into an AI as verified context. The AI applies documented changes instead of guessing.
 
-## Using with AI
+#### Recommended tools (all run locally on your PC, inside your editor)
 
-The knowledge-base files are designed to be pasted directly into an AI prompt as verified context. This prevents hallucination — the AI applies documented changes instead of guessing.
-
-### Recommended AI tools
-
-**Web-based:**
-| Tool | Plan to use | Notes |
-|------|-------------|-------|
-| [Claude](https://claude.ai) | Pro or Max | Best for long files and multi-file context. Max plan handles very large mods. |
-| [ChatGPT](https://chat.openai.com) | Plus | Good general-purpose, works well with structured prompts. |
-| [Google Gemini](https://gemini.google.com) | Advanced | Very large context window — good for pasting multiple files at once. |
-
-**Desktop / IDE (runs on your PC, integrated into your editor):**
 | Tool | Notes |
 |------|-------|
-| [Cursor](https://cursor.sh) | AI-powered IDE (VS Code fork). Paste the KB file as a rule or in the chat. Pro plan recommended. |
-| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Free tier available, paid for larger context. |
-| [GitHub Copilot](https://github.com/features/copilot) | Integrated into VS Code and JetBrains. Good for file-by-file fixes. |
-| [Claude Code](https://claude.ai/claude-code) | Terminal-based agent. Can read your whole mod folder and apply changes autonomously. |
+| [Cursor](https://cursor.sh) | AI-powered IDE (VS Code fork). Open your mod folder, paste the KB file in chat. **Pro plan recommended** — free tier has short context. |
+| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Good free tier, paid for larger files. |
+| [Claude Code](https://claude.ai/claude-code) | Terminal agent. Point it at your mod folder and it reads, edits, and builds autonomously. **Max plan** handles large mods well. |
+| [GitHub Copilot](https://github.com/features/copilot) | Built into VS Code and JetBrains. Good for fixing individual files. |
 
-> **Tip:** Premium/paid plans are worth it for porting. Free tiers have short context limits — porting a real mod often requires pasting multiple files at once.
+> Paid plans are worth it for real mods. Free tiers cut off mid-file on anything large.
 
----
+#### What to tell the AI
 
-### What to tell the AI
-
-Open the knowledge-base file for your version transition (e.g. `knowledge-base/minecraft/1.20.4_to_1.20.5.md`) and paste it along with your source file. Use this prompt structure:
+Open `knowledge-base/minecraft/<from>_to_<to>.md` for your version hop and paste it with the broken file:
 
 ```
-I am porting a Fabric mod from [FROM VERSION] to [TO VERSION].
+I am porting a Fabric mod from [FROM] to [TO].
+The auto-porter already applied mechanical renames. The following file still has build errors.
 
 Here is the verified migration guide for this transition:
 ---
-[paste the contents of the knowledge-base file here]
+[paste the knowledge-base file]
 ---
 
-Here is my source file:
+Here is the file with errors:
 ---
-[paste your .java file here]
+[paste the .java file]
 ---
 
-Apply only the changes documented in the migration guide.
-Do not guess or invent any API changes not listed above.
+Fix only what is documented in the migration guide. Do not guess or invent changes.
 ```
+
+If you are porting across several versions at once, paste each step file in order and apply one at a time.
 
 ### Example
 
