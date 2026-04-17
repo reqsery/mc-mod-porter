@@ -1,0 +1,23 @@
+# Gradle build outputs
+build/
+.gradle/
+out/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# macOS
+.DS_Store
+
+# Minecraft run directory
+run/
+
+# Loom cache
+.architectury-transformer/

@@ -1,0 +1,11 @@
+{
+  "mcVersion": "1.19",
+  "fabricLoader": "0.14.9+build.1",
+  "fabricApi": "0.56.0+1.19",
+  "architectury": "3.3.4",
+  "forge": "41.0.9",
+  "hasFabric": true,
+  "hasForge": true,
+  "hasNeoForge": false,
+  "loom": "0.10-SNAPSHOT"
+}

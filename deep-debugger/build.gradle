@@ -1,0 +1,100 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.debugger'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.0'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
+    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.github.javaparser:javaparser-core:3.26.2'
+    implementation 'org.slf4j:slf4j-simple:2.0.13'
+}
+
+application {
+    mainClass = 'com.debugger.DeepDebuggerMain'
+}
+
+// Include GroupChat's pure-Java classes (Group, GroupManager, ModConfig) in test compilation.
+// MC-dependent packages (hud, keybind, network, mixin, ui, ExampleMod) are provided as stubs
+// in src/test/java. We add the groupchat sources directly to the compile task using a fileTree
+// so that the excludes are scoped to ONLY the groupchat srcDir and do NOT affect src/test/java
+// (which has the stubs for the excluded classes).
+tasks.named('compileTestJava').configure {
+    source(fileTree('C:/Users/eyalr/Desktop/Minecraft Modding/groupchat/common/src/main/java') {
+        exclude 'com/groupchat/ExampleMod.java'
+        exclude 'com/groupchat/hud/**'
+        exclude 'com/groupchat/keybind/**'
+        exclude 'com/groupchat/network/**'
+        exclude 'com/groupchat/mixin/**'
+        exclude 'com/groupchat/ui/**'
+    })
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        showStandardStreams = true
+    }
+}
+
+// After tests pass, generate JSON report from XML results
+tasks.register('generateReport') {
+    group = 'verification'
+    description = 'Generates build/test-report.json from JUnit XML results'
+    mustRunAfter test
+    doLast {
+        def reportsDir = file("build/test-results/test")
+        def outFile = file("build/test-report.json")
+        if (!reportsDir.exists()) {
+            println "No test results found yet - run './gradlew test' first"
+            return
+        }
+        outFile.parentFile.mkdirs()
+        def tests = []
+        def pass = 0; def fail = 0; def err = 0; def skip = 0
+        reportsDir.eachFileRecurse { f ->
+            if (!f.name.endsWith('.xml')) return
+            def xml = new XmlSlurper().parse(f)
+            xml.testcase.each { tc ->
+                def status = 'PASSED'
+                def msg = ''
+                if (tc.failure.size() > 0)     { status = 'FAILED'; msg = tc.failure.@message.text(); fail++ }
+                else if (tc.error.size() > 0)  { status = 'ERROR';  msg = tc.error.@message.text();   err++ }
+                else if (tc.skipped.size() > 0){ status = 'SKIPPED';                                  skip++ }
+                else                           {                                                       pass++ }
+                tests << [class: tc.@classname.text(), method: tc.@name.text(), status: status, message: msg]
+            }
+        }
+        def total = tests.size()
+        def report = [
+            generatedAt: new Date().toString(),
+            totalTests: total, passed: pass, failed: fail, errors: err, skipped: skip,
+            tests: tests
+        ]
+        outFile.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(report))
+        println "Test report: ${outFile.absolutePath}"
+        println "Results: ${pass} passed, ${fail} failed, ${err} errors, ${skip} skipped"
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+    it.options.encoding = 'UTF-8'
+}

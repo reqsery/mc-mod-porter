@@ -1,0 +1,41 @@
+plugins {
+    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "net.minecraft:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+    it.options.encoding = 'UTF-8'
+}

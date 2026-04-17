@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "visualtester",
+  "version": "${version}",
+  "name": "Visual Tester",
+  "description": "AI-powered visual testing bot: screenshots, input simulation, screen/chat reading.",
+  "authors": ["mc-mod-porter"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.visualtester.VisualTesterMod"]
+  },
+  "mixins": ["visualtester.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": "~1.21.10",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
