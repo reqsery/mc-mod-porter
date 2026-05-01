@@ -16,6 +16,10 @@ import java.util.stream.Stream;
 public class BuildFilePatcher {
 
     public PatchResult patch(Path modRoot, String targetVersion) throws IOException {
+        return patch(modRoot, targetVersion, false);
+    }
+
+    public PatchResult patch(Path modRoot, String targetVersion, boolean useYarn) throws IOException {
         VersionDatabase.VersionInfo info = VersionDatabase.get(targetVersion);
         if (info == null) return PatchResult.failure("Unknown version: " + targetVersion);
 
@@ -28,7 +32,7 @@ public class BuildFilePatcher {
             if (is26x) {
                 changes.addAll(patchFor26x(file));
             } else {
-                changes.addAll(revertFrom26x(file));
+                changes.addAll(revertFrom26x(file, useYarn, info));
             }
         }
 
@@ -133,7 +137,7 @@ public class BuildFilePatcher {
 
     // ── Revert 26.x → pre-26.x ─────────────────────────────────────────────
 
-    private List<String> revertFrom26x(Path file) throws IOException {
+    private List<String> revertFrom26x(Path file, boolean useYarn, VersionDatabase.VersionInfo info) throws IOException {
         String content = Files.readString(file);
         String original = content;
         List<String> log = new ArrayList<>();
@@ -148,17 +152,23 @@ public class BuildFilePatcher {
             content = after;
         }
 
-        // 2. Re-add mappings line (required pre-26.x; 26.x removed it because code is unobfuscated)
+        // 2. Re-add mappings line (required pre-26.x; 26.x removed it because code is unobfuscated).
         //    Insert after the minecraft dependency line if no mappings line is present.
         if (!content.contains("mappings ") && content.contains("com.mojang:minecraft:")) {
-            // Find the minecraft dependency line and append a mappings line after it.
-            // Use replaceFirst so we only insert once. The $ in ${project...} must be escaped
-            // in the Java regex replacement string as \$.
+            String mappingsLine;
+            String mappingsDesc;
+            if (useYarn && info.yarnMappings() != null) {
+                mappingsLine = "\t\tmappings \"net.fabricmc:yarn:" + info.yarnMappings() + ":v2\"";
+                mappingsDesc = "added Yarn mappings line: " + info.yarnMappings();
+            } else {
+                mappingsLine = "\t\tmappings loom.officialMojangMappings()";
+                mappingsDesc = "added mappings loom.officialMojangMappings() (Mojang official)";
+            }
             after = content.replaceFirst(
                 "(?m)(^[ \\t]*minecraft ['\"]com\\.mojang:minecraft:[^'\"]+['\"][ \\t]*)(\\r?\\n)",
-                "$1$2\t\tmappings \"net.minecraft:mappings:\\${project.minecraft_version}\"$2");
+                "$1$2" + mappingsLine.replace("\\", "\\\\").replace("$", "\\$") + "$2");
             if (!after.equals(content)) {
-                log.add(name + ": added mappings line (required pre-26.x — code is obfuscated)");
+                log.add(name + ": " + mappingsDesc);
                 content = after;
             }
         }

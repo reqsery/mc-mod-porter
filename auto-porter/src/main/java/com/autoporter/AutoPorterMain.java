@@ -7,6 +7,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 /**
  * Auto-Porter — ports a Minecraft mod between versions.
@@ -116,17 +117,46 @@ public class AutoPorterMain {
         report.put("startedAt",   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         List<Map<String, Object>> steps = new ArrayList<>();
 
+        // Ask about mappings when backporting from 26.x to a Fabric pre-26.x version
+        // (26.x has no mappings; earlier versions need one re-added)
+        boolean useYarn = false;
+        VersionDatabase.VersionInfo toInfo = VersionDatabase.get(toVer);
+        if (fromVer.startsWith("26.") && !toVer.startsWith("26.") && toInfo != null && toInfo.hasFabric()) {
+            System.out.println("─────────────────────────────────────────");
+            System.out.println("Mappings choice (required for pre-26.x Fabric builds):");
+            System.out.println("  1) Mojang official  [loom.officialMojangMappings()]");
+            String yarnLabel = toInfo.yarnMappings() != null
+                ? "2) Yarn              [" + toInfo.yarnMappings() + ":v2]"
+                : "2) Yarn              [not available for " + toVer + "]";
+            System.out.println("  " + yarnLabel);
+            System.out.print("Enter 1 or 2 [default: 1]: ");
+            System.out.flush();
+            String choice = new Scanner(System.in).nextLine().trim();
+            if (choice.equals("2")) {
+                if (toInfo.yarnMappings() != null) {
+                    useYarn = true;
+                    System.out.println("→ Using Yarn mappings: " + toInfo.yarnMappings());
+                } else {
+                    System.out.println("→ Yarn not available for " + toVer + ", falling back to Mojang official.");
+                }
+            } else {
+                System.out.println("→ Using Mojang official mappings.");
+            }
+            System.out.println("─────────────────────────────────────────");
+            System.out.println();
+        }
+
         // Step 0: Update Loom/plugin versions in build.gradle
         System.out.println("[0/4] Updating build.gradle plugin versions...");
         BuildFilePatcher buildPatcher = new BuildFilePatcher();
-        PatchResult buildFileResult = buildPatcher.patch(modRoot, toVer);
+        PatchResult buildFileResult = buildPatcher.patch(modRoot, toVer, useYarn);
         buildFileResult.print();
         steps.add(stepMap("build.gradle", buildFileResult));
 
         // Step 1: Update gradle.properties
         System.out.println("[1/4] Updating gradle.properties...");
         GradlePropertiesPatcher gradlePatcher = new GradlePropertiesPatcher();
-        PatchResult gradleResult = gradlePatcher.patch(modRoot, toVer);
+        PatchResult gradleResult = gradlePatcher.patch(modRoot, toVer, useYarn);
         gradleResult.print();
         steps.add(stepMap("gradle.properties", gradleResult));
 
