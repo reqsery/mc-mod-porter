@@ -67,8 +67,9 @@ public class AccessWidenerPatcher {
             Files.move(aw, ct, StandardCopyOption.REPLACE_EXISTING);
             changes.add("Renamed " + oldName + " → " + newName + "; namespace named → official");
 
-            // 3. Update fabric.mod.json references
+            // 3. Update fabric.mod.json and build.gradle references
             changes.addAll(updateFabricModJson(modRoot, oldName, newName, true));
+            changes.addAll(updateBuildGradle(modRoot, oldName, newName));
         }
         return changes;
     }
@@ -93,8 +94,9 @@ public class AccessWidenerPatcher {
             Files.move(ct, aw, StandardCopyOption.REPLACE_EXISTING);
             changes.add("Renamed " + oldName + " → " + newName + "; namespace official → named");
 
-            // 3. Update fabric.mod.json references
+            // 3. Update fabric.mod.json and build.gradle references
             changes.addAll(updateFabricModJson(modRoot, oldName, newName, false));
+            changes.addAll(updateBuildGradle(modRoot, oldName, newName));
         }
         return changes;
     }
@@ -135,6 +137,33 @@ public class AccessWidenerPatcher {
                 Files.writeString(fmj, updated);
                 String keyChange = to26x ? "accessWidener → classTweaker" : "classTweaker → accessWidener";
                 changes.add(fmj.getFileName() + ": updated " + keyChange + " key and filename");
+            }
+        }
+        return changes;
+    }
+
+    // ── build.gradle ─────────────────────────────────────────────────────────
+
+    /**
+     * Updates any build.gradle / build.gradle.kts that references the old filename.
+     * Loom declares the access widener via accessWidenerPath or accessWidener, e.g.:
+     *   accessWidenerPath = file("src/main/resources/mod.accesswidener")
+     */
+    private List<String> updateBuildGradle(Path modRoot, String oldFilename, String newFilename) throws IOException {
+        List<String> changes = new ArrayList<>();
+        List<Path> buildFiles = new ArrayList<>();
+        try (Stream<Path> walk = Files.walk(modRoot, 2)) {
+            walk.filter(p -> {
+                String n = p.getFileName().toString();
+                return n.equals("build.gradle") || n.equals("build.gradle.kts");
+            }).forEach(buildFiles::add);
+        }
+        for (Path bg : buildFiles) {
+            String content = Files.readString(bg);
+            String updated = content.replace(oldFilename, newFilename);
+            if (!updated.equals(content)) {
+                Files.writeString(bg, updated);
+                changes.add(bg.getFileName() + ": updated access widener filename " + oldFilename + " → " + newFilename);
             }
         }
         return changes;
