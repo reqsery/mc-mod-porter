@@ -168,17 +168,24 @@ public class AutoPorterMain {
         steps.add(stepMap("sources", sourceResult));
 
         // Step 3: Update mod metadata
-        System.out.println("\n[3/4] Updating mod metadata (fabric.mod.json / mods.toml)...");
+        System.out.println("\n[3/5] Updating mod metadata (fabric.mod.json / mods.toml)...");
         ModMetaPatcher metaPatcher = new ModMetaPatcher();
         PatchResult metaResult = metaPatcher.patch(modRoot, toVer);
         metaResult.print();
         steps.add(stepMap("metadata", metaResult));
 
-        // Step 4: Build
+        // Step 4: Patch access widener / class tweaker
+        System.out.println("\n[4/5] Patching access widener / class tweaker...");
+        AccessWidenerPatcher awPatcher = new AccessWidenerPatcher();
+        PatchResult awResult = awPatcher.patch(modRoot, toVer);
+        awResult.print();
+        steps.add(stepMap("accesswidener", awResult));
+
+        // Step 5: Build
         Map<String, Object> buildStep = new LinkedHashMap<>();
         BuildRunner.BuildResult buildResult = null;
         if (buildAfter) {
-            System.out.println("\n[4/4] Building ported mod...");
+            System.out.println("\n[5/5] Building ported mod...");
             BuildRunner runner = new BuildRunner();
             buildResult = runner.build(modRoot);
             buildResult.print();
@@ -188,7 +195,7 @@ public class AutoPorterMain {
             buildStep.put("errors", buildResult.errors());
             buildStep.put("logFile", buildResult.logFile());
         } else {
-            System.out.println("\n[4/4] Build skipped (--no-build)");
+            System.out.println("\n[5/5] Build skipped (--no-build)");
             buildStep.put("step", "build");
             buildStep.put("success", "skipped");
         }
@@ -209,7 +216,7 @@ public class AutoPorterMain {
         System.out.println("Port report: " + reportFile.toAbsolutePath());
 
         boolean allOk = gradleResult.success() && sourceResult.success() && metaResult.success()
-                        && (buildResult == null || buildResult.success());
+                        && awResult.success() && (buildResult == null || buildResult.success());
         if (allOk) {
             System.out.println("STATUS: ✓ Port complete — mod ready for " + toVer);
         } else {
