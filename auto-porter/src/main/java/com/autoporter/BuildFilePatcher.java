@@ -47,12 +47,20 @@ public class BuildFilePatcher {
         String name = file.toString();
 
         // 1. Fabric Loom plugin ID rename
-        //    id 'fabric-loom' version ...  →  id 'net.fabricmc.fabric-loom' version ...
+        //    id 'fabric-loom' version ...           →  id 'net.fabricmc.fabric-loom' version ...
+        //    id 'net.fabricmc.fabric-loom-remap' …  →  id 'net.fabricmc.fabric-loom' version ...
         String after = content.replaceAll(
             "id ['\"]fabric-loom['\"]",
             "id 'net.fabricmc.fabric-loom'");
         if (!after.equals(content)) {
             log.add(name + ": renamed plugin id 'fabric-loom' → 'net.fabricmc.fabric-loom'");
+            content = after;
+        }
+        after = content.replaceAll(
+            "id ['\"]net\\.fabricmc\\.fabric-loom-remap['\"]",
+            "id 'net.fabricmc.fabric-loom'");
+        if (!after.equals(content)) {
+            log.add(name + ": renamed plugin id 'net.fabricmc.fabric-loom-remap' → 'net.fabricmc.fabric-loom'");
             content = after;
         }
 
@@ -131,13 +139,28 @@ public class BuildFilePatcher {
         List<String> log = new ArrayList<>();
         String name = file.toString();
 
-        // 1. Revert plugin ID back to fabric-loom
+        // 1. Revert plugin ID to fabric-loom-remap (the remapping variant used pre-26.x)
         String after = content.replaceAll(
             "id ['\"]net\\.fabricmc\\.fabric-loom['\"]",
-            "id 'fabric-loom'");
+            "id 'net.fabricmc.fabric-loom-remap'");
         if (!after.equals(content)) {
-            log.add(name + ": reverted plugin id 'net.fabricmc.fabric-loom' → 'fabric-loom'");
+            log.add(name + ": reverted plugin id 'net.fabricmc.fabric-loom' → 'net.fabricmc.fabric-loom-remap'");
             content = after;
+        }
+
+        // 2. Re-add mappings line (required pre-26.x; 26.x removed it because code is unobfuscated)
+        //    Insert after the minecraft dependency line if no mappings line is present.
+        if (!content.contains("mappings ") && content.contains("com.mojang:minecraft:")) {
+            // Find the minecraft dependency line and append a mappings line after it.
+            // Use replaceFirst so we only insert once. The $ in ${project...} must be escaped
+            // in the Java regex replacement string as \$.
+            after = content.replaceFirst(
+                "(?m)(^[ \\t]*minecraft ['\"]com\\.mojang:minecraft:[^'\"]+['\"][ \\t]*)(\\r?\\n)",
+                "$1$2\t\tmappings \"net.minecraft:mappings:\\${project.minecraft_version}\"$2");
+            if (!after.equals(content)) {
+                log.add(name + ": added mappings line (required pre-26.x — code is obfuscated)");
+                content = after;
+            }
         }
 
         // 2. Revert implementation → modImplementation for fabric-api
