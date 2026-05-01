@@ -56,7 +56,8 @@ public class BuildFilePatcher {
             content = after;
         }
 
-        // 2. Remove the mappings line (no longer needed for unobfuscated 26.x)
+        // 2. Remove ALL mappings lines (not needed for unobfuscated 26.x — applies to
+        //    officialMojangMappings, Yarn, layered mappings, and any other variant)
         after = content.replaceAll(
             "(?m)^[\\t ]*mappings\\s*=?\\s*loom\\.officialMojangMappings\\(\\)\\s*\\r?\\n", "");
         if (!after.equals(content)) {
@@ -67,6 +68,20 @@ public class BuildFilePatcher {
             "(?m)^[\\t ]*mappings\\s*loom\\.officialMojangMappings\\(\\)\\s*\\r?\\n", "");
         if (!after.equals(content)) {
             log.add(name + ": removed mappings loom.officialMojangMappings() line");
+            content = after;
+        }
+        // Yarn: mappings "net.fabricmc:yarn:1.21.9+build.1:v2"
+        after = content.replaceAll(
+            "(?m)^[\\t ]*mappings\\s+['\"]net\\.fabricmc:yarn:[^'\"]+['\"]\\s*\\r?\\n", "");
+        if (!after.equals(content)) {
+            log.add(name + ": removed Yarn mappings line (not applicable in 26.x — code is unobfuscated)");
+            content = after;
+        }
+        // Layered: mappings loom.layered { ... } (multi-line block)
+        after = content.replaceAll(
+            "(?m)^[\\t ]*mappings\\s+loom\\.layered\\s*\\{[^}]*\\}\\s*\\r?\\n", "");
+        if (!after.equals(content)) {
+            log.add(name + ": removed layered mappings block (not applicable in 26.x — code is unobfuscated)");
             content = after;
         }
 
