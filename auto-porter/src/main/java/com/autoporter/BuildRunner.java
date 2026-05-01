@@ -13,7 +13,7 @@ public class BuildRunner {
         // Detect gradlew
         Path gradlew = modRoot.resolve(isWindows() ? "gradlew.bat" : "gradlew");
         if (!Files.exists(gradlew)) {
-            return new BuildResult(false, -1, "", "No gradlew found at " + modRoot);
+            return new BuildResult(false, -1, "", "No gradlew found at " + modRoot, "");
         }
 
         System.out.println("  Running: " + gradlew.getFileName() + " build --no-daemon");
@@ -37,15 +37,51 @@ public class BuildRunner {
         int exitCode = process.waitFor();
         boolean success = exitCode == 0;
 
-        // Extract errors from output
-        List<String> errors = new ArrayList<>();
-        for (String line : output.toString().split("\n")) {
-            if (line.contains("error:") || line.contains("ERROR") || line.contains("FAILED")) {
-                errors.add(line.trim());
+        // Write full output to log file so users can inspect it
+        Path logFile = modRoot.resolve("port-build.log");
+        Files.writeString(logFile, output.toString());
+
+        // Extract meaningful error lines from output
+        // Capture: Java compile errors (error:), task failures (FAILED), Gradle exceptions
+        List<String> errorLines = new ArrayList<>();
+        String[] lines = output.toString().split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i].trim();
+            // Java compiler errors: "path/File.java:42: error: cannot find symbol"
+            if (line.matches(".*\\.java:\\d+: error:.*") || line.startsWith("error:")) {
+                errorLines.add(line);
+                // Include the next 3 lines for context (symbol, location, caret line)
+                for (int j = 1; j <= 3 && i + j < lines.length; j++) {
+                    String ctx = lines[i + j].trim();
+                    if (!ctx.isBlank()) errorLines.add("  " + ctx);
+                }
+            }
+            // Gradle task failure lines
+            else if (line.startsWith("> Task") && line.contains("FAILED")) {
+                errorLines.add(line);
+            }
+            // Gradle build exception summary
+            else if (line.startsWith("* What went wrong:") || line.startsWith("* Exception is:")) {
+                errorLines.add(line);
+                // Include next few lines
+                for (int j = 1; j <= 5 && i + j < lines.length; j++) {
+                    String ctx = lines[i + j].trim();
+                    if (ctx.isBlank() || ctx.startsWith("*")) break;
+                    errorLines.add("  " + ctx);
+                }
+            }
+        }
+        // If we found nothing specific, fall back to any line with "FAILED"
+        if (errorLines.isEmpty()) {
+            for (String line : lines) {
+                if (line.contains("FAILED") || line.contains("BUILD FAILED")) {
+                    errorLines.add(line.trim());
+                }
             }
         }
 
-        return new BuildResult(success, exitCode, output.toString(), String.join("\n", errors));
+        String errors = errorLines.isEmpty() ? "" : String.join("\n", errorLines);
+        return new BuildResult(success, exitCode, output.toString(), errors, logFile.toString());
     }
 
     private String detectJava21() {
@@ -64,7 +100,7 @@ public class BuildRunner {
         return System.getProperty("os.name", "").toLowerCase().contains("win");
     }
 
-    public record BuildResult(boolean success, int exitCode, String fullOutput, String errors) {
+    public record BuildResult(boolean success, int exitCode, String fullOutput, String errors, String logFile) {
         public void print() {
             if (success) {
                 System.out.println("  BUILD SUCCESSFUL");
@@ -76,6 +112,7 @@ public class BuildRunner {
                         if (!line.isBlank()) System.out.println("    " + line);
                     }
                 }
+                System.out.println("  Full build log: " + logFile);
             }
         }
     }
