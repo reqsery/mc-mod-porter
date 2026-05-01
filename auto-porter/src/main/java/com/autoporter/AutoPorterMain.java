@@ -156,6 +156,7 @@ public class AutoPorterMain {
             buildStep.put("success", buildResult.success());
             buildStep.put("exitCode", buildResult.exitCode());
             buildStep.put("errors", buildResult.errors());
+            buildStep.put("logFile", buildResult.logFile());
         } else {
             System.out.println("\n[4/4] Build skipped (--no-build)");
             buildStep.put("step", "build");

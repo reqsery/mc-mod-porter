@@ -168,10 +168,19 @@ public class BuildFilePatcher {
     private List<Path> findBuildFiles(Path root) throws IOException {
         List<Path> files = new ArrayList<>();
         if (!Files.exists(root)) return files;
-        try (Stream<Path> walk = Files.walk(root, 3)) {
+        // Only walk depth 2: root + direct submodules (fabric/, neoforge/, common/).
+        // Depth 3+ risks picking up nested projects (e.g. another tool cloned inside the mod).
+        try (Stream<Path> walk = Files.walk(root, 2)) {
             walk.filter(p -> {
                 String name = p.getFileName().toString();
-                return name.equals("build.gradle") || name.equals("build.gradle.kts");
+                if (!name.equals("build.gradle") && !name.equals("build.gradle.kts")) return false;
+                Path dir = p.getParent();
+                // Always include the mod root's build.gradle
+                if (dir.equals(root)) return true;
+                // For subdirectories: skip if they have their own settings.gradle —
+                // that means it's a separate project, not a submodule of this mod.
+                return !Files.exists(dir.resolve("settings.gradle"))
+                    && !Files.exists(dir.resolve("settings.gradle.kts"));
             }).forEach(files::add);
         }
         return files;
