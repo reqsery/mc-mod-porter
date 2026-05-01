@@ -16,8 +16,8 @@ public class BuildRunner {
             return new BuildResult(false, -1, "", "No gradlew found at " + modRoot, "");
         }
 
-        System.out.println("  Running: " + gradlew.getFileName() + " build --no-daemon");
-        ProcessBuilder pb = new ProcessBuilder(gradlew.toAbsolutePath().toString(), "build", "--no-daemon");
+        System.out.println("  Running: " + gradlew.getFileName() + " genSources downloadAssets build --no-daemon");
+        ProcessBuilder pb = new ProcessBuilder(gradlew.toAbsolutePath().toString(), "genSources", "downloadAssets", "build", "--no-daemon");
         pb.directory(modRoot.toFile());
         pb.redirectErrorStream(true);
 
