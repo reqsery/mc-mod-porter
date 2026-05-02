@@ -2,6 +2,18 @@
 
 A tool for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
 
+![Status](https://img.shields.io/badge/status-WIP-orange)
+## 🚧 Status
+
+Work in progress.
+
+Recently:
+- Fixed a lot of bugs in the auto-porter
+
+Next:
+- More testing
+- Releasing prebuilt JARs soon
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Includes:
