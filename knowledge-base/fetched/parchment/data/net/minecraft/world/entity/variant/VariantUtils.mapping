@@ -1,0 +1,16 @@
+CLASS net/minecraft/world/entity/variant/VariantUtils
+	METHOD getAny (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder;
+		ARG 0 registryAccess
+		ARG 1 registryKey
+	METHOD getDefaultOrAny (Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder;
+		ARG 0 registryAccess
+		ARG 1 key
+	METHOD readVariant (Lnet/minecraft/world/level/storage/ValueInput;Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		ARG 0 input
+		ARG 1 registryKey
+	METHOD selectVariantToSpawn (Lnet/minecraft/world/entity/variant/SpawnContext;Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		ARG 0 context
+		ARG 1 registryKey
+	METHOD writeVariant (Lnet/minecraft/world/level/storage/ValueOutput;Lnet/minecraft/core/Holder;)V
+		ARG 0 output
+		ARG 1 variant

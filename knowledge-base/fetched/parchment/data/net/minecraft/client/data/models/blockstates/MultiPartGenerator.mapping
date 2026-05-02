@@ -1,0 +1,15 @@
+CLASS net/minecraft/client/data/models/blockstates/MultiPartGenerator
+	METHOD <init> (Lnet/minecraft/world/level/block/Block;)V
+		ARG 1 block
+	METHOD multiPart (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/data/models/blockstates/MultiPartGenerator;
+		ARG 0 block
+	METHOD validateCondition (Lnet/minecraft/client/renderer/block/model/multipart/Condition;)V
+		ARG 1 condition
+	METHOD with (Lnet/minecraft/client/data/models/MultiVariant;)Lnet/minecraft/client/data/models/blockstates/MultiPartGenerator;
+		ARG 1 variants
+	METHOD with (Lnet/minecraft/client/data/models/blockstates/ConditionBuilder;Lnet/minecraft/client/data/models/MultiVariant;)Lnet/minecraft/client/data/models/blockstates/MultiPartGenerator;
+		ARG 1 condition
+		ARG 2 variants
+	METHOD with (Lnet/minecraft/client/renderer/block/model/multipart/Condition;Lnet/minecraft/client/data/models/MultiVariant;)Lnet/minecraft/client/data/models/blockstates/MultiPartGenerator;
+		ARG 1 condition
+		ARG 2 variants

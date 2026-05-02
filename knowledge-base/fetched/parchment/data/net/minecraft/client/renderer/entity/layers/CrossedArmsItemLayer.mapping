@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/renderer/entity/layers/CrossedArmsItemLayer
+	METHOD applyTranslation (Lnet/minecraft/client/renderer/entity/state/HoldingEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 renderState
+		ARG 2 poseStack

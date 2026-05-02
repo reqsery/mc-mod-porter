@@ -1,0 +1,17 @@
+CLASS net/minecraft/client/renderer/block/model/BlockModel
+	METHOD fromStream (Ljava/io/Reader;)Lnet/minecraft/client/renderer/block/model/BlockModel;
+		ARG 0 reader
+	CLASS Deserializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/BlockModel;
+			ARG 1 json
+			ARG 2 type
+			ARG 3 context
+		METHOD getAmbientOcclusion (Lcom/google/gson/JsonObject;)Ljava/lang/Boolean;
+			ARG 1 json
+		METHOD getElements (Lcom/google/gson/JsonDeserializationContext;Lcom/google/gson/JsonObject;)Lnet/minecraft/client/resources/model/UnbakedGeometry;
+			ARG 1 context
+			ARG 2 json
+		METHOD getParentName (Lcom/google/gson/JsonObject;)Ljava/lang/String;
+			ARG 1 json
+		METHOD getTextureMap (Lcom/google/gson/JsonObject;)Lnet/minecraft/client/renderer/block/model/TextureSlots$Data;
+			ARG 1 json

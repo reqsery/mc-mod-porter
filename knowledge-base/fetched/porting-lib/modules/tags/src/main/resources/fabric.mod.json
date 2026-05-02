@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "porting_lib_tags",
+  "version": "3.0",
+  "name": "Porting Lib Tags",
+  "description": "Adds tags from Forge that Fabric is missing.",
+  "authors": [
+    "AlphaMode"
+  ],
+  "entrypoints": {
+    "fabric-datagen": [
+      "io.github.fabricators_of_create.porting_lib.tags.data.DataGenerators"
+    ]
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1767": ["io/github/fabricators_of_create/porting_lib/tags/extensions/DyeExtension"]
+    }
+  }
+}

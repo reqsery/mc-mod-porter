@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/player/LocalPlayerResolver
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/server/players/ProfileResolver;)V
+		ARG 1 minecraft
+		ARG 2 parentResolver

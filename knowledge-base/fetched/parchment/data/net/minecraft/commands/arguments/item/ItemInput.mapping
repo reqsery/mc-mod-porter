@@ -1,0 +1,14 @@
+CLASS net/minecraft/commands/arguments/item/ItemInput
+	METHOD <init> (Lnet/minecraft/core/Holder;Lnet/minecraft/core/component/DataComponentPatch;)V
+		ARG 1 item
+		ARG 2 components
+	METHOD createItemStack (IZ)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 count
+		ARG 2 allowOversizedStacks
+	METHOD lambda$static$0 (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 item
+		ARG 1 quantity
+	METHOD serialize (Lnet/minecraft/core/HolderLookup$Provider;)Ljava/lang/String;
+		ARG 1 levelRegistry
+	METHOD serializeComponents (Lnet/minecraft/core/HolderLookup$Provider;)Ljava/lang/String;
+		ARG 1 levelRegistries

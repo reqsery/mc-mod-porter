@@ -1,0 +1,33 @@
+CLASS net/minecraft/client/PeriodicNotificationManager
+	METHOD <init> (Lnet/minecraft/resources/Identifier;Lit/unimi/dsi/fastutil/objects/Object2BooleanFunction;)V
+		ARG 1 notifications
+		ARG 2 selector
+	METHOD calculateInitialDelay (Ljava/util/List;)J
+		ARG 1 notifications
+	METHOD calculateOptimalPeriod (Ljava/util/List;J)J
+		ARG 1 notifications
+		ARG 2 delay
+	METHOD lambda$apply$1 (Ljava/util/Map$Entry;)Z
+		ARG 1 notification
+	METHOD lambda$apply$2 (Lnet/minecraft/client/PeriodicNotificationManager$Notification;)Z
+		ARG 0 notification
+	METHOD lambda$calculateInitialDelay$5 (Lnet/minecraft/client/PeriodicNotificationManager$Notification;)J
+		ARG 0 notification
+	METHOD lambda$calculateOptimalPeriod$3 (JLnet/minecraft/client/PeriodicNotificationManager$Notification;)J
+		ARG 2 notification
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	CLASS Notification
+		METHOD <init> (JJLjava/lang/String;Ljava/lang/String;)V
+			ARG 1 delay
+			ARG 3 period
+			ARG 5 title
+			ARG 6 message
+	CLASS NotificationTask
+		METHOD <init> (Ljava/util/List;JJ)V
+			ARG 1 notifications
+			ARG 2 elapsed
+			ARG 4 period
+		METHOD reset (Ljava/util/List;J)Lnet/minecraft/client/PeriodicNotificationManager$NotificationTask;
+			ARG 1 notifications
+			ARG 2 period

@@ -1,0 +1,7 @@
+CLASS net/minecraft/world/level/block/BarrierBlock
+	METHOD getRenderShape (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/RenderShape;
+		ARG 1 state
+	METHOD getShadeBrightness (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)F
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos

@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/level/block/SpreadingSnowyDirtBlock
+	METHOD canBeGrass (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 state
+		ARG 1 levelReader
+		ARG 2 pos
+	METHOD canPropagate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 state
+		ARG 1 level
+		ARG 2 pos

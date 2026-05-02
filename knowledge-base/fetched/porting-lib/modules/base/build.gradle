@@ -1,0 +1,11 @@
+portingLib.addModuleDependencies([
+		"item_abilities",
+		"gui_utils",
+		"transfer",
+		"registry",
+		"entity",
+		"common",
+		"config",
+		"loot",
+		"tags"
+])

@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/renderer/feature/ParticleFeatureRenderer
+	METHOD prepareRenderPass (Lcom/mojang/blaze3d/systems/RenderPass;)V
+		ARG 1 renderPass
+	METHOD render (Lnet/minecraft/client/renderer/SubmitNodeCollection;)V
+		ARG 1 collection
+	CLASS ParticleBufferCache
+		METHOD write (Ljava/nio/ByteBuffer;)V
+			ARG 1 buffer

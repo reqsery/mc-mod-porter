@@ -1,0 +1,8 @@
+CLASS net/minecraft/server/packs/resources/Resource
+	METHOD <init> (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/resources/IoSupplier;)V
+		ARG 1 source
+		ARG 2 streamSupplier
+	METHOD <init> (Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/resources/IoSupplier;Lnet/minecraft/server/packs/resources/IoSupplier;)V
+		ARG 1 source
+		ARG 2 streamSupplier
+		ARG 3 metadataSupplier

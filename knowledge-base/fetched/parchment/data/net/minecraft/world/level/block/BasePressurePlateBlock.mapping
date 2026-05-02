@@ -1,0 +1,52 @@
+CLASS net/minecraft/world/level/block/BasePressurePlateBlock
+	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;Lnet/minecraft/world/level/block/state/properties/BlockSetType;)V
+		ARG 1 properties
+		ARG 2 type
+	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD checkPressed (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)V
+		ARG 1 entity
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 currentSignal
+	METHOD getDirectSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		ARG 1 blockState
+		ARG 2 blockAccess
+		ARG 3 pos
+		ARG 4 side
+	METHOD getEntityCount (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/AABB;Ljava/lang/Class;)I
+		ARG 0 level
+		ARG 1 box
+		ARG 2 entityClass
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		ARG 1 blockState
+		ARG 2 blockAccess
+		ARG 3 pos
+		ARG 4 side
+	METHOD getSignalForState (Lnet/minecraft/world/level/block/state/BlockState;)I
+		COMMENT Returns the signal encoded in the given block state.
+		ARG 1 state
+	METHOD getSignalStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
+		COMMENT Calculates what the signal strength of a pressure plate at the given location should be.
+		ARG 1 level
+		ARG 2 pos
+	METHOD isSignalSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD lambda$getEntityCount$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD setSignalForState (Lnet/minecraft/world/level/block/state/BlockState;I)Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Returns the block state that encodes the given signal.
+		ARG 1 state
+		ARG 2 signal
+	METHOD updateNeighbours (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		COMMENT Notify block and block below of changes
+		ARG 1 level
+		ARG 2 pos

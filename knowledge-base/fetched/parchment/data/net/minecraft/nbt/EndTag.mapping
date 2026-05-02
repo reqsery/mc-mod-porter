@@ -1,0 +1,3 @@
+CLASS net/minecraft/nbt/EndTag
+	METHOD write (Ljava/io/DataOutput;)V
+		ARG 1 output

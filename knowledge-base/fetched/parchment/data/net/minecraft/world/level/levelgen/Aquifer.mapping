@@ -1,0 +1,105 @@
+CLASS net/minecraft/world/level/levelgen/Aquifer
+	COMMENT Aquifers are responsible for non-sea level fluids found in terrain generation, but also managing that different aquifers don't intersect with each other in ways that would create undesirable fluid placement.
+	COMMENT The aquifer interface itself is a modifier on a per-block basis. It computes a block state to be placed for each position in the world.
+	COMMENT <p>
+	COMMENT Aquifers work by first partitioning a single chunk into a low resolution grid. They then generate, via various noise layers, an {@link NoiseBasedAquifer.AquiferStatus} at each grid point.
+	COMMENT At each point, the grid cell containing that point is calculated, and then of the eight grid corners, the three closest aquifers are found, by square euclidean distance.
+	COMMENT Borders between aquifers are created by comparing nearby aquifers to see if the given point is near-equidistant from them, indicating a border if so, or fluid/air depending on the aquifer height if not.
+	METHOD computeSubstance (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;D)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+		ARG 2 substance
+	METHOD create (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/NoiseRouter;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
+		COMMENT Creates a standard noise based aquifer. This aquifer will place liquid (both water and lava), air, and stone as described above.
+		ARG 0 chunk
+		ARG 1 chunkPos
+		ARG 2 noiseRouter
+		ARG 3 positionalRandomFactory
+		ARG 4 minY
+		ARG 5 height
+		ARG 6 globalFluidPicker
+	METHOD createDisabled (Lnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)Lnet/minecraft/world/level/levelgen/Aquifer;
+		COMMENT Creates a disabled, or no-op aquifer. This will fill any open areas below sea level with the default fluid.
+		ARG 0 defaultFluid
+	METHOD shouldScheduleFluidUpdate ()Z
+		COMMENT Returns {@code true} if there should be a fluid update scheduled - due to a fluid block being placed in a possibly unsteady position - at the last position passed into {@link #computeState}.
+		COMMENT This <strong>must</strong> be invoked only after {@link #computeState}, and will be using the same parameters as that method.
+	CLASS FluidPicker
+		METHOD computeFluid (III)Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+	CLASS FluidStatus
+		FIELD fluidLevel I
+			COMMENT The y height of the aquifer.
+		FIELD fluidType Lnet/minecraft/world/level/block/state/BlockState;
+			COMMENT The fluid state the aquifer is filled with.
+		METHOD <init> (ILnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 fluidLevel
+			ARG 2 fluidType
+		METHOD at (I)Lnet/minecraft/world/level/block/state/BlockState;
+			ARG 1 y
+	CLASS NoiseBasedAquifer
+		METHOD <init> (Lnet/minecraft/world/level/levelgen/NoiseChunk;Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/world/level/levelgen/NoiseRouter;Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;IILnet/minecraft/world/level/levelgen/Aquifer$FluidPicker;)V
+			ARG 1 noiseChunk
+			ARG 2 chunkPos
+			ARG 3 noiseRouter
+			ARG 4 positionalRandomFactory
+			ARG 5 minY
+			ARG 6 height
+			ARG 7 globalFluidPicker
+		METHOD adjustSurfaceLevel (I)I
+			ARG 1 level
+		METHOD calculatePressure (Lnet/minecraft/world/level/levelgen/DensityFunction$FunctionContext;Lorg/apache/commons/lang3/mutable/MutableDouble;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;)D
+			ARG 1 context
+			ARG 2 substance
+			ARG 3 firstFluid
+			ARG 4 secondFluid
+		METHOD computeFluid (III)Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+		METHOD computeFluidType (IIILnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;I)Lnet/minecraft/world/level/block/state/BlockState;
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+			ARG 4 fluidStatus
+			ARG 5 surfaceLevel
+		METHOD computeRandomizedFluidSurfaceLevel (IIII)I
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+			ARG 4 maxSurfaceLevel
+		METHOD computeSurfaceLevel (IIILnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;IZ)I
+			ARG 1 x
+			ARG 2 y
+			ARG 3 z
+			ARG 4 fluidStatus
+			ARG 5 maxSurfaceLevel
+			ARG 6 fluidPresent
+		METHOD fromGridX (II)I
+			ARG 0 gridX
+			ARG 1 offset
+		METHOD fromGridY (II)I
+			ARG 0 gridY
+			ARG 1 offset
+		METHOD fromGridZ (II)I
+			ARG 0 gridZ
+			ARG 1 offset
+		METHOD getAquiferStatus (I)Lnet/minecraft/world/level/levelgen/Aquifer$FluidStatus;
+			ARG 1 index
+		METHOD getIndex (III)I
+			COMMENT @return A cache index based on grid positions.
+			ARG 1 gridX
+			ARG 2 gridY
+			ARG 3 gridZ
+		METHOD gridX (I)I
+			ARG 0 x
+		METHOD gridY (I)I
+			ARG 0 y
+		METHOD gridZ (I)I
+			ARG 0 z
+		METHOD similarity (II)D
+			COMMENT Compares two distances (between aquifers).
+			COMMENT @return {@code 1.0} if the distances are equal, and returns smaller values the more different in absolute value the two distances are.
+			ARG 0 firstDistance
+			ARG 1 secondDistance

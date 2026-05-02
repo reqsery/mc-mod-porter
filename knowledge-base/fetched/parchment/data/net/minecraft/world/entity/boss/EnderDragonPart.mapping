@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/entity/boss/EnderDragonPart
+	METHOD <init> (Lnet/minecraft/world/entity/boss/enderdragon/EnderDragon;Ljava/lang/String;FF)V
+		ARG 1 parentMob
+		ARG 2 name
+		ARG 3 width
+		ARG 4 height
+	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 pose
+	METHOD is (Lnet/minecraft/world/entity/Entity;)Z
+		COMMENT Returns {@code true} if Entity argument is equal to this Entity
+		ARG 1 entity
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.

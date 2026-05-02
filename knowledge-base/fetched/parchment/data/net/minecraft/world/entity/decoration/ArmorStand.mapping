@@ -1,0 +1,107 @@
+CLASS net/minecraft/world/entity/decoration/ArmorStand
+	FIELD lastHit J
+		COMMENT After punching the stand, the cooldown before you can punch it again without breaking it.
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD brokenByAnything (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 level
+		ARG 2 damageSource
+	METHOD brokenByPlayer (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 level
+		ARG 2 damageSource
+	METHOD causeDamage (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)V
+		ARG 1 level
+		ARG 2 damageSource
+		ARG 3 damageAmount
+	METHOD doPush (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entity
+	METHOD getClickedSlot (Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/entity/EquipmentSlot;
+		ARG 1 vector
+	METHOD getDimensionsMarker (Z)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 isMarker
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getLightProbePosition (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 partialTicks
+	METHOD interactAt (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Applies the given player interaction to this Entity.
+		ARG 1 player
+		ARG 2 vec
+		ARG 3 hand
+	METHOD isAffectedByPotions ()Z
+		COMMENT Returns false if the entity is an armor stand. Returns {@code true} for all other entity living bases.
+	METHOD isBaby ()Z
+		COMMENT If Animal, checks if the age timer is negative
+	METHOD isDisabled (Lnet/minecraft/world/entity/EquipmentSlot;)Z
+		ARG 1 slot
+	METHOD isEffectiveAi ()Z
+		COMMENT Returns whether the entity is in a server world
+	METHOD isMarker ()Z
+		COMMENT Gets whether the armor stand has marker enabled. If true, the armor stand's bounding box is set to zero and cannot be interacted with.
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
+	METHOD isPushable ()Z
+		COMMENT Returns {@code true} if this entity should push and be pushed by other entities when colliding.
+	METHOD lambda$static$0 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 0 entity
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD setArmorStandPose (Lnet/minecraft/world/entity/decoration/ArmorStand$ArmorStandPose;)V
+		ARG 1 armorStandPose
+	METHOD setBit (BIZ)B
+		ARG 1 oldBit
+		ARG 2 offset
+		ARG 3 value
+	METHOD setBodyPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 bodyPose
+	METHOD setHeadPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 headPose
+	METHOD setInvisible (Z)V
+		ARG 1 invisible
+	METHOD setLeftArmPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 leftArmPose
+	METHOD setLeftLegPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 leftLegPose
+	METHOD setMarker (Z)V
+		COMMENT Marker defines where if true, the size is 0 and will not be rendered or intractable.
+		ARG 1 marker
+	METHOD setNoBasePlate (Z)V
+		ARG 1 noBasePlate
+	METHOD setRightArmPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 rightArmPose
+	METHOD setRightLegPose (Lnet/minecraft/core/Rotations;)V
+		ARG 1 rightLegPose
+	METHOD setShowArms (Z)V
+		ARG 1 showArms
+	METHOD setSmall (Z)V
+		ARG 1 small
+	METHOD setYBodyRot (F)V
+		COMMENT Set the body Y rotation of the entity.
+		ARG 1 offset
+	METHOD setYHeadRot (F)V
+		COMMENT Sets the head's Y rotation of the entity.
+		ARG 1 rotation
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD skipAttackInteraction (Lnet/minecraft/world/entity/Entity;)Z
+		COMMENT Called when a player attacks an entity. If this returns true the attack will not happen.
+		ARG 1 entity
+	METHOD swapItem (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)Z
+		ARG 1 player
+		ARG 2 slot
+		ARG 3 stack
+		ARG 4 hand
+	METHOD thunderHit (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LightningBolt;)V
+		ARG 1 level
+		ARG 2 lightning
+	METHOD travel (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 travelVector
+	METHOD updateInvisibilityStatus ()V
+		COMMENT Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color, ambience, and invisibility metadata values
+	CLASS ArmorStandPose
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/entity/item/PrimedTnt
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 owner
+	METHOD getFuse ()I
+		COMMENT Gets the fuse from the data manager
+	METHOD getOwner ()Lnet/minecraft/world/entity/LivingEntity;
+		COMMENT Returns null or the entityliving it was ignited by
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
+	METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 blockState
+	METHOD setFuse (I)V
+		ARG 1 life
+	METHOD setUsedPortal (Z)V
+		ARG 1 usedPortal
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

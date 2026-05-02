@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/phys/shapes/EntityCollisionContext
+	METHOD <init> (Lnet/minecraft/world/entity/Entity;ZZ)V
+		ARG 1 entity
+		ARG 2 alwaysCollideWithFluid
+		ARG 3 placement
+	METHOD <init> (ZZDLnet/minecraft/world/item/ItemStack;ZLnet/minecraft/world/entity/Entity;)V
+		ARG 1 descending
+		ARG 2 placement
+		ARG 3 entityBottom
+		ARG 5 heldItem
+		ARG 6 alwaysCollideWithFluid
+		ARG 7 entity
+	METHOD isHoldingItem (Lnet/minecraft/world/item/Item;)Z
+		ARG 1 item
+	CLASS Empty
+		METHOD <init> (Z)V
+			ARG 1 alwaysCollideWithFluid

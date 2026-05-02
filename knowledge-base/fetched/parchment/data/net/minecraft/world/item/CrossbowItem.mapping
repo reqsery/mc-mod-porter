@@ -1,0 +1,57 @@
+CLASS net/minecraft/world/item/CrossbowItem
+	FIELD midLoadSoundPlayed Z
+		COMMENT Set to {@code true} when the crossbow is 50% charged.
+	FIELD startSoundPlayed Z
+		COMMENT Set to {@code true} when the crossbow is 20% charged.
+	METHOD getAllSupportedProjectiles ()Ljava/util/function/Predicate;
+		COMMENT Get the predicate to match ammunition when searching the player's inventory, not their main/offhand
+	METHOD getChargeDuration (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I
+		ARG 0 stack
+		ARG 1 shooter
+	METHOD getChargingSounds (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/CrossbowItem$ChargingSounds;
+		ARG 1 stack
+	METHOD getPowerForTime (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)F
+		ARG 0 timeLeft
+		ARG 1 stack
+		ARG 2 shooter
+	METHOD getProjectileShotVector (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/Vec3;F)Lorg/joml/Vector3f;
+		ARG 0 shooter
+		ARG 1 distance
+		ARG 2 angle
+	METHOD getRandomShotPitch (ZLnet/minecraft/util/RandomSource;)F
+		ARG 0 isHighPitched
+		ARG 1 random
+	METHOD getShootingPower (Lnet/minecraft/world/item/component/ChargedProjectiles;)F
+		ARG 0 projectile
+	METHOD getShotPitch (Lnet/minecraft/util/RandomSource;I)F
+		ARG 0 random
+		ARG 1 index
+	METHOD isCharged (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 crossbowStack
+	METHOD lambda$onUseTick$1 (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/core/Holder;)V
+		ARG 2 sound
+	METHOD lambda$onUseTick$2 (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/core/Holder;)V
+		ARG 2 sound
+	METHOD onUseTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V
+		COMMENT Called as the item is being used by an entity.
+		ARG 1 level
+		ARG 2 livingEntity
+		ARG 3 stack
+		ARG 4 count
+	METHOD performShooting (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;FFLnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 level
+		ARG 2 shooter
+		ARG 3 hand
+		ARG 4 weapon
+		ARG 5 velocity
+		ARG 6 inaccuracy
+		ARG 7 target
+	METHOD tryLoadProjectiles (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 shooter
+		ARG 1 crossbowStack
+	CLASS ChargeType
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
+	CLASS ChargingSounds
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

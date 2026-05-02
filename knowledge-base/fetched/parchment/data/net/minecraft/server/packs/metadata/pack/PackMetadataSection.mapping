@@ -1,0 +1,9 @@
+CLASS net/minecraft/server/packs/metadata/pack/PackMetadataSection
+	METHOD codecForPackType (Lnet/minecraft/server/packs/PackType;)Lcom/mojang/serialization/Codec;
+		ARG 0 packType
+	METHOD forPackType (Lnet/minecraft/server/packs/PackType;)Lnet/minecraft/server/packs/metadata/MetadataSectionType;
+		ARG 0 packType
+	METHOD lambda$codecForPackType$2 (Lnet/minecraft/server/packs/PackType;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance
+	METHOD lambda$static$1 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

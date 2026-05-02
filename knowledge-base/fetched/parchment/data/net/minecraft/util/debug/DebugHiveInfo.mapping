@@ -1,0 +1,3 @@
+CLASS net/minecraft/util/debug/DebugHiveInfo
+	METHOD pack (Lnet/minecraft/world/level/block/entity/BeehiveBlockEntity;)Lnet/minecraft/util/debug/DebugHiveInfo;
+		ARG 0 hive

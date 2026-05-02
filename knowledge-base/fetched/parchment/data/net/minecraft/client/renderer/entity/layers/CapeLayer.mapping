@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/renderer/entity/layers/CapeLayer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/RenderLayerParent;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/resources/model/EquipmentAssetManager;)V
+		ARG 1 renderer
+		ARG 2 modelSet
+		ARG 3 equipmentAssets
+	METHOD hasLayer (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/resources/model/EquipmentClientInfo$LayerType;)Z
+		ARG 1 stack
+		ARG 2 layer

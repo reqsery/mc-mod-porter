@@ -1,0 +1,27 @@
+CLASS net/minecraft/world/level/storage/loot/ValidationContext
+	COMMENT Context for validating loot tables. Loot tables are validated recursively by checking that all functions, conditions, etc. (implementing {@link LootContextUser}) are valid according to their LootTable's {@link LootContextParamSet}.
+	METHOD <init> (Lnet/minecraft/util/ProblemReporter;Lnet/minecraft/util/context/ContextKeySet;)V
+		ARG 1 reporter
+		ARG 2 contextKeySet
+	METHOD <init> (Lnet/minecraft/util/ProblemReporter;Lnet/minecraft/util/context/ContextKeySet;Ljava/util/Optional;Ljava/util/Set;)V
+		ARG 1 reporter
+		ARG 2 contextKeySet
+		ARG 3 resolver
+		ARG 4 visitedElements
+	METHOD <init> (Lnet/minecraft/util/ProblemReporter;Lnet/minecraft/util/context/ContextKeySet;Lnet/minecraft/core/HolderGetter$Provider;)V
+		ARG 1 reporter
+		ARG 2 contextKeySet
+		ARG 3 resolver
+	METHOD enterElement (Lnet/minecraft/util/ProblemReporter$PathElement;Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 element
+		ARG 2 key
+	METHOD forChild (Lnet/minecraft/util/ProblemReporter$PathElement;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 child
+	METHOD hasVisitedElement (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 key
+	METHOD reportProblem (Lnet/minecraft/util/ProblemReporter$Problem;)V
+		ARG 1 problem
+	METHOD setContextKeySet (Lnet/minecraft/util/context/ContextKeySet;)Lnet/minecraft/world/level/storage/loot/ValidationContext;
+		ARG 1 contextKeySet
+	METHOD validateContextUsage (Lnet/minecraft/world/level/storage/loot/LootContextUser;)V
+		ARG 1 user

@@ -1,0 +1,54 @@
+CLASS net/minecraft/client/gui/screens/inventory/BeaconScreen
+	METHOD <init> (Lnet/minecraft/world/inventory/BeaconMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 menu
+		ARG 2 playerInventory
+		ARG 3 title
+	METHOD addBeaconButton (Lnet/minecraft/client/gui/components/AbstractWidget;)V
+		ARG 1 beaconButton
+	METHOD lambda$updateButtons$0 (ILnet/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconButton;)V
+		ARG 1 beaconButton
+	CLASS BeaconButton
+		METHOD updateStatus (I)V
+			ARG 1 beaconTier
+	CLASS BeaconPowerButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;IILnet/minecraft/core/Holder;ZI)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 effect
+			ARG 5 isPrimary
+			ARG 6 tier
+		METHOD createEffectDescription (Lnet/minecraft/core/Holder;)Lnet/minecraft/network/chat/MutableComponent;
+			ARG 1 effect
+		METHOD setEffect (Lnet/minecraft/core/Holder;)V
+			ARG 1 effect
+	CLASS BeaconCancelButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;II)V
+			ARG 2 x
+			ARG 3 y
+	CLASS BeaconScreenButton
+		METHOD <init> (II)V
+			ARG 1 x
+			ARG 2 y
+		METHOD <init> (IILnet/minecraft/network/chat/Component;)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 message
+		METHOD renderIcon (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD setSelected (Z)V
+			ARG 1 selected
+	CLASS BeaconConfirmButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;II)V
+			ARG 2 x
+			ARG 3 y
+	CLASS BeaconSpriteScreenButton
+		METHOD <init> (IILnet/minecraft/resources/Identifier;Lnet/minecraft/network/chat/Component;)V
+			ARG 1 x
+			ARG 2 y
+			ARG 3 sprite
+			ARG 4 message
+	CLASS BeaconUpgradePowerButton
+		METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BeaconScreen;IILnet/minecraft/core/Holder;)V
+			ARG 2 x
+			ARG 3 y
+			ARG 4 effect

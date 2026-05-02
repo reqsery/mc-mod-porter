@@ -1,0 +1,16 @@
+CLASS net/minecraft/server/commands/StopSoundCommand
+	METHOD lambda$register$0 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$1 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$register$2 (Lnet/minecraft/sounds/SoundSource;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD lambda$register$3 (Lnet/minecraft/sounds/SoundSource;Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 1 context
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD stopSound (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/Collection;Lnet/minecraft/sounds/SoundSource;Lnet/minecraft/resources/Identifier;)I
+		ARG 0 source
+		ARG 1 targets
+		ARG 2 category
+		ARG 3 sound

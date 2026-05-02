@@ -1,0 +1,3 @@
+CLASS net/minecraft/client/renderer/special/SpecialModelRenderers
+	METHOD createBlockRenderers (Lnet/minecraft/client/renderer/special/SpecialModelRenderer$BakingContext;)Ljava/util/Map;
+		ARG 0 context

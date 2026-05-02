@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/entity/layers/EnergySwirlLayer
+	METHOD isPowered (Lnet/minecraft/client/renderer/entity/state/EntityRenderState;)Z
+		ARG 1 renderState
+	METHOD xOffset (F)F
+		ARG 1 tickCount

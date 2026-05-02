@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/blockentity/PistonHeadRenderer
+	METHOD createMovingBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Holder;Lnet/minecraft/world/level/Level;)Lnet/minecraft/client/renderer/block/MovingBlockRenderState;
+		ARG 0 pos
+		ARG 1 state
+		ARG 2 biome
+		ARG 3 level

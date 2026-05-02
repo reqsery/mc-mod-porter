@@ -1,0 +1,28 @@
+CLASS net/minecraft/client/animation/AnimationChannel
+	CLASS Target
+		METHOD apply (Lnet/minecraft/client/model/geom/ModelPart;Lorg/joml/Vector3f;)V
+			ARG 1 modelPart
+			ARG 2 animationVector
+	CLASS Interpolation
+		METHOD apply (Lorg/joml/Vector3f;F[Lnet/minecraft/client/animation/Keyframe;IIF)Lorg/joml/Vector3f;
+			ARG 1 animationVecCache
+			ARG 2 keyframeDelta
+			ARG 3 keyframes
+			ARG 4 currentKeyframeIdx
+			ARG 5 nextKeyframeIdx
+			ARG 6 scale
+	CLASS Interpolations
+		METHOD lambda$static$0 (Lorg/joml/Vector3f;F[Lnet/minecraft/client/animation/Keyframe;IIF)Lorg/joml/Vector3f;
+			ARG 0 animationVecCache
+			ARG 1 keyframeDelta
+			ARG 2 keyframes
+			ARG 3 currentKeyframeIdx
+			ARG 4 nextKeyframeIdx
+			ARG 5 scale
+		METHOD lambda$static$1 (Lorg/joml/Vector3f;F[Lnet/minecraft/client/animation/Keyframe;IIF)Lorg/joml/Vector3f;
+			ARG 0 animationVecCache
+			ARG 1 keyframeDelta
+			ARG 2 keyframes
+			ARG 3 currentKeyframeIdx
+			ARG 4 nextKeyframeIdx
+			ARG 5 scale

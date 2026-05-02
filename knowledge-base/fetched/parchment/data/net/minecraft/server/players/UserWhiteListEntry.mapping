@@ -1,0 +1,7 @@
+CLASS net/minecraft/server/players/UserWhiteListEntry
+	METHOD <init> (Lcom/google/gson/JsonObject;)V
+		ARG 1 entryData
+	METHOD <init> (Lnet/minecraft/server/players/NameAndId;)V
+		ARG 1 user
+	METHOD serialize (Lcom/google/gson/JsonObject;)V
+		ARG 1 data

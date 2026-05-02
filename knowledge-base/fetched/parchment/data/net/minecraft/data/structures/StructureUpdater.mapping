@@ -1,0 +1,4 @@
+CLASS net/minecraft/data/structures/StructureUpdater
+	METHOD update (Ljava/lang/String;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 0 structureLocationPath
+		ARG 1 tag

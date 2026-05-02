@@ -1,0 +1,16 @@
+CLASS net/minecraft/network/chat/SignedMessageBody
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD pack (Lnet/minecraft/network/chat/MessageSignatureCache;)Lnet/minecraft/network/chat/SignedMessageBody$Packed;
+		ARG 1 signatureCache
+	METHOD unsigned (Ljava/lang/String;)Lnet/minecraft/network/chat/SignedMessageBody;
+		ARG 0 content
+	METHOD updateSignature (Lnet/minecraft/util/SignatureUpdater$Output;)V
+		ARG 1 output
+	CLASS Packed
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD unpack (Lnet/minecraft/network/chat/MessageSignatureCache;)Ljava/util/Optional;
+			ARG 1 signatureCache
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

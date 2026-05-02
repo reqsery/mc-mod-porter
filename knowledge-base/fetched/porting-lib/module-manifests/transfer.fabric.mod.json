@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "porting_lib_transfer",
+  "version": "${version}",
+  "name": "Porting Lib Transfer",
+  "description": "Utilities for transferring items and fluids.",
+  "entrypoints": {
+    "client": [
+      "io.github.fabricators_of_create.porting_lib.PortingLibTransfer"
+    ]
+  }
+}

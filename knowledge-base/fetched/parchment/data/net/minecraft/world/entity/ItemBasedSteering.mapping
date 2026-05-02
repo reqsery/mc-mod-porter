@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/entity/ItemBasedSteering
+	METHOD <init> (Lnet/minecraft/network/syncher/SynchedEntityData;Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 entityData
+		ARG 2 boostTimeAccessor
+	METHOD boost (Lnet/minecraft/util/RandomSource;)Z
+		ARG 1 random

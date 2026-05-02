@@ -1,0 +1,14 @@
+CLASS net/minecraft/DetectedVersion
+	METHOD createBuiltIn (Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/WorldVersion;
+		ARG 0 id
+		ARG 1 name
+	METHOD createBuiltIn (Ljava/lang/String;Ljava/lang/String;Z)Lnet/minecraft/WorldVersion;
+		ARG 0 id
+		ARG 1 name
+		ARG 2 stable
+	METHOD createFromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/WorldVersion;
+		ARG 0 json
+	METHOD tryDetectVersion ()Lnet/minecraft/WorldVersion;
+		COMMENT Creates a new instance containing world version data from version.json (or fallback data if necessary).
+		COMMENT
+		COMMENT For getting data, use {@link SharedConstants#getCurrentVersion} instead, as that is cached.

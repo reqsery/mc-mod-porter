@@ -1,0 +1,11 @@
+CLASS net/minecraft/server/jsonrpc/internalapi/MinecraftAllowListService
+	METHOD add (Lnet/minecraft/server/players/UserWhiteListEntry;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Z
+		ARG 1 entry
+		ARG 2 clientInfo
+	METHOD clear (Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)V
+		ARG 1 clientInfo
+	METHOD kickUnlistedPlayers (Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)V
+		ARG 1 clientInfo
+	METHOD remove (Lnet/minecraft/server/players/NameAndId;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)V
+		ARG 1 nameAndId
+		ARG 2 clientInfo

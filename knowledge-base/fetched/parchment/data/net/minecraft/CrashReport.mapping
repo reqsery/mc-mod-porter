@@ -1,0 +1,36 @@
+CLASS net/minecraft/CrashReport
+	METHOD <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+		ARG 1 title
+		ARG 2 exception
+	METHOD addCategory (Ljava/lang/String;)Lnet/minecraft/CrashReportCategory;
+		COMMENT Creates a CrashReportCategory
+		ARG 1 name
+	METHOD addCategory (Ljava/lang/String;I)Lnet/minecraft/CrashReportCategory;
+		COMMENT Creates a CrashReportCategory for the given stack trace depth
+		ARG 1 categoryName
+		ARG 2 stacktraceLength
+	METHOD forThrowable (Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;
+		COMMENT Creates a crash report for the exception
+		ARG 0 cause
+		ARG 1 description
+	METHOD getDetails (Ljava/lang/StringBuilder;)V
+		COMMENT Gets the various sections of the crash report into the given StringBuilder
+		ARG 1 builder
+	METHOD getException ()Ljava/lang/Throwable;
+		COMMENT Returns the Throwable object that is the cause for the crash and Crash Report.
+	METHOD getExceptionMessage ()Ljava/lang/String;
+		COMMENT Gets the stack trace of the Throwable that caused this crash report, or if that fails, the cause {@code .toString()}.
+	METHOD getFriendlyReport (Lnet/minecraft/ReportType;)Ljava/lang/String;
+		ARG 1 type
+	METHOD getFriendlyReport (Lnet/minecraft/ReportType;Ljava/util/List;)Ljava/lang/String;
+		ARG 1 type
+		ARG 2 links
+	METHOD getTitle ()Ljava/lang/String;
+		COMMENT Returns the description of the Crash Report.
+	METHOD saveToFile (Ljava/nio/file/Path;Lnet/minecraft/ReportType;)Z
+		ARG 1 path
+		ARG 2 type
+	METHOD saveToFile (Ljava/nio/file/Path;Lnet/minecraft/ReportType;Ljava/util/List;)Z
+		ARG 1 path
+		ARG 2 type
+		ARG 3 links

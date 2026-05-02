@@ -1,0 +1,41 @@
+CLASS net/minecraft/server/jsonrpc/methods/IpBanlistService
+	METHOD add (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 entries
+		ARG 2 clientInfo
+	METHOD banIp (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IncomingIpBanDto;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 entry
+		ARG 2 clientInfo
+	METHOD banIp (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBan;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 ipBan
+		ARG 2 clientInfo
+	METHOD clear (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 clientInfo
+	METHOD get (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;)Ljava/util/List;
+		ARG 0 api
+	METHOD remove (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 ips
+		ARG 2 clientInfo
+	METHOD set (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 entries
+		ARG 2 clientInfo
+	CLASS IpBan
+		METHOD from (Lnet/minecraft/server/players/IpBanListEntry;)Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBan;
+			ARG 0 entry
+	CLASS IpBanDto
+		METHOD from (Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBan;)Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBanDto;
+			ARG 0 ipBan
+		METHOD from (Lnet/minecraft/server/players/IpBanListEntry;)Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBanDto;
+			ARG 0 entry
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS IncomingIpBanDto
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD toIpBan (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/jsonrpc/methods/IpBanlistService$IpBan;
+			ARG 1 player

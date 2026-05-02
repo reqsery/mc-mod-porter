@@ -1,0 +1,3 @@
+CLASS net/minecraft/client/renderer/entity/WardenRenderer
+	METHOD lambda$new$3 (Lnet/minecraft/client/renderer/entity/state/WardenRenderState;F)F
+		ARG 0 renderState

@@ -1,0 +1,22 @@
+CLASS net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecorator
+	METHOD place (Lnet/minecraft/world/level/levelgen/feature/treedecorators/TreeDecorator$Context;)V
+		ARG 1 context
+	CLASS Context
+		METHOD <init> (Lnet/minecraft/world/level/LevelSimulatedReader;Ljava/util/function/BiConsumer;Lnet/minecraft/util/RandomSource;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)V
+			ARG 1 level
+			ARG 2 decorationSetter
+			ARG 3 random
+			ARG 4 logs
+			ARG 5 leaves
+			ARG 6 roots
+		METHOD checkBlock (Lnet/minecraft/core/BlockPos;Ljava/util/function/Predicate;)Z
+			ARG 1 pos
+			ARG 2 predicate
+		METHOD isAir (Lnet/minecraft/core/BlockPos;)Z
+			ARG 1 pos
+		METHOD placeVine (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/properties/BooleanProperty;)V
+			ARG 1 pos
+			ARG 2 sideProperty
+		METHOD setBlock (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 pos
+			ARG 2 state

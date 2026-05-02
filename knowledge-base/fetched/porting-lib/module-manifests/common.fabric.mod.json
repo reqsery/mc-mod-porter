@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "porting_lib_common",
+  "version": "${version}",
+  "name": "Porting Lib Common",
+  "description": "Miscellaneous utilities for other Porting Lib modules.",
+  "entrypoints": {
+    "main": [
+      "io.github.fabricators_of_create.porting_lib.common.PortingLibCommon"
+    ]
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1076": ["io/github/fabricators_of_create/porting_lib/common/injects/LanguageManagerInjection"],
+      "net/minecraft/class_4538": ["io/github/fabricators_of_create/porting_lib/common/injects/LevelReaderInjection"]
+    }
+  }
+}

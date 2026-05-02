@@ -1,0 +1,42 @@
+CLASS net/minecraft/client/gui/screens/CreateFlatWorldScreen
+	FIELD deleteLayerButton Lnet/minecraft/client/gui/components/Button;
+		COMMENT The remove layer button
+	METHOD <init> (Lnet/minecraft/client/gui/screens/worldselection/CreateWorldScreen;Ljava/util/function/Consumer;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)V
+		ARG 1 parent
+		ARG 2 applySettings
+		ARG 3 generator
+	METHOD hasValidSelection ()Z
+		COMMENT Returns whether there is a valid layer selection
+	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD setConfig (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)V
+		ARG 1 generator
+	METHOD updateButtonValidity ()V
+		COMMENT Would update whether the edit and remove buttons are enabled, but is currently disabled and always disables the buttons (which are invisible anyway).
+	CLASS DetailsList
+		METHOD deleteLayer (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$LayerEntry;)V
+			ARG 1 layer
+		METHOD setSelected (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry;)V
+			ARG 1 entry
+		CLASS LayerEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList;Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;I)V
+				ARG 2 layerInfo
+				ARG 3 index
+			METHOD blitSlot (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/world/item/ItemStack;)V
+				ARG 1 guiGraphics
+				ARG 2 x
+				ARG 3 y
+				ARG 4 displayItem
+			METHOD blitSlotBg (Lnet/minecraft/client/gui/GuiGraphics;II)V
+				ARG 1 guiGraphics
+				ARG 2 x
+				ARG 3 y
+			METHOD getDisplayItem (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/item/ItemStack;
+				ARG 1 state
+		CLASS HeaderEntry
+			METHOD <init> (Lnet/minecraft/client/gui/Font;)V
+				ARG 1 font

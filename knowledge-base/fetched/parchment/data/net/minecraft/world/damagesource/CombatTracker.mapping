@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/damagesource/CombatTracker
+	METHOD <init> (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 mob
+	METHOD getDisplayName (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/network/chat/Component;
+		ARG 0 entity
+	METHOD getFallMessage (Lnet/minecraft/world/damagesource/CombatEntry;Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/network/chat/Component;
+		ARG 1 combatEntry
+		ARG 2 entity
+	METHOD getMessageForAssistedFall (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 1 entity
+		ARG 2 entityDisplayName
+		ARG 3 hasWeaponTranslationKey
+		ARG 4 noWeaponTranslationKey
+	METHOD recheckStatus ()V
+		COMMENT Resets this trackers list of combat entries
+	METHOD recordDamage (Lnet/minecraft/world/damagesource/DamageSource;F)V
+		ARG 1 source
+		ARG 2 damage
+	METHOD shouldEnterCombat (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 0 source

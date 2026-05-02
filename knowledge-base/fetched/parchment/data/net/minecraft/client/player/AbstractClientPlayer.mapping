@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/player/AbstractClientPlayer
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 clientLevel
+		ARG 2 gameProfile
+	METHOD addWalkedDistance (F)V
+		ARG 1 walkDistance
+	METHOD getFieldOfViewModifier (ZF)F
+		ARG 1 isFirstPerson
+		ARG 2 fovEffectScale

@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/level/portal/PortalForcer
+	METHOD <init> (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD canHostFrame (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos$MutableBlockPos;Lnet/minecraft/core/Direction;I)Z
+		ARG 1 originalPos
+		ARG 2 offsetPos
+		ARG 3 direction
+		ARG 4 offsetScale
+	METHOD canPortalReplaceBlock (Lnet/minecraft/core/BlockPos$MutableBlockPos;)Z
+		ARG 1 pos
+	METHOD createPortal (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction$Axis;)Ljava/util/Optional;
+		ARG 1 pos
+		ARG 2 axis
+	METHOD findClosestPortalPosition (Lnet/minecraft/core/BlockPos;ZLnet/minecraft/world/level/border/WorldBorder;)Ljava/util/Optional;
+		ARG 1 exitPos
+		ARG 2 isNether
+		ARG 3 worldBorder

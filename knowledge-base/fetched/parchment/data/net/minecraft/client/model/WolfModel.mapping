@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/model/WolfModel
+	FIELD realHead Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT Added as a result/workaround for the loss of renderWithRotation
+	FIELD realTail Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT Added as a result/workaround for the loss of renderWithRotation
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 root
+	METHOD createMeshDefinition (Lnet/minecraft/client/model/geom/builders/CubeDeformation;)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
+		ARG 0 cubeDeformation

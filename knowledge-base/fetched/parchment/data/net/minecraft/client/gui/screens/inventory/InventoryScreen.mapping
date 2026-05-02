@@ -1,0 +1,31 @@
+CLASS net/minecraft/client/gui/screens/inventory/InventoryScreen
+	FIELD xMouse F
+		COMMENT The old x position of the mouse pointer
+	FIELD yMouse F
+		COMMENT The old y position of the mouse pointer
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player
+	METHOD extractRenderState (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/client/renderer/entity/state/EntityRenderState;
+		ARG 0 entity
+	METHOD renderEntityInInventory (Lnet/minecraft/client/gui/GuiGraphics;IIIIFLorg/joml/Vector3f;Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 0 guiGraphics
+		ARG 1 x1
+		ARG 2 y1
+		ARG 3 x2
+		ARG 4 y2
+		ARG 5 scale
+		ARG 6 translation
+		ARG 7 rotation
+		ARG 8 overrideCameraAngle
+		ARG 9 entity
+	METHOD renderEntityInInventoryFollowsMouse (Lnet/minecraft/client/gui/GuiGraphics;IIIIIFFFLnet/minecraft/world/entity/LivingEntity;)V
+		ARG 0 guiGraphics
+		ARG 1 x1
+		ARG 2 y1
+		ARG 3 x2
+		ARG 4 y2
+		ARG 5 scale
+		ARG 6 yOffset
+		ARG 7 mouseX
+		ARG 8 mouseY
+		ARG 9 entity

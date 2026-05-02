@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/entity/decoration/HangingEntity
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 entityType
+		ARG 2 level
+		ARG 3 pos
+	METHOD calculateBoundingBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/phys/AABB;
+		ARG 1 pos
+		ARG 2 direction
+	METHOD canCoexist (Z)Z
+		ARG 1 itemFrame
+	METHOD getDirection ()Lnet/minecraft/core/Direction;
+		COMMENT Gets the horizontal facing direction of this Entity.
+	METHOD hasLevelCollision (Lnet/minecraft/world/phys/AABB;)Z
+		ARG 1 boundingBox
+	METHOD mirror (Lnet/minecraft/world/level/block/Mirror;)F
+		COMMENT Transforms the entity's current yaw with the given Mirror and returns it. This does not have a side-effect.
+		ARG 1 transformMirror
+	METHOD recalculateBoundingBox ()V
+		COMMENT Updates the entity bounding box based on current facing
+	METHOD rotate (Lnet/minecraft/world/level/block/Rotation;)F
+		COMMENT Transforms the entity's current yaw with the given Rotation and returns it. This does not have a side-effect.
+		ARG 1 transformRotation
+	METHOD setDirection (Lnet/minecraft/core/Direction;)V
+		COMMENT Updates facing and bounding box based on it
+		ARG 1 facingDirection
+	METHOD setDirectionRaw (Lnet/minecraft/core/Direction;)V
+		ARG 1 direction
+	METHOD survives ()Z
+		COMMENT Checks to make sure the {@code HangingEntity} can be placed there.

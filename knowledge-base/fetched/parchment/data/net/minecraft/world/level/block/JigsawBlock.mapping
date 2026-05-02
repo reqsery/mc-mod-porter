@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/level/block/JigsawBlock
+	METHOD canAttach (Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$JigsawBlockInfo;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplate$JigsawBlockInfo;)Z
+		ARG 0 parent
+		ARG 1 child
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getFrontFacing (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+		COMMENT This represents the face that the puzzle piece is on. To connect: 2 jigsaws must have their puzzle piece face facing each other.
+		ARG 0 state
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD getTopFacing (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+		COMMENT This represents the face that the line connector is on. To connect, if the OrientationType is ALIGNED, the two lines must be in the same direction. (Their textures will form one straight line)
+		ARG 0 state
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 mirror
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 rotation

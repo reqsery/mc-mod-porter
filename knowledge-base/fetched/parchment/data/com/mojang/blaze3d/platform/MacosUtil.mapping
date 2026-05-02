@@ -1,0 +1,15 @@
+CLASS com/mojang/blaze3d/platform/MacosUtil
+	METHOD clearResizableBit (Lcom/mojang/blaze3d/platform/Window;)V
+		ARG 0 window
+	METHOD exitNativeFullscreen (Lcom/mojang/blaze3d/platform/Window;)V
+		ARG 0 window
+	METHOD getNsWindow (Lcom/mojang/blaze3d/platform/Window;)Ljava/util/Optional;
+		ARG 0 window
+	METHOD getStyleMask (Lca/weblite/objc/NSObject;)J
+		ARG 0 nsWindow
+	METHOD isInNativeFullscreen (Lca/weblite/objc/NSObject;)Z
+		ARG 0 nsWindow
+	METHOD loadIcon (Lnet/minecraft/server/packs/resources/IoSupplier;)V
+		ARG 0 iconStreamSupplier
+	METHOD toggleNativeFullscreen (Lca/weblite/objc/NSObject;)V
+		ARG 0 nsWindow

@@ -1,0 +1,16 @@
+CLASS net/minecraft/server/level/BlockDestructionProgress
+	METHOD <init> (ILnet/minecraft/core/BlockPos;)V
+		ARG 1 id
+		ARG 2 pos
+	METHOD compareTo (Lnet/minecraft/server/level/BlockDestructionProgress;)I
+		ARG 1 other
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getUpdatedRenderTick ()I
+		COMMENT Retrieves the 'date' at which the PartiallyDestroyedBlock was created.
+	METHOD setProgress (I)V
+		COMMENT Inserts damage value into this partially destroyed Block. -1 causes client renderer to delete it, otherwise ranges from 1 to 10.
+		ARG 1 damage
+	METHOD updateTick (I)V
+		COMMENT Saves the current Cloud update tick into the PartiallyDestroyedBlock.
+		ARG 1 createdAtCloudUpdateTick

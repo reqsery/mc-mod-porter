@@ -1,0 +1,14 @@
+CLASS net/minecraft/network/LpVec3
+	METHOD hasContinuationBit (I)Z
+		ARG 0 data
+	METHOD pack (D)J
+		ARG 0 coord
+	METHOD read (Lio/netty/buffer/ByteBuf;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 buffer
+	METHOD sanitize (D)D
+		ARG 0 value
+	METHOD unpack (J)D
+		ARG 0 coord
+	METHOD write (Lio/netty/buffer/ByteBuf;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 0 buffer
+		ARG 1 vector

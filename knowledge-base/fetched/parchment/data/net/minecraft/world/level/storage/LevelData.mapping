@@ -1,0 +1,23 @@
+CLASS net/minecraft/world/level/storage/LevelData
+	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;Lnet/minecraft/world/level/LevelHeightAccessor;)V
+		ARG 1 crashReportCategory
+		ARG 2 level
+	METHOD getDayTime ()J
+		COMMENT Get current world time
+	METHOD isHardcore ()Z
+		COMMENT Returns {@code true} if hardcore mode is enabled, otherwise {@code false}.
+	METHOD isRaining ()Z
+		COMMENT Returns {@code true} if it is raining, {@code false} otherwise.
+	METHOD isThundering ()Z
+		COMMENT Returns {@code true} if it is thundering, {@code false} otherwise.
+	METHOD setRaining (Z)V
+		COMMENT Sets whether it is raining or not.
+		ARG 1 raining
+	CLASS RespawnData
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD of (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/BlockPos;FF)Lnet/minecraft/world/level/storage/LevelData$RespawnData;
+			ARG 0 dimension
+			ARG 1 pos
+			ARG 2 yaw
+			ARG 3 pitch

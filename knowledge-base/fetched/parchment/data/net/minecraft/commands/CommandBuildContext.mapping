@@ -1,0 +1,4 @@
+CLASS net/minecraft/commands/CommandBuildContext
+	METHOD simple (Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/world/flag/FeatureFlagSet;)Lnet/minecraft/commands/CommandBuildContext;
+		ARG 0 provider
+		ARG 1 enabledFeatures

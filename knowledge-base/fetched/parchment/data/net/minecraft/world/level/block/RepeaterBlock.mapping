@@ -1,0 +1,11 @@
+CLASS net/minecraft/world/level/block/RepeaterBlock
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getDelay (Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 state
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD isLocked (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state

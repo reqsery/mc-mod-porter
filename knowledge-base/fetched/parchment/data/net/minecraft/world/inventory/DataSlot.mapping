@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/inventory/DataSlot
+	METHOD forContainer (Lnet/minecraft/world/inventory/ContainerData;I)Lnet/minecraft/world/inventory/DataSlot;
+		ARG 0 data
+		ARG 1 idx
+	METHOD set (I)V
+		ARG 1 value
+	METHOD shared ([II)Lnet/minecraft/world/inventory/DataSlot;
+		ARG 0 data
+		ARG 1 idx

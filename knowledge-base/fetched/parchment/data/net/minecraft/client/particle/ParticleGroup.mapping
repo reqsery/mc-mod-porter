@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/particle/ParticleGroup
+	METHOD <init> (Lnet/minecraft/client/particle/ParticleEngine;)V
+		ARG 1 engine
+	METHOD add (Lnet/minecraft/client/particle/Particle;)V
+		ARG 1 particle
+	METHOD extractRenderState (Lnet/minecraft/client/renderer/culling/Frustum;Lnet/minecraft/client/Camera;F)Lnet/minecraft/client/renderer/state/ParticleGroupRenderState;
+		ARG 1 frustum
+		ARG 2 camera
+		ARG 3 partialTick
+	METHOD tickParticle (Lnet/minecraft/client/particle/Particle;)V
+		ARG 1 particle

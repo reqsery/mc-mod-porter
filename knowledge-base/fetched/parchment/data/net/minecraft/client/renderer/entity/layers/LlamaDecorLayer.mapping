@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/renderer/entity/layers/LlamaDecorLayer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/RenderLayerParent;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/renderer/entity/layers/EquipmentLayerRenderer;)V
+		ARG 1 renderer
+		ARG 2 models
+		ARG 3 equipmentRenderer
+	METHOD renderEquipment (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/entity/state/LlamaRenderState;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/resources/ResourceKey;I)V
+		ARG 1 poseStack
+		ARG 2 nodeCollector
+		ARG 3 renderState
+		ARG 4 item
+		ARG 5 equipmentAseet
+		ARG 6 packedLight

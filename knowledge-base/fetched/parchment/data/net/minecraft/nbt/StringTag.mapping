@@ -1,0 +1,25 @@
+CLASS net/minecraft/nbt/StringTag
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 value
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD escapeWithoutQuotes (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 input
+	METHOD escapeWithoutQuotes (Ljava/lang/String;Ljava/lang/StringBuilder;)V
+		ARG 0 input
+		ARG 1 stringBuilder
+	METHOD quoteAndEscape (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 text
+	METHOD quoteAndEscape (Ljava/lang/String;Ljava/lang/StringBuilder;)V
+		ARG 0 text
+		ARG 1 stringBuilder
+	METHOD skipString (Ljava/io/DataInput;)V
+		ARG 0 input
+	METHOD valueOf (Ljava/lang/String;)Lnet/minecraft/nbt/StringTag;
+		ARG 0 data
+	METHOD write (Ljava/io/DataOutput;)V
+		ARG 1 output
+	CLASS 1
+		METHOD readAccounted (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)Ljava/lang/String;
+			ARG 0 input
+			ARG 1 nbtAccounter

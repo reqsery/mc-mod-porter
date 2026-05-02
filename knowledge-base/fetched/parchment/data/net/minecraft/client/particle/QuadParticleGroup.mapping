@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/particle/QuadParticleGroup
+	METHOD <init> (Lnet/minecraft/client/particle/ParticleEngine;Lnet/minecraft/client/particle/ParticleRenderType;)V
+		ARG 1 engine
+		ARG 2 particleType

@@ -1,0 +1,3 @@
+CLASS net/minecraft/server/notifications/NotificationManager
+	METHOD registerService (Lnet/minecraft/server/notifications/NotificationService;)V
+		ARG 1 service

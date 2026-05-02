@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/resources/DefaultPlayerSkin
+	METHOD create (Ljava/lang/String;Lnet/minecraft/world/entity/player/PlayerModelType;)Lnet/minecraft/world/entity/player/PlayerSkin;
+		ARG 0 name
+		ARG 1 modelType
+	METHOD get (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/world/entity/player/PlayerSkin;
+		ARG 0 profile
+	METHOD get (Ljava/util/UUID;)Lnet/minecraft/world/entity/player/PlayerSkin;
+		ARG 0 uuid

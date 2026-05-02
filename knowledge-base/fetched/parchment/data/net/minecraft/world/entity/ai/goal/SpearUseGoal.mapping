@@ -1,0 +1,10 @@
+CLASS net/minecraft/world/entity/ai/goal/SpearUseGoal
+	METHOD <init> (Lnet/minecraft/world/entity/monster/Monster;DDFF)V
+		ARG 1 mob
+		ARG 2 speedModifierWhenCharging
+		ARG 4 speedModifierWhenRepositioning
+		ARG 6 attackRadius
+		ARG 7 targetInRange
+	CLASS SpearUseState
+		METHOD startEngagement (I)V
+			ARG 1 engageTime

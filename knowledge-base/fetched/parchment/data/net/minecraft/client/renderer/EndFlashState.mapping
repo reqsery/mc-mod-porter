@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/EndFlashState
+	METHOD calculateFlashParameters (J)V
+		ARG 1 gametime
+	METHOD calculateIntensity (J)F
+		ARG 1 gametime
+	METHOD getIntensity (F)F
+		ARG 1 partialTick
+	METHOD tick (J)V
+		ARG 1 gametime

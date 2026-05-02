@@ -1,0 +1,45 @@
+CLASS net/minecraft/client/gui/screens/PresetFlatWorldScreen
+	FIELD parent Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;
+		COMMENT The parent GUI
+	METHOD <init> (Lnet/minecraft/client/gui/screens/CreateFlatWorldScreen;)V
+		ARG 1 parent
+	METHOD fromString (Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Lnet/minecraft/core/HolderGetter;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;
+		ARG 0 blockGetter
+		ARG 1 biomeGetter
+		ARG 2 structureSetGetter
+		ARG 3 placedFeatureGetter
+		ARG 4 settings
+		ARG 5 layerGenerationSettings
+	METHOD getLayerInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;I)Lnet/minecraft/world/level/levelgen/flat/FlatLayerInfo;
+		ARG 0 blockGetter
+		ARG 1 layerInfo
+		ARG 2 currentHeight
+	METHOD getLayersInfoFromString (Lnet/minecraft/core/HolderGetter;Ljava/lang/String;)Ljava/util/List;
+		ARG 0 blockGetter
+		ARG 1 layerInfo
+	METHOD resize (Lnet/minecraft/client/Minecraft;II)V
+		ARG 1 minecraft
+		ARG 2 width
+		ARG 3 height
+	METHOD save (Lnet/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings;)Ljava/lang/String;
+		ARG 0 levelGeneratorSettings
+	METHOD updateButtonValidity (Z)V
+		ARG 1 valid
+	CLASS PresetsList
+		METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen;Lnet/minecraft/core/RegistryAccess;Lnet/minecraft/world/flag/FeatureFlagSet;)V
+			ARG 2 registryAccess
+			ARG 3 flags
+		METHOD setSelected (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry;)V
+			ARG 1 entry
+		CLASS Entry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList;Lnet/minecraft/core/Holder;)V
+				ARG 2 presetHolder
+			METHOD blitSlot (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/world/item/Item;)V
+				ARG 1 guiGraphics
+				ARG 2 x
+				ARG 3 y
+				ARG 4 item
+			METHOD blitSlotBg (Lnet/minecraft/client/gui/GuiGraphics;II)V
+				ARG 1 guiGraphics
+				ARG 2 x
+				ARG 3 y

@@ -1,0 +1,9 @@
+CLASS net/minecraft/server/players/UserNameToIdResolver
+	METHOD add (Lnet/minecraft/server/players/NameAndId;)V
+		ARG 1 nameAndId
+	METHOD get (Ljava/lang/String;)Ljava/util/Optional;
+		ARG 1 username
+	METHOD get (Ljava/util/UUID;)Ljava/util/Optional;
+		ARG 1 uuid
+	METHOD resolveOfflineUsers (Z)V
+		ARG 1 resolveOfflineUsers

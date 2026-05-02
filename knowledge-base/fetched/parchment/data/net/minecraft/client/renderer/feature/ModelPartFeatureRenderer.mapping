@@ -1,0 +1,13 @@
+CLASS net/minecraft/client/renderer/feature/ModelPartFeatureRenderer
+	METHOD render (Lnet/minecraft/client/renderer/SubmitNodeCollection;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/renderer/OutlineBufferSource;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V
+		ARG 1 nodeCollection
+		ARG 2 bufferSource
+		ARG 3 outlineBufferSource
+		ARG 4 crumblingBufferSource
+	CLASS Storage
+		METHOD add (Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelPartSubmit;)V
+			ARG 1 renderType
+			ARG 2 submit
+		METHOD add (Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelPartSubmit;)V
+			ARG 1 renderType
+			ARG 2 submit

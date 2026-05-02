@@ -1,0 +1,5 @@
+CLASS net/minecraft/gametest/framework/GameTestBatch
+	METHOD <init> (ILjava/util/Collection;Lnet/minecraft/core/Holder;)V
+		ARG 1 index
+		ARG 2 gameTestInfos
+		ARG 3 environment

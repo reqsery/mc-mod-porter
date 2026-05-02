@@ -1,0 +1,20 @@
+CLASS net/minecraft/client/particle/SuspendedTownParticle
+	METHOD move (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS EggCrackProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprite
+	CLASS DolphinSpeedProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS ComposterFillProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS HappyVillagerProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

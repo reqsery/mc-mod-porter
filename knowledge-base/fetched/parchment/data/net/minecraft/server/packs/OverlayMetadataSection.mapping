@@ -1,0 +1,19 @@
+CLASS net/minecraft/server/packs/OverlayMetadataSection
+	METHOD codecForPackType (Lnet/minecraft/server/packs/PackType;)Lcom/mojang/serialization/Codec;
+		ARG 0 packType
+	METHOD forPackType (Lnet/minecraft/server/packs/PackType;)Lnet/minecraft/server/packs/metadata/MetadataSectionType;
+		ARG 0 packType
+	METHOD lambda$codecForPackType$1 (Lnet/minecraft/server/packs/PackType;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 1 instance
+	METHOD overlaysForVersion (Lnet/minecraft/server/packs/metadata/pack/PackFormat;)Ljava/util/List;
+		ARG 1 packFormat
+	METHOD validateOverlayDir (Ljava/lang/String;)Lcom/mojang/serialization/DataResult;
+		ARG 0 directoryName
+	CLASS OverlayEntry
+		METHOD isApplicable (Lnet/minecraft/server/packs/metadata/pack/PackFormat;)Z
+			ARG 1 packFormat
+		METHOD listCodecForPackType (Lnet/minecraft/server/packs/PackType;)Lcom/mojang/serialization/Codec;
+			ARG 0 packType
+		CLASS IntermediateEntry
+			METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+				ARG 0 instance

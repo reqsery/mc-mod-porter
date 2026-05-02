@@ -1,0 +1,14 @@
+CLASS net/minecraft/server/commands/FetchProfileCommand
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD reportResolvedProfile (Lnet/minecraft/commands/CommandSourceStack;Lcom/mojang/authlib/GameProfile;Ljava/lang/String;Lnet/minecraft/network/chat/Component;)V
+		ARG 0 source
+		ARG 1 profile
+		ARG 2 translationKey
+		ARG 3 id
+	METHOD resolveId (Lnet/minecraft/commands/CommandSourceStack;Ljava/util/UUID;)I
+		ARG 0 source
+		ARG 1 id
+	METHOD resolveName (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/String;)I
+		ARG 0 source
+		ARG 1 name

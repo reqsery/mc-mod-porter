@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/level/storage/loot/functions/CopyBlockState
+	COMMENT LootItemFunction that copies a set of block state properties to the {@code "BlockStateTag"} NBT tag of the ItemStack.
+	COMMENT This tag is checked when the block is placed.
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/core/Holder;Ljava/util/List;)V
+		ARG 1 conditions
+		ARG 2 block
+		ARG 3 properties
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/core/Holder;Ljava/util/Set;)V
+		ARG 1 conditions
+		ARG 2 block
+		ARG 3 properties
+	METHOD copyState (Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState$Builder;
+		ARG 0 block
+	METHOD run (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+		ARG 2 context
+	CLASS Builder
+		METHOD <init> (Lnet/minecraft/world/level/block/Block;)V
+			ARG 1 block
+		METHOD copy (Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/storage/loot/functions/CopyBlockState$Builder;
+			ARG 1 property

@@ -1,0 +1,15 @@
+CLASS net/minecraft/client/resources/SplashManager
+	METHOD <init> (Lnet/minecraft/client/User;)V
+		ARG 1 user
+	METHOD apply (Ljava/util/List;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+		ARG 1 object
+		ARG 2 resourceManager
+		ARG 3 profiler
+	METHOD lambda$prepare$0 (Ljava/lang/String;)Z
+		ARG 0 splashMessage
+	METHOD literalSplash (Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 0 text
+	METHOD prepare (Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Ljava/util/List;
+		COMMENT Performs any reloading that can be done off-thread, such as file IO
+		ARG 1 resourceManager
+		ARG 2 profiler

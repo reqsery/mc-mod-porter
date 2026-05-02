@@ -1,0 +1,6 @@
+CLASS net/minecraft/server/packs/metadata/MetadataSectionType
+	METHOD withValue (Ljava/lang/Object;)Lnet/minecraft/server/packs/metadata/MetadataSectionType$WithValue;
+		ARG 1 value
+	CLASS WithValue
+		METHOD unwrapToType (Lnet/minecraft/server/packs/metadata/MetadataSectionType;)Ljava/util/Optional;
+			ARG 1 type

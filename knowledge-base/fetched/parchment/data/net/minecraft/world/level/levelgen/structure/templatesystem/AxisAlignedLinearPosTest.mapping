@@ -1,0 +1,7 @@
+CLASS net/minecraft/world/level/levelgen/structure/templatesystem/AxisAlignedLinearPosTest
+	METHOD <init> (FFIILnet/minecraft/core/Direction$Axis;)V
+		ARG 1 minChance
+		ARG 2 maxChance
+		ARG 3 minDist
+		ARG 4 maxDist
+		ARG 5 axis

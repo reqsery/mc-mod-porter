@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/entity/ItemFrameRenderer
+	METHOD getLightCoords (ZII)I
+		ARG 1 isGlowFrame
+		ARG 2 glowLight
+		ARG 3 normalLight

@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/item/enchantment/LevelBasedValue
+	METHOD bootstrap (Lnet/minecraft/core/Registry;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 registry
+	METHOD calculate (I)F
+		ARG 1 level
+	METHOD constant (F)Lnet/minecraft/world/item/enchantment/LevelBasedValue$Constant;
+		ARG 0 value
+	METHOD lookup (Ljava/util/List;Lnet/minecraft/world/item/enchantment/LevelBasedValue;)Lnet/minecraft/world/item/enchantment/LevelBasedValue$Lookup;
+		ARG 0 values
+		ARG 1 fallback
+	METHOD perLevel (F)Lnet/minecraft/world/item/enchantment/LevelBasedValue$Linear;
+		ARG 0 perLevel
+	METHOD perLevel (FF)Lnet/minecraft/world/item/enchantment/LevelBasedValue$Linear;
+		ARG 0 base
+		ARG 1 perLevelAfterFirst
+	CLASS Linear
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS Lookup
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS Clamped
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD lambda$static$2 (Lnet/minecraft/world/item/enchantment/LevelBasedValue$Clamped;)Lcom/mojang/serialization/DataResult;
+			ARG 0 value
+	CLASS Constant
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS Fraction
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS LevelsSquared
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

@@ -1,0 +1,22 @@
+CLASS com/mojang/math/SymmetricGroup3
+	COMMENT The symmetric group S3, also known as all the permutation orders of three elements.
+	METHOD <init> (Ljava/lang/String;IIII)V
+		ARG 3 first
+		ARG 4 second
+		ARG 5 third
+	METHOD compose (Lcom/mojang/math/SymmetricGroup3;)Lcom/mojang/math/SymmetricGroup3;
+		ARG 1 other
+	METHOD lambda$static$0 ([ILcom/mojang/math/SymmetricGroup3;)Z
+		ARG 1 group
+	METHOD lambda$static$1 ([[Lcom/mojang/math/SymmetricGroup3;)V
+		ARG 0 groups
+	METHOD permutation (I)I
+		ARG 1 element
+	METHOD permute (I)I
+		ARG 1 axis
+	METHOD permuteAxis (Lnet/minecraft/core/Direction$Axis;)Lnet/minecraft/core/Direction$Axis;
+		ARG 1 axis
+	METHOD permuteVector (Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
+		ARG 1 vector
+	METHOD permuteVector (Lorg/joml/Vector3i;)Lorg/joml/Vector3i;
+		ARG 1 vector

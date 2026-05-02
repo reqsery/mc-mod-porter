@@ -1,0 +1,421 @@
+CLASS net/minecraft/util/Mth
+	FIELD MULTIPLY_DE_BRUIJN_BIT_POSITION [I
+		COMMENT Though it looks like an array, this is really more like a mapping. Key (index of this array) is the upper 5 bits of the result of multiplying a 32-bit unsigned integer by the B(2, 5) De Bruijn sequence 0x077CB531. Value (value stored in the array) is the unique index (from the right) of the leftmo
+	METHOD abs (F)F
+		ARG 0 value
+	METHOD abs (I)I
+		COMMENT {@return the unsigned value of an int}
+		ARG 0 value
+	METHOD absMax (DD)D
+		COMMENT {@return the maximum of the absolute value of two numbers}
+		ARG 0 x
+		ARG 2 y
+	METHOD absMax (FF)F
+		ARG 0 value1
+		ARG 1 value2
+	METHOD absMax (II)I
+		ARG 0 value1
+		ARG 1 value2
+	METHOD approach (FFF)F
+		COMMENT Changes value by stepSize towards the limit and returns the result.
+		COMMENT If value is smaller than limit, the result will never be bigger than limit.
+		COMMENT If value is bigger than limit, the result will never be smaller than limit.
+		ARG 0 value
+		ARG 1 limit
+		ARG 2 stepSize
+	METHOD approachDegrees (FFF)F
+		COMMENT Changes the angle by stepSize towards the limit in the direction where the distance is smaller.
+		COMMENT {@see #approach(float, float, float)}
+		ARG 0 angle
+		ARG 1 limit
+		ARG 2 stepSize
+	METHOD atan2 (DD)D
+		ARG 0 y
+		ARG 2 x
+	METHOD binarySearch (IILjava/util/function/IntPredicate;)I
+		ARG 0 min
+		ARG 1 max
+		ARG 2 isTargetBeforeOrAt
+	METHOD catmullrom (FFFFF)F
+		ARG 0 delta
+		ARG 1 controlPoint1
+		ARG 2 controlPoint2
+		ARG 3 controlPoint3
+		ARG 4 controlPoint4
+	METHOD ceil (D)I
+		ARG 0 value
+	METHOD ceil (F)I
+		ARG 0 value
+	METHOD ceilLong (D)J
+		ARG 0 value
+	METHOD ceillog2 (I)I
+		COMMENT Uses a B(2, 5) De Bruijn sequence and a lookup table to efficiently calculate the log-base-two of the given value. Optimized for cases where the input value is a power-of-two. If the input value is not a power-of-two, then subtract 1 from the return value.
+		ARG 0 value
+	METHOD chessboardDistance (IIII)I
+		ARG 0 x1
+		ARG 1 y1
+		ARG 2 x2
+		ARG 3 y2
+	METHOD clamp (DDD)D
+		COMMENT {@return the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound} If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
+		ARG 2 min
+			COMMENT The lower bound for the clamp.
+		ARG 4 max
+			COMMENT The upper bound for the clamp.
+	METHOD clamp (FFF)F
+		COMMENT {@return the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound} If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
+		ARG 1 min
+			COMMENT The lower bound for the clamp.
+		ARG 2 max
+			COMMENT The upper bound for the clamp.
+	METHOD clamp (III)I
+		COMMENT {@return the given value if between the lower and the upper bound. If the value is less than the lower bound, returns the lower bound} If the value is greater than the upper bound, returns the upper bound.
+		ARG 0 value
+			COMMENT The value that is clamped.
+		ARG 1 min
+			COMMENT The lower bound for the clamp.
+		ARG 2 max
+			COMMENT The upper bound for the clamp.
+	METHOD clamp (JJJ)J
+		ARG 0 value
+		ARG 2 min
+		ARG 4 max
+	METHOD clampedLerp (DDD)D
+		COMMENT Method for linear interpolation of doubles.
+		ARG 0 start
+			COMMENT Start value for the lerp.
+		ARG 2 end
+			COMMENT End value for the lerp.
+		ARG 4 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value) If the value is not between 0 and 1, it is clamped.
+	METHOD clampedLerp (FFF)F
+		COMMENT Method for linear interpolation of floats.
+		ARG 0 start
+			COMMENT Start value for the lerp.
+		ARG 1 end
+			COMMENT End value for the lerp.
+		ARG 2 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value) If the value is not between 0 and 1, it is clamped.
+	METHOD clampedMap (DDDDD)D
+		ARG 0 input
+		ARG 2 inputMin
+		ARG 4 inputMax
+		ARG 6 outputMin
+		ARG 8 outputMax
+	METHOD clampedMap (FFFFF)F
+		ARG 0 input
+		ARG 1 inputMin
+		ARG 2 inputMax
+		ARG 3 outputMin
+		ARG 4 outputMax
+	METHOD cos (D)F
+		ARG 0 value
+	METHOD cos (F)F
+		COMMENT cos looked up in the sin table with the appropriate offset
+		ARG 0 value
+	METHOD createInsecureUUID ()Ljava/util/UUID;
+		COMMENT Generates a random UUID using the shared random
+	METHOD createInsecureUUID (Lnet/minecraft/util/RandomSource;)Ljava/util/UUID;
+		ARG 0 random
+	METHOD cube (F)F
+		ARG 0 value
+	METHOD degreesDifference (FF)F
+		COMMENT {@return the difference between two angles in degrees}
+		ARG 0 start
+		ARG 1 end
+	METHOD degreesDifferenceAbs (FF)F
+		COMMENT {@return the absolute of the difference between two angles in degrees}
+		ARG 0 start
+		ARG 1 end
+	METHOD easeInOutSine (F)F
+		ARG 0 value
+	METHOD equal (DD)Z
+		ARG 0 x
+		ARG 2 y
+	METHOD equal (FF)Z
+		ARG 0 x
+		ARG 1 y
+	METHOD fastInvCubeRoot (F)F
+		ARG 0 number
+	METHOD fastInvSqrt (D)D
+		COMMENT Computes 1/sqrt(n) using <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">the fast inverse square root</a> with a constant of 0x5FE6EB50C7B537AA.
+		ARG 0 number
+	METHOD floor (D)I
+		COMMENT {@return the greatest integer less than or equal to the double argument}
+		ARG 0 value
+	METHOD floor (F)I
+		COMMENT {@return the greatest integer less than or equal to the float argument}
+		ARG 0 value
+	METHOD floorDiv (II)I
+		ARG 0 dividend
+		ARG 1 divisor
+	METHOD frac (D)D
+		COMMENT Gets the decimal portion of the given double. For instance, {@code frac(5.5)} returns {@code .5}.
+		ARG 0 number
+	METHOD frac (F)F
+		ARG 0 number
+	METHOD getInt (Ljava/lang/String;I)I
+		COMMENT Parses the string as an integer or returns the second parameter if it fails.
+		ARG 0 value
+		ARG 1 defaultValue
+	METHOD getSeed (III)J
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD getSeed (Lnet/minecraft/core/Vec3i;)J
+		ARG 0 pos
+	METHOD hsvToArgb (FFFI)I
+		ARG 0 hue
+		ARG 1 saturation
+		ARG 2 value
+		ARG 3 alpha
+	METHOD hsvToRgb (FFF)I
+		ARG 0 hue
+		ARG 1 saturation
+		ARG 2 value
+	METHOD invSqrt (D)D
+		ARG 0 number
+	METHOD invSqrt (F)F
+		ARG 0 number
+	METHOD inverseLerp (DDD)D
+		ARG 0 delta
+		ARG 2 start
+		ARG 4 end
+	METHOD inverseLerp (FFF)F
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD isMultipleOf (II)Z
+		ARG 0 number
+		ARG 1 multiple
+	METHOD isPowerOfTwo (I)Z
+		COMMENT Is the given value a power of two?  (1, 2, 4, 8, 16, ...)
+		ARG 0 value
+	METHOD length (DD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+	METHOD length (DDD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+		ARG 4 zDistance
+	METHOD length (FF)F
+		ARG 0 xDistance
+		ARG 1 yDistance
+	METHOD lengthSquared (DD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+	METHOD lengthSquared (DDD)D
+		ARG 0 xDistance
+		ARG 2 yDistance
+		ARG 4 zDistance
+	METHOD lengthSquared (FFF)F
+		ARG 0 xDistance
+		ARG 1 yDistance
+		ARG 2 zDistance
+	METHOD lerp (DDD)D
+		COMMENT Method for linear interpolation of doubles
+		ARG 0 delta
+			COMMENT A value usually between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
+		ARG 2 start
+			COMMENT Start value for the lerp
+		ARG 4 end
+			COMMENT End value for the lerp
+	METHOD lerp (DLnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 delta
+		ARG 2 start
+		ARG 3 end
+	METHOD lerp (FFF)F
+		COMMENT Method for linear interpolation of floats
+		ARG 0 delta
+			COMMENT A value usually between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
+		ARG 1 start
+			COMMENT Start value for the lerp
+		ARG 2 end
+			COMMENT End value for the lerp
+	METHOD lerp2 (DDDDDD)D
+		ARG 0 delta1
+		ARG 2 delta2
+		ARG 4 start1
+		ARG 6 end1
+		ARG 8 start2
+		ARG 10 end2
+	METHOD lerp3 (DDDDDDDDDDD)D
+		ARG 0 delta1
+		ARG 2 delta2
+		ARG 4 delta3
+		ARG 6 start1
+		ARG 8 end1
+		ARG 10 start2
+		ARG 12 end2
+		ARG 14 start3
+		ARG 16 end3
+		ARG 18 start4
+		ARG 20 end4
+	METHOD lerpDiscrete (FII)I
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD lerpInt (FII)I
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD lfloor (D)J
+		COMMENT Long version of floor()
+		ARG 0 value
+	METHOD log2 (I)I
+		COMMENT Efficiently calculates the floor of the base-2 log of an integer value.  This is effectively the index of the highest bit that is set.  For example, if the number in binary is 0...100101, this will return 5.
+		ARG 0 value
+	METHOD map (DDDDD)D
+		ARG 0 input
+		ARG 2 inputMin
+		ARG 4 inputMax
+		ARG 6 outputMin
+		ARG 8 outputMax
+	METHOD map (FFFFF)F
+		ARG 0 input
+		ARG 1 inputMin
+		ARG 2 inputMax
+		ARG 3 outputMin
+		ARG 4 outputMax
+	METHOD mulAndTruncate (Lorg/apache/commons/lang3/math/Fraction;I)I
+		ARG 0 fraction
+		ARG 1 factor
+	METHOD murmurHash3Mixer (I)I
+		ARG 0 input
+	METHOD nextDouble (Lnet/minecraft/util/RandomSource;DD)D
+		ARG 0 random
+		ARG 1 minimum
+		ARG 3 maximum
+	METHOD nextFloat (Lnet/minecraft/util/RandomSource;FF)F
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD nextInt (Lnet/minecraft/util/RandomSource;II)I
+		ARG 0 random
+		ARG 1 minimum
+		ARG 2 maximum
+	METHOD normal (Lnet/minecraft/util/RandomSource;FF)F
+		COMMENT Generates a value from a normal distribution with the given mean and deviation.
+		ARG 0 random
+		ARG 1 mean
+		ARG 2 deviation
+	METHOD outFromOrigin (III)Ljava/util/stream/IntStream;
+		ARG 0 input
+		ARG 1 lowerBound
+		ARG 2 upperBound
+	METHOD outFromOrigin (IIII)Ljava/util/stream/IntStream;
+		ARG 0 input
+		ARG 1 lowerBound
+		ARG 2 upperBound
+		ARG 3 steps
+	METHOD packDegrees (F)B
+		ARG 0 degrees
+	METHOD positiveCeilDiv (II)I
+		COMMENT Returns the smallest (closest to negative infinity) int value that is greater than or equal to the algebraic quotient.
+		COMMENT @see java.lang.Math#floorDiv(int, int)
+		ARG 0 x
+		ARG 1 y
+	METHOD positiveModulo (DD)D
+		ARG 0 numerator
+		ARG 2 denominator
+	METHOD positiveModulo (FF)F
+		ARG 0 numerator
+		ARG 1 denominator
+	METHOD positiveModulo (II)I
+		ARG 0 x
+		ARG 1 y
+	METHOD quantize (DI)I
+		COMMENT Gets the value closest to zero that is not closer to zero than the given value and is a multiple of the factor.
+		ARG 0 value
+		ARG 2 factor
+	METHOD randomBetween (Lnet/minecraft/util/RandomSource;FF)F
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxExclusive
+	METHOD randomBetweenInclusive (Lnet/minecraft/util/RandomSource;II)I
+		ARG 0 random
+		ARG 1 minInclusive
+		ARG 2 maxInclusive
+	METHOD rayIntersectsAABB (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/AABB;)Z
+		ARG 0 start
+		ARG 1 end
+		ARG 2 boundingBox
+	METHOD rotLerp (DDD)D
+		ARG 0 delta
+		ARG 2 start
+		ARG 4 end
+	METHOD rotLerp (FFF)F
+		COMMENT Linearly interpolates an angle between the start between the start and end values given as degrees.
+		ARG 0 delta
+			COMMENT A value between 0 and 1 that indicates the percentage of the lerp. (0 will give the start value and 1 will give the end value)
+		ARG 1 start
+		ARG 2 end
+	METHOD rotLerpRad (FFF)F
+		ARG 0 delta
+		ARG 1 start
+		ARG 2 end
+	METHOD rotateIfNecessary (FFF)F
+		COMMENT Takes a rotation and compares it to another rotation.
+		COMMENT If the difference is greater than a given maximum, clamps the original rotation between to have at most the given difference to the actual rotation.
+		COMMENT This is used to match the body rotation of entities to their head rotation.
+		COMMENT @return The new value for the rotation that was adjusted
+		ARG 0 rotationToAdjust
+		ARG 1 actualRotation
+		ARG 2 maxDifference
+	METHOD rotationAroundAxis (Lorg/joml/Vector3f;Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;)Lorg/joml/Quaternionf;
+		ARG 0 axis
+		ARG 1 cameraOrientation
+		ARG 2 output
+	METHOD roundToward (II)I
+		COMMENT Rounds the given value up to a multiple of factor.
+		COMMENT @return The smallest integer multiple of factor that is greater than or equal to the value
+		ARG 0 value
+		ARG 1 factor
+	METHOD sign (D)I
+		ARG 0 x
+	METHOD sin (D)F
+		ARG 0 value
+	METHOD sin (F)F
+		COMMENT sin looked up in a table
+		ARG 0 value
+	METHOD smallestEncompassingPowerOfTwo (I)I
+		COMMENT {@return the input value rounded up to the next highest power of two}
+		ARG 0 value
+	METHOD smallestSquareSide (I)I
+		ARG 0 itemCount
+	METHOD smoothstep (D)D
+		ARG 0 input
+	METHOD smoothstepDerivative (D)D
+		ARG 0 input
+	METHOD sqrt (F)F
+		ARG 0 value
+	METHOD square (D)D
+		ARG 0 value
+	METHOD square (F)F
+		ARG 0 value
+	METHOD square (I)I
+		ARG 0 value
+	METHOD square (J)J
+		ARG 0 value
+	METHOD triangleWave (FF)F
+		ARG 0 input
+		ARG 1 period
+	METHOD unpackDegrees (B)F
+		ARG 0 degrees
+	METHOD wobble (D)D
+		ARG 0 input
+	METHOD wrapDegrees (D)D
+		COMMENT The angle is reduced to an angle between -180 and +180 by mod, and a 360 check.
+		ARG 0 value
+	METHOD wrapDegrees (F)F
+		COMMENT The angle is reduced to an angle between -180 and +180 by mod, and a 360 check.
+		ARG 0 value
+	METHOD wrapDegrees (I)I
+		COMMENT Adjust the angle so that its value is in the range [-180;180)
+		ARG 0 angle
+	METHOD wrapDegrees (J)F
+		ARG 0 angle

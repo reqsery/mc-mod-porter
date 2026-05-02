@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/blockentity/EnchantTableRenderer
+	FIELD BOOK_LOCATION Lnet/minecraft/client/resources/model/Material;
+		COMMENT The texture for the book above the enchantment table.
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context

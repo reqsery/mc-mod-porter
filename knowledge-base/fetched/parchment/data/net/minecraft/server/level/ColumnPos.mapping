@@ -1,0 +1,10 @@
+CLASS net/minecraft/server/level/ColumnPos
+	METHOD asLong (II)J
+		ARG 0 x
+		ARG 1 z
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getX (J)I
+		ARG 0 pos
+	METHOD getZ (J)I
+		ARG 0 pos

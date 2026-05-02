@@ -1,0 +1,25 @@
+CLASS net/minecraft/client/model/Model
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V
+		ARG 1 root
+		ARG 2 renderType
+	METHOD renderToBuffer (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 packedLight
+		ARG 4 packedOverlay
+	METHOD renderToBuffer (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V
+		ARG 1 poseStack
+		ARG 2 buffer
+		ARG 3 packedLight
+		ARG 4 packedOverlay
+		ARG 5 color
+	METHOD renderType (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/RenderType;
+		ARG 1 location
+	METHOD renderType (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/rendertype/RenderType;
+		ARG 1 location
+	METHOD setupAnim (Ljava/lang/Object;)V
+		ARG 1 renderState
+	CLASS Simple
+		METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V
+			ARG 1 root
+			ARG 2 renderType

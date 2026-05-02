@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/renderer/debug/StructureRenderer
+	METHOD renderBox (Lcom/mojang/blaze3d/vertex/PoseStack;DDDLcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;FFFF)V
+		ARG 0 poseStack
+		ARG 1 camX
+		ARG 3 camY
+		ARG 5 camZ
+		ARG 7 consumer
+		ARG 8 box
+		ARG 9 red
+		ARG 10 green
+		ARG 11 blue
+		ARG 12 alpha

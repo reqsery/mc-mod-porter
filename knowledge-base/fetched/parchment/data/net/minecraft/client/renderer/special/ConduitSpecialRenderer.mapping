@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/renderer/special/ConduitSpecialRenderer
+	METHOD <init> (Lnet/minecraft/client/resources/model/MaterialSet;Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 materials
+		ARG 2 model

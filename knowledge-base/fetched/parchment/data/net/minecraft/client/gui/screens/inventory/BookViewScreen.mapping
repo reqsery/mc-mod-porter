@@ -1,0 +1,43 @@
+CLASS net/minecraft/client/gui/screens/inventory/BookViewScreen
+	FIELD cachedPageComponents Ljava/util/List;
+		COMMENT Holds a copy of the page text, split into page width lines
+	FIELD playTurnSound Z
+		COMMENT Determines if a sound is played when the page is turned
+	METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;)V
+		ARG 1 bookAccess
+	METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;Z)V
+		ARG 1 bookAccess
+		ARG 2 playTurnSound
+	METHOD forcePage (I)Z
+		COMMENT I'm not sure why this exists. The function it calls is public and does all the work.
+		ARG 1 pageNum
+	METHOD getClickedComponentStyleAt (DD)Lnet/minecraft/network/chat/Style;
+		ARG 1 mouseX
+		ARG 3 mouseY
+	METHOD handleClickEvent (Lnet/minecraft/network/chat/ClickEvent;)Z
+		ARG 1 clickEvent
+	METHOD lambda$createMenuControls$0 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$createPageControlButtons$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$createPageControlButtons$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD pageBack ()V
+		COMMENT Moves the display back one page
+	METHOD pageForward ()V
+		COMMENT Moves the display forward one page
+	METHOD setBookAccess (Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;)V
+		ARG 1 bookAccess
+	METHOD setPage (I)Z
+		COMMENT Moves the book to the specified page and returns true if it exists, {@code false} otherwise.
+		ARG 1 pageNum
+	METHOD visitText (Lnet/minecraft/client/gui/ActiveTextCollector;Z)V
+		ARG 1 activeTextCollector
+		ARG 2 contentOnly
+	CLASS BookAccess
+		METHOD fromItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;
+			ARG 0 stack
+		METHOD getPage (I)Lnet/minecraft/network/chat/Component;
+			ARG 1 page
+		METHOD getPageCount ()I
+			COMMENT Returns the size of the book

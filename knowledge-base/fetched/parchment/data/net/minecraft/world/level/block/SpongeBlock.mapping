@@ -1,0 +1,16 @@
+CLASS net/minecraft/world/level/block/SpongeBlock
+	METHOD lambda$removeWaterBreadthFirstSearch$0 (Lnet/minecraft/core/BlockPos;Ljava/util/function/Consumer;)V
+		ARG 0 validPos
+		ARG 1 queueAdder
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving
+	METHOD removeWaterBreadthFirstSearch (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 level
+		ARG 2 pos
+	METHOD tryAbsorbWater (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 level
+		ARG 2 pos

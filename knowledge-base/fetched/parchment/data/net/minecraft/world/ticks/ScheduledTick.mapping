@@ -1,0 +1,23 @@
+CLASS net/minecraft/world/ticks/ScheduledTick
+	METHOD <init> (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;JJ)V
+		ARG 1 type
+		ARG 2 pos
+		ARG 3 triggerTick
+		ARG 5 subTickOrder
+	METHOD <init> (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;JLnet/minecraft/world/ticks/TickPriority;J)V
+		ARG 1 type
+		ARG 2 pos
+		ARG 3 triggerTick
+		ARG 5 priority
+		ARG 6 subTickOrder
+	METHOD probe (Ljava/lang/Object;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/ticks/ScheduledTick;
+		ARG 0 type
+		ARG 1 pos
+	METHOD toSavedTick (J)Lnet/minecraft/world/ticks/SavedTick;
+		ARG 1 gametime
+	CLASS 1
+		METHOD equals (Lnet/minecraft/world/ticks/ScheduledTick;Lnet/minecraft/world/ticks/ScheduledTick;)Z
+			ARG 1 first
+			ARG 2 second
+		METHOD hashCode (Lnet/minecraft/world/ticks/ScheduledTick;)I
+			ARG 1 scheduledTick

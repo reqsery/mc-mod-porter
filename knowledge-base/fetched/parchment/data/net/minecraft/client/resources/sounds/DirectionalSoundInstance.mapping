@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/resources/sounds/DirectionalSoundInstance
+	METHOD <init> (Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;Lnet/minecraft/util/RandomSource;Lnet/minecraft/client/Camera;FF)V
+		ARG 1 soundEvent
+		ARG 2 source
+		ARG 3 random
+		ARG 4 camera
+		ARG 5 xAngle
+		ARG 6 yAngle

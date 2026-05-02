@@ -1,0 +1,9 @@
+CLASS net/minecraft/server/jsonrpc/JsonRpcNotificationService
+	METHOD <init> (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/ManagementServer;)V
+		ARG 1 minecraftApi
+		ARG 2 managementServer
+	METHOD broadcastNotification (Lnet/minecraft/core/Holder$Reference;)V
+		ARG 1 method
+	METHOD broadcastNotification (Lnet/minecraft/core/Holder$Reference;Ljava/lang/Object;)V
+		ARG 1 method
+		ARG 2 params

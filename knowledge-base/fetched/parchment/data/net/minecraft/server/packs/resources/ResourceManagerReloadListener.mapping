@@ -1,0 +1,3 @@
+CLASS net/minecraft/server/packs/resources/ResourceManagerReloadListener
+	METHOD onResourceManagerReload (Lnet/minecraft/server/packs/resources/ResourceManager;)V
+		ARG 1 resourceManager

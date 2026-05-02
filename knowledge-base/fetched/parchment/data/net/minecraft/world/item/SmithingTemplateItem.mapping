@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/item/SmithingTemplateItem
+	METHOD <init> (Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Ljava/util/List;Ljava/util/List;Lnet/minecraft/world/item/Item$Properties;)V
+		ARG 1 appliesTo
+		ARG 2 ingredients
+		ARG 3 baseSlotDescription
+		ARG 4 additionsSlotDescription
+		ARG 5 baseSlotEmptyIcons
+		ARG 6 additionalSlotEmptyIcons
+		ARG 7 properties
+	METHOD createArmorTrimTemplate (Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/SmithingTemplateItem;
+		ARG 0 properties
+	METHOD createNetheriteUpgradeTemplate (Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/SmithingTemplateItem;
+		ARG 0 properties

@@ -1,0 +1,27 @@
+CLASS net/minecraft/util/debug/DebugValueAccess
+	METHOD forEachBlock (Lnet/minecraft/util/debug/DebugSubscription;Ljava/util/function/BiConsumer;)V
+		ARG 1 subscription
+		ARG 2 action
+	METHOD forEachChunk (Lnet/minecraft/util/debug/DebugSubscription;Ljava/util/function/BiConsumer;)V
+		ARG 1 subscription
+		ARG 2 action
+	METHOD forEachEntity (Lnet/minecraft/util/debug/DebugSubscription;Ljava/util/function/BiConsumer;)V
+		ARG 1 subscription
+		ARG 2 action
+	METHOD forEachEvent (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/util/debug/DebugValueAccess$EventVisitor;)V
+		ARG 1 subscription
+		ARG 2 action
+	METHOD getBlockValue (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/core/BlockPos;)Ljava/lang/Object;
+		ARG 1 subscription
+		ARG 2 pos
+	METHOD getChunkValue (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/world/level/ChunkPos;)Ljava/lang/Object;
+		ARG 1 subscription
+		ARG 2 chunkPos
+	METHOD getEntityValue (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/world/entity/Entity;)Ljava/lang/Object;
+		ARG 1 subscription
+		ARG 2 entity
+	CLASS EventVisitor
+		METHOD accept (Ljava/lang/Object;II)V
+			ARG 1 value
+			ARG 2 expires
+			ARG 3 subscriptionExpires

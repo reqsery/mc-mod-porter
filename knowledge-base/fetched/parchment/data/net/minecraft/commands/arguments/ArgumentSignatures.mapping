@@ -1,0 +1,21 @@
+CLASS net/minecraft/commands/arguments/ArgumentSignatures
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD lambda$signCommand$1 (Lnet/minecraft/commands/arguments/ArgumentSignatures$Signer;Lnet/minecraft/network/chat/SignableCommand$Argument;)Lnet/minecraft/commands/arguments/ArgumentSignatures$Entry;
+		ARG 1 signedArgument
+	METHOD lambda$write$0 (Lnet/minecraft/network/FriendlyByteBuf;Lnet/minecraft/commands/arguments/ArgumentSignatures$Entry;)V
+		ARG 0 buffer
+		ARG 1 entry
+	METHOD signCommand (Lnet/minecraft/network/chat/SignableCommand;Lnet/minecraft/commands/arguments/ArgumentSignatures$Signer;)Lnet/minecraft/commands/arguments/ArgumentSignatures;
+		ARG 0 command
+		ARG 1 signer
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	CLASS Entry
+		METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer
+	CLASS Signer
+		METHOD sign (Ljava/lang/String;)Lnet/minecraft/network/chat/MessageSignature;
+			ARG 1 argumentText

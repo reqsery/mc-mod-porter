@@ -1,0 +1,7 @@
+CLASS net/minecraft/client/gui/components/toasts/RecipeToast
+	METHOD addItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 categoryItem
+		ARG 2 unlockedItem
+	METHOD addOrUpdate (Lnet/minecraft/client/gui/components/toasts/ToastManager;Lnet/minecraft/world/item/crafting/display/RecipeDisplay;)V
+		ARG 0 toastManager
+		ARG 1 recipeDisplay

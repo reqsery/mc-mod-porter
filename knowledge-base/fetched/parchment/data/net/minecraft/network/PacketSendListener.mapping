@@ -1,0 +1,5 @@
+CLASS net/minecraft/network/PacketSendListener
+	METHOD exceptionallySend (Ljava/util/function/Supplier;)Lio/netty/channel/ChannelFutureListener;
+		ARG 0 packetSupplier
+	METHOD thenRun (Ljava/lang/Runnable;)Lio/netty/channel/ChannelFutureListener;
+		ARG 0 action

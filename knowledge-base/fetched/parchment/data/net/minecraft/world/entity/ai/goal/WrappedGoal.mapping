@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/entity/ai/goal/WrappedGoal
+	COMMENT This is an internal object used by the GoalSelector to choose between Goals.
+	COMMENT In most cases, it should not be constructed directly.
+	COMMENT
+	COMMENT For information on how individual methods work, see the javadocs for Goal:
+	COMMENT {@link net.minecraft.entity.ai.goal.Goal}
+	METHOD <init> (ILnet/minecraft/world/entity/ai/goal/Goal;)V
+		ARG 1 priority
+		ARG 2 goal
+	METHOD canBeReplacedBy (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
+		ARG 1 other
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getGoal ()Lnet/minecraft/world/entity/ai/goal/Goal;
+		COMMENT Gets the private goal enclosed by this WrappedGoal.
+	METHOD setFlags (Ljava/util/EnumSet;)V
+		ARG 1 flagSet

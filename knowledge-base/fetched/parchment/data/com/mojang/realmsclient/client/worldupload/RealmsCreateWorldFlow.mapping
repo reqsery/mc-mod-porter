@@ -1,0 +1,12 @@
+CLASS com/mojang/realmsclient/client/worldupload/RealmsCreateWorldFlow
+	METHOD createTemporaryWorldFolder (Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PrimaryLevelData;Ljava/nio/file/Path;)Ljava/nio/file/Path;
+		ARG 0 registryAccess
+		ARG 1 levelData
+		ARG 2 tempDatapackDir
+	METHOD createWorld (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/Screen;ILcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/realmsclient/util/task/RealmCreationTask;)V
+		ARG 0 minecraft
+		ARG 1 lastScreen
+		ARG 2 resetWorldScreen
+		ARG 3 slot
+		ARG 4 server
+		ARG 5 realmCreationTask

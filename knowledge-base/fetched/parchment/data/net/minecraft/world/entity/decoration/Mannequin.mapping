@@ -1,0 +1,14 @@
+CLASS net/minecraft/world/entity/decoration/Mannequin
+	METHOD <init> (Lnet/minecraft/world/level/Level;)V
+		ARG 1 level
+	METHOD create (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/decoration/Mannequin;
+		ARG 0 entityType
+		ARG 1 level
+	METHOD setDescription (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 description
+	METHOD setHideDescription (Z)V
+		ARG 1 hideDescription
+	METHOD setImmovable (Z)V
+		ARG 1 immovable
+	METHOD setProfile (Lnet/minecraft/world/item/component/ResolvableProfile;)V
+		ARG 1 profile

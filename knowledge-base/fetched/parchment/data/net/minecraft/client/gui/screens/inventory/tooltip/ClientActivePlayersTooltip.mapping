@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip
+	METHOD <init> (Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip$ActivePlayersTooltip;)V
+		ARG 1 tooltip
+	METHOD getName (Lnet/minecraft/client/renderer/PlayerSkinRenderCache$RenderInfo;)Ljava/lang/String;
+		ARG 0 renderInfo

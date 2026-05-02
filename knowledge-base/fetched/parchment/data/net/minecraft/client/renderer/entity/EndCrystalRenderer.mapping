@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/entity/EndCrystalRenderer
+	METHOD getY (F)F
+		ARG 0 ageInTicks
+	METHOD shouldRender (Lnet/minecraft/world/entity/boss/enderdragon/EndCrystal;Lnet/minecraft/client/renderer/culling/Frustum;DDD)Z
+		ARG 1 livingEntity
+		ARG 2 camera
+		ARG 3 camX
+		ARG 5 camY
+		ARG 7 camZ

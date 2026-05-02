@@ -1,0 +1,8 @@
+CLASS net/minecraft/network/protocol/game/ClientboundProjectilePowerPacket
+	METHOD <init> (ID)V
+		ARG 1 id
+		ARG 2 accelerationPower
+	METHOD <init> (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer

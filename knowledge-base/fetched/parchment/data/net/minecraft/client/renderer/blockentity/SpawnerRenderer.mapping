@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/renderer/blockentity/SpawnerRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD submitEntityInSpawner (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/entity/state/EntityRenderState;Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;FFLnet/minecraft/client/renderer/state/CameraRenderState;)V
+		ARG 0 poseStack
+		ARG 1 nodeCollector
+		ARG 2 displayEntity
+		ARG 3 entityRenderer
+		ARG 4 spin
+		ARG 5 scale
+		ARG 6 cameraRenderState

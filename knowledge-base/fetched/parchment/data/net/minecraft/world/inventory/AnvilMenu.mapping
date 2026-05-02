@@ -1,0 +1,18 @@
+CLASS net/minecraft/world/inventory/AnvilMenu
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 containerId
+		ARG 2 playerInventory
+	METHOD <init> (ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+		ARG 1 containerId
+		ARG 2 playerInventory
+		ARG 3 access
+	METHOD calculateIncreasedRepairCost (I)I
+		ARG 0 oldRepairCost
+	METHOD createResult ()V
+		COMMENT Called when the Anvil Input Slot changes, calculates the new result and puts it in the output slot.
+	METHOD getCost ()I
+		COMMENT Gets the maximum xp cost
+	METHOD setItemName (Ljava/lang/String;)Z
+		ARG 1 itemName
+	METHOD validateName (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 itemName

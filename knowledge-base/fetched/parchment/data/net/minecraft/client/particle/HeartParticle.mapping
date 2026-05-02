@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/particle/HeartParticle
+	METHOD getQuadSize (F)F
+		ARG 1 scaleFactor
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS AngryVillagerProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

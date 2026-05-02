@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/chunk/RenderRegionCache
+	METHOD createRegion (Lnet/minecraft/world/level/Level;J)Lnet/minecraft/client/renderer/chunk/RenderSectionRegion;
+		ARG 1 level
+		ARG 2 chunkPos
+	METHOD getSectionDataCopy (Lnet/minecraft/world/level/Level;III)Lnet/minecraft/client/renderer/chunk/SectionCopy;
+		ARG 1 level
+		ARG 2 x
+		ARG 3 y
+		ARG 4 z

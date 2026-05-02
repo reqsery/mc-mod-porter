@@ -1,0 +1,63 @@
+CLASS net/minecraft/world/entity/item/ItemEntity
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 posX
+		ARG 4 posY
+		ARG 6 posZ
+		ARG 8 itemStack
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;DDD)V
+		ARG 1 level
+		ARG 2 posX
+		ARG 4 posY
+		ARG 6 posZ
+		ARG 8 itemStack
+		ARG 9 deltaX
+		ARG 11 deltaY
+		ARG 13 deltaZ
+	METHOD areMergable (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 destinationStack
+		ARG 1 originStack
+	METHOD getItem ()Lnet/minecraft/world/item/ItemStack;
+		COMMENT Gets the item that this entity represents.
+	METHOD getSpin (FF)F
+		ARG 0 age
+		ARG 1 bobOffset
+	METHOD isAttackable ()Z
+		COMMENT Returns {@code true} if it's possible to attack this entity with an item.
+	METHOD lambda$mergeWithNeighbours$0 (Lnet/minecraft/world/entity/item/ItemEntity;)Z
+		ARG 1 neighbour
+	METHOD merge (Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 0 destinationEntity
+		ARG 1 destinationStack
+		ARG 2 originEntity
+		ARG 3 originStack
+	METHOD merge (Lnet/minecraft/world/entity/item/ItemEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 0 destinationEntity
+		ARG 1 destinationStack
+		ARG 2 originStack
+	METHOD merge (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 destinationStack
+		ARG 1 originStack
+		ARG 2 amount
+	METHOD mergeWithNeighbours ()V
+		COMMENT Looks for other itemstacks nearby and tries to stack them together
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playerTouch (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called by a player entity when they collide with an entity
+		ARG 1 entity
+	METHOD setFluidMovement (D)V
+		ARG 1 multiplier
+	METHOD setItem (Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Sets the item that this entity represents.
+		ARG 1 stack
+	METHOD setPickUpDelay (I)V
+		ARG 1 pickupDelay
+	METHOD setTarget (Ljava/util/UUID;)V
+		ARG 1 target
+	METHOD setThrower (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 thrower
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD tryToMerge (Lnet/minecraft/world/entity/item/ItemEntity;)V
+		ARG 1 itemEntity

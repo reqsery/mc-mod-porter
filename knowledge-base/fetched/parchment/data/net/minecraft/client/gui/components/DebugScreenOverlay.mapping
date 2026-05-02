@@ -1,0 +1,16 @@
+CLASS net/minecraft/client/gui/components/DebugScreenOverlay
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
+	METHOD logFrameDuration (J)V
+		ARG 1 frameDuration
+	METHOD logRemoteSample ([JLnet/minecraft/util/debugchart/RemoteDebugSampleType;)V
+		ARG 1 sample
+		ARG 2 sampleType
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD render3dCrosshair (Lnet/minecraft/client/Camera;)V
+		ARG 1 camera
+	METHOD renderLines (Lnet/minecraft/client/gui/GuiGraphics;Ljava/util/List;Z)V
+		ARG 1 guiGraphics
+		ARG 2 lines
+		ARG 3 leftSide

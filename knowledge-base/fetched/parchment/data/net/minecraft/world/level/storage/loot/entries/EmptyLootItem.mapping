@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/level/storage/loot/entries/EmptyLootItem
+	COMMENT A loot pool entry that does not generate any items.
+	METHOD <init> (IILjava/util/List;Ljava/util/List;)V
+		ARG 1 weight
+		ARG 2 quality
+		ARG 3 conditions
+		ARG 4 functions
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

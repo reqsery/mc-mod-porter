@@ -1,0 +1,5 @@
+portingLib.enableDatagen()
+
+portingLib.addModuleDependencies([
+		"level_events"
+])

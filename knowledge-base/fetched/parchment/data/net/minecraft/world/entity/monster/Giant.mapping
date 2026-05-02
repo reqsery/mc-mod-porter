@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/entity/monster/Giant
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level

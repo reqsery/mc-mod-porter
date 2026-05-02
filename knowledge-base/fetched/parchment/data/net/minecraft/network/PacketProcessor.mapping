@@ -1,0 +1,6 @@
+CLASS net/minecraft/network/PacketProcessor
+	METHOD <init> (Ljava/lang/Thread;)V
+		ARG 1 runningThread
+	METHOD scheduleIfPossible (Lnet/minecraft/network/PacketListener;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 listener
+		ARG 2 packet

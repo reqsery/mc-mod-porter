@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/particle/ItemPickupParticle
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/renderer/entity/state/EntityRenderState;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 level
+		ARG 2 itemRenderState
+		ARG 3 target
+		ARG 4 speed

@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/level/storage/loot/functions/SetInstrumentFunction
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/tags/TagKey;)V
+		ARG 1 conditions
+		ARG 2 options
+	METHOD setInstrumentOptions (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/world/level/storage/loot/functions/LootItemConditionalFunction$Builder;
+		ARG 0 instrumentOptions

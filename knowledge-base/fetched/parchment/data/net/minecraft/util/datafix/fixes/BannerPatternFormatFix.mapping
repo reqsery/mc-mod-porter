@@ -1,0 +1,7 @@
+CLASS net/minecraft/util/datafix/fixes/BannerPatternFormatFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
+		ARG 1 outputSchema
+	METHOD fixLayer (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 tag
+	METHOD fixTag (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 tag

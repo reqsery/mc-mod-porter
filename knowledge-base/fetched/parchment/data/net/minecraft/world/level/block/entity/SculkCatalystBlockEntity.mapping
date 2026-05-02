@@ -1,0 +1,23 @@
+CLASS net/minecraft/world/level/block/entity/SculkCatalystBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 blockState
+	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/SculkCatalystBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 sculkCatalyst
+	CLASS CatalystListener
+		METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/gameevent/PositionSource;)V
+			ARG 1 blockState
+			ARG 2 positionSource
+		METHOD bloom (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/util/RandomSource;)V
+			ARG 1 level
+			ARG 2 pos
+			ARG 3 state
+			ARG 4 random
+		METHOD lambda$handleGameEvent$0 (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;)V
+			ARG 2 position
+		METHOD tryAwardItSpreadsAdvancement (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)V
+			ARG 1 level
+			ARG 2 entity

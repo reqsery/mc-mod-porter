@@ -1,0 +1,11 @@
+CLASS net/minecraft/util/datafix/fixes/ItemStackTagFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;Ljava/lang/String;Ljava/util/function/Predicate;)V
+		ARG 1 outputSchema
+		ARG 2 name
+		ARG 3 idFilter
+	METHOD createFixer (Lcom/mojang/datafixers/types/Type;Ljava/util/function/Predicate;Ljava/util/function/UnaryOperator;)Ljava/util/function/UnaryOperator;
+		ARG 0 type
+		ARG 1 filter
+		ARG 2 fixer
+	METHOD fixItemStackTag (Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed;
+		ARG 1 data

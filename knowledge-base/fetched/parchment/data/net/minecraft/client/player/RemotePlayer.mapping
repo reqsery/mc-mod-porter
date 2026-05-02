@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/player/RemotePlayer
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

@@ -1,0 +1,12 @@
+CLASS net/minecraft/util/debug/ServerDebugSubscribers
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
+		ARG 1 server
+	METHOD broadcastToAll (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 subscription
+		ARG 2 packet
+	METHOD getSubscribersFor (Lnet/minecraft/util/debug/DebugSubscription;)Ljava/util/List;
+		ARG 1 subscription
+	METHOD hasAnySubscriberFor (Lnet/minecraft/util/debug/DebugSubscription;)Z
+		ARG 1 subscription
+	METHOD hasRequiredPermissions (Lnet/minecraft/server/level/ServerPlayer;)Z
+		ARG 1 player

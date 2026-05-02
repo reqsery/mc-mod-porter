@@ -1,0 +1,5 @@
+CLASS com/mojang/blaze3d/font/GlyphInfo
+	METHOD getAdvance (Z)F
+		ARG 1 bold
+	METHOD simple (F)Lcom/mojang/blaze3d/font/GlyphInfo;
+		ARG 0 advance

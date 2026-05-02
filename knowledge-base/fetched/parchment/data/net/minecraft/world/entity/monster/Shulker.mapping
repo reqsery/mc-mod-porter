@@ -1,0 +1,100 @@
+CLASS net/minecraft/world/entity/monster/Shulker
+	METHOD canStayAt (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 1 pos
+		ARG 2 facing
+	METHOD findAttachableSurface (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/core/Direction;
+		ARG 1 pos
+	METHOD getClientPeekAmount (F)F
+		ARG 1 partialTick
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMaxHeadXRot ()I
+		COMMENT The speed it takes to move the entity's rotationPitch through the faceEntity method. This is only currently use in wolves.
+	METHOD getPhysicalPeek (F)F
+		ARG 0 peek
+	METHOD getProgressAabb (FLnet/minecraft/core/Direction;FLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
+		ARG 0 scale
+		ARG 1 expansionDirection
+		ARG 2 peek
+		ARG 3 position
+	METHOD getProgressDeltaAabb (FLnet/minecraft/core/Direction;FFLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
+		ARG 0 scale
+		ARG 1 expansionDirection
+		ARG 2 currentPeek
+		ARG 3 oldPeek
+		ARG 4 position
+	METHOD getRenderPosition (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 partialTick
+	METHOD isPositionBlocked (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD lambda$onPeekAmountChange$1 (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD lambda$setVariant$2 (Lnet/minecraft/world/item/DyeColor;)Ljava/lang/Byte;
+		ARG 0 color
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD playAmbientSound ()V
+		COMMENT Plays living's sound at its position
+	METHOD push (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Applies a velocity to the entities, to push them away from each other.
+		ARG 1 entity
+	METHOD setAttachFace (Lnet/minecraft/core/Direction;)V
+		ARG 1 attachFace
+	METHOD setPos (DDD)V
+		COMMENT Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD setRawPeekAmount (I)V
+		COMMENT Applies or removes armor modifier
+		ARG 1 peekAmount
+	METHOD setVariant (Ljava/util/Optional;)V
+		ARG 1 variant
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS ShulkerPeekGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerAttackGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS ShulkerLookControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
+	CLASS ShulkerDefenseAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 1 shulker
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+		METHOD lambda$new$0 (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
+			ARG 0 entity
+			ARG 1 level
+	CLASS ShulkerNearestAttackGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Shulker;Lnet/minecraft/world/entity/monster/Shulker;)V
+			ARG 2 shulker
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD getTargetSearchArea (D)Lnet/minecraft/world/phys/AABB;
+			ARG 1 targetDistance
+	CLASS ShulkerBodyRotationControl
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendering angles

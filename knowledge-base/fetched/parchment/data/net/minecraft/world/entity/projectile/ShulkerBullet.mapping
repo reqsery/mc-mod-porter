@@ -1,0 +1,28 @@
+CLASS net/minecraft/world/entity/projectile/ShulkerBullet
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Direction$Axis;)V
+		ARG 1 level
+		ARG 2 shooter
+		ARG 3 finalTarget
+		ARG 4 axis
+	METHOD checkDespawn ()V
+		COMMENT Makes the entity despawn if requirements are reached
+	METHOD isOnFire ()Z
+		COMMENT Returns {@code true} if the entity is on fire. Used by render to add the fire effect on rendering.
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
+	METHOD onHit (Lnet/minecraft/world/phys/HitResult;)V
+		COMMENT Called when this EntityFireball hits a block or entity.
+		ARG 1 result
+	METHOD onHitEntity (Lnet/minecraft/world/phys/EntityHitResult;)V
+		COMMENT Called when the arrow hits an entity
+		ARG 1 result
+	METHOD selectNextMoveDirection (Lnet/minecraft/core/Direction$Axis;Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 axis
+		ARG 2 target
+	METHOD setMoveDirection (Lnet/minecraft/core/Direction;)V
+		ARG 1 direction
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

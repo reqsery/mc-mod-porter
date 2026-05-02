@@ -1,0 +1,26 @@
+CLASS net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen
+	METHOD switchToHoveredGameMode (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;)V
+		ARG 0 minecraft
+		ARG 1 gameModeIcon
+	CLASS GameModeIcon
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;Lnet/minecraft/world/level/GameType;Lnet/minecraft/world/item/ItemStack;)V
+			ARG 3 name
+			ARG 4 mode
+			ARG 5 renderStack
+		METHOD drawIcon (Lnet/minecraft/client/gui/GuiGraphics;II)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+		METHOD getFromGameType (Lnet/minecraft/world/level/GameType;)Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;
+			ARG 0 gameType
+	CLASS GameModeSlot
+		METHOD <init> (Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;II)V
+			ARG 1 icon
+			ARG 2 x
+			ARG 3 y
+		METHOD drawSelection (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD drawSlot (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+		METHOD setSelected (Z)V
+			ARG 1 isSelected

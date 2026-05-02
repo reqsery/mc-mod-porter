@@ -1,0 +1,13 @@
+CLASS net/minecraft/core/Rotations
+	FIELD x F
+		COMMENT Rotation on the X axis
+	FIELD y F
+		COMMENT Rotation on the Y axis
+	FIELD z F
+		COMMENT Rotation on the Z axis
+	METHOD <init> (FFF)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other

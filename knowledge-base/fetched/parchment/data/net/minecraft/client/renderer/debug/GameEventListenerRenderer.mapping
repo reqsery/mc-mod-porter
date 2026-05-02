@@ -1,0 +1,16 @@
+CLASS net/minecraft/client/renderer/debug/GameEventListenerRenderer
+	METHOD forEachListener (Lnet/minecraft/util/debug/DebugValueAccess;Lnet/minecraft/client/renderer/debug/GameEventListenerRenderer$ListenerVisitor;)V
+		ARG 1 debugValueAccess
+		ARG 2 action
+	METHOD renderFilledBox (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/world/phys/AABB;FFFF)V
+		ARG 0 poseStack
+		ARG 1 buffer
+		ARG 2 boundingBox
+		ARG 3 red
+		ARG 4 green
+		ARG 5 blue
+		ARG 6 alpha
+	CLASS ListenerVisitor
+		METHOD accept (Lnet/minecraft/world/phys/Vec3;I)V
+			ARG 1 pos
+			ARG 2 radius

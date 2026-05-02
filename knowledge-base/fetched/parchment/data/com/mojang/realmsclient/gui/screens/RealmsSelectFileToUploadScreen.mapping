@@ -1,0 +1,10 @@
+CLASS com/mojang/realmsclient/gui/screens/RealmsSelectFileToUploadScreen
+	METHOD <init> (Lcom/mojang/realmsclient/util/task/RealmCreationTask;JILcom/mojang/realmsclient/gui/screens/RealmsResetWorldScreen;)V
+		ARG 1 realmCreationTask
+		ARG 2 realmId
+		ARG 4 slotId
+		ARG 5 lastScreen
+	METHOD updateButtonState (Lnet/minecraft/world/level/storage/LevelSummary;)V
+		ARG 1 summary
+	METHOD upload (Lnet/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry;)V
+		ARG 1 entry

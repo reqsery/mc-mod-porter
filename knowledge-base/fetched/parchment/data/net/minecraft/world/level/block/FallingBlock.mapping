@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/block/FallingBlock
+	METHOD falling (Lnet/minecraft/world/entity/item/FallingBlockEntity;)V
+		ARG 1 entity
+	METHOD getDustColor (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD isFree (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving

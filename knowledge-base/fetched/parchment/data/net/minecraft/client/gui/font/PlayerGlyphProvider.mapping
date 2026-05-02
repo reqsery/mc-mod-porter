@@ -1,0 +1,22 @@
+CLASS net/minecraft/client/gui/font/PlayerGlyphProvider
+	METHOD <init> (Lnet/minecraft/client/renderer/PlayerSkinRenderCache;)V
+		ARG 1 playerSkinRenderCache
+	METHOD sourceForPlayer (Lnet/minecraft/network/chat/FontDescription$PlayerSprite;)Lnet/minecraft/client/gui/GlyphSource;
+		ARG 1 player
+	CLASS Instance
+		METHOD renderQuad (Lorg/joml/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;IFFFFFIFFIIII)V
+			ARG 0 pose
+			ARG 1 consumer
+			ARG 2 packedLight
+			ARG 3 x1
+			ARG 4 x2
+			ARG 5 y1
+			ARG 6 y2
+			ARG 7 z
+			ARG 8 color
+			ARG 9 u
+			ARG 10 v
+			ARG 11 width
+			ARG 12 height
+			ARG 13 textureWidth
+			ARG 14 textureHeight

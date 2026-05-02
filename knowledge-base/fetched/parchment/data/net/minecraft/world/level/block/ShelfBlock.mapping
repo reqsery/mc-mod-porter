@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/block/ShelfBlock
+	METHOD playSound (Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 sound
+	METHOD swapHotbar (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Inventory;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 inventory
+	METHOD swapSingleItem (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/entity/ShelfBlockEntity;ILnet/minecraft/world/entity/player/Inventory;)Z
+		ARG 0 stack
+		ARG 1 player
+		ARG 2 shelf
+		ARG 3 index
+		ARG 4 inventory

@@ -1,0 +1,14 @@
+CLASS net/minecraft/network/chat/MessageSignatureCache
+	METHOD <init> (I)V
+		ARG 1 size
+	METHOD pack (Lnet/minecraft/network/chat/MessageSignature;)I
+		ARG 1 signature
+	METHOD push (Ljava/util/ArrayDeque;)V
+		ARG 1 deque
+	METHOD push (Ljava/util/List;)V
+		ARG 1 chatMessages
+	METHOD push (Lnet/minecraft/network/chat/SignedMessageBody;Lnet/minecraft/network/chat/MessageSignature;)V
+		ARG 1 signedMessageBody
+		ARG 2 signature
+	METHOD unpack (I)Lnet/minecraft/network/chat/MessageSignature;
+		ARG 1 index

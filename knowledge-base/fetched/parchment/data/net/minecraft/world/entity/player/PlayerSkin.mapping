@@ -1,0 +1,16 @@
+CLASS net/minecraft/world/entity/player/PlayerSkin
+	METHOD insecure (Lnet/minecraft/core/ClientAsset$Texture;Lnet/minecraft/core/ClientAsset$Texture;Lnet/minecraft/core/ClientAsset$Texture;Lnet/minecraft/world/entity/player/PlayerModelType;)Lnet/minecraft/world/entity/player/PlayerSkin;
+		ARG 0 body
+		ARG 1 cape
+		ARG 2 elytra
+		ARG 3 model
+	METHOD with (Lnet/minecraft/world/entity/player/PlayerSkin$Patch;)Lnet/minecraft/world/entity/player/PlayerSkin;
+		ARG 1 patch
+	CLASS Patch
+		METHOD create (Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/world/entity/player/PlayerSkin$Patch;
+			ARG 0 body
+			ARG 1 cape
+			ARG 2 elytra
+			ARG 3 model
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

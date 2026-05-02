@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/level/block/entity/ShelfBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
+	METHOD setChanged (Lnet/minecraft/core/Holder$Reference;)V
+		ARG 1 gameEvent
+	METHOD swapItemNoUpdate (ILnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 slot
+		ARG 2 stack

@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/blockentity/BlockEntityRenderers
+	METHOD createEntityRenderers (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)Ljava/util/Map;
+		ARG 0 context
+	METHOD register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
+		ARG 0 type
+		ARG 1 renderProvider

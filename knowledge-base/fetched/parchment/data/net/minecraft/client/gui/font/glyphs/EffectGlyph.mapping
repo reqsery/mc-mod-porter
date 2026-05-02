@@ -1,0 +1,10 @@
+CLASS net/minecraft/client/gui/font/glyphs/EffectGlyph
+	METHOD createEffect (FFFFFIIF)Lnet/minecraft/client/gui/font/TextRenderable;
+		ARG 1 x0
+		ARG 2 y0
+		ARG 3 x1
+		ARG 4 y1
+		ARG 5 depth
+		ARG 6 color
+		ARG 7 shadowColor
+		ARG 8 shadowOffset

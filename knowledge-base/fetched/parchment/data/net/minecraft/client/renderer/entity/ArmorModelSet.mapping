@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/renderer/entity/ArmorModelSet
+	METHOD bake (Lnet/minecraft/client/renderer/entity/ArmorModelSet;Lnet/minecraft/client/model/geom/EntityModelSet;Ljava/util/function/Function;)Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+		ARG 0 armorModelSet
+		ARG 1 entityModelSet
+		ARG 2 baker
+	METHOD get (Lnet/minecraft/world/entity/EquipmentSlot;)Ljava/lang/Object;
+		ARG 1 slot
+	METHOD map (Ljava/util/function/Function;)Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+		ARG 1 mapper
+	METHOD putFrom (Lnet/minecraft/client/renderer/entity/ArmorModelSet;Lcom/google/common/collect/ImmutableMap$Builder;)V
+		ARG 1 other
+		ARG 2 builder

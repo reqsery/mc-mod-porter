@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "priority": 951,
+  "package": "io.github.fabricators_of_create.porting_lib.attributes.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "common.AttributeMapMixin",
+    "common.DataFixersMixin",
+    "common.LivingEntityMixin",
+    "common.PlayerMixin",
+    "common.ServerGamePacketListenerImplMixin",
+    "common.ServerPlayerMixin"
+  ],
+  "client": [
+    "client.LocalPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1,
+    "maxShiftBy": 5
+  }
+}

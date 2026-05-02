@@ -1,0 +1,7 @@
+CLASS net/minecraft/client/sounds/SoundEventListener
+	COMMENT The SoundEventListener interface defines a listener for sound events.
+	COMMENT Classes implementing this interface can be registered as listeners to receive notifications when a sound is played.
+	METHOD onPlaySound (Lnet/minecraft/client/resources/sounds/SoundInstance;Lnet/minecraft/client/sounds/WeighedSoundEvents;F)V
+		ARG 1 sound
+		ARG 2 accessor
+		ARG 3 range

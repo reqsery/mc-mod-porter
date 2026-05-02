@@ -1,0 +1,43 @@
+CLASS net/minecraft/world/entity/AreaEffectCloud
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD addEffect (Lnet/minecraft/world/effect/MobEffectInstance;)V
+		ARG 1 effectInstance
+	METHOD getDimensions (Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/entity/EntityDimensions;
+		ARG 1 pose
+	METHOD isWaiting ()Z
+		COMMENT Returns {@code true} if the cloud is waiting. While waiting, the radius is ignored and the cloud shows fewer particles in its area.
+	METHOD lambda$serverTick$0 (Ljava/util/Map$Entry;)Z
+		ARG 1 victim
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD serverTick (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD setCustomParticle (Lnet/minecraft/core/particles/ParticleOptions;)V
+		ARG 1 customParticle
+	METHOD setDuration (I)V
+		ARG 1 duration
+	METHOD setDurationOnUse (I)V
+		ARG 1 durationOnUse
+	METHOD setOwner (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 owner
+	METHOD setPotionContents (Lnet/minecraft/world/item/alchemy/PotionContents;)V
+		ARG 1 potionContents
+	METHOD setPotionDurationScale (F)V
+		ARG 1 potionDurationScale
+	METHOD setRadius (F)V
+		ARG 1 radius
+	METHOD setRadiusOnUse (F)V
+		ARG 1 radiusOnUse
+	METHOD setRadiusPerTick (F)V
+		ARG 1 radiusPerTick
+	METHOD setWaitTime (I)V
+		ARG 1 waitTime
+	METHOD setWaiting (Z)V
+		COMMENT Sets if the cloud is waiting. While waiting, the radius is ignored and the cloud shows fewer particles in its area.
+		ARG 1 waiting
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/entity/monster/breeze/BreezeUtil
+	METHOD getMaxLineOfSightTestRange (Lnet/minecraft/world/entity/monster/breeze/Breeze;)D
+		ARG 0 breeze
+	METHOD hasLineOfSight (Lnet/minecraft/world/entity/monster/breeze/Breeze;Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 0 breeze
+		ARG 1 pos
+	METHOD randomPointBehindTarget (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 target
+		ARG 1 random

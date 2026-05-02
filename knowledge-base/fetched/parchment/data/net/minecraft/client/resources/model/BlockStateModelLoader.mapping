@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/resources/model/BlockStateModelLoader
+	METHOD loadBlockStateDefinitionStack (Lnet/minecraft/resources/Identifier;Lnet/minecraft/world/level/block/state/StateDefinition;Ljava/util/List;)Lnet/minecraft/client/resources/model/BlockStateModelLoader$LoadedModels;
+		ARG 0 blockStateId
+		ARG 1 stateDefinition
+		ARG 2 modelDefinitions
+	METHOD loadBlockStates (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 0 resourceManager
+		ARG 1 executor

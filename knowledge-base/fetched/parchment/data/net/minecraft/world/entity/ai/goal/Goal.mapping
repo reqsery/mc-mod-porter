@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/entity/ai/goal/Goal
+	METHOD adjustedTickDelay (I)I
+		ARG 1 adjustment
+	METHOD canContinueToUse ()Z
+		COMMENT @return whether the goal should continue executing
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD getServerLevel (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/server/level/ServerLevel;
+		ARG 0 entity
+	METHOD getServerLevel (Lnet/minecraft/world/level/Level;)Lnet/minecraft/server/level/ServerLevel;
+		ARG 0 level
+	METHOD reducedTickDelay (I)I
+		ARG 0 reduction
+	METHOD setFlags (Ljava/util/EnumSet;)V
+		ARG 1 flagSet
+	METHOD start ()V
+		COMMENT Called when the goal is about to start executing
+	METHOD stop ()V
+		COMMENT Called when the goal stops executing, usually to reset the mob's state.
+	METHOD tick ()V
+		COMMENT Called every tick to update a goal that is in progress.

@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/special/NoDataSpecialModelRenderer
+	METHOD submit (Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;IIZI)V
+		ARG 1 displayContext
+		ARG 2 poseStack
+		ARG 3 nodeCollector
+		ARG 4 packedLight
+		ARG 5 packedOverlay
+		ARG 6 hasFoil
+		ARG 7 outlineColor

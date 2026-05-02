@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/gui/render/pip/GuiBannerResultRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/resources/model/MaterialSet;)V
+		ARG 1 bufferSource
+		ARG 2 materials

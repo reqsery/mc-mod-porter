@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/level/levelgen/synth/NormalNoise
+	COMMENT This samples the sum of two individual samplers of perlin noise octaves.
+	COMMENT The input coordinates are scaled by {@link #INPUT_FACTOR}, and the result is scaled by {@link #valueFactor}.
+	METHOD <init> (Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/synth/NormalNoise$NoiseParameters;Z)V
+		ARG 1 random
+		ARG 2 parameters
+		ARG 3 useLegacyNetherBiome
+	METHOD create (Lnet/minecraft/util/RandomSource;I[D)Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
+		ARG 0 random
+		ARG 1 firstOctave
+		ARG 2 amplitudes
+	METHOD create (Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/synth/NormalNoise$NoiseParameters;)Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
+		ARG 0 random
+		ARG 1 parameters
+	METHOD createLegacyNetherBiome (Lnet/minecraft/util/RandomSource;Lnet/minecraft/world/level/levelgen/synth/NormalNoise$NoiseParameters;)Lnet/minecraft/world/level/levelgen/synth/NormalNoise;
+		ARG 0 random
+		ARG 1 parameters
+	METHOD expectedDeviation (I)D
+		ARG 0 octaves
+	METHOD getValue (DDD)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD parityConfigString (Ljava/lang/StringBuilder;)V
+		ARG 1 builder
+	CLASS NoiseParameters
+		METHOD <init> (ID[D)V
+			ARG 1 firstOctave
+			ARG 2 amplitude
+			ARG 4 otherAmplitudes
+		METHOD <init> (ILjava/util/List;)V
+			ARG 1 firstOctave
+			ARG 2 amplitudes
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

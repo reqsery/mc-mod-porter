@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/particle/CritParticle
+	METHOD getQuadSize (F)F
+		ARG 1 scaleFactor
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS MagicProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS DamageIndicatorProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

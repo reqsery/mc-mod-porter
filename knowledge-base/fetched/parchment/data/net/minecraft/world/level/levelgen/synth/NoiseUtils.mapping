@@ -1,0 +1,19 @@
+CLASS net/minecraft/world/level/levelgen/synth/NoiseUtils
+	METHOD biasTowardsExtreme (DD)D
+		COMMENT Takes an input value and biases it using a sine function towards two larger magnitude values.
+		ARG 0 value
+			COMMENT A value in the range [-1, 1]
+		ARG 2 bias
+			COMMENT The effect of the bias. At {@code 0.0}, there will be no bias. Mojang only uses {@code 1.0} here.
+	METHOD parityNoiseOctaveConfigString (Ljava/lang/StringBuilder;DDD[B)V
+		ARG 0 builder
+		ARG 1 xo
+		ARG 3 yo
+		ARG 5 zo
+		ARG 7 p
+	METHOD parityNoiseOctaveConfigString (Ljava/lang/StringBuilder;DDD[I)V
+		ARG 0 builder
+		ARG 1 xo
+		ARG 3 yo
+		ARG 5 zo
+		ARG 7 p

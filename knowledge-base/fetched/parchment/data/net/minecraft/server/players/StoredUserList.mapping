@@ -1,0 +1,23 @@
+CLASS net/minecraft/server/players/StoredUserList
+	METHOD <init> (Ljava/io/File;Lnet/minecraft/server/notifications/NotificationService;)V
+		ARG 1 file
+		ARG 2 notificationService
+	METHOD add (Lnet/minecraft/server/players/StoredUserEntry;)Z
+		ARG 1 entry
+	METHOD contains (Ljava/lang/Object;)Z
+		ARG 1 entry
+	METHOD createEntry (Lcom/google/gson/JsonObject;)Lnet/minecraft/server/players/StoredUserEntry;
+		ARG 1 entryData
+	METHOD get (Ljava/lang/Object;)Lnet/minecraft/server/players/StoredUserEntry;
+		ARG 1 obj
+	METHOD getKeyForUser (Ljava/lang/Object;)Ljava/lang/String;
+		COMMENT Gets the key value for the given object
+		ARG 1 obj
+	METHOD lambda$save$0 (Lnet/minecraft/server/players/StoredUserEntry;)Lcom/google/gson/JsonObject;
+		ARG 0 storedEntry
+	METHOD remove (Ljava/lang/Object;)Z
+		ARG 1 key
+	METHOD remove (Lnet/minecraft/server/players/StoredUserEntry;)Z
+		ARG 1 entry
+	METHOD removeExpired ()V
+		COMMENT Removes expired bans from the list. See {@link BanEntry#hasBanExpired}

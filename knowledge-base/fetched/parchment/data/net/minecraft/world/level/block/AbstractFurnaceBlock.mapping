@@ -1,0 +1,24 @@
+CLASS net/minecraft/world/level/block/AbstractFurnaceBlock
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD createFurnaceTicker (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/world/level/block/entity/BlockEntityType;)Lnet/minecraft/world/level/block/entity/BlockEntityTicker;
+		ARG 0 level
+		ARG 1 serverType
+		ARG 2 clientType
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD hasAnalogOutputSignal (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 mirror
+	METHOD openContainer (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called to open this furnace's container.
+		COMMENT
+		COMMENT @see #use
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 player
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 rotation

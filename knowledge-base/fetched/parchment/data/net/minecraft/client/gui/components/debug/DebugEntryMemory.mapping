@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/gui/components/debug/DebugEntryMemory
+	METHOD bytesToMegabytes (J)J
+		ARG 0 bytes
+	CLASS AllocationRateCalculator
+		METHOD bytesAllocatedPerSecond (J)J
+			ARG 1 usedMemory

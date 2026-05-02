@@ -1,0 +1,26 @@
+CLASS net/minecraft/world/entity/ai/navigation/GroundPathNavigation
+	METHOD canUpdatePath ()Z
+		COMMENT If on ground or swimming and can swim
+	METHOD createPath (Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 pos
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to the given entity or null
+		ARG 1 entity
+	METHOD findSurfacePosition (Lnet/minecraft/world/level/chunk/LevelChunk;Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/core/BlockPos;
+		ARG 1 chunk
+		ARG 2 pos
+		ARG 3 accuracy
+	METHOD getSurfaceY ()I
+		COMMENT Gets the safe pathing Y position for the entity depending on if it can path swim or not
+	METHOD hasValidPathType (Lnet/minecraft/world/level/pathfinder/PathType;)Z
+		ARG 1 pathType
+	METHOD setAvoidSun (Z)V
+		ARG 1 avoidSun
+	METHOD setCanPathToTargetsBelowSurface (Z)V
+		ARG 1 canPathToTargetsBelowSurface
+	METHOD setCanWalkOverFences (Z)V
+		ARG 1 canWalkOverFences
+	METHOD trimPath ()V
+		COMMENT Trims path data from the end to the first sun covered block

@@ -1,0 +1,32 @@
+CLASS net/minecraft/world/level/chunk/ChunkSource
+	METHOD gatherStats ()Ljava/lang/String;
+		COMMENT @return A human-readable string representing data about this chunk source.
+	METHOD getChunk (IILnet/minecraft/world/level/chunk/status/ChunkStatus;Z)Lnet/minecraft/world/level/chunk/ChunkAccess;
+		ARG 1 x
+		ARG 2 z
+		ARG 3 chunkStatus
+		ARG 4 requireChunk
+	METHOD getChunk (IIZ)Lnet/minecraft/world/level/chunk/LevelChunk;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+		ARG 3 load
+	METHOD getChunkNow (II)Lnet/minecraft/world/level/chunk/LevelChunk;
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD hasChunk (II)Z
+		COMMENT @return {@code true} if a chunk is loaded at the provided position, without forcing a chunk load.
+		ARG 1 chunkX
+		ARG 2 chunkZ
+	METHOD onSectionEmptinessChanged (IIIZ)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 isEmpty
+	METHOD setSpawnSettings (Z)V
+		ARG 1 spawnSettings
+	METHOD tick (Ljava/util/function/BooleanSupplier;Z)V
+		ARG 1 hasTimeLeft
+		ARG 2 tickChunks
+	METHOD updateChunkForced (Lnet/minecraft/world/level/ChunkPos;Z)Z
+		ARG 1 chunkPos
+		ARG 2 add

@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/state/BlockOutlineRenderState
+	METHOD <init> (Lnet/minecraft/core/BlockPos;ZZLnet/minecraft/world/phys/shapes/VoxelShape;)V
+		ARG 1 pos
+		ARG 2 isTranslucent
+		ARG 3 highContrast
+		ARG 4 shape

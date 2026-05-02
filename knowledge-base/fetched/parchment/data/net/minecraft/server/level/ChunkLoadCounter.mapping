@@ -1,0 +1,4 @@
+CLASS net/minecraft/server/level/ChunkLoadCounter
+	METHOD track (Lnet/minecraft/server/level/ServerLevel;Ljava/lang/Runnable;)V
+		ARG 1 level
+		ARG 2 task

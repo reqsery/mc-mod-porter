@@ -1,0 +1,9 @@
+CLASS net/minecraft/core/dispenser/ShearsDispenseItemBehavior
+	METHOD tryShearBeehive (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/BlockPos;)Z
+		ARG 0 level
+		ARG 1 stack
+		ARG 2 pos
+	METHOD tryShearEntity (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 stack

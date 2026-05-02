@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/item/HoneycombItem
+	METHOD getWaxed (Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Optional;
+		ARG 0 state
+	METHOD lambda$getWaxed$3 (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 block

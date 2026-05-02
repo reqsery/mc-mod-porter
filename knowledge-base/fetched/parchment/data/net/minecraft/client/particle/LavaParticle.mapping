@@ -1,0 +1,8 @@
+CLASS net/minecraft/client/particle/LavaParticle
+	METHOD getLightColor (F)I
+		ARG 1 partialTick
+	METHOD getQuadSize (F)F
+		ARG 1 scaleFactor
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

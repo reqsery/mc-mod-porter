@@ -1,0 +1,22 @@
+CLASS com/mojang/realmsclient/gui/RealmsWorldSlotButton
+	METHOD <init> (IIIIILcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 slotIndex
+		ARG 6 serverData
+		ARG 7 onPress
+	METHOD getAction (ZZZ)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$Action;
+		ARG 0 activeSlot
+		ARG 1 empty
+		ARG 2 expired
+	METHOD setServerData (Lcom/mojang/realmsclient/dto/RealmsServer;)Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;
+		ARG 1 serverData
+	METHOD setTooltipAndNarration (Lcom/mojang/realmsclient/gui/RealmsWorldSlotButton$State;Ljava/lang/String;)V
+		ARG 1 state
+		ARG 2 minigameName
+	CLASS State
+		METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsServer;I)V
+			ARG 1 server
+			ARG 2 slot

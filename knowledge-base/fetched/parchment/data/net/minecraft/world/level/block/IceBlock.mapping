@@ -1,0 +1,12 @@
+CLASS net/minecraft/world/level/block/IceBlock
+	METHOD melt (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD playerDestroy (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 player
+		ARG 3 pos
+		ARG 4 state
+		ARG 5 te
+		ARG 6 stack

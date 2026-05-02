@@ -1,0 +1,11 @@
+CLASS net/minecraft/core/particles/PowerParticleOption
+	METHOD <init> (Lnet/minecraft/core/particles/ParticleType;F)V
+		ARG 1 type
+		ARG 2 power
+	METHOD codec (Lnet/minecraft/core/particles/ParticleType;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 particleType
+	METHOD create (Lnet/minecraft/core/particles/ParticleType;F)Lnet/minecraft/core/particles/PowerParticleOption;
+		ARG 0 particleType
+		ARG 1 power
+	METHOD streamCodec (Lnet/minecraft/core/particles/ParticleType;)Lnet/minecraft/network/codec/StreamCodec;
+		ARG 0 particleType

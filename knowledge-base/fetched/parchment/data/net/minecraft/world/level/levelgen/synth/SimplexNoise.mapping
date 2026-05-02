@@ -1,0 +1,30 @@
+CLASS net/minecraft/world/level/levelgen/synth/SimplexNoise
+	COMMENT A generator for a single octave of Simplex noise.
+	FIELD p [I
+		COMMENT A permutation array used in noise generation.
+		COMMENT This is populated with the values [0, 256) and shuffled. Despite the array declared as 512 length, only the first 256 values are used.
+		COMMENT
+		COMMENT @see #p(int)
+	METHOD <init> (Lnet/minecraft/util/RandomSource;)V
+		ARG 1 random
+	METHOD dot ([IDDD)D
+		COMMENT @return The dot product of the provided three-dimensional gradient vector and the vector (x, y, z)
+		ARG 0 gradient
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD getCornerNoise3D (IDDDD)D
+		ARG 1 gradientIndex
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 offset
+	METHOD getValue (DD)D
+		ARG 1 x
+		ARG 3 y
+	METHOD getValue (DDD)D
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD p (I)I
+		ARG 1 index

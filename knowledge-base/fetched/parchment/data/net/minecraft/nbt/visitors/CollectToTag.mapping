@@ -1,0 +1,10 @@
+CLASS net/minecraft/nbt/visitors/CollectToTag
+	METHOD appendEntry (Lnet/minecraft/nbt/Tag;)V
+		ARG 1 tag
+	METHOD enterContainerIfNeeded (Lnet/minecraft/nbt/TagType;)V
+		ARG 1 type
+	CLASS ContainerBuilder
+		METHOD acceptKey (Ljava/lang/String;)V
+			ARG 1 lastId
+		METHOD acceptValue (Lnet/minecraft/nbt/Tag;)V
+			ARG 1 tag

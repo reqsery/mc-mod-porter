@@ -1,0 +1,17 @@
+CLASS net/minecraft/stats/RecipeBook
+	METHOD isFiltering (Lnet/minecraft/world/inventory/RecipeBookType;)Z
+		ARG 1 bookType
+	METHOD isOpen (Lnet/minecraft/world/inventory/RecipeBookType;)Z
+		ARG 1 bookType
+	METHOD setBookSetting (Lnet/minecraft/world/inventory/RecipeBookType;ZZ)V
+		ARG 1 bookType
+		ARG 2 open
+		ARG 3 filtering
+	METHOD setBookSettings (Lnet/minecraft/stats/RecipeBookSettings;)V
+		ARG 1 settings
+	METHOD setFiltering (Lnet/minecraft/world/inventory/RecipeBookType;Z)V
+		ARG 1 bookType
+		ARG 2 filtering
+	METHOD setOpen (Lnet/minecraft/world/inventory/RecipeBookType;Z)V
+		ARG 1 bookType
+		ARG 2 open

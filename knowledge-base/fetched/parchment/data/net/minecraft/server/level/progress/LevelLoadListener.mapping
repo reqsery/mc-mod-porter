@@ -1,0 +1,16 @@
+CLASS net/minecraft/server/level/progress/LevelLoadListener
+	METHOD compose (Lnet/minecraft/server/level/progress/LevelLoadListener;Lnet/minecraft/server/level/progress/LevelLoadListener;)Lnet/minecraft/server/level/progress/LevelLoadListener;
+		ARG 0 listener1
+		ARG 1 listener2
+	METHOD finish (Lnet/minecraft/server/level/progress/LevelLoadListener$Stage;)V
+		ARG 1 stage
+	METHOD start (Lnet/minecraft/server/level/progress/LevelLoadListener$Stage;I)V
+		ARG 1 stage
+		ARG 2 totalChunks
+	METHOD update (Lnet/minecraft/server/level/progress/LevelLoadListener$Stage;II)V
+		ARG 1 stage
+		ARG 2 readyChunks
+		ARG 3 totalChunks
+	METHOD updateFocus (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/ChunkPos;)V
+		ARG 1 dimension
+		ARG 2 chunkPos

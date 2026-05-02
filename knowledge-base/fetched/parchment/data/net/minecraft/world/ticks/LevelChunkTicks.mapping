@@ -1,0 +1,11 @@
+CLASS net/minecraft/world/ticks/LevelChunkTicks
+	METHOD <init> (Ljava/util/List;)V
+		ARG 1 pendingTicks
+	METHOD removeIf (Ljava/util/function/Predicate;)V
+		ARG 1 predicate
+	METHOD scheduleUnchecked (Lnet/minecraft/world/ticks/ScheduledTick;)V
+		ARG 1 tick
+	METHOD setOnTickAdded (Ljava/util/function/BiConsumer;)V
+		ARG 1 onTickAdded
+	METHOD unpack (J)V
+		ARG 1 gameTime

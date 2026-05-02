@@ -1,0 +1,9 @@
+CLASS net/minecraft/server/jsonrpc/security/JsonRpcSslContextProvider
+	METHOD createFrom (Ljava/lang/String;Ljava/lang/String;)Lio/netty/handler/ssl/SslContext;
+		ARG 0 keystore
+		ARG 1 keystorePassword
+	METHOD getKeystorePassword (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 password
+	METHOD loadKeystoreFromPath (Ljava/io/File;Ljava/lang/String;)Lio/netty/handler/ssl/SslContext;
+		ARG 0 file
+		ARG 1 password

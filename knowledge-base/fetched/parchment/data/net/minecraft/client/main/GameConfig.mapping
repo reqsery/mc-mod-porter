@@ -1,0 +1,27 @@
+CLASS net/minecraft/client/main/GameConfig
+	METHOD <init> (Lnet/minecraft/client/main/GameConfig$UserData;Lcom/mojang/blaze3d/platform/DisplayData;Lnet/minecraft/client/main/GameConfig$FolderData;Lnet/minecraft/client/main/GameConfig$GameData;Lnet/minecraft/client/main/GameConfig$QuickPlayData;)V
+		ARG 1 user
+		ARG 2 display
+		ARG 3 location
+		ARG 4 game
+		ARG 5 quickPlay
+	CLASS GameData
+		METHOD <init> (ZLjava/lang/String;Ljava/lang/String;ZZZZZ)V
+			ARG 1 demo
+			ARG 2 launchVersion
+			ARG 3 versionType
+			ARG 4 disableMultiplayer
+			ARG 5 disableChat
+			ARG 6 captureTracyImages
+			ARG 7 renderDebugLabels
+			ARG 8 offlineDeveloperMode
+	CLASS UserData
+		METHOD <init> (Lnet/minecraft/client/User;Ljava/net/Proxy;)V
+			ARG 1 user
+			ARG 2 proxy
+	CLASS FolderData
+		METHOD <init> (Ljava/io/File;Ljava/io/File;Ljava/io/File;Ljava/lang/String;)V
+			ARG 1 gameDirectory
+			ARG 2 resourcePackDirectory
+			ARG 3 assetDirectory
+			ARG 4 assetIndex

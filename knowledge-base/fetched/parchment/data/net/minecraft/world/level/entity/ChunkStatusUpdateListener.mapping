@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/level/entity/ChunkStatusUpdateListener
+	METHOD onChunkStatusChange (Lnet/minecraft/world/level/ChunkPos;Lnet/minecraft/server/level/FullChunkStatus;)V
+		ARG 1 chunkPos
+		ARG 2 fullChunkStatus

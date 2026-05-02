@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/entity/ContainerUser
+	METHOD hasContainerOpen (Lnet/minecraft/world/level/block/entity/ContainerOpenersCounter;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 openCounter
+		ARG 2 pos

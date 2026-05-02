@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/entity/ai/sensing/AdultSensor
+	METHOD setNearestVisibleAdult (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/memory/NearestVisibleLivingEntities;)V
+		ARG 1 entity
+		ARG 2 nearestVisibleLivingEntities

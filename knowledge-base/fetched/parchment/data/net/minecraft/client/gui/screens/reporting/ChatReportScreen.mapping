@@ -1,0 +1,13 @@
+CLASS net/minecraft/client/gui/screens/reporting/ChatReportScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Ljava/util/UUID;)V
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+		ARG 3 reportId
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Lnet/minecraft/client/multiplayer/chat/report/ChatReport$Builder;)V
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+		ARG 3 reportBuilder
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Lnet/minecraft/client/multiplayer/chat/report/ChatReport;)V
+		ARG 1 lastScreen
+		ARG 2 reportContext
+		ARG 3 report

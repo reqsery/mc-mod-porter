@@ -1,0 +1,28 @@
+CLASS net/minecraft/world/entity/monster/PatrollingMonster
+	METHOD checkPatrollingMonsterSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 randomSource
+	METHOD removeWhenFarAway (D)Z
+		ARG 1 distanceToClosestPlayer
+	METHOD setPatrolLeader (Z)V
+		ARG 1 patrolLeader
+	METHOD setPatrolTarget (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 patrolTarget
+	METHOD setPatrolling (Z)V
+		ARG 1 patrolling
+	CLASS LongDistancePatrolGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/PatrollingMonster;DD)V
+			ARG 1 mob
+			ARG 2 speedModifier
+			ARG 4 leaderSpeedModifier
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

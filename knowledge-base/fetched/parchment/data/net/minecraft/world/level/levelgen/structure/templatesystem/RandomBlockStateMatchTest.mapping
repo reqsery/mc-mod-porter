@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/level/levelgen/structure/templatesystem/RandomBlockStateMatchTest
+	METHOD <init> (Lnet/minecraft/world/level/block/state/BlockState;F)V
+		ARG 1 blockState
+		ARG 2 probability

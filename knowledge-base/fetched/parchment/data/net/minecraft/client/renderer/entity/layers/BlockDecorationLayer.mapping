@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/entity/layers/BlockDecorationLayer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/RenderLayerParent;Ljava/util/function/Function;Ljava/util/function/Consumer;)V
+		ARG 1 renderer
+		ARG 2 blockState
+		ARG 3 transform

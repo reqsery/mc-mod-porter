@@ -1,0 +1,7 @@
+CLASS net/minecraft/world/level/block/HorizontalDirectionalBlock
+	METHOD mirror (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Mirror;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 mirror
+	METHOD rotate (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/Rotation;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 rot

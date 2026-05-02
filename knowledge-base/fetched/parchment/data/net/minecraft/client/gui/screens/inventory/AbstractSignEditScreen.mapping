@@ -1,0 +1,24 @@
+CLASS net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen
+	FIELD frame I
+		COMMENT Counts the number of screen updates.
+	FIELD line I
+		COMMENT The index of the line that is being edited.
+	FIELD sign Lnet/minecraft/world/level/block/entity/SignBlockEntity;
+		COMMENT Reference to the sign object.
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/SignBlockEntity;ZZ)V
+		ARG 1 sign
+		ARG 2 isFrontText
+		ARG 3 isFiltered
+	METHOD <init> (Lnet/minecraft/world/level/block/entity/SignBlockEntity;ZZLnet/minecraft/network/chat/Component;)V
+		ARG 1 sign
+		ARG 2 isFrontText
+		ARG 3 isFiltered
+		ARG 4 title
+	METHOD renderSign (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSignBackground (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSignText (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD setMessage (Ljava/lang/String;)V
+		ARG 1 message

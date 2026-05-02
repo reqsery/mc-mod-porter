@@ -1,0 +1,11 @@
+CLASS net/minecraft/server/jsonrpc/JsonRPCErrors
+	METHOD <init> (Ljava/lang/String;IILjava/lang/String;)V
+		ARG 3 errorCode
+		ARG 4 message
+	METHOD create (Lcom/google/gson/JsonElement;Ljava/lang/String;)Lcom/google/gson/JsonObject;
+		ARG 1 requestId
+		ARG 2 data
+	METHOD createWithUnknownId (Ljava/lang/String;)Lcom/google/gson/JsonObject;
+		ARG 1 data
+	METHOD createWithoutData (Lcom/google/gson/JsonElement;)Lcom/google/gson/JsonObject;
+		ARG 1 requestId

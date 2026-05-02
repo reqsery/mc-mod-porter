@@ -1,0 +1,6 @@
+{
+  "porting_lib.swim_speed": "Swim Speed",
+  "porting_lib.name_tag_distance": "Nametag Render Distance",
+  "porting_lib.entity_gravity": "Gravity",
+  "porting_lib.step_height": "Step Height"
+}

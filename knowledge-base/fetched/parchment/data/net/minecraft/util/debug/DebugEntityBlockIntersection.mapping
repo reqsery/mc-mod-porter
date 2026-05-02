@@ -1,0 +1,4 @@
+CLASS net/minecraft/util/debug/DebugEntityBlockIntersection
+	METHOD <init> (Ljava/lang/String;III)V
+		ARG 3 id
+		ARG 4 color

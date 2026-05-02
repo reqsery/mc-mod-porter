@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/entity/monster/Witch
+	METHOD getDamageAfterMagicAbsorb (Lnet/minecraft/world/damagesource/DamageSource;F)F
+		COMMENT Reduces damage, depending on potions
+		ARG 1 source
+		ARG 2 damage
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD handleEntityEvent (B)V
+		COMMENT Handler for {@link World#setEntityState}
+		ARG 1 id
+	METHOD performRangedAttack (Lnet/minecraft/world/entity/LivingEntity;F)V
+		COMMENT Attack the specified entity using a ranged attack.
+		ARG 1 target
+		ARG 2 distanceFactor
+	METHOD setUsingItem (Z)V
+		COMMENT Set whether this witch is aggressive at an entity.
+		ARG 1 usingItem

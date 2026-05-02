@@ -1,0 +1,4 @@
+CLASS net/minecraft/commands/ParserUtils
+	METHOD readWhile (Lcom/mojang/brigadier/StringReader;Lnet/minecraft/CharPredicate;)Ljava/lang/String;
+		ARG 0 reader
+		ARG 1 predicate

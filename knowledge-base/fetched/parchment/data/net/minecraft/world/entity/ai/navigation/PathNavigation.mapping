@@ -1,0 +1,110 @@
+CLASS net/minecraft/world/entity/ai/navigation/PathNavigation
+	FIELD hasDelayedRecomputation Z
+		COMMENT Whether the path can be changed by {@link net.minecraft.pathfinding.PathNavigate#onUpdateNavigation() onUpdateNavigation()}
+	FIELD reachRange I
+		COMMENT Distance in which a path point counts as target-reaching
+	METHOD <init> (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/level/Level;)V
+		ARG 1 mob
+		ARG 2 level
+	METHOD canCutCorner (Lnet/minecraft/world/level/pathfinder/PathType;)Z
+		ARG 1 pathType
+	METHOD canMoveDirectly (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Z
+		COMMENT Checks if the specified entity can safely walk to the specified location.
+		ARG 1 posVec31
+		ARG 2 posVec32
+	METHOD canUpdatePath ()Z
+		COMMENT If on ground or swimming and can swim
+	METHOD createPath (DDDI)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 accuracy
+	METHOD createPath (Ljava/util/Set;I)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 positions
+		ARG 2 distance
+	METHOD createPath (Ljava/util/Set;IZI)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to one of the given targets or null
+		ARG 1 targets
+		ARG 2 regionOffset
+		ARG 3 offsetUpward
+		ARG 4 accuracy
+	METHOD createPath (Ljava/util/Set;IZIF)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 targets
+		ARG 2 regionOffset
+		ARG 3 offsetUpward
+		ARG 4 accuracy
+		ARG 5 followRange
+	METHOD createPath (Ljava/util/stream/Stream;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to one of the elements of the stream or null
+		ARG 1 targets
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns path to given BlockPos
+		ARG 1 pos
+		ARG 2 accuracy
+	METHOD createPath (Lnet/minecraft/core/BlockPos;II)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 1 pos
+		ARG 2 regionOffset
+		ARG 3 accuracy
+	METHOD createPath (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Returns a path to the given entity or null
+		ARG 1 entity
+		ARG 2 accuracy
+	METHOD createPathFinder (I)Lnet/minecraft/world/level/pathfinder/PathFinder;
+		ARG 1 maxVisitedNodes
+	METHOD doStuckDetection (Lnet/minecraft/world/phys/Vec3;)V
+		COMMENT Checks if entity haven't been moved when last checked and if so, stops the current navigation.
+		ARG 1 positionVec3
+	METHOD getGroundY (Lnet/minecraft/world/phys/Vec3;)D
+		ARG 1 vec
+	METHOD getPath ()Lnet/minecraft/world/level/pathfinder/Path;
+		COMMENT Gets the actively used {@link net.minecraft.world.level.pathfinder.Path}.
+	METHOD isClearForMovementBetween (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Z)Z
+		ARG 0 mob
+		ARG 1 pos1
+		ARG 2 pos2
+		ARG 3 allowSwimming
+	METHOD isDone ()Z
+		COMMENT If null path or reached the end
+	METHOD isStableDestination (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD moveTo (DDDD)Z
+		COMMENT Try to find and set a path to XYZ. Returns {@code true} if successful.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 speed
+	METHOD moveTo (DDDID)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+		ARG 7 accuracy
+		ARG 8 speed
+	METHOD moveTo (Lnet/minecraft/world/entity/Entity;D)Z
+		COMMENT Try to find and set a path to EntityLiving. Returns {@code true} if successful.
+		ARG 1 entity
+		ARG 2 speed
+	METHOD moveTo (Lnet/minecraft/world/level/pathfinder/Path;D)Z
+		COMMENT Sets a new path. If it's different from the old path. Checks to adjust path for sun avoiding, and stores start coords.
+		ARG 1 pathEntity
+		ARG 2 speed
+	METHOD setCanFloat (Z)V
+		ARG 1 canSwim
+	METHOD setCanOpenDoors (Z)V
+		ARG 1 canOpenDoors
+	METHOD setMaxVisitedNodesMultiplier (F)V
+		ARG 1 multiplier
+	METHOD setRequiredPathLength (F)V
+		ARG 1 requiredPathLength
+	METHOD setSpeedModifier (D)V
+		COMMENT Sets the speed
+		ARG 1 speed
+	METHOD shouldRecomputePath (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD shouldTargetNextNodeInDirection (Lnet/minecraft/world/phys/Vec3;)Z
+		ARG 1 vec
+	METHOD stop ()V
+		COMMENT Sets the active {@link net.minecraft.world.level.pathfinder.Path} to {@code null}.
+	METHOD trimPath ()V
+		COMMENT Trims path data from the end to the first sun covered block

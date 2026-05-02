@@ -1,0 +1,19 @@
+CLASS net/minecraft/client/renderer/entity/EntityRendererProvider
+	METHOD create (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;)Lnet/minecraft/client/renderer/entity/EntityRenderer;
+		ARG 1 context
+	CLASS Context
+		METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;Lnet/minecraft/client/renderer/item/ItemModelResolver;Lnet/minecraft/client/renderer/MapRenderer;Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/resources/model/EquipmentAssetManager;Lnet/minecraft/client/resources/model/AtlasManager;Lnet/minecraft/client/gui/Font;Lnet/minecraft/client/renderer/PlayerSkinRenderCache;)V
+			ARG 1 entityRenderDispatcher
+			ARG 2 itemModelResolver
+			ARG 3 mapRenderer
+			ARG 4 blockRenderDispatcher
+			ARG 5 resourceManager
+			ARG 6 modelSet
+			ARG 7 equipmentAssets
+			ARG 8 atlasManager
+			ARG 9 font
+			ARG 10 playerSkinRenderCache
+		METHOD bakeLayer (Lnet/minecraft/client/model/geom/ModelLayerLocation;)Lnet/minecraft/client/model/geom/ModelPart;
+			ARG 1 layer
+		METHOD getAtlas (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/texture/TextureAtlas;
+			ARG 1 atlasLocation

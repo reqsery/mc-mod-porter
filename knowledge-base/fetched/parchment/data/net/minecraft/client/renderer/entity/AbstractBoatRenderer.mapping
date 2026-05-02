@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/entity/AbstractBoatRenderer
+	METHOD submitTypeAdditions (Lnet/minecraft/client/renderer/entity/state/BoatRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V
+		ARG 1 renderState
+		ARG 2 poseStack
+		ARG 3 nodeCollector
+		ARG 4 lightCoords

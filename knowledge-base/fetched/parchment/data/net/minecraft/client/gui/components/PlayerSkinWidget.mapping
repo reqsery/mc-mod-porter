@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/gui/components/PlayerSkinWidget
+	METHOD <init> (IILnet/minecraft/client/model/geom/EntityModelSet;Ljava/util/function/Supplier;)V
+		ARG 1 width
+		ARG 2 height
+		ARG 3 model
+		ARG 4 skin

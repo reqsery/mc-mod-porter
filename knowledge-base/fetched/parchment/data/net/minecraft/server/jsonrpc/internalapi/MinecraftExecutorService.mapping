@@ -1,0 +1,5 @@
+CLASS net/minecraft/server/jsonrpc/internalapi/MinecraftExecutorService
+	METHOD submit (Ljava/lang/Runnable;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 task
+	METHOD submit (Ljava/util/function/Supplier;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 task

@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/entity/boss/enderdragon/phases/DragonTakeoffPhase
+	METHOD begin ()V
+		COMMENT Called when this phase is set to active
+	METHOD getFlyTargetLocation ()Lnet/minecraft/world/phys/Vec3;
+		COMMENT Returns the location the dragon is flying toward

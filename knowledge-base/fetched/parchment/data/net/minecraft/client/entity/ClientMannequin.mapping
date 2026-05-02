@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/entity/ClientMannequin
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/client/renderer/PlayerSkinRenderCache;)V
+		ARG 1 level
+		ARG 2 playerSkinRenderCache
+	METHOD lambda$registerOverrides$0 (Lnet/minecraft/client/renderer/PlayerSkinRenderCache;Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/decoration/Mannequin;
+		ARG 1 skin
+		ARG 2 level
+	METHOD registerOverrides (Lnet/minecraft/client/renderer/PlayerSkinRenderCache;)V
+		ARG 0 playerSkinRenderCache
+	METHOD setSkin (Lnet/minecraft/world/entity/player/PlayerSkin;)V
+		ARG 1 skin

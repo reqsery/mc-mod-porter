@@ -1,0 +1,14 @@
+CLASS net/minecraft/world/level/block/state/pattern/BlockInWorld
+	METHOD <init> (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 loadChunks
+	METHOD getEntity ()Lnet/minecraft/world/level/block/entity/BlockEntity;
+		COMMENT Gets the BlockEntity as currently held, or (if it has not gotten it from the level) loads it from the level.
+	METHOD getState ()Lnet/minecraft/world/level/block/state/BlockState;
+		COMMENT Gets the block state as currently held, or (if it has not gotten it from the level) loads it from the level.
+		COMMENT This will only look up the state from the world if {@link #loadChunks} is true or the block position is loaded.
+	METHOD hasState (Ljava/util/function/Predicate;)Ljava/util/function/Predicate;
+		ARG 0 state
+	METHOD lambda$hasState$0 (Ljava/util/function/Predicate;Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;)Z
+		ARG 1 state

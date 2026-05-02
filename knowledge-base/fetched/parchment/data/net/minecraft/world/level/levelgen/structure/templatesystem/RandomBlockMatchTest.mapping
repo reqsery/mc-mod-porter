@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/level/levelgen/structure/templatesystem/RandomBlockMatchTest
+	METHOD <init> (Lnet/minecraft/world/level/block/Block;F)V
+		ARG 1 block
+		ARG 2 probability

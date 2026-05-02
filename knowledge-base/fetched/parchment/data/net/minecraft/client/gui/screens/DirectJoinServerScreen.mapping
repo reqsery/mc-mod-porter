@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/gui/screens/DirectJoinServerScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 lastScreen
+		ARG 2 callback
+		ARG 3 serverData
+	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD resize (Lnet/minecraft/client/Minecraft;II)V
+		ARG 1 minecraft
+		ARG 2 width
+		ARG 3 height

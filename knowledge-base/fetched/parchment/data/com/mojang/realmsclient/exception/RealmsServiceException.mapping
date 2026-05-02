@@ -1,0 +1,3 @@
+CLASS com/mojang/realmsclient/exception/RealmsServiceException
+	METHOD <init> (Lcom/mojang/realmsclient/client/RealmsError;)V
+		ARG 1 realmsError

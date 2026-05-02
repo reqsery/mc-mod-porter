@@ -1,0 +1,7 @@
+CLASS net/minecraft/world/entity/ai/navigation/WaterBoundPathNavigation
+	METHOD canUpdatePath ()Z
+		COMMENT If on ground or swimming and can swim
+	METHOD isStableDestination (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD setCanFloat (Z)V
+		ARG 1 canSwim

@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/entity/player/PlayerModelType
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+		ARG 3 id
+		ARG 4 legacyServicesId
+	METHOD byLegacyServicesName (Ljava/lang/String;)Lnet/minecraft/world/entity/player/PlayerModelType;
+		ARG 0 name

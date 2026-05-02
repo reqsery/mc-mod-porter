@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/entity/boss/enderdragon/EndCrystal
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
+	METHOD onDestroyedBy (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;)V
+		ARG 1 level
+		ARG 2 damageSource
+	METHOD setBeamTarget (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 beamTarget
+	METHOD setShowBottom (Z)V
+		ARG 1 showBottom
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

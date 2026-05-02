@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/gui/screens/ManageServerScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/chat/Component;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 lastScreen
+		ARG 2 title
+		ARG 3 callback
+		ARG 4 serverData

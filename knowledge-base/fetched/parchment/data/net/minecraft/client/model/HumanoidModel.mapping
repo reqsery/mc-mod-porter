@@ -1,0 +1,69 @@
+CLASS net/minecraft/client/model/HumanoidModel
+	FIELD hat Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT The Biped's Headwear. Used for the outer layer of player skins.
+	FIELD leftArm Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT The Biped's Left Arm
+	FIELD leftLeg Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT The Biped's Left Leg
+	FIELD rightArm Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT The Biped's Right Arm
+	FIELD rightLeg Lnet/minecraft/client/model/geom/ModelPart;
+		COMMENT The Biped's Right Leg
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 root
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V
+		ARG 1 root
+		ARG 2 renderType
+	METHOD createArmorMeshSet (Ljava/util/function/Function;Lnet/minecraft/client/model/geom/builders/CubeDeformation;Lnet/minecraft/client/model/geom/builders/CubeDeformation;)Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+		ARG 0 meshCreator
+		ARG 1 innerCubeDeformation
+		ARG 2 outerCubeDeformation
+	METHOD createArmorMeshSet (Lnet/minecraft/client/model/geom/builders/CubeDeformation;Lnet/minecraft/client/model/geom/builders/CubeDeformation;)Lnet/minecraft/client/renderer/entity/ArmorModelSet;
+		ARG 0 innerArmorCubeDeformation
+		ARG 1 outerArmorCubeDeformation
+	METHOD createBaseArmorMesh (Lnet/minecraft/client/model/geom/builders/CubeDeformation;)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
+		ARG 0 cubeDeformation
+	METHOD createMesh (Lnet/minecraft/client/model/geom/builders/CubeDeformation;F)Lnet/minecraft/client/model/geom/builders/MeshDefinition;
+		ARG 0 cubeDeformation
+		ARG 1 yOffset
+	METHOD getArm (Lnet/minecraft/world/entity/HumanoidArm;)Lnet/minecraft/client/model/geom/ModelPart;
+		ARG 1 side
+	METHOD poseBlockingArm (Lnet/minecraft/client/model/geom/ModelPart;Z)V
+		ARG 1 arm
+		ARG 2 isRightArm
+	METHOD poseLeftArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
+	METHOD poseLeftArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;Lnet/minecraft/client/model/HumanoidModel$ArmPose;)V
+		ARG 1 renderState
+		ARG 2 pose
+	METHOD poseRightArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
+	METHOD poseRightArm (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;Lnet/minecraft/client/model/HumanoidModel$ArmPose;)V
+		ARG 1 renderState
+		ARG 2 pose
+	METHOD quadraticArmUpdate (F)F
+		ARG 1 limbSwing
+	METHOD setAllVisible (Z)V
+		ARG 1 visible
+	METHOD setupAttackAnimation (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V
+		ARG 1 renderState
+	METHOD setupAttackAnimation (Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;F)V
+		ARG 1 renderState
+		ARG 2 ageInTicks
+	CLASS ArmPose
+		METHOD <init> (Ljava/lang/String;IZ)V
+			ARG 3 twoHanded
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 twoHanded
+			ARG 4 affectsOffhandPose
+		METHOD animateUseItem (Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 poseStack
+			ARG 2 useTime
+			ARG 3 arm
+			ARG 4 item
+		METHOD animateUseItem (Lnet/minecraft/client/renderer/entity/state/ArmedEntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;FLnet/minecraft/world/entity/HumanoidArm;Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 renderState
+			ARG 2 poseStack
+			ARG 3 useTime
+			ARG 4 arm
+			ARG 5 item

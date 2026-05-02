@@ -1,0 +1,13 @@
+CLASS net/minecraft/server/commands/ReloadCommand
+	METHOD discoverNewPacks (Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/world/level/storage/WorldData;Ljava/util/Collection;)Ljava/util/Collection;
+		COMMENT Gets a list of IDs for the selected packs as well as all packs not disabled by the world config.
+		ARG 0 packRepository
+		ARG 1 worldData
+		ARG 2 selectedIds
+	METHOD lambda$reloadPacks$0 (Lnet/minecraft/commands/CommandSourceStack;Ljava/lang/Throwable;)Ljava/lang/Void;
+		ARG 1 throwable
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD reloadPacks (Ljava/util/Collection;Lnet/minecraft/commands/CommandSourceStack;)V
+		ARG 0 selectedIds
+		ARG 1 source

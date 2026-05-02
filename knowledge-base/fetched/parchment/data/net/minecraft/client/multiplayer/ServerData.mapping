@@ -1,0 +1,31 @@
+CLASS net/minecraft/client/multiplayer/ServerData
+	METHOD <init> (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/client/multiplayer/ServerData$Type;)V
+		ARG 1 name
+		ARG 2 ip
+		ARG 3 type
+	METHOD acceptCodeOfConduct (Ljava/lang/String;)V
+		ARG 1 codeOfConduct
+	METHOD copyFrom (Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 serverData
+	METHOD copyNameIconFrom (Lnet/minecraft/client/multiplayer/ServerData;)V
+		ARG 1 other
+	METHOD hasAcceptedCodeOfConduct (Ljava/lang/String;)Z
+		ARG 1 codeOfConduct
+	METHOD isLan ()Z
+		COMMENT Returns {@code true} if the server is a LAN server.
+	METHOD read (Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/client/multiplayer/ServerData;
+		COMMENT Takes an NBTTagCompound with 'name' and 'ip' keys, returns a ServerData instance.
+		ARG 0 nbtCompound
+	METHOD setIconBytes ([B)V
+		ARG 1 iconBytes
+	METHOD setResourcePackStatus (Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;)V
+		ARG 1 packStatus
+	METHOD setState (Lnet/minecraft/client/multiplayer/ServerData$State;)V
+		ARG 1 state
+	METHOD validateIcon ([B)[B
+		ARG 0 icon
+	METHOD write ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT Returns an NBTTagCompound with the server's name, IP and maybe acceptTextures.
+	CLASS ServerPackStatus
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name

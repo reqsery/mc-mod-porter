@@ -1,0 +1,8 @@
+CLASS net/minecraft/world/level/block/PoweredBlock
+	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		ARG 1 blockState
+		ARG 2 blockAccess
+		ARG 3 pos
+		ARG 4 side
+	METHOD isSignalSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state

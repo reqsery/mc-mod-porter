@@ -1,0 +1,10 @@
+CLASS net/minecraft/world/entity/player/Abilities
+	METHOD apply (Lnet/minecraft/world/entity/player/Abilities$Packed;)V
+		ARG 1 abilities
+	METHOD setFlyingSpeed (F)V
+		ARG 1 flyingSpeed
+	METHOD setWalkingSpeed (F)V
+		ARG 1 walkingSpeed
+	CLASS Packed
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

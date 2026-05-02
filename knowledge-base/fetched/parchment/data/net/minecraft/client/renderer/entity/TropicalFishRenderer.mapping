@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/entity/TropicalFishRenderer
+	FIELD modelA Lnet/minecraft/client/model/ColorableHierarchicalModel;
+		COMMENT Breaking recompile intentionally since modelA/B incorrectly mapped.
+	FIELD modelB Lnet/minecraft/client/model/ColorableHierarchicalModel;
+		COMMENT Breaking recompile intentionally since modelA/B incorrectly mapped.

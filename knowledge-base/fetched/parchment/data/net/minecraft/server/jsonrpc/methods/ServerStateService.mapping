@@ -1,0 +1,20 @@
+CLASS net/minecraft/server/jsonrpc/methods/ServerStateService
+	METHOD save (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;ZLnet/minecraft/server/jsonrpc/methods/ClientInfo;)Z
+		ARG 0 api
+		ARG 1 flush
+		ARG 2 clientInfo
+	METHOD status (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;)Lnet/minecraft/server/jsonrpc/methods/ServerStateService$ServerState;
+		ARG 0 api
+	METHOD stop (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Z
+		ARG 0 api
+		ARG 1 clientInfo
+	METHOD systemMessage (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/ServerStateService$SystemMessage;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Z
+		ARG 0 api
+		ARG 1 message
+		ARG 2 clientInfo
+	CLASS ServerState
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS SystemMessage
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

@@ -1,0 +1,11 @@
+CLASS net/minecraft/world/level/Spawner
+	METHOD appendHoverText (Lnet/minecraft/world/item/component/TypedEntityData;Ljava/util/function/Consumer;Ljava/lang/String;)V
+		ARG 0 data
+		ARG 1 tooltipAdder
+		ARG 2 key
+	METHOD getSpawnEntityDisplayName (Lnet/minecraft/world/item/component/TypedEntityData;Ljava/lang/String;)Lnet/minecraft/network/chat/Component;
+		ARG 0 data
+		ARG 1 key
+	METHOD setEntityId (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/util/RandomSource;)V
+		ARG 1 entityType
+		ARG 2 random

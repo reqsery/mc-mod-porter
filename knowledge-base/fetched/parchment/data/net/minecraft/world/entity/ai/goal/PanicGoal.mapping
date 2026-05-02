@@ -1,0 +1,24 @@
+CLASS net/minecraft/world/entity/ai/goal/PanicGoal
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;D)V
+		ARG 1 mob
+		ARG 2 speedModifier
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;DLjava/util/function/Function;)V
+		ARG 1 mob
+		ARG 2 speedModifier
+		ARG 4 panicCausingDamageTypes
+	METHOD <init> (Lnet/minecraft/world/entity/PathfinderMob;DLnet/minecraft/tags/TagKey;)V
+		ARG 1 mob
+		ARG 2 speedModifier
+		ARG 4 panicCausingDamageTypes
+	METHOD canContinueToUse ()Z
+		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD lookForWater (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/core/BlockPos;
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 range
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task
+	METHOD stop ()V
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one

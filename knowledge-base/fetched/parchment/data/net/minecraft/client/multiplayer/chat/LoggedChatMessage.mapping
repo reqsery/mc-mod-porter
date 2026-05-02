@@ -1,0 +1,16 @@
+CLASS net/minecraft/client/multiplayer/chat/LoggedChatMessage
+	METHOD canReport (Ljava/util/UUID;)Z
+		ARG 1 uuid
+	METHOD player (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/client/multiplayer/chat/ChatTrustLevel;)Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage$Player;
+		ARG 0 profile
+		ARG 1 message
+		ARG 2 trustLevel
+	METHOD system (Lnet/minecraft/network/chat/Component;Ljava/time/Instant;)Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage$System;
+		ARG 0 message
+		ARG 1 timestamp
+	CLASS Player
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS System
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

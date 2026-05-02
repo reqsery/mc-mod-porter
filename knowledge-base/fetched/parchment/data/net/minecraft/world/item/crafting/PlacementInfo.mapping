@@ -1,0 +1,10 @@
+CLASS net/minecraft/world/item/crafting/PlacementInfo
+	METHOD <init> (Ljava/util/List;Lit/unimi/dsi/fastutil/ints/IntList;)V
+		ARG 1 ingredients
+		ARG 2 slotsToIngredientIndex
+	METHOD create (Ljava/util/List;)Lnet/minecraft/world/item/crafting/PlacementInfo;
+		ARG 0 ingredients
+	METHOD create (Lnet/minecraft/world/item/crafting/Ingredient;)Lnet/minecraft/world/item/crafting/PlacementInfo;
+		ARG 0 ingredient
+	METHOD createFromOptionals (Ljava/util/List;)Lnet/minecraft/world/item/crafting/PlacementInfo;
+		ARG 0 optionals

@@ -1,0 +1,12 @@
+CLASS com/mojang/blaze3d/platform/DisplayData
+	METHOD <init> (IILjava/util/OptionalInt;Ljava/util/OptionalInt;Z)V
+		ARG 1 width
+		ARG 2 height
+		ARG 3 fullscreenWidth
+		ARG 4 fullscreenHeight
+		ARG 5 isFullscreen
+	METHOD withFullscreen (Z)Lcom/mojang/blaze3d/platform/DisplayData;
+		ARG 1 fullscreen
+	METHOD withSize (II)Lcom/mojang/blaze3d/platform/DisplayData;
+		ARG 1 width
+		ARG 2 height

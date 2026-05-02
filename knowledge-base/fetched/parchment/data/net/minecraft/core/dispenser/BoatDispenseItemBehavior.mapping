@@ -1,0 +1,3 @@
+CLASS net/minecraft/core/dispenser/BoatDispenseItemBehavior
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;)V
+		ARG 1 type

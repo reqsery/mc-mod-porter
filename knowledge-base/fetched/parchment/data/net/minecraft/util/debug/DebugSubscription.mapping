@@ -1,0 +1,16 @@
+CLASS net/minecraft/util/debug/DebugSubscription
+	METHOD <init> (Lnet/minecraft/network/codec/StreamCodec;)V
+		ARG 1 valueStreamCodec
+	METHOD <init> (Lnet/minecraft/network/codec/StreamCodec;I)V
+		ARG 1 valueStreamCodec
+		ARG 2 expireAfterTicks
+	METHOD packEvent (Ljava/lang/Object;)Lnet/minecraft/util/debug/DebugSubscription$Event;
+		ARG 1 value
+	METHOD packUpdate (Ljava/lang/Object;)Lnet/minecraft/util/debug/DebugSubscription$Update;
+		ARG 1 value
+	CLASS Event
+		METHOD streamCodec (Lnet/minecraft/util/debug/DebugSubscription;)Lnet/minecraft/network/codec/StreamCodec;
+			ARG 0 subscription
+	CLASS Update
+		METHOD streamCodec (Lnet/minecraft/util/debug/DebugSubscription;)Lnet/minecraft/network/codec/StreamCodec;
+			ARG 0 subscription

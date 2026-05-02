@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/item/FoodOnAStickItem
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;ILnet/minecraft/world/item/Item$Properties;)V
+		ARG 1 canInteractWith
+		ARG 2 consumeItemDamage
+		ARG 3 properties

@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/renderer/state/BlockBreakingRenderState
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;I)V
+		ARG 1 level
+		ARG 2 blockPos
+		ARG 3 progress

@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/item/BowItem
+	METHOD getAllSupportedProjectiles ()Ljava/util/function/Predicate;
+		COMMENT Get the predicate to match ammunition when searching the player's inventory, not their main/offhand
+	METHOD getPowerForTime (I)F
+		COMMENT Gets the velocity of the arrow entity from the bow's charge
+		ARG 0 charge

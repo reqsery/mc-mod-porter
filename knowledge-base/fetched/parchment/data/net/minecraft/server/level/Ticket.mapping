@@ -1,0 +1,8 @@
+CLASS net/minecraft/server/level/Ticket
+	METHOD <init> (Lnet/minecraft/server/level/TicketType;I)V
+		ARG 1 type
+		ARG 2 ticketLevel
+	METHOD <init> (Lnet/minecraft/server/level/TicketType;IJ)V
+		ARG 1 type
+		ARG 2 ticketLevel
+		ARG 3 ticksLeft

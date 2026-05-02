@@ -1,0 +1,15 @@
+CLASS net/minecraft/client/renderer/feature/NameTagFeatureRenderer
+	METHOD render (Lnet/minecraft/client/renderer/SubmitNodeCollection;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/gui/Font;)V
+		ARG 1 nodeCollection
+		ARG 2 bufferSource
+		ARG 3 font
+	CLASS Storage
+		METHOD add (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/phys/Vec3;ILnet/minecraft/network/chat/Component;ZIDLnet/minecraft/client/renderer/state/CameraRenderState;)V
+			ARG 1 poseStack
+			ARG 2 pos
+			ARG 3 yOffset
+			ARG 4 text
+			ARG 5 seethrough
+			ARG 6 packedLight
+			ARG 7 distanceToCameraSq
+			ARG 9 cameraRenderState

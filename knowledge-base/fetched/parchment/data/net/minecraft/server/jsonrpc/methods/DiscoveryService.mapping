@@ -1,0 +1,12 @@
+CLASS net/minecraft/server/jsonrpc/methods/DiscoveryService
+	METHOD discover (Ljava/util/List;)Lnet/minecraft/server/jsonrpc/methods/DiscoveryService$DiscoverResponse;
+		ARG 0 schemaRegistry
+	CLASS DiscoverInfo
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS DiscoverResponse
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+	CLASS DiscoverComponents
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

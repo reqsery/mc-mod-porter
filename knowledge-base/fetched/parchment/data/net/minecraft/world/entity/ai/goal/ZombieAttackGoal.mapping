@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/entity/ai/goal/ZombieAttackGoal
+	METHOD <init> (Lnet/minecraft/world/entity/monster/Zombie;DZ)V
+		ARG 1 zombie
+		ARG 2 speedModifier
+		ARG 4 followingTargetEvenIfNotSeen
+	METHOD <init> (Lnet/minecraft/world/entity/monster/zombie/Zombie;DZ)V
+		ARG 1 zombie
+		ARG 2 speedModifier
+		ARG 4 followTargetEvenIfNotSeen
+	METHOD start ()V
+		COMMENT Execute a one shot task or start executing a continuous task
+	METHOD stop ()V
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+	METHOD tick ()V
+		COMMENT Keep ticking a continuous task that has already been started

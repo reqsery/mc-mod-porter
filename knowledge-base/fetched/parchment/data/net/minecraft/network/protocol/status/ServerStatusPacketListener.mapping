@@ -1,0 +1,4 @@
+CLASS net/minecraft/network/protocol/status/ServerStatusPacketListener
+	COMMENT PacketListener for the server side of the STATUS protocol.
+	METHOD handleStatusRequest (Lnet/minecraft/network/protocol/status/ServerboundStatusRequestPacket;)V
+		ARG 1 packet

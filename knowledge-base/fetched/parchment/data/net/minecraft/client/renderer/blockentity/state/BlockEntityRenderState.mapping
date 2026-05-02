@@ -1,0 +1,7 @@
+CLASS net/minecraft/client/renderer/blockentity/state/BlockEntityRenderState
+	METHOD extractBase (Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/client/renderer/blockentity/state/BlockEntityRenderState;Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V
+		ARG 0 blockEntity
+		ARG 1 renderState
+		ARG 2 breakProgress
+	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 crashReportCategory

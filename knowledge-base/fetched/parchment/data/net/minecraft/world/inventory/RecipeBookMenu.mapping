@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/inventory/RecipeBookMenu
+	METHOD fillCraftSlotsStackedContents (Lnet/minecraft/world/entity/player/StackedItemContents;)V
+		ARG 1 stackedItemContents
+	METHOD handlePlacement (ZZLnet/minecraft/world/item/crafting/RecipeHolder;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/RecipeBookMenu$PostPlaceAction;
+		ARG 1 useMaxItems
+		ARG 2 isCreative
+		ARG 3 recipe
+		ARG 4 level
+		ARG 5 playerInventory

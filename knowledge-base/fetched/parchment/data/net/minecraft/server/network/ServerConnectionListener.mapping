@@ -1,0 +1,43 @@
+CLASS net/minecraft/server/network/ServerConnectionListener
+	FIELD channels Ljava/util/List;
+		COMMENT Contains all endpoints added to this NetworkSystem
+	FIELD connections Ljava/util/List;
+		COMMENT A list containing all NetworkManager instances of all endpoints
+	FIELD running Z
+		COMMENT True if this NetworkSystem has never had his endpoints terminated
+	FIELD server Lnet/minecraft/server/MinecraftServer;
+		COMMENT Reference to the MinecraftServer object.
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;)V
+		ARG 1 server
+	METHOD startMemoryChannel ()Ljava/net/SocketAddress;
+		COMMENT Adds a channel that listens locally
+	METHOD startTcpServerListener (Ljava/net/InetAddress;I)V
+		COMMENT Adds a channel that listens on publicly accessible network ports
+		ARG 1 address
+		ARG 2 port
+	METHOD stop ()V
+		COMMENT Shuts down all open endpoints (with immediate effect?)
+	METHOD tick ()V
+		COMMENT Will try to process the packets received by each NetworkManager, gracefully manage processing failures and cleans up dead connections
+	CLASS 1
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS 2
+		METHOD initChannel (Lio/netty/channel/Channel;)V
+			ARG 1 channel
+	CLASS LatencySimulator
+		METHOD <init> (II)V
+			ARG 1 delay
+			ARG 2 jitter
+		METHOD channelRead (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+			ARG 1 ctx
+			ARG 2 msg
+		METHOD delayDownstream (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+			ARG 1 ctx
+			ARG 2 msg
+		METHOD onTimeout (Lio/netty/util/Timeout;)V
+			ARG 1 timeout
+		CLASS DelayedMessage
+			METHOD <init> (Lio/netty/channel/ChannelHandlerContext;Ljava/lang/Object;)V
+				ARG 1 ctx
+				ARG 2 msg

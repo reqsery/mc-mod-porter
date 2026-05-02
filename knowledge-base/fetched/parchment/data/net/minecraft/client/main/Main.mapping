@@ -1,0 +1,29 @@
+CLASS net/minecraft/client/main/Main
+	METHOD emptyStringToEmptyOptional (Ljava/lang/String;)Ljava/util/Optional;
+		ARG 0 input
+	METHOD getQuickPlayVariant (Ljoptsimple/OptionSet;Ljoptsimple/OptionSpec;Ljoptsimple/OptionSpec;Ljoptsimple/OptionSpec;)Lnet/minecraft/client/main/GameConfig$QuickPlayVariant;
+		ARG 0 options
+		ARG 1 singleplayer
+		ARG 2 multiplayer
+		ARG 3 realms
+	METHOD hasValidUuid (Ljoptsimple/OptionSpec;Ljoptsimple/OptionSet;Lorg/slf4j/Logger;)Z
+		ARG 0 uuidOption
+		ARG 1 options
+		ARG 2 logger
+	METHOD isUuidValid (Ljoptsimple/OptionSpec;Ljoptsimple/OptionSet;Lorg/slf4j/Logger;)Z
+		ARG 0 uuidOption
+		ARG 1 optionSet
+		ARG 2 logger
+	METHOD main ([Ljava/lang/String;)V
+		ARG 0 args
+	METHOD ofNullable (Ljava/lang/Integer;)Ljava/util/OptionalInt;
+		ARG 0 value
+	METHOD parseArgument (Ljoptsimple/OptionSet;Ljoptsimple/OptionSpec;)Ljava/lang/Object;
+		COMMENT Gets the value of a specified command-line parameter from an OptionSet. If it doesn't exist, it returns the default value for the parameter.
+		ARG 0 set
+		ARG 1 option
+	METHOD stringHasValue (Ljava/lang/String;)Z
+		COMMENT Returns {@code true} if the given string is neither null nor empty.
+		ARG 0 str
+	METHOD unescapeJavaArgument (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 arg

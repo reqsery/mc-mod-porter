@@ -1,0 +1,28 @@
+CLASS net/minecraft/client/multiplayer/PlayerInfo
+	FIELD profile Lcom/mojang/authlib/GameProfile;
+		COMMENT The GameProfile for the player represented by this NetworkPlayerInfo instance
+	FIELD tabListDisplayName Lnet/minecraft/network/chat/Component;
+		COMMENT When this is non-null, it is displayed instead of the player's real name
+	METHOD <init> (Lcom/mojang/authlib/GameProfile;Z)V
+		ARG 1 profile
+		ARG 2 enforceSecureChat
+	METHOD clearChatSession (Z)V
+		ARG 1 enforcesSecureChat
+	METHOD createSkinLookup (Lcom/mojang/authlib/GameProfile;)Ljava/util/function/Supplier;
+		ARG 0 profile
+	METHOD fallbackMessageValidator (Z)Lnet/minecraft/network/chat/SignedMessageValidator;
+		ARG 0 enforeSecureChat
+	METHOD getProfile ()Lcom/mojang/authlib/GameProfile;
+		COMMENT Returns the GameProfile for the player represented by this NetworkPlayerInfo instance
+	METHOD setChatSession (Lnet/minecraft/network/chat/RemoteChatSession;)V
+		ARG 1 chatSession
+	METHOD setGameMode (Lnet/minecraft/world/level/GameType;)V
+		ARG 1 gameMode
+	METHOD setLatency (I)V
+		ARG 1 latency
+	METHOD setShowHat (Z)V
+		ARG 1 showHat
+	METHOD setTabListDisplayName (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 displayName
+	METHOD setTabListOrder (I)V
+		ARG 1 tabListOrder

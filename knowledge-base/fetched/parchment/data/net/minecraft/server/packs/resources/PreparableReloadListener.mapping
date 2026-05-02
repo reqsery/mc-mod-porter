@@ -1,0 +1,19 @@
+CLASS net/minecraft/server/packs/resources/PreparableReloadListener
+	METHOD prepareSharedState (Lnet/minecraft/server/packs/resources/PreparableReloadListener$SharedState;)V
+		ARG 1 sharedState
+	METHOD reload (Lnet/minecraft/server/packs/resources/PreparableReloadListener$SharedState;Ljava/util/concurrent/Executor;Lnet/minecraft/server/packs/resources/PreparableReloadListener$PreparationBarrier;Ljava/util/concurrent/Executor;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 sharedState
+		ARG 2 exectutor
+		ARG 3 barrier
+		ARG 4 applyExectutor
+	CLASS SharedState
+		METHOD <init> (Lnet/minecraft/server/packs/resources/ResourceManager;)V
+			ARG 1 manager
+		METHOD get (Lnet/minecraft/server/packs/resources/PreparableReloadListener$StateKey;)Ljava/lang/Object;
+			ARG 1 key
+		METHOD set (Lnet/minecraft/server/packs/resources/PreparableReloadListener$StateKey;Ljava/lang/Object;)V
+			ARG 1 key
+			ARG 2 value
+	CLASS PreparationBarrier
+		METHOD wait (Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 backgroundResult

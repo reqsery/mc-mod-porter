@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/entity/ai/goal/RangedAttackGoal
+	METHOD <init> (Lnet/minecraft/world/entity/monster/RangedAttackMob;DIF)V
+		ARG 1 rangedAttackMob
+		ARG 2 speedModifier
+		ARG 4 attackInterval
+		ARG 5 attackRadius
+	METHOD <init> (Lnet/minecraft/world/entity/monster/RangedAttackMob;DIIF)V
+		ARG 1 rangedAttackMob
+		ARG 2 speedModifier
+		ARG 4 attackIntervalMin
+		ARG 5 attackIntervalMax
+		ARG 6 attackRadius
+	METHOD canContinueToUse ()Z
+		COMMENT Returns whether an in-progress EntityAIBase should continue executing
+	METHOD canUse ()Z
+		COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	METHOD stop ()V
+		COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+	METHOD tick ()V
+		COMMENT Keep ticking a continuous task that has already been started

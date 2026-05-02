@@ -1,0 +1,77 @@
+CLASS net/minecraft/world/entity/monster/Ghast
+	METHOD checkGhastSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD faceMovementDirection (Lnet/minecraft/world/entity/Mob;)V
+		ARG 0 mob
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getMaxSpawnClusterSize ()I
+		COMMENT Will return how many at most can spawn in a chunk at once.
+	METHOD getSoundVolume ()F
+		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD isReflectedFireball (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 0 damageSource
+	METHOD setCharging (Z)V
+		ARG 1 charging
+	CLASS GhastLookGoal
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+			ARG 1 ghast
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS GhastMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;ZLjava/util/function/BooleanSupplier;)V
+			ARG 1 ghast
+			ARG 2 careful
+			ARG 3 shouldBeStopped
+		METHOD blockTraversalPossible (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/core/BlockPos;ZZ)Z
+			ARG 1 level
+			ARG 2 from
+			ARG 3 to
+			ARG 4 pos
+			ARG 5 isInLava
+			ARG 6 isInWater
+		METHOD canReach (Lnet/minecraft/world/phys/Vec3;)Z
+			ARG 1 delta
+	CLASS RandomFloatAroundGoal
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;)V
+			ARG 1 ghast
+		METHOD <init> (Lnet/minecraft/world/entity/Mob;I)V
+			ARG 1 ghast
+			ARG 2 distanceToBlocks
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD chooseRandomPosition (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 pos
+			ARG 1 random
+		METHOD chooseRandomPositionWithRestriction (Lnet/minecraft/world/entity/Mob;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 mob
+			ARG 1 pos
+			ARG 2 random
+		METHOD getSuitableFlyToPosition (Lnet/minecraft/world/entity/Mob;I)Lnet/minecraft/world/phys/Vec3;
+			ARG 0 mob
+			ARG 1 distanceToBlocks
+		METHOD isGoodTarget (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/phys/Vec3;I)Z
+			ARG 0 level
+			ARG 1 pos
+			ARG 2 distanceToBlocks
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+	CLASS GhastShootFireballGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Ghast;)V
+			ARG 1 ghast
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

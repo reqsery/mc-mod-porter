@@ -1,0 +1,21 @@
+CLASS net/minecraft/world/entity/animal/camel/Camel
+	METHOD checkCamelSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD getBodyAnchorAnimationYOffset (ZFLnet/minecraft/world/entity/EntityDimensions;F)D
+		ARG 1 firstPassenger
+		ARG 2 partialTick
+		ARG 3 dimensions
+		ARG 4 scale
+	METHOD resetLastPoseChangeTick (J)V
+		ARG 1 lastPoseChangeTick
+	METHOD resetLastPoseChangeTickToFullStand (J)V
+		ARG 1 lastPoseChangedTick
+	METHOD setDashing (Z)V
+		ARG 1 dashing
+	CLASS CamelBodyRotationControl
+		METHOD <init> (Lnet/minecraft/world/entity/animal/camel/Camel;Lnet/minecraft/world/entity/animal/camel/Camel;)V
+			ARG 2 camel

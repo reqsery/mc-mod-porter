@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/particle/VibrationSignalParticle
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/world/level/gameevent/PositionSource;ILnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 target
+		ARG 9 lifetime
+		ARG 10 sprite
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

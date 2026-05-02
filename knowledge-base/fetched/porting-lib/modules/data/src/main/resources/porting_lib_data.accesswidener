@@ -1,0 +1,31 @@
+accessWidener v2 named
+
+transitive-accessible class net/minecraft/core/RegistrySetBuilder$RegistryStub
+transitive-accessible class net/minecraft/server/packs/FilePackResources$SharedZipFileAccess
+transitive-accessible method net/minecraft/server/packs/FilePackResources$SharedZipFileAccess <init> (Ljava/io/File;)V
+
+accessible method net/minecraft/server/packs/FilePackResources <init> (Lnet/minecraft/server/packs/PackLocationInfo;Lnet/minecraft/server/packs/FilePackResources$SharedZipFileAccess;Ljava/lang/String;)V
+
+transitive-accessible method net/minecraft/client/resources/ClientPackSource createVanillaPackSource (Ljava/nio/file/Path;)Lnet/minecraft/server/packs/VanillaPackResources;
+transitive-accessible method net/minecraft/data/registries/RegistriesDatapackGenerator dumpValue (Ljava/nio/file/Path;Lnet/minecraft/data/CachedOutput;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Encoder;Ljava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
+transitive-accessible method net/minecraft/server/packs/repository/ServerPacksSource createVanillaPackSource ()Lnet/minecraft/server/packs/VanillaPackResources;
+
+transitive-accessible field net/minecraft/core/RegistrySetBuilder entries Ljava/util/List;
+transitive-accessible field net/minecraft/data/loot/BlockLootSubProvider map Ljava/util/Map;
+transitive-accessible field net/minecraft/data/loot/EntityLootSubProvider SPECIAL_LOOT_TABLE_TYPES Ljava/util/Set;
+transitive-accessible field net/minecraft/data/loot/EntityLootSubProvider map Ljava/util/Map;
+transitive-accessible field net/minecraft/data/loot/LootTableProvider pathProvider Lnet/minecraft/data/PackOutput$PathProvider;
+
+transitive-accessible field net/minecraft/data/tags/TagsProvider builders Ljava/util/Map;
+transitive-accessible field net/minecraft/data/tags/TagsProvider contentsDone Ljava/util/concurrent/CompletableFuture;
+transitive-accessible field net/minecraft/data/tags/TagsProvider parentProvider Ljava/util/concurrent/CompletableFuture;
+transitive-extendable method net/minecraft/data/tags/TagsProvider$TagAppender add (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;
+transitive-extendable method net/minecraft/data/tags/TagsProvider$TagAppender add ([Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/data/tags/TagsProvider$TagAppender;
+transitive-accessible field net/minecraft/tags/TagEntry id Lnet/minecraft/resources/ResourceLocation;
+transitive-accessible field net/minecraft/tags/TagEntry required Z
+transitive-accessible field net/minecraft/tags/TagEntry tag Z
+
+accessible field net/minecraft/data/tags/TagsProvider$TagAppender builder Lnet/minecraft/tags/TagBuilder;
+
+accessible field net/minecraft/data/registries/RegistriesDatapackGenerator output Lnet/minecraft/data/PackOutput;
+accessible field net/minecraft/data/registries/RegistriesDatapackGenerator registries Ljava/util/concurrent/CompletableFuture;

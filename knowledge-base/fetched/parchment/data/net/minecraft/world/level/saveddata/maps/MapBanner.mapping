@@ -1,0 +1,8 @@
+CLASS net/minecraft/world/level/saveddata/maps/MapBanner
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD fromWorld (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/saveddata/maps/MapBanner;
+		ARG 0 level
+		ARG 1 pos
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

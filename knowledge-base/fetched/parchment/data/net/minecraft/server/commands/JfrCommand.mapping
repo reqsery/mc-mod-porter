@@ -1,0 +1,11 @@
+CLASS net/minecraft/server/commands/JfrCommand
+	METHOD lambda$register$2 (Lcom/mojang/brigadier/context/CommandContext;)I
+		ARG 0 context
+	METHOD lambda$static$0 (Ljava/lang/Object;)Lcom/mojang/brigadier/Message;
+		ARG 0 message
+	METHOD register (Lcom/mojang/brigadier/CommandDispatcher;)V
+		ARG 0 dispatcher
+	METHOD startJfr (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source
+	METHOD stopJfr (Lnet/minecraft/commands/CommandSourceStack;)I
+		ARG 0 source

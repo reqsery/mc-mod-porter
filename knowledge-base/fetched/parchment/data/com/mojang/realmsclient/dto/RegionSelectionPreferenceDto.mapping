@@ -1,0 +1,7 @@
+CLASS com/mojang/realmsclient/dto/RegionSelectionPreferenceDto
+	METHOD <init> (Lcom/mojang/realmsclient/dto/RegionSelectionPreference;Lcom/mojang/realmsclient/dto/RealmsRegion;)V
+		ARG 1 regionSelectionPreference
+		ARG 2 preferredRegion
+	METHOD parse (Lcom/mojang/realmsclient/dto/GuardedSerializer;Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RegionSelectionPreferenceDto;
+		ARG 0 serializer
+		ARG 1 json

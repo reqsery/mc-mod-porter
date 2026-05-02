@@ -1,0 +1,4 @@
+CLASS net/minecraft/server/jsonrpc/internalapi/MinecraftOperatorListServiceImpl
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/jsonrpc/JsonRpcLogger;)V
+		ARG 1 server
+		ARG 2 jsonrpcLogger

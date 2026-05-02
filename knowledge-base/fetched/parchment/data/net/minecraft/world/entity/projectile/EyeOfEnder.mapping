@@ -1,0 +1,24 @@
+CLASS net/minecraft/world/entity/projectile/EyeOfEnder
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDD)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+	METHOD isAttackable ()Z
+		COMMENT Returns {@code true} if it's possible to attack this entity with an item.
+	METHOD setItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD signalTo (Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 pos
+	METHOD spawnParticles (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 pos
+		ARG 2 deltaMovement
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD updateDeltaMovement (Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 deltaMovement
+		ARG 1 pos
+		ARG 2 target

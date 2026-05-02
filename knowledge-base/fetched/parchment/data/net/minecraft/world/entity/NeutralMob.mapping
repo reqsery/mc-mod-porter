@@ -1,0 +1,39 @@
+CLASS net/minecraft/world/entity/NeutralMob
+	METHOD addPersistentAngerSaveData (Lnet/minecraft/world/level/storage/ValueOutput;)V
+		ARG 1 output
+	METHOD canAttack (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 1 entity
+	METHOD getTarget ()Lnet/minecraft/world/entity/LivingEntity;
+		COMMENT Gets the active target the Task system uses for tracking
+	METHOD isAngryAt (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/level/ServerLevel;)Z
+		ARG 1 entity
+		ARG 2 level
+	METHOD isAngryAtAllPlayers (Lnet/minecraft/server/level/ServerLevel;)Z
+		ARG 1 level
+	METHOD isValidPlayerTarget (Lnet/minecraft/world/entity/LivingEntity;)Z
+		ARG 0 target
+	METHOD playerDied (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 level
+		ARG 2 player
+	METHOD readPersistentAngerSaveData (Lnet/minecraft/world/level/Level;Lnet/minecraft/world/level/storage/ValueInput;)V
+		ARG 1 level
+		ARG 2 input
+	METHOD setLastHurtByMob (Lnet/minecraft/world/entity/LivingEntity;)V
+		COMMENT Hint to AI tasks that we were attacked by the passed EntityLivingBase and should retaliate. Is not guaranteed to change our actual active target (for example if we are currently busy attacking someone else)
+		ARG 1 livingEntity
+	METHOD setPersistentAngerEndTime (J)V
+		ARG 1 persistentAngerEndTime
+	METHOD setPersistentAngerTarget (Ljava/util/UUID;)V
+		ARG 1 persistentAngerTarget
+	METHOD setPersistentAngerTarget (Lnet/minecraft/world/entity/EntityReference;)V
+		ARG 1 persistentAngerTarget
+	METHOD setRemainingPersistentAngerTime (I)V
+		ARG 1 remainingPersistentAngerTime
+	METHOD setTarget (Lnet/minecraft/world/entity/LivingEntity;)V
+		COMMENT Sets the active target the Task system uses for tracking
+		ARG 1 livingEntity
+	METHOD setTimeToRemainAngry (J)V
+		ARG 1 timeToRemainAngry
+	METHOD updatePersistentAnger (Lnet/minecraft/server/level/ServerLevel;Z)V
+		ARG 1 serverLevel
+		ARG 2 updateAnger

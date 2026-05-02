@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/renderer/entity/layers/WolfArmorLayer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/RenderLayerParent;Lnet/minecraft/client/model/geom/EntityModelSet;Lnet/minecraft/client/renderer/entity/layers/EquipmentLayerRenderer;)V
+		ARG 1 renderer
+		ARG 2 entityModels
+		ARG 3 equipmentRenderer
+	METHOD maybeRenderCracks (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/model/Model;Lnet/minecraft/client/renderer/entity/state/WolfRenderState;)V
+		ARG 1 poseStack
+		ARG 2 nodeCollector
+		ARG 3 packedLight
+		ARG 4 armorStack
+		ARG 5 model
+		ARG 6 renderState

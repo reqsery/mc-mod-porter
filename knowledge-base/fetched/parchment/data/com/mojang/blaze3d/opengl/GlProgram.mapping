@@ -1,0 +1,14 @@
+CLASS com/mojang/blaze3d/opengl/GlProgram
+	METHOD <init> (ILjava/lang/String;)V
+		ARG 1 programId
+		ARG 2 debugLabel
+	METHOD getUniform (Ljava/lang/String;)Lcom/mojang/blaze3d/opengl/Uniform;
+		ARG 1 name
+	METHOD link (Lcom/mojang/blaze3d/opengl/GlShaderModule;Lcom/mojang/blaze3d/opengl/GlShaderModule;Lcom/mojang/blaze3d/vertex/VertexFormat;Ljava/lang/String;)Lcom/mojang/blaze3d/opengl/GlProgram;
+		ARG 0 vertexShader
+		ARG 1 fragmentShader
+		ARG 2 vertexFormat
+		ARG 3 debugLabel
+	METHOD setupUniforms (Ljava/util/List;Ljava/util/List;)V
+		ARG 1 uniforms
+		ARG 2 samplers

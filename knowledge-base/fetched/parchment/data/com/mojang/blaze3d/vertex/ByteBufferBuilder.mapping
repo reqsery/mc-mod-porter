@@ -1,0 +1,21 @@
+CLASS com/mojang/blaze3d/vertex/ByteBufferBuilder
+	METHOD <init> (I)V
+		ARG 1 capacity
+	METHOD <init> (IJ)V
+		ARG 1 capacity
+		ARG 2 maxCapacity
+	METHOD ensureCapacity (J)V
+		ARG 1 capacity
+	METHOD exactlySized (I)Lcom/mojang/blaze3d/vertex/ByteBufferBuilder;
+		ARG 0 size
+	METHOD isValid (I)Z
+		ARG 1 generation
+	METHOD reserve (I)J
+		ARG 1 bytes
+	METHOD resize (J)V
+		ARG 1 newSize
+	CLASS Result
+		METHOD <init> (Lcom/mojang/blaze3d/vertex/ByteBufferBuilder;JII)V
+			ARG 2 offset
+			ARG 4 capacity
+			ARG 5 generation

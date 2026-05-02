@@ -1,0 +1,25 @@
+CLASS net/minecraft/world/item/AxeItem
+	METHOD <init> (Lnet/minecraft/world/item/ToolMaterial;FFLnet/minecraft/world/item/Item$Properties;)V
+		ARG 1 material
+		ARG 2 attackDamage
+		ARG 3 attackSpeed
+		ARG 4 properties
+	METHOD evaluateNewBlockState (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Optional;
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 player
+		ARG 4 state
+	METHOD getStripped (Lnet/minecraft/world/level/block/state/BlockState;)Ljava/util/Optional;
+		ARG 1 unstrippedState
+	METHOD playerHasBlockingItemUseIntent (Lnet/minecraft/world/item/context/UseOnContext;)Z
+		ARG 0 context
+	METHOD spawnSoundAndParticle (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/sounds/SoundEvent;I)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 player
+		ARG 3 state
+		ARG 4 sount
+		ARG 5 event
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targeting a Block
+		ARG 1 context

@@ -1,0 +1,35 @@
+CLASS net/minecraft/client/gui/screens/multiplayer/ServerSelectionList
+	METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/Minecraft;IIII)V
+		ARG 1 screen
+		ARG 2 minecraft
+		ARG 3 width
+		ARG 4 height
+		ARG 5 y
+		ARG 6 itemHeight
+	METHOD setSelected (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)V
+		ARG 1 entry
+	METHOD updateNetworkServers (Ljava/util/List;)V
+		ARG 1 lanServers
+	METHOD updateOnlineServers (Lnet/minecraft/client/multiplayer/ServerList;)V
+		ARG 1 servers
+	CLASS Entry
+		METHOD matches (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry;)Z
+			ARG 1 entry
+	CLASS OnlineServerEntry
+		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/ServerSelectionList;Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/multiplayer/ServerData;)V
+			ARG 2 screen
+			ARG 3 serverData
+		METHOD drawIcon (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/resources/Identifier;)V
+			ARG 1 guiGraphics
+			ARG 2 x
+			ARG 3 y
+			ARG 4 icon
+		METHOD swap (II)V
+			ARG 1 pos1
+			ARG 2 pos2
+		METHOD uploadServerIcon ([B)Z
+			ARG 1 iconBytes
+	CLASS NetworkServerEntry
+		METHOD <init> (Lnet/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen;Lnet/minecraft/client/server/LanServer;)V
+			ARG 1 screen
+			ARG 2 serverData

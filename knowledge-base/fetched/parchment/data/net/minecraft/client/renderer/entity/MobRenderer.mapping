@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/renderer/entity/MobRenderer
+	METHOD checkMagicName (Lnet/minecraft/world/entity/Entity;Ljava/lang/String;)Z
+		ARG 0 entity
+		ARG 1 name

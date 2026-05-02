@@ -1,0 +1,9 @@
+CLASS net/minecraft/server/jsonrpc/api/PlayerDto
+	METHOD from (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/server/jsonrpc/api/PlayerDto;
+		ARG 0 profile
+	METHOD from (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/jsonrpc/api/PlayerDto;
+		ARG 0 player
+	METHOD from (Lnet/minecraft/server/players/NameAndId;)Lnet/minecraft/server/jsonrpc/api/PlayerDto;
+		ARG 0 nameAndId
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

@@ -1,0 +1,48 @@
+CLASS net/minecraft/client/gui/screens/reporting/ChatSelectionScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/multiplayer/chat/report/ReportingContext;Lnet/minecraft/client/multiplayer/chat/report/ChatReport$Builder;Ljava/util/function/Consumer;)V
+		ARG 1 lastScreen
+		ARG 2 reportingContext
+		ARG 3 report
+		ARG 4 onSelected
+	METHOD canReport (Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage;)Z
+		ARG 1 message
+	CLASS ChatSelectionList
+		METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen;Lnet/minecraft/client/Minecraft;I)V
+			ARG 2 minecraft
+			ARG 3 height
+		METHOD shouldHighlightEntry (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Entry;)Z
+			ARG 1 entry
+		METHOD updateHeading (Lnet/minecraft/client/multiplayer/chat/LoggedChatMessage$Player;Z)V
+			ARG 1 loggedPlayerChatMessage
+			ARG 2 canReport
+		CLASS Heading
+			METHOD canCombine (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading;)Z
+				ARG 1 other
+		CLASS DividerEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lnet/minecraft/network/chat/Component;)V
+				ARG 2 text
+		CLASS MessageEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;ILnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/GuiMessageTag;ZZ)V
+				ARG 2 chatId
+				ARG 3 text
+				ARG 4 narration
+				ARG 5 tagIcon
+				ARG 6 canReport
+				ARG 7 playerMessage
+			METHOD renderSelectedCheckmark (Lnet/minecraft/client/gui/GuiGraphics;III)V
+				ARG 1 guiGraphics
+				ARG 2 top
+				ARG 3 left
+				ARG 4 height
+			METHOD renderTag (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
+				ARG 1 guiGraphics
+				ARG 2 x
+				ARG 3 y
+				ARG 4 height
+				ARG 5 mouseX
+				ARG 6 mouseY
+		CLASS MessageHeadingEntry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList;Lcom/mojang/authlib/GameProfile;Lnet/minecraft/network/chat/Component;Z)V
+				ARG 2 profile
+				ARG 3 heading
+				ARG 4 canReport

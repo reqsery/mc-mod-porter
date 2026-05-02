@@ -1,0 +1,155 @@
+package io.github.fabricators_of_create.porting_lib.mixin.common;
+
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+
+import io.github.fabricators_of_create.porting_lib.event.common.GrindstoneEvent;
+import io.github.fabricators_of_create.porting_lib.event.common.GrindstoneEvent.OnTakeItem;
+import io.github.fabricators_of_create.porting_lib.extensions.common.GrindstoneMenuExtension;
+import io.github.fabricators_of_create.porting_lib.util.PortingHooks;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.GrindstoneMenu;
+
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin(GrindstoneMenu.class)
+public abstract class GrindstoneMenuMixin extends AbstractContainerMenu implements GrindstoneMenuExtension {
+	@Shadow
+	@Final
+	private Container resultSlots;
+
+	protected GrindstoneMenuMixin(@Nullable MenuType<?> menuType, int i) {
+		super(menuType, i);
+	}
+
+	@Inject(
+			method = "computeResult",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z",
+					ordinal = 1,
+					shift = At.Shift.AFTER
+			),
+			cancellable = true
+	)
+	private void handleResult(ItemStack top, ItemStack bottom, CallbackInfoReturnable<ItemStack> cir) {
+		this.port_lib$xp = PortingHooks.onGrindstoneChange(top, bottom, this.resultSlots, -1);
+		if (this.port_lib$xp != Integer.MIN_VALUE) cir.setReturnValue(ItemStack.EMPTY); // NF Porting 1.20.5 check if this is correct
+	}
+
+	private int port_lib$xp = -1;
+
+	@Override
+	public int port_lib$getXp() {
+		return this.port_lib$xp;
+	}
+
+	@Mixin(targets = "net/minecraft/world/inventory/GrindstoneMenu$4")
+	public abstract static class GrindstoneMenuOutputSlotMixin {
+		@Shadow(aliases = "field_16780")
+		@Final
+		GrindstoneMenu menu;
+
+		@Unique
+		private OnTakeItem takeEvent;
+
+		// execute lambda
+		@WrapOperation(
+				method = "method_17417",
+				at = @At(
+						value = "INVOKE",
+						target = "Lnet/minecraft/world/entity/ExperienceOrb;award(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;I)V"
+				)
+		)
+		private void onGrindStoneTake(ServerLevel level, Vec3 pos, int amount, Operation<Void> original) {
+			Container input = this.menu.repairSlots;
+			ItemStack top = input.getItem(0);
+			ItemStack bottom = input.getItem(1);
+			this.takeEvent = new GrindstoneEvent.OnTakeItem(top, bottom, amount);
+			takeEvent.sendEvent();
+			if (!takeEvent.isCanceled())
+				original.call(level, pos, takeEvent.getXp());
+		}
+
+		@ModifyArg(
+				method = "onTake",
+				at = @At(
+						value = "INVOKE",
+						target = "Lnet/minecraft/world/Container;setItem(ILnet/minecraft/world/item/ItemStack;)V",
+						ordinal = 0
+				),
+				index = 1
+		)
+		private ItemStack modifyTopSlotResult(ItemStack original) {
+			if (takeEvent != null) {
+				ItemStack topItem = takeEvent.getNewTopItem();
+				if (!topItem.isEmpty()) {
+					return topItem;
+				}
+			}
+			return original;
+		}
+
+		@ModifyArg(
+				method = "onTake",
+				at = @At(
+						value = "INVOKE",
+						target = "Lnet/minecraft/world/Container;setItem(ILnet/minecraft/world/item/ItemStack;)V",
+						ordinal = 1
+				),
+				index = 1
+		)
+		private ItemStack modifyBottomSlotResult(ItemStack original) {
+			if (takeEvent != null) {
+				ItemStack bottomItem = takeEvent.getNewBottomItem();
+				if (!bottomItem.isEmpty()) {
+					return bottomItem;
+				}
+			}
+			return original;
+		}
+
+		@WrapWithCondition(
+				method = "onTake",
+				at = @At(
+						value = "INVOKE",
+						target = "Lnet/minecraft/world/Container;setItem(ILnet/minecraft/world/item/ItemStack;)V"
+				)
+		)
+		private boolean cancelInputRemoval(Container container, int slot, ItemStack stack) {
+			return takeEvent == null || !takeEvent.isCanceled();
+		}
+
+		// forge does this, vanilla does not. Leaving just in case.
+		@Inject(method = "onTake", at = @At("TAIL"))
+		private void setChanged(Player player, ItemStack itemStack, CallbackInfo ci) {
+			this.menu.repairSlots.setChanged();
+		}
+
+		@Inject(method = "getExperienceAmount", at = @At("HEAD"), cancellable = true)
+		private void customXp(Level level, CallbackInfoReturnable<Integer> cir) {
+			int exp = ((GrindstoneMenuExtension) this.menu).port_lib$getXp();
+			if (exp > -1)
+				cir.setReturnValue(exp);
+		}
+	}
+}

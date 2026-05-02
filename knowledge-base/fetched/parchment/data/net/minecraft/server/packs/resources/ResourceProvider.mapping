@@ -1,0 +1,11 @@
+CLASS net/minecraft/server/packs/resources/ResourceProvider
+	METHOD fromMap (Ljava/util/Map;)Lnet/minecraft/server/packs/resources/ResourceProvider;
+		ARG 0 resources
+	METHOD getResource (Lnet/minecraft/resources/Identifier;)Ljava/util/Optional;
+		ARG 1 location
+	METHOD getResourceOrThrow (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/server/packs/resources/Resource;
+		ARG 1 location
+	METHOD open (Lnet/minecraft/resources/Identifier;)Ljava/io/InputStream;
+		ARG 1 location
+	METHOD openAsReader (Lnet/minecraft/resources/Identifier;)Ljava/io/BufferedReader;
+		ARG 1 location

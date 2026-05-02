@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/feature/BlockFeatureRenderer
+	METHOD render (Lnet/minecraft/client/renderer/SubmitNodeCollection;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;Lnet/minecraft/client/renderer/OutlineBufferSource;)V
+		ARG 1 nodeCollection
+		ARG 2 bufferSource
+		ARG 3 blockRenderDispatcher
+		ARG 4 outlineBufferSource

@@ -1,0 +1,30 @@
+CLASS net/minecraft/locale/Language
+	FIELD UNSUPPORTED_FORMAT_PATTERN Ljava/util/regex/Pattern;
+		COMMENT Pattern that matches numeric variable placeholders in a resource string, such as "%d", "%3$d", "%.2f"
+	METHOD getInstance ()Lnet/minecraft/locale/Language;
+		COMMENT Return the StringTranslate singleton instance
+	METHOD getOrDefault (Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 id
+	METHOD getOrDefault (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+		ARG 1 key
+		ARG 2 defaultValue
+	METHOD getVisualOrder (Ljava/util/List;)Ljava/util/List;
+		ARG 1 text
+	METHOD getVisualOrder (Lnet/minecraft/network/chat/FormattedText;)Lnet/minecraft/util/FormattedCharSequence;
+		ARG 1 text
+	METHOD has (Ljava/lang/String;)Z
+		ARG 1 id
+	METHOD inject (Lnet/minecraft/locale/Language;)V
+		ARG 0 instance
+	METHOD loadFromJson (Ljava/io/InputStream;Ljava/util/function/BiConsumer;)V
+		ARG 0 stream
+		ARG 1 output
+	METHOD parseTranslations (Ljava/util/function/BiConsumer;Ljava/lang/String;)V
+		ARG 0 output
+		ARG 1 languagePath
+	CLASS 1
+		METHOD lambda$getVisualOrder$0 (Lnet/minecraft/util/FormattedCharSink;Lnet/minecraft/network/chat/Style;Ljava/lang/String;)Ljava/util/Optional;
+			ARG 1 style
+			ARG 2 content
+		METHOD lambda$getVisualOrder$1 (Lnet/minecraft/network/chat/FormattedText;Lnet/minecraft/util/FormattedCharSink;)Z
+			ARG 1 sink

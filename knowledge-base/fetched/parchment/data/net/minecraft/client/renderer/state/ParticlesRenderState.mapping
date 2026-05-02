@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/state/ParticlesRenderState
+	METHOD add (Lnet/minecraft/client/renderer/state/ParticleGroupRenderState;)V
+		ARG 1 renderState
+	METHOD submit (Lnet/minecraft/client/renderer/SubmitNodeStorage;Lnet/minecraft/client/renderer/state/CameraRenderState;)V
+		ARG 1 nodeStorage
+		ARG 2 cameraRenderState

@@ -1,0 +1,3 @@
+CLASS net/minecraft/util/KeyDispatchDataCodec
+	METHOD of (Lcom/mojang/serialization/MapCodec;)Lnet/minecraft/util/KeyDispatchDataCodec;
+		ARG 0 codec

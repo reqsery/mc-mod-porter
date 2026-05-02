@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/level/chunk/Configuration
+	METHOD createPalette (Lnet/minecraft/world/level/chunk/Strategy;Ljava/util/List;)Lnet/minecraft/world/level/chunk/Palette;
+		ARG 1 strategy
+		ARG 2 values

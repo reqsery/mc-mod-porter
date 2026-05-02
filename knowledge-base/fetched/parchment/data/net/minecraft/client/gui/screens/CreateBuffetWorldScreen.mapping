@@ -1,0 +1,23 @@
+CLASS net/minecraft/client/gui/screens/CreateBuffetWorldScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/screens/worldselection/WorldCreationContext;Ljava/util/function/Consumer;)V
+		ARG 1 parent
+		ARG 2 context
+		ARG 3 applySettings
+	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry;)Z
+		ARG 1 entry
+	CLASS BiomeList
+		METHOD filterEntries (Ljava/lang/String;)V
+			ARG 1 query
+		METHOD lambda$filterEntries$2 (Ljava/lang/String;Ljava/lang/String;Lnet/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry;)Z
+			ARG 2 entry
+		METHOD lambda$new$0 (Lnet/minecraft/core/Holder$Reference;)Lnet/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry;
+			ARG 1 reference
+		METHOD setSelected (Lnet/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry;)V
+			ARG 1 entry
+		CLASS Entry
+			METHOD <init> (Lnet/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList;Lnet/minecraft/core/Holder$Reference;)V
+				ARG 2 biome

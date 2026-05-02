@@ -1,0 +1,13 @@
+CLASS net/minecraft/client/renderer/PanoramaRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/CubeMap;)V
+		ARG 1 cubeMap
+	METHOD registerTextures (Lnet/minecraft/client/renderer/texture/TextureManager;)V
+		ARG 1 textureManager
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;IIZ)V
+		ARG 1 guiGraphics
+		ARG 2 width
+		ARG 3 height
+		ARG 4 spin
+	METHOD wrap (FF)F
+		ARG 0 value
+		ARG 1 max

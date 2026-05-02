@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/feature/FeatureRenderDispatcher
+	METHOD <init> (Lnet/minecraft/client/renderer/SubmitNodeStorage;Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/resources/model/AtlasManager;Lnet/minecraft/client/renderer/OutlineBufferSource;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lnet/minecraft/client/gui/Font;)V
+		ARG 1 submitNodeStorage
+		ARG 2 blockRenderDispatcher
+		ARG 3 bufferSource
+		ARG 4 atlasManager
+		ARG 5 outlineBufferSource
+		ARG 6 crumblingBufferSource
+		ARG 7 font

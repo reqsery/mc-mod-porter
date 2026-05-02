@@ -1,0 +1,3 @@
+CLASS net/minecraft/server/jsonrpc/dataprovider/JsonRpcApiSchema
+	METHOD <init> (Lnet/minecraft/data/PackOutput;)V
+		ARG 1 packOutput

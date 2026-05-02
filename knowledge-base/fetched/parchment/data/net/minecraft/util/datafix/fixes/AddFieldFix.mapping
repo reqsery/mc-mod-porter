@@ -1,0 +1,10 @@
+CLASS net/minecraft/util/datafix/fixes/AddFieldFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;Lcom/mojang/datafixers/DSL$TypeReference;Ljava/lang/String;Ljava/util/function/Function;[Ljava/lang/String;)V
+		ARG 1 outputSchema
+		ARG 2 type
+		ARG 3 fieldName
+		ARG 4 fieldGenerator
+		ARG 5 path
+	METHOD addField (Lcom/mojang/serialization/Dynamic;I)Lcom/mojang/serialization/Dynamic;
+		ARG 1 data
+		ARG 2 depth

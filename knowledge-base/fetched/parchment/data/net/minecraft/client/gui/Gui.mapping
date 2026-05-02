@@ -1,0 +1,303 @@
+CLASS net/minecraft/client/gui/Gui
+	FIELD healthBlinkTime J
+		COMMENT Used with updateCounter to make the heart bar flash
+	FIELD lastHealthTime J
+		COMMENT The last recorded system time
+	FIELD spectatorGui Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+		COMMENT The spectator GUI for this in-game GUI instance
+	FIELD subtitle Lnet/minecraft/network/chat/Component;
+		COMMENT The current sub-title displayed
+	FIELD titleFadeInTime I
+		COMMENT The time that the title take to fade in
+	FIELD titleFadeOutTime I
+		COMMENT The time that the title take to fade out
+	FIELD title Lnet/minecraft/network/chat/Component;
+		COMMENT The current title displayed
+	FIELD titleStayTime I
+		COMMENT The time that the title is display
+	FIELD titleTime I
+		COMMENT A timer for the current title and subtitle displayed
+	METHOD <init> (Lnet/minecraft/client/Minecraft;)V
+		ARG 1 minecraft
+	METHOD canRenderCrosshairForSpectator (Lnet/minecraft/world/phys/HitResult;)Z
+		COMMENT Checks if the crosshair can be rendered for a spectator based on the provided {@link HitResult}.
+		COMMENT <p>
+		COMMENT @return {@code true} if the crosshair can be rendered for a spectator, {@code false} otherwise.
+		ARG 1 rayTrace
+			COMMENT the result of a ray trace operation.
+	METHOD clearCache ()V
+		COMMENT Clears the chunk cache in the debug screen.
+	METHOD displayScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/scores/Objective;)V
+		COMMENT Displays the scoreboard sidebar on the screen using the provided GuiGraphics object and objective.
+		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
+		ARG 2 objective
+			COMMENT the objective representing the scoreboard sidebar.
+	METHOD getAirBubbleYLine (II)I
+		ARG 1 vehicleMaxHealth
+		ARG 2 startX
+	METHOD getBossOverlay ()Lnet/minecraft/client/gui/components/BossHealthOverlay;
+		COMMENT {@return the {@link BossHealthOverlay} instance associated with the client}
+	METHOD getCameraPlayer ()Lnet/minecraft/world/entity/player/Player;
+		COMMENT Retrieves the player entity that the camera is currently focused on.
+		COMMENT <p>
+		COMMENT @return the player entity that the camera is focused on, or null if the camera is not focused on a player.
+	METHOD getChat ()Lnet/minecraft/client/gui/components/ChatComponent;
+		COMMENT {@return a pointer to the persistent Chat GUI, containing all previous chat messages and such}
+	METHOD getCurrentAirSupplyBubble (III)I
+		ARG 0 currentAirSupply
+		ARG 1 maxAirSupply
+		ARG 2 offset
+	METHOD getEmptyBubbleDelayDuration (IZ)I
+		ARG 0 airSupply
+		ARG 1 inWater
+	METHOD getFont ()Lnet/minecraft/client/gui/Font;
+		COMMENT {@return the {@link Font} used for rendering text in the GUI}
+	METHOD getGuiTicks ()I
+		COMMENT {@return the number of GUI ticks elapsed}
+	METHOD getMobEffectSprite (Lnet/minecraft/core/Holder;)Lnet/minecraft/resources/Identifier;
+		ARG 0 effect
+	METHOD getPlayerVehicleWithHealth ()Lnet/minecraft/world/entity/LivingEntity;
+		COMMENT Retrieves the living entity representing the player's vehicle with health, if any.
+		COMMENT <p>
+		COMMENT @return the living entity representing the player's vehicle with health, or null if the player is not in a vehicle or the vehicle does not have health.
+	METHOD getSpectatorGui ()Lnet/minecraft/client/gui/components/spectator/SpectatorGui;
+		COMMENT {@return the {@link SpectatorGui} instance}
+	METHOD getTabList ()Lnet/minecraft/client/gui/components/PlayerTabOverlay;
+		COMMENT {@return the {@link PlayerTabOverlay} overlay}
+	METHOD getVehicleMaxHearts (Lnet/minecraft/world/entity/LivingEntity;)I
+		COMMENT Retrieves the maximum number of hearts representing the vehicle's health for the given mount entity.
+		COMMENT <p>
+		COMMENT @return the maximum number of hearts representing the vehicle's health, or 0 if the mount entity is null or does not show vehicle health.
+		ARG 1 vehicle
+			COMMENT the living entity representing the vehicle.
+	METHOD getVisibleVehicleHeartRows (I)I
+		COMMENT Retrieves the number of rows of visible hearts needed to represent the given mount health.
+		COMMENT <p>
+		COMMENT @return the number of rows of visible hearts needed to represent the mount health.
+		ARG 1 vehicleHealth
+			COMMENT the health of the mount entity.
+	METHOD isShowingChatDisabledByPlayer ()Z
+		COMMENT {@return {@code true} if the chat disabled message is being shown, {@code false} otherwise}
+	METHOD onDisconnected ()V
+		COMMENT Called when the player is disconnected from the server.
+		COMMENT Resets various UI elements and clears messages.
+	METHOD playAirBubblePoppedSound (ILnet/minecraft/world/entity/player/Player;I)V
+		ARG 1 bubble
+		ARG 2 player
+		ARG 3 pitch
+	METHOD render (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderAirBubbles (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;III)V
+		ARG 1 guiGraphics
+		ARG 2 player
+		ARG 3 vehicleMaxHealth
+		ARG 4 y
+		ARG 5 x
+	METHOD renderArmor (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;IIII)V
+		ARG 0 guiGraphics
+		ARG 1 player
+		ARG 2 y
+		ARG 3 heartRows
+		ARG 4 height
+		ARG 5 x
+	METHOD renderBossOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderCameraOverlays (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderChat (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderConfusionOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		ARG 1 guiGraphics
+		ARG 2 intensity
+	METHOD renderCrosshair (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderDebugOverlay (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderDemoOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderEffects (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderFood (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;II)V
+		ARG 1 guiGraphics
+		ARG 2 player
+		ARG 3 y
+		ARG 4 x
+	METHOD renderHeart (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/Gui$HeartType;IIZZZ)V
+		ARG 1 guiGraphics
+		ARG 2 heartType
+		ARG 3 x
+		ARG 4 y
+		ARG 5 hardcore
+		ARG 6 halfHeart
+		ARG 7 blinking
+	METHOD renderHearts (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/player/Player;IIIIFIIIZ)V
+		COMMENT Renders the player's hearts, including health, absorption, and highlight hearts, on the screen.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+		ARG 2 player
+			COMMENT the player entity.
+		ARG 3 x
+			COMMENT the x-coordinate of the hearts' position.
+		ARG 4 y
+			COMMENT the y-coordinate of the hearts' position.
+		ARG 5 height
+			COMMENT the height of each heart.
+		ARG 6 offsetHeartIndex
+			COMMENT the index of the offset heart.
+		ARG 7 maxHealth
+			COMMENT the maximum health of the player.
+		ARG 8 currentHealth
+			COMMENT the current health of the player.
+		ARG 9 displayHealth
+			COMMENT the displayed health of the player.
+		ARG 10 absorptionAmount
+			COMMENT the absorption amount of the player.
+		ARG 11 renderHighlight
+			COMMENT determines whether to render the highlight hearts.
+	METHOD renderHotbarAndDecorations (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderItemHotbar (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderOverlayMessage (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderPlayerHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the player's health, armor, food, and air bars on the screen.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+	METHOD renderPortalOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		COMMENT Renders the portal overlay effect on the screen with the specified alpha value.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+		ARG 2 alpha
+			COMMENT the alpha value of the overlay.
+	METHOD renderSavingIndicator (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderScoreboardSidebar (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderSelectedItemName (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the name of the selected item on the screen using the provided GuiGraphics object.
+		ARG 1 guiGraphics
+			COMMENT the GuiGraphics object used for rendering.
+	METHOD renderSleepOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;IILnet/minecraft/client/DeltaTracker;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;I)V
+		ARG 1 guiGraphics
+		ARG 2 x
+		ARG 3 y
+		ARG 4 deltaTracker
+		ARG 5 player
+		ARG 6 stack
+		ARG 7 seed
+	METHOD renderSpyglassOverlay (Lnet/minecraft/client/gui/GuiGraphics;F)V
+		COMMENT Renders the overlay for the spyglass effect.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+		ARG 2 scopeScale
+			COMMENT the scale factor for the spyglass scope.
+	METHOD renderSubtitleOverlay (Lnet/minecraft/client/gui/GuiGraphics;Z)V
+		ARG 1 guiGraphics
+		ARG 2 deferred
+	METHOD renderTabList (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderTextureOverlay (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/resources/Identifier;F)V
+		COMMENT Renders a texture overlay on the screen with the specified shader location and alpha value.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+		ARG 2 shaderLocation
+			COMMENT the location of the shader texture.
+		ARG 3 alpha
+			COMMENT the alpha value to apply to the overlay.
+	METHOD renderTitle (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+		ARG 1 guiGraphics
+		ARG 2 deltaTracker
+	METHOD renderVehicleHealth (Lnet/minecraft/client/gui/GuiGraphics;)V
+		COMMENT Renders the health of the player's vehicle on the screen.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+	METHOD renderVignette (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Renders the vignette effect on the screen based on the distance to the world border and the entity's position.
+		ARG 1 guiGraphics
+			COMMENT the graphics object used for rendering.
+		ARG 2 entity
+			COMMENT the entity used to determine the distance to the world border.
+	METHOD resetTitleTimes ()V
+		COMMENT Set the different times for the titles to their default values
+	METHOD setChatDisabledByPlayerShown (Z)V
+		COMMENT {@return {@code true} if the chat is disabled, {@code false} if chat is enabled}
+		ARG 1 chatDisabledByPlayerShown
+	METHOD setNowPlaying (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the currently playing record display name and updates the overlay message.
+		ARG 1 displayName
+			COMMENT the display name of the currently playing record.
+	METHOD setOverlayMessage (Lnet/minecraft/network/chat/Component;Z)V
+		COMMENT Sets the overlay message to be displayed on the screen.
+		ARG 1 component
+			COMMENT the {@link Component} representing the overlay message.
+		ARG 2 animateColor
+			COMMENT a boolean indicating whether to animate the color of the overlay message.
+	METHOD setSubtitle (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the subtitle to be displayed in the title screen.
+		ARG 1 subtitle
+			COMMENT the subtitle {@link Component} to be displayed.
+	METHOD setTimes (III)V
+		COMMENT Sets the fade-in, stay, and fade-out times for the title display.
+		ARG 1 titleFadeInTime
+			COMMENT the fade-in time for the title message in ticks.
+		ARG 2 titleStayTime
+			COMMENT the stay time for the title message in ticks.
+		ARG 3 titleFadeOutTime
+			COMMENT the fade-out time for the title message in ticks.
+	METHOD setTitle (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the title to be displayed in the title screen.
+		ARG 1 title
+			COMMENT the title {@link Component} to be displayed.
+	METHOD tick ()V
+		COMMENT Advances the tick for various elements and updates their state.
+	METHOD tick (Z)V
+		COMMENT Advances the tick for the autosave indicator and optionally ticks the object if not paused.
+		ARG 1 pause
+	METHOD tickAutosaveIndicator ()V
+		COMMENT Updates the autosave indicator state.
+	METHOD updateVignetteBrightness (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Updates the brightness of the vignette effect based on the brightness of the given entity's position.
+		ARG 1 entity
+			COMMENT the entity used to determine the brightness.
+	CLASS HeartType
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;)V
+			ARG 3 full
+			ARG 4 fullBlinking
+			ARG 5 half
+			ARG 6 halfBlinking
+			ARG 7 hardcoreFull
+			ARG 8 hardcoreBlinking
+			ARG 9 hardcoreHalf
+			ARG 10 hardcoreHalfBlinking
+		METHOD forPlayer (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/client/gui/Gui$HeartType;
+			COMMENT Returns the {@link HeartType} based on the player's status effects.
+			COMMENT <p>
+			COMMENT @return the {@link HeartType} based on the player's status effects.
+			ARG 0 player
+				COMMENT the player for which to determine the HeartType.
+		METHOD getSprite (ZZZ)Lnet/minecraft/resources/Identifier;
+			ARG 1 hardcore
+			ARG 2 halfHeart
+			ARG 3 blinking
+	CLASS RenderFunction
+		METHOD render (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V
+			ARG 1 guiGraphics
+			ARG 2 deltaTracker

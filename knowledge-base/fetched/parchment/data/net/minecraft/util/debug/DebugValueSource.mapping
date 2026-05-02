@@ -1,0 +1,8 @@
+CLASS net/minecraft/util/debug/DebugValueSource
+	METHOD registerDebugValues (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/util/debug/DebugValueSource$Registration;)V
+		ARG 1 level
+		ARG 2 registration
+	CLASS Registration
+		METHOD register (Lnet/minecraft/util/debug/DebugSubscription;Lnet/minecraft/util/debug/DebugValueSource$ValueGetter;)V
+			ARG 1 subscription
+			ARG 2 getter

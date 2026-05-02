@@ -1,0 +1,132 @@
+CLASS net/minecraft/client/player/LocalPlayer
+	FIELD positionReminder I
+		COMMENT Reset to 0 every time position is sent to the server, used to send periodic updates every 20 ticks even when the player is not moving.
+	FIELD wasSprinting Z
+		COMMENT the last sprinting state sent to the server
+	FIELD xLast D
+		COMMENT The last X position which was transmitted to the server, used to determine when the X position changes and needs to be re-transmitted
+	FIELD xRotLast F
+		COMMENT The last pitch value which was transmitted to the server, used to determine when the pitch changes and needs to be re-transmitted
+	FIELD yRotLast F
+		COMMENT The last yaw value which was transmitted to the server, used to determine when the yaw changes and needs to be re-transmitted
+	FIELD zLast D
+		COMMENT The last Z position which was transmitted to the server, used to determine when the Z position changes and needs to be re-transmitted
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/ClientPacketListener;Lnet/minecraft/stats/StatsCounter;Lnet/minecraft/client/ClientRecipeBook;Lnet/minecraft/world/entity/player/Input;Z)V
+		ARG 1 minecraft
+		ARG 2 level
+		ARG 3 connection
+		ARG 4 stats
+		ARG 5 recipeBook
+		ARG 6 lastSentInput
+		ARG 7 wasSprinting
+	METHOD closeContainer ()V
+		COMMENT Sets the current crafting inventory back to the 2x2 square.
+	METHOD crit (Lnet/minecraft/world/entity/Entity;)V
+		COMMENT Called when the entity is dealt a critical hit.
+		ARG 1 entityHit
+	METHOD displayClientMessage (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 chatComponent
+		ARG 2 actionBar
+	METHOD distanceToUnitSquare (Lnet/minecraft/world/phys/Vec2;)F
+		ARG 0 moveVector
+	METHOD drop (Z)Z
+		ARG 1 fullStack
+	METHOD filterHitResult (Lnet/minecraft/world/phys/HitResult;Lnet/minecraft/world/phys/Vec3;D)Lnet/minecraft/world/phys/HitResult;
+		ARG 0 hitResult
+		ARG 1 eyePos
+		ARG 2 blockRange
+	METHOD getRopeHoldPosition (F)Lnet/minecraft/world/phys/Vec3;
+		ARG 1 partialTick
+	METHOD getViewXRot (F)F
+		COMMENT Gets the current pitch of the entity.
+		ARG 1 partialTick
+	METHOD getViewYRot (F)F
+		COMMENT Gets the current yaw of the entity
+		ARG 1 partialTick
+	METHOD handlePortalTransitionEffect (Z)V
+		ARG 1 inPortal
+	METHOD heal (F)V
+		COMMENT Heal living entity (param: amount of half-hearts)
+		ARG 1 healAmount
+	METHOD hurtTo (F)V
+		COMMENT Updates health locally.
+		ARG 1 health
+	METHOD isLocalPlayer ()Z
+		COMMENT Returns whether this is a {@link net.minecraft.client.player.LocalPlayer}.
+	METHOD isSprintingPossible (Z)Z
+		ARG 1 flying
+	METHOD lambda$updateAutoJump$0 (Lnet/minecraft/world/phys/shapes/VoxelShape;)Ljava/util/stream/Stream;
+		ARG 0 voxelShape
+	METHOD magicCrit (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 entityHit
+	METHOD modifyInput (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/world/phys/Vec2;
+		ARG 1 moveVector
+	METHOD modifyInputSpeedForSquareMovement (Lnet/minecraft/world/phys/Vec2;)Lnet/minecraft/world/phys/Vec2;
+		ARG 0 moveVector
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD moveTowardsClosestSpace (DD)V
+		ARG 1 x
+		ARG 3 z
+	METHOD onGameModeChanged (Lnet/minecraft/world/level/GameType;)V
+		ARG 1 gameMode
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD onUpdateAbilities ()V
+		COMMENT Sends the player's abilities to the server (if there is one).
+	METHOD openCommandBlock (Lnet/minecraft/world/level/block/entity/CommandBlockEntity;)V
+		ARG 1 commandBlock
+	METHOD openItemGui (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 stack
+		ARG 2 hand
+	METHOD openMinecartCommandBlock (Lnet/minecraft/world/level/BaseCommandBlock;)V
+		ARG 1 commandBlock
+	METHOD openStructureBlock (Lnet/minecraft/world/level/block/entity/StructureBlockEntity;)V
+		ARG 1 structure
+	METHOD pick (Lnet/minecraft/world/entity/Entity;DDF)Lnet/minecraft/world/phys/HitResult;
+		ARG 0 cameraEntity
+		ARG 1 blockRange
+		ARG 3 entityRange
+		ARG 5 partialTick
+	METHOD playSound (Lnet/minecraft/sounds/SoundEvent;FF)V
+		ARG 1 sound
+		ARG 2 volume
+		ARG 3 pitch
+	METHOD raycastHitResult (FLnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/HitResult;
+		ARG 1 partialTick
+		ARG 2 cameraEntity
+	METHOD removeRecipeHighlight (Lnet/minecraft/world/item/crafting/display/RecipeDisplayId;)V
+		ARG 1 recipe
+	METHOD rideTick ()V
+		COMMENT Handles updating while riding another entity
+	METHOD sendPosition ()V
+		COMMENT Called every tick when the player is on foot. Performs all the things that normally happen during movement.
+	METHOD setDoLimitedCrafting (Z)V
+		ARG 1 doLimitedCrafting
+	METHOD setExperienceDisplayStartTickToTickCount (F)V
+		ARG 1 experienceDisplayStartTick
+	METHOD setExperienceValues (FII)V
+		COMMENT Sets the current XP, total XP, and level number.
+		ARG 1 currentXP
+		ARG 2 maxXP
+		ARG 3 level
+	METHOD setPermissionLevel (I)V
+		ARG 1 permissionLevel
+	METHOD setPermissions (Lnet/minecraft/server/permissions/PermissionSet;)V
+		ARG 1 permissions
+	METHOD setShowDeathScreen (Z)V
+		ARG 1 show
+	METHOD startUsingItem (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD suffocatesAt (Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 pos
+	METHOD swing (Lnet/minecraft/world/InteractionHand;)V
+		ARG 1 hand
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	METHOD updateAutoJump (FF)V
+		ARG 1 movementX
+		ARG 2 movementZ
+	METHOD vehicleCanSprint (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 vehicle

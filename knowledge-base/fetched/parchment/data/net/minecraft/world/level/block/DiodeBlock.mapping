@@ -1,0 +1,84 @@
+CLASS net/minecraft/world/level/block/DiodeBlock
+	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD canSurviveOn (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD checkTickOnNeighbor (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		COMMENT Check the output signal of this diode and schedule a new block tick if it should change.
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getAlternateSignal (Lnet/minecraft/world/level/SignalGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getDelay (Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 state
+	METHOD getDirectSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		ARG 1 blockState
+		ARG 2 blockAccess
+		ARG 3 pos
+		ARG 4 side
+	METHOD getInputSignal (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getOutputSignal (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD getShape (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 context
+	METHOD getSignal (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)I
+		ARG 1 blockState
+		ARG 2 blockAccess
+		ARG 3 pos
+		ARG 4 side
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context
+	METHOD isDiode (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 0 state
+	METHOD isLocked (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT Check if neighboring blocks are locking this diode.
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD isSignalSource (Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 state
+	METHOD onPlace (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 oldState
+		ARG 5 isMoving
+	METHOD setPlacedBy (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+		ARG 4 placer
+		ARG 5 stack
+	METHOD shouldPrioritize (Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		COMMENT Check if this diode should have a higher tick priority than default.
+		COMMENT
+		COMMENT <p>
+		COMMENT Both repeaters and comparators use this method to increase their tick priorities
+		COMMENT when facing other diodes. This makes certain monostable circuits based on the repeater locking
+		COMMENT mechanic more reliable.
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD shouldTurnOn (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state
+	METHOD updateNeighborsInFront (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 state

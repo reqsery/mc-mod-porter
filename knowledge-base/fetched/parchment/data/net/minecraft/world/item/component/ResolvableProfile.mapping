@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/item/component/ResolvableProfile
+	METHOD <init> (Lcom/mojang/authlib/GameProfile;Lnet/minecraft/world/entity/player/PlayerSkin$Patch;)V
+		ARG 1 partialProfile
+		ARG 2 skinPatch
+	METHOD create (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/world/entity/player/PlayerSkin$Patch;)Lnet/minecraft/world/item/component/ResolvableProfile;
+		ARG 0 partialProfile
+		ARG 1 skinPatch
+	METHOD createPartialProfile (Ljava/util/Optional;Ljava/util/Optional;Lcom/mojang/authlib/properties/PropertyMap;)Lcom/mojang/authlib/GameProfile;
+		ARG 0 username
+		ARG 1 id
+		ARG 2 properties
+	METHOD createResolved (Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/world/item/component/ResolvableProfile;
+		ARG 0 gameProfile
+	METHOD createUnresolved (Ljava/lang/String;)Lnet/minecraft/world/item/component/ResolvableProfile;
+		ARG 0 name
+	METHOD createUnresolved (Ljava/util/UUID;)Lnet/minecraft/world/item/component/ResolvableProfile;
+		ARG 0 id
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD resolveProfile (Lnet/minecraft/server/players/ProfileResolver;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 resolver
+	CLASS Static
+		METHOD <init> (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/world/entity/player/PlayerSkin$Patch;)V
+			ARG 1 contents
+			ARG 2 patch
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS Dynamic
+		METHOD <init> (Lcom/mojang/datafixers/util/Either;Lnet/minecraft/world/entity/player/PlayerSkin$Patch;)V
+			ARG 1 nameOrId
+			ARG 2 patch
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS Partial
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

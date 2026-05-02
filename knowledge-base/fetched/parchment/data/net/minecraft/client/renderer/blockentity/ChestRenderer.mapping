@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/blockentity/ChestRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD getChestMaterial (Lnet/minecraft/world/level/block/entity/BlockEntity;Z)Lnet/minecraft/client/renderer/blockentity/state/ChestRenderState$ChestMaterialType;
+		ARG 1 blockEntity
+		ARG 2 xmasTextures

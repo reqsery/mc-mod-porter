@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/level/block/FaceAttachedHorizontalDirectionalBlock
+	METHOD canAttach (Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)Z
+		ARG 0 reader
+		ARG 1 pos
+		ARG 2 direction
+	METHOD canSurvive (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+		ARG 1 state
+		ARG 2 level
+		ARG 3 pos
+	METHOD getConnectedDirection (Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+		ARG 0 state
+	METHOD getStateForPlacement (Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 context

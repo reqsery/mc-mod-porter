@@ -1,0 +1,14 @@
+CLASS com/mojang/blaze3d/vertex/VertexSorting
+	METHOD byDistance (FFF)Lcom/mojang/blaze3d/vertex/VertexSorting;
+		ARG 0 x
+		ARG 1 y
+		ARG 2 z
+	METHOD byDistance (Lcom/mojang/blaze3d/vertex/VertexSorting$DistanceFunction;)Lcom/mojang/blaze3d/vertex/VertexSorting;
+		ARG 0 distanceFunction
+	METHOD byDistance (Lorg/joml/Vector3fc;)Lcom/mojang/blaze3d/vertex/VertexSorting;
+		ARG 0 origin
+	METHOD sort (Lcom/mojang/blaze3d/vertex/CompactVectorArray;)[I
+		ARG 1 vectors
+	CLASS DistanceFunction
+		METHOD apply (Lorg/joml/Vector3f;)F
+			ARG 1 vector

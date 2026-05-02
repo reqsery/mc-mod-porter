@@ -1,0 +1,31 @@
+CLASS com/mojang/realmsclient/dto/RealmsServer
+	METHOD cloneSlots (Ljava/util/Map;)Ljava/util/Map;
+		ARG 1 slots
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD finalize (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 0 server
+	METHOD finalizeSlots (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 0 server
+	METHOD getWorldName (I)Ljava/lang/String;
+		ARG 1 slot
+	METHOD parse (Lcom/mojang/realmsclient/dto/GuardedSerializer;Ljava/lang/String;)Lcom/mojang/realmsclient/dto/RealmsServer;
+		ARG 0 serializer
+		ARG 1 json
+	METHOD setDescription (Ljava/lang/String;)V
+		ARG 1 motd
+	METHOD setName (Ljava/lang/String;)V
+		ARG 1 name
+	METHOD sortInvited (Lcom/mojang/realmsclient/dto/RealmsServer;)V
+		ARG 0 server
+	METHOD toServerData (Ljava/lang/String;)Lnet/minecraft/client/multiplayer/ServerData;
+		ARG 1 ip
+	CLASS WorldType
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
+	CLASS McoServerComparator
+		METHOD <init> (Ljava/lang/String;)V
+			ARG 1 refOwner
+		METHOD compare (Lcom/mojang/realmsclient/dto/RealmsServer;Lcom/mojang/realmsclient/dto/RealmsServer;)I
+			ARG 1 first
+			ARG 2 second

@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/resources/model/UnbakedModel
+	CLASS GuiLight
+		METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+			ARG 3 name
+		METHOD getByName (Ljava/lang/String;)Lnet/minecraft/client/resources/model/UnbakedModel$GuiLight;
+			ARG 0 name

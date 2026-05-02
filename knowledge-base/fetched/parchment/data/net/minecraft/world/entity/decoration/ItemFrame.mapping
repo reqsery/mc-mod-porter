@@ -1,0 +1,62 @@
+CLASS net/minecraft/world/entity/decoration/ItemFrame
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
+		ARG 1 entityType
+		ARG 2 level
+		ARG 3 pos
+		ARG 4 direction
+	METHOD <init> (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;)V
+		ARG 1 level
+		ARG 2 pos
+		ARG 3 facingDirection
+	METHOD canHurtWhenFixed (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 0 damageSource
+	METHOD createBoundingBox (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction;Z)Lnet/minecraft/world/phys/AABB;
+		ARG 1 pos
+		ARG 2 direction
+		ARG 3 isMap
+	METHOD dropItem (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Z)V
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 dropItem
+	METHOD getFramedMapId (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/level/saveddata/maps/MapId;
+		ARG 1 stack
+	METHOD getRotation ()I
+		COMMENT Return the rotation of the item currently on this frame.
+	METHOD interact (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 hand
+	METHOD move (Lnet/minecraft/world/entity/MoverType;Lnet/minecraft/world/phys/Vec3;)V
+		ARG 1 type
+		ARG 2 pos
+	METHOD onItemChanged (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 item
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD push (DDD)V
+		COMMENT Adds to the current velocity of the entity, and sets {@link #isAirBorne} to true.
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	METHOD removeFramedMap (Lnet/minecraft/world/item/ItemStack;)V
+		COMMENT Removes the dot representing this frame's position from the map when the item frame is broken.
+		ARG 1 stack
+	METHOD setDirection (Lnet/minecraft/core/Direction;)V
+		COMMENT Updates facing and bounding box based on it
+		ARG 1 facingDirection
+	METHOD setItem (Lnet/minecraft/world/item/ItemStack;)V
+		ARG 1 stack
+	METHOD setItem (Lnet/minecraft/world/item/ItemStack;Z)V
+		ARG 1 stack
+		ARG 2 updateNeighbours
+	METHOD setRotation (I)V
+		ARG 1 rotation
+	METHOD setRotation (IZ)V
+		ARG 1 rotation
+		ARG 2 updateNeighbours
+	METHOD shouldDamageDropItem (Lnet/minecraft/world/damagesource/DamageSource;)Z
+		ARG 1 damageSource
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD survives ()Z
+		COMMENT Checks to make sure the {@code HangingEntity} can be placed there.

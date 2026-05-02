@@ -1,0 +1,52 @@
+CLASS net/minecraft/world/level/chunk/LevelChunkSection
+	METHOD <init> (Lnet/minecraft/world/level/chunk/LevelChunkSection;)V
+		ARG 1 section
+	METHOD <init> (Lnet/minecraft/world/level/chunk/PalettedContainer;Lnet/minecraft/world/level/chunk/PalettedContainerRO;)V
+		ARG 1 states
+		ARG 2 biomes
+	METHOD <init> (Lnet/minecraft/world/level/chunk/PalettedContainerFactory;)V
+		ARG 1 palettedContainerFactory
+	METHOD fillBiomesFromNoise (Lnet/minecraft/world/level/biome/BiomeResolver;Lnet/minecraft/world/level/biome/Climate$Sampler;III)V
+		ARG 1 biomeResolver
+		ARG 2 climateSampler
+		ARG 3 x
+		ARG 4 y
+		ARG 5 z
+	METHOD getBlockState (III)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getFluidState (III)Lnet/minecraft/world/level/material/FluidState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getNoiseBiome (III)Lnet/minecraft/core/Holder;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD hasOnlyAir ()Z
+		COMMENT @return {@code true} if this section consists only of air-like blocks.
+	METHOD isRandomlyTickingBlocks ()Z
+		COMMENT @return {@code true} if this section has any blocks that require random ticks.
+	METHOD isRandomlyTickingFluids ()Z
+		COMMENT @return {@code true} if this section has any fluids that require random ticks.
+	METHOD maybeHas (Ljava/util/function/Predicate;)Z
+		COMMENT @return {@code true} if this section has any states matching the given predicate. As the internal representation uses a {@link net.minecraft.world.level.chunk.Palette}, this is more efficient than looping through every position in the section, or indeed the chunk.
+		ARG 1 predicate
+	METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD readBiomes (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 state
+	METHOD setBlockState (IIILnet/minecraft/world/level/block/state/BlockState;Z)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+		ARG 4 state
+		ARG 5 useLocks
+	METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer

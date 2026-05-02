@@ -1,0 +1,789 @@
+CLASS net/minecraft/client/gui/GuiGraphics
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/render/state/GuiRenderState;)V
+		ARG 1 minecraft
+		ARG 2 guiRenderState
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/render/state/GuiRenderState;II)V
+		ARG 1 minecraft
+		ARG 2 guiRenderState
+		ARG 3 mouseX
+		ARG 4 mouseY
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lorg/joml/Matrix3x2fStack;Lnet/minecraft/client/gui/render/state/GuiRenderState;)V
+		ARG 1 minecraft
+		ARG 2 pose
+		ARG 3 guiRenderState
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lorg/joml/Matrix3x2fStack;Lnet/minecraft/client/gui/render/state/GuiRenderState;II)V
+		ARG 1 minecraft
+		ARG 2 pose
+		ARG 3 guiRenderState
+		ARG 4 mouseX
+		ARG 5 mouseY
+	METHOD applyCursor (Lcom/mojang/blaze3d/platform/Window;)V
+		ARG 1 window
+	METHOD blit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIII)V
+		ARG 1 pipeline
+		ARG 2 atlas
+		ARG 3 x
+		ARG 4 y
+		ARG 5 u
+		ARG 6 v
+		ARG 7 width
+		ARG 8 height
+		ARG 9 textureWidth
+		ARG 10 textureHeight
+	METHOD blit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIIII)V
+		ARG 1 pipeline
+		ARG 2 atlas
+		ARG 3 x
+		ARG 4 y
+		ARG 5 u
+		ARG 6 v
+		ARG 7 width
+		ARG 8 height
+		ARG 9 textureWidth
+		ARG 10 textureHeight
+		ARG 11 color
+	METHOD blit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIIIII)V
+		ARG 1 pipeline
+		ARG 2 atlas
+		ARG 3 x
+		ARG 4 y
+		ARG 5 u
+		ARG 6 v
+		ARG 7 width
+		ARG 8 height
+		ARG 9 uWidth
+		ARG 10 vHeight
+		ARG 11 textureWidth
+		ARG 12 textureHeight
+	METHOD blit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 atlas
+		ARG 3 x
+		ARG 4 y
+		ARG 5 u
+		ARG 6 v
+		ARG 7 width
+		ARG 8 height
+		ARG 9 uWidth
+		ARG 10 vHeight
+		ARG 11 textureWidth
+		ARG 12 textureHeight
+		ARG 13 color
+	METHOD blit (Lnet/minecraft/resources/Identifier;IIIIFFFF)V
+		ARG 1 atlas
+		ARG 2 x0
+		ARG 3 y0
+		ARG 4 x1
+		ARG 5 y1
+		ARG 6 u0
+		ARG 7 u1
+		ARG 8 v0
+		ARG 9 v1
+	METHOD blitNineSliceInnerSegment (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/resources/metadata/gui/GuiSpriteScaling$NineSlice;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 nineSlice
+		ARG 3 sprite
+		ARG 4 borderMinX
+		ARG 5 borderMinY
+		ARG 6 borderMaxX
+		ARG 7 borderMaxY
+		ARG 8 u
+		ARG 9 v
+		ARG 10 spriteWidth
+		ARG 11 spriteHeight
+		ARG 12 textureWidth
+		ARG 13 textureHeight
+		ARG 14 color
+	METHOD blitNineSlicedSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;Lnet/minecraft/client/resources/metadata/gui/GuiSpriteScaling$NineSlice;IIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 nineSlice
+		ARG 4 x
+		ARG 5 y
+		ARG 6 width
+		ARG 7 height
+		ARG 8 color
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 width
+		ARG 5 y
+		ARG 6 height
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
+		ARG 7 color
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 textureWidth
+		ARG 4 textureHeight
+		ARG 5 u
+		ARG 6 v
+		ARG 7 x
+		ARG 8 y
+		ARG 9 width
+		ARG 10 height
+		ARG 11 color
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIF)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
+		ARG 7 fade
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
+		ARG 7 color
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 textureWidth
+		ARG 4 textureHeight
+		ARG 5 u
+		ARG 6 v
+		ARG 7 x
+		ARG 8 y
+		ARG 9 width
+		ARG 10 height
+	METHOD blitSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 textureWidth
+		ARG 4 textureHeight
+		ARG 5 u
+		ARG 6 v
+		ARG 7 x
+		ARG 8 y
+		ARG 9 width
+		ARG 10 height
+		ARG 11 color
+	METHOD blitTiledSprite (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;IIIIIIIIIII)V
+		ARG 1 pipeline
+		ARG 2 sprite
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 height
+		ARG 7 u
+		ARG 8 v
+		ARG 9 spriteWidth
+		ARG 10 spriteHeight
+		ARG 11 textureWidth
+		ARG 12 textureHeight
+		ARG 13 color
+	METHOD containsPointInScissor (II)Z
+		ARG 1 x
+		ARG 2 y
+	METHOD createDefaultTextParameters (F)Lnet/minecraft/client/gui/ActiveTextCollector$Parameters;
+		ARG 1 opacity
+	METHOD disableScissor ()V
+		COMMENT Disables scissoring.
+	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, text, and color.
+		ARG 1 font
+			COMMENT the font to use for rendering.
+		ARG 2 text
+			COMMENT the text to draw.
+		ARG 3 x
+			COMMENT the x-coordinate of the center of the string.
+		ARG 4 y
+			COMMENT the y-coordinate of the string.
+		ARG 5 color
+			COMMENT the color of the string.
+	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, text component, and color.
+		ARG 1 font
+			COMMENT the font to use for rendering.
+		ARG 2 text
+			COMMENT the text component to draw.
+		ARG 3 x
+			COMMENT the x-coordinate of the center of the string.
+		ARG 4 y
+			COMMENT the y-coordinate of the string.
+		ARG 5 color
+			COMMENT the color of the string.
+	METHOD drawCenteredString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)V
+		COMMENT Draws a centered string at the specified coordinates using the given font, formatted character sequence, and color.
+		ARG 1 font
+			COMMENT the font to use for rendering.
+		ARG 2 text
+			COMMENT the formatted character sequence to draw.
+		ARG 3 x
+			COMMENT the x-coordinate of the center of the string.
+		ARG 4 y
+			COMMENT the y-coordinate of the string.
+		ARG 5 color
+			COMMENT the color of the string.
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;III)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+		ARG 6 drawShadow
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+		ARG 6 drawShadow
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;III)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+	METHOD drawString (Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;IIIZ)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 color
+		ARG 6 drawShadow
+	METHOD drawStringWithBackdrop (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIII)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 width
+		ARG 6 color
+	METHOD drawWordWrap (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/FormattedText;IIII)V
+		COMMENT Draws a formatted text with word wrapping at the specified coordinates using the given font, text, line width, and color.
+		ARG 1 font
+			COMMENT the font to use for rendering.
+		ARG 2 text
+			COMMENT the formatted text to draw.
+		ARG 3 x
+			COMMENT the x-coordinate of the starting position.
+		ARG 4 y
+			COMMENT the y-coordinate of the starting position.
+		ARG 5 lineWidth
+			COMMENT the maximum width of each line before wrapping.
+		ARG 6 color
+			COMMENT the color of the text.
+	METHOD drawWordWrap (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/FormattedText;IIIIZ)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 lineWidth
+		ARG 6 color
+		ARG 7 dropShadow
+	METHOD enableScissor (IIII)V
+		COMMENT Enables scissoring with the specified screen coordinates.
+		ARG 1 minX
+			COMMENT the minimum x-coordinate of the scissor region.
+		ARG 2 minY
+			COMMENT the minimum y-coordinate of the scissor region.
+		ARG 3 maxX
+			COMMENT the maximum x-coordinate of the scissor region.
+		ARG 4 maxY
+			COMMENT the maximum y-coordinate of the scissor region.
+	METHOD fill (IIIII)V
+		COMMENT Fills a rectangle with the specified color using the given coordinates as the boundaries.
+		ARG 1 minX
+			COMMENT the minimum x-coordinate of the rectangle.
+		ARG 2 minY
+			COMMENT the minimum y-coordinate of the rectangle.
+		ARG 3 maxX
+			COMMENT the maximum x-coordinate of the rectangle.
+		ARG 4 maxY
+			COMMENT the maximum y-coordinate of the rectangle.
+		ARG 5 color
+			COMMENT the color to fill the rectangle with.
+	METHOD fill (Lcom/mojang/blaze3d/pipeline/RenderPipeline;IIIII)V
+		ARG 1 pipeline
+		ARG 2 minX
+		ARG 3 minY
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 color
+	METHOD fill (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/gui/render/TextureSetup;IIII)V
+		ARG 1 pipeline
+		ARG 2 textureSetup
+		ARG 3 minX
+		ARG 4 minY
+		ARG 5 maxX
+		ARG 6 maxY
+	METHOD fillGradient (IIIIII)V
+		COMMENT Fills a rectangle with a gradient color from colorFrom to colorTo using the given coordinates as the boundaries.
+		ARG 1 minX
+			COMMENT the x-coordinate of the first corner of the rectangle.
+		ARG 2 minY
+			COMMENT the y-coordinate of the first corner of the rectangle.
+		ARG 3 maxX
+			COMMENT the x-coordinate of the second corner of the rectangle.
+		ARG 4 maxY
+			COMMENT the y-coordinate of the second corner of the rectangle.
+		ARG 5 colorFrom
+			COMMENT the starting color of the gradient.
+		ARG 6 colorTo
+			COMMENT the ending color of the gradient.
+	METHOD getSprite (Lnet/minecraft/client/resources/model/Material;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+		ARG 1 material
+	METHOD getSpriteScaling (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)Lnet/minecraft/client/resources/metadata/gui/GuiSpriteScaling;
+		ARG 0 sprite
+	METHOD guiHeight ()I
+		COMMENT {@return returns the height of the GUI screen in pixels}
+	METHOD guiWidth ()I
+		COMMENT {@return returns the width of the GUI screen in pixels}
+	METHOD hLine (IIII)V
+		COMMENT Draws a horizontal line from minX to maxX at the specified y-coordinate with the given color.
+		ARG 1 minX
+			COMMENT the x-coordinate of the start point.
+		ARG 2 maxX
+			COMMENT the x-coordinate of the end point.
+		ARG 3 y
+			COMMENT the y-coordinate of the line.
+		ARG 4 color
+			COMMENT the color of the line.
+	METHOD innerBlit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIFFFFI)V
+		ARG 1 pipeline
+		ARG 2 atlas
+		ARG 3 x0
+		ARG 4 x1
+		ARG 5 y0
+		ARG 6 y1
+		ARG 7 u0
+		ARG 8 u1
+		ARG 9 v0
+		ARG 10 v1
+		ARG 11 color
+	METHOD renderComponentHoverEffect (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Style;II)V
+		COMMENT Renders a hover effect for a text component at the specified mouse coordinates.
+		ARG 1 font
+			COMMENT the font used for rendering text.
+		ARG 2 style
+			COMMENT the style of the text component. Can be null.
+		ARG 3 mouseX
+			COMMENT the x-coordinate of the mouse position.
+		ARG 4 mouseY
+			COMMENT the y-coordinate of the mouse position.
+	METHOD renderFakeItem (Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders a fake item stack at the specified coordinates.
+		ARG 1 stack
+			COMMENT the fake item stack to render.
+		ARG 2 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 3 y
+			COMMENT the y-coordinate of the rendering position.
+	METHOD renderFakeItem (Lnet/minecraft/world/item/ItemStack;III)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+		ARG 4 seed
+	METHOD renderItem (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack for a living entity at the specified coordinates with a random seed.
+		ARG 1 entity
+			COMMENT the living entity.
+		ARG 2 stack
+			COMMENT the item stack to render.
+		ARG 3 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 4 y
+			COMMENT the y-coordinate of the rendering position.
+		ARG 5 seed
+			COMMENT the random seed.
+	METHOD renderItem (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack for a living entity in a specific level at the specified coordinates with a random seed.
+		ARG 1 entity
+			COMMENT the living entity. Can be null.
+		ARG 2 level
+			COMMENT the level in which the rendering occurs. Can be null.
+		ARG 3 stack
+			COMMENT the item stack to render.
+		ARG 4 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 5 y
+			COMMENT the y-coordinate of the rendering position.
+		ARG 6 seed
+			COMMENT the random seed.
+	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders an item stack at the specified coordinates.
+		ARG 1 stack
+			COMMENT the item stack to render.
+		ARG 2 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 3 y
+			COMMENT the y-coordinate of the rendering position.
+	METHOD renderItem (Lnet/minecraft/world/item/ItemStack;III)V
+		COMMENT Renders an item stack at the specified coordinates with a random seed.
+		ARG 1 stack
+			COMMENT the item stack to render.
+		ARG 2 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 3 y
+			COMMENT the y-coordinate of the rendering position.
+		ARG 4 seed
+			COMMENT the random seed.
+	METHOD renderItemBar (Lnet/minecraft/world/item/ItemStack;II)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+	METHOD renderItemCooldown (Lnet/minecraft/world/item/ItemStack;II)V
+		ARG 1 stack
+		ARG 2 x
+		ARG 3 y
+	METHOD renderItemCount (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		ARG 1 font
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+		ARG 5 text
+	METHOD renderItemDecorations (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+		COMMENT Renders additional decorations for an item stack at the specified coordinates.
+		ARG 1 font
+			COMMENT the font used for rendering text.
+		ARG 2 stack
+			COMMENT the item stack to decorate.
+		ARG 3 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 4 y
+			COMMENT the y-coordinate of the rendering position.
+	METHOD renderItemDecorations (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		COMMENT Renders additional decorations for an item stack at the specified coordinates with optional custom text.
+		ARG 1 font
+			COMMENT the font used for rendering text.
+		ARG 2 stack
+			COMMENT the item stack to decorate.
+		ARG 3 x
+			COMMENT the x-coordinate of the rendering position.
+		ARG 4 y
+			COMMENT the y-coordinate of the rendering position.
+		ARG 5 text
+			COMMENT the custom text to display. Can be null.
+	METHOD renderOutline (IIIII)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 color
+	METHOD renderTooltip (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;Lnet/minecraft/resources/Identifier;)V
+		ARG 1 font
+		ARG 2 components
+		ARG 3 x
+		ARG 4 y
+		ARG 5 positioner
+		ARG 6 background
+	METHOD requestCursor (Lcom/mojang/blaze3d/platform/cursor/CursorType;)V
+		ARG 1 cursor
+	METHOD setComponentTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 x
+		ARG 4 y
+	METHOD setComponentTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/resources/Identifier;)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 x
+		ARG 4 y
+		ARG 5 background
+	METHOD setTooltipForNextFrame (Ljava/util/List;II)V
+		ARG 1 lines
+		ARG 2 x
+		ARG 3 y
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 x
+		ARG 4 y
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/resources/Identifier;)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 x
+		ARG 4 y
+		ARG 5 background
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;II)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 tooltipImage
+		ARG 4 x
+		ARG 5 y
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;IILnet/minecraft/resources/Identifier;)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 tooltipImage
+		ARG 4 x
+		ARG 5 y
+		ARG 6 background
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Ljava/util/List;Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;IIZ)V
+		ARG 1 font
+		ARG 2 lines
+		ARG 3 positioner
+		ARG 4 x
+		ARG 5 y
+		ARG 6 focused
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IILnet/minecraft/resources/Identifier;)V
+		ARG 1 font
+		ARG 2 text
+		ARG 3 x
+		ARG 4 y
+		ARG 5 background
+	METHOD setTooltipForNextFrame (Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+		ARG 1 font
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+	METHOD setTooltipForNextFrame (Lnet/minecraft/network/chat/Component;II)V
+		ARG 1 text
+		ARG 2 x
+		ARG 3 y
+	METHOD setTooltipForNextFrameInternal (Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;Lnet/minecraft/resources/Identifier;Z)V
+		ARG 1 font
+		ARG 2 components
+		ARG 3 x
+		ARG 4 y
+		ARG 5 positioner
+		ARG 6 background
+		ARG 7 focused
+	METHOD submitBannerPatternRenderState (Lnet/minecraft/client/model/BannerFlagModel;Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/entity/BannerPatternLayers;IIII)V
+		ARG 1 flag
+		ARG 2 baseColor
+		ARG 3 resultBannerPatterns
+		ARG 4 x0
+		ARG 5 y0
+		ARG 6 x1
+		ARG 7 y1
+	METHOD submitBannerPatternRenderState (Lnet/minecraft/client/model/object/banner/BannerFlagModel;Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/entity/BannerPatternLayers;IIII)V
+		ARG 1 flag
+		ARG 2 baseColor
+		ARG 3 resultBannerPatterns
+		ARG 4 x0
+		ARG 5 y0
+		ARG 6 x1
+		ARG 7 y1
+	METHOD submitBlit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/textures/GpuTextureView;IIIIFFFFI)V
+		ARG 1 pipeline
+		ARG 2 atlasTexture
+		ARG 3 x0
+		ARG 4 y0
+		ARG 5 x1
+		ARG 6 y1
+		ARG 7 u0
+		ARG 8 u1
+		ARG 9 v0
+		ARG 10 v1
+		ARG 11 color
+	METHOD submitBlit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/textures/GpuTextureView;Lcom/mojang/blaze3d/textures/GpuSampler;IIIIFFFFI)V
+		ARG 1 pipeline
+		ARG 2 atlasTexture
+		ARG 3 sampler
+		ARG 4 x0
+		ARG 5 y0
+		ARG 6 x1
+		ARG 7 y1
+		ARG 8 u0
+		ARG 9 u1
+		ARG 10 v0
+		ARG 11 v1
+		ARG 12 color
+	METHOD submitBookModelRenderState (Lnet/minecraft/client/model/BookModel;Lnet/minecraft/resources/Identifier;FFFIIII)V
+		ARG 1 bookModel
+		ARG 2 texture
+		ARG 3 scale
+		ARG 4 open
+		ARG 5 flip
+		ARG 6 x0
+		ARG 7 y0
+		ARG 8 x1
+		ARG 9 y1
+	METHOD submitBookModelRenderState (Lnet/minecraft/client/model/object/book/BookModel;Lnet/minecraft/resources/Identifier;FFFIIII)V
+		ARG 1 bookModel
+		ARG 2 texture
+		ARG 3 open
+		ARG 4 flip
+		ARG 5 x0
+		ARG 6 y0
+		ARG 7 x1
+		ARG 8 y1
+		ARG 9 scale
+	METHOD submitColoredRectangle (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/client/gui/render/TextureSetup;IIIIILjava/lang/Integer;)V
+		ARG 1 pipeline
+		ARG 2 textureSetup
+		ARG 3 minX
+		ARG 4 minY
+		ARG 5 maxX
+		ARG 6 maxY
+		ARG 7 colorFrom
+		ARG 8 colorTo
+	METHOD submitEntityRenderState (Lnet/minecraft/client/renderer/entity/state/EntityRenderState;FLorg/joml/Vector3f;Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;IIII)V
+		ARG 1 renderState
+		ARG 2 scale
+		ARG 3 translation
+		ARG 4 rotation
+		ARG 5 overrideCameraAngle
+		ARG 6 x0
+		ARG 7 y0
+		ARG 8 x1
+		ARG 9 y1
+	METHOD submitMapRenderState (Lnet/minecraft/client/renderer/state/MapRenderState;)V
+		ARG 1 renderState
+	METHOD submitOutline (IIIII)V
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 color
+	METHOD submitProfilerChartRenderState (Ljava/util/List;IIII)V
+		ARG 1 chartData
+		ARG 2 x0
+		ARG 3 y0
+		ARG 4 x1
+		ARG 5 y1
+	METHOD submitSignRenderState (Lnet/minecraft/client/model/Model$Simple;FLnet/minecraft/world/level/block/state/properties/WoodType;IIII)V
+		ARG 1 signModel
+		ARG 2 scale
+		ARG 3 woodType
+		ARG 4 x0
+		ARG 5 y0
+		ARG 6 x1
+		ARG 7 y1
+	METHOD submitSkinRenderState (Lnet/minecraft/client/model/PlayerModel;Lnet/minecraft/resources/Identifier;FFFFIIII)V
+		ARG 1 playerModel
+		ARG 2 texture
+		ARG 3 scale
+		ARG 4 rotationX
+		ARG 5 rotationY
+		ARG 6 pivotY
+		ARG 7 x0
+		ARG 8 y0
+		ARG 9 x1
+		ARG 10 y1
+	METHOD submitSkinRenderState (Lnet/minecraft/client/model/player/PlayerModel;Lnet/minecraft/resources/Identifier;FFFFIIII)V
+		ARG 1 playerModel
+		ARG 2 texture
+		ARG 3 rotationX
+		ARG 4 rotationY
+		ARG 5 pivotY
+		ARG 6 x0
+		ARG 7 y0
+		ARG 8 x1
+		ARG 9 y1
+		ARG 10 scale
+	METHOD submitTiledBlit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/textures/GpuTextureView;IIIIIIFFFFI)V
+		ARG 1 pipeline
+		ARG 2 atlasTexture
+		ARG 3 tileWidth
+		ARG 4 tileHeight
+		ARG 5 x0
+		ARG 6 x1
+		ARG 7 y0
+		ARG 8 y1
+		ARG 9 u0
+		ARG 10 u1
+		ARG 11 v0
+		ARG 12 v1
+		ARG 13 color
+	METHOD submitTiledBlit (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lcom/mojang/blaze3d/textures/GpuTextureView;Lcom/mojang/blaze3d/textures/GpuSampler;IIIIIIFFFFI)V
+		ARG 1 pipeline
+		ARG 2 atlasTexture
+		ARG 3 sampler
+		ARG 4 tileWidth
+		ARG 5 tileHeight
+		ARG 6 x0
+		ARG 7 y0
+		ARG 8 x1
+		ARG 9 y1
+		ARG 10 u0
+		ARG 11 u1
+		ARG 12 v0
+		ARG 13 v1
+		ARG 14 color
+	METHOD textHighlight (IIII)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 maxX
+		ARG 4 maxY
+	METHOD textHighlight (IIIIZ)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 maxX
+		ARG 4 maxY
+		ARG 5 invert
+	METHOD textRenderer (Lnet/minecraft/client/gui/GuiGraphics$HoveredTextEffects;)Lnet/minecraft/client/gui/ActiveTextCollector;
+		ARG 1 hoveredTextEffects
+	METHOD textRenderer (Lnet/minecraft/client/gui/GuiGraphics$HoveredTextEffects;Ljava/util/function/Consumer;)Lnet/minecraft/client/gui/ActiveTextCollector;
+		ARG 1 hoveredTextEffects
+		ARG 2 additionalConsumer
+	METHOD textRendererForWidget (Lnet/minecraft/client/gui/components/AbstractWidget;Lnet/minecraft/client/gui/GuiGraphics$HoveredTextEffects;)Lnet/minecraft/client/gui/ActiveTextCollector;
+		ARG 1 widget
+		ARG 2 hoveredTextEffects
+	METHOD vLine (IIII)V
+		COMMENT Draws a vertical line from minY to maxY at the specified x-coordinate with the given color.
+		ARG 1 x
+			COMMENT the x-coordinate of the line.
+		ARG 2 minY
+			COMMENT the y-coordinate of the start point.
+		ARG 3 maxY
+			COMMENT the y-coordinate of the end point.
+		ARG 4 color
+			COMMENT the color of the line.
+	CLASS OutlineBox
+		METHOD render (Lnet/minecraft/client/gui/GuiGraphics;)V
+			ARG 1 guiGraphics
+	CLASS ScissorStack
+		COMMENT A utility class for managing a stack of screen rectangles for scissoring.
+		METHOD containsPoint (II)Z
+			ARG 1 x
+			ARG 2 y
+		METHOD pop ()Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+			COMMENT Pops the top screen rectangle from the scissor stack.
+			COMMENT <p>
+			COMMENT @return The new top screen rectangle after the pop operation, or null if the stack is empty.
+			COMMENT @throws IllegalStateException if the stack is empty.
+		METHOD push (Lnet/minecraft/client/gui/navigation/ScreenRectangle;)Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+			COMMENT Pushes a screen rectangle onto the scissor stack.
+			COMMENT <p>
+			COMMENT @return The resulting intersection of the pushed rectangle with the previous top rectangle on the stack, or the pushed rectangle if the stack is empty.
+			ARG 1 scissor
+				COMMENT the screen rectangle to push.
+	CLASS HoveredTextEffects
+		METHOD <init> (Ljava/lang/String;IZZ)V
+			ARG 3 allowTooltip
+			ARG 4 allowCursorChanges
+		METHOD notClickable (Z)Lnet/minecraft/client/gui/GuiGraphics$HoveredTextEffects;
+			ARG 0 tooltip
+	CLASS RenderingTextCollector
+		METHOD <init> (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/ActiveTextCollector$Parameters;Lnet/minecraft/client/gui/GuiGraphics$HoveredTextEffects;Ljava/util/function/Consumer;)V
+			ARG 2 defaultParameters
+			ARG 3 hoveredTextEffects
+			ARG 4 additionalConsumer
+		METHOD accept (Ljava/lang/Object;)V
+			ARG 1 style

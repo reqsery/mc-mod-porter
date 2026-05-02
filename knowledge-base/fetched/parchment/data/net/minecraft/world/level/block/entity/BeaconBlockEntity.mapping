@@ -1,0 +1,48 @@
+CLASS net/minecraft/world/level/block/entity/BeaconBlockEntity
+	FIELD BEACON_EFFECTS [[Lnet/minecraft/world/effect/MobEffect;
+		COMMENT A list of effects that beacons can apply.
+	FIELD beamSections Ljava/util/List;
+		COMMENT A list of beam segments for this beacon.
+	FIELD levels I
+		COMMENT The number of levels of this beacon's pyramid.
+	FIELD name Lnet/minecraft/network/chat/Component;
+		COMMENT The custom name for this beacon.
+	FIELD primaryPower Lnet/minecraft/world/effect/MobEffect;
+		COMMENT The primary effect given by this beacon.
+	FIELD secondaryPower Lnet/minecraft/world/effect/MobEffect;
+		COMMENT The secondary effect given by this beacon.
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 blockState
+	METHOD applyEffects (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;ILnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 beaconLevel
+		ARG 3 primaryEffect
+		ARG 4 secondaryEffect
+	METHOD filterEffect (Lnet/minecraft/core/Holder;)Lnet/minecraft/core/Holder;
+		ARG 0 effect
+	METHOD loadEffect (Lnet/minecraft/world/level/storage/ValueInput;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 input
+		ARG 1 key
+	METHOD playSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 sound
+	METHOD setCustomName (Lnet/minecraft/network/chat/Component;)V
+		COMMENT Sets the custom name for this beacon.
+		ARG 1 name
+	METHOD storeEffect (Lnet/minecraft/world/level/storage/ValueOutput;Ljava/lang/String;Lnet/minecraft/core/Holder;)V
+		ARG 0 output
+		ARG 1 key
+		ARG 2 effect
+	METHOD tick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BeaconBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity
+	METHOD updateBase (Lnet/minecraft/world/level/Level;III)I
+		ARG 0 level
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z

@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/level/block/state/properties/Property
+	METHOD <init> (Ljava/lang/String;Ljava/lang/Class;)V
+		ARG 1 name
+		ARG 2 clazz
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getInternalIndex (Ljava/lang/Comparable;)I
+		ARG 1 value
+	METHOD getName (Ljava/lang/Comparable;)Ljava/lang/String;
+		COMMENT @return the name for the given value.
+		ARG 1 value
+	METHOD getValue (Ljava/lang/String;)Ljava/util/Optional;
+		ARG 1 value
+	METHOD getValueClass ()Ljava/lang/Class;
+		COMMENT @return the class of the values of this property
+	METHOD lambda$new$1 (Ljava/lang/String;)Lcom/mojang/serialization/DataResult;
+		ARG 1 key
+	METHOD lambda$new$2 (Ljava/lang/String;)Lcom/mojang/serialization/DataResult;
+		ARG 1 valueName
+	METHOD lambda$parseValue$3 (Lnet/minecraft/world/level/block/state/StateHolder;Ljava/lang/Comparable;)Lnet/minecraft/world/level/block/state/StateHolder;
+		ARG 2 parsedValue
+	METHOD parseValue (Lcom/mojang/serialization/DynamicOps;Lnet/minecraft/world/level/block/state/StateHolder;Ljava/lang/Object;)Lcom/mojang/serialization/DataResult;
+		ARG 1 ops
+		ARG 2 stateHolder
+		ARG 3 unparsedValue
+	METHOD value (Ljava/lang/Comparable;)Lnet/minecraft/world/level/block/state/properties/Property$Value;
+		ARG 1 value
+	METHOD value (Lnet/minecraft/world/level/block/state/StateHolder;)Lnet/minecraft/world/level/block/state/properties/Property$Value;
+		ARG 1 holder
+	CLASS Value
+		METHOD <init> (Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)V
+			ARG 1 property
+			ARG 2 value
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other

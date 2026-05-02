@@ -1,0 +1,33 @@
+CLASS net/minecraft/world/entity/monster/hoglin/Hoglin
+	METHOD checkHoglinSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level
+	METHOD isFood (Lnet/minecraft/world/item/ItemStack;)Z
+		COMMENT Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on the animal type)
+		ARG 1 stack
+	METHOD makeBrain (Lcom/mojang/serialization/Dynamic;)Lnet/minecraft/world/entity/ai/Brain;
+		ARG 1 dynamic
+	METHOD mobInteract (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+		ARG 1 player
+		ARG 2 hand
+	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD removeWhenFarAway (D)Z
+		ARG 1 distanceToClosestPlayer
+	METHOD setCannotBeHunted (Z)V
+		ARG 1 cannotBeHunted
+	METHOD setImmuneToZombification (Z)V
+		ARG 1 immuneToZombification
+	METHOD setTimeInOverworld (I)V
+		ARG 1 timeInOverworld
+	METHOD shouldDropExperience ()Z
+		COMMENT Entity won't drop items or experience points if this returns false

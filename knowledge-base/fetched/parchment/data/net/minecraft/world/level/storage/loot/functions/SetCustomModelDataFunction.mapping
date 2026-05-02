@@ -1,0 +1,16 @@
+CLASS net/minecraft/world/level/storage/loot/functions/SetCustomModelDataFunction
+	METHOD <init> (Ljava/util/List;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)V
+		ARG 1 conditions
+		ARG 2 floats
+		ARG 3 flags
+		ARG 4 strings
+		ARG 5 colors
+	METHOD apply (Ljava/util/Optional;Ljava/util/List;)Ljava/util/List;
+		ARG 0 value
+		ARG 1 list
+	METHOD apply (Ljava/util/Optional;Ljava/util/List;Ljava/util/function/Function;)Ljava/util/List;
+		ARG 0 value
+		ARG 1 list
+		ARG 2 converter
+	METHOD lambda$static$4 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

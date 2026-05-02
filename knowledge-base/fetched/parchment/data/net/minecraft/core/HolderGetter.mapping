@@ -1,0 +1,21 @@
+CLASS net/minecraft/core/HolderGetter
+	METHOD get (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+		ARG 1 resourceKey
+	METHOD get (Lnet/minecraft/tags/TagKey;)Ljava/util/Optional;
+		ARG 1 tagKey
+	METHOD getOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+		ARG 1 resourceKey
+	METHOD getOrThrow (Lnet/minecraft/tags/TagKey;)Lnet/minecraft/core/HolderSet$Named;
+		ARG 1 tagKey
+	METHOD getRandomElementOf (Lnet/minecraft/tags/TagKey;Lnet/minecraft/util/RandomSource;)Ljava/util/Optional;
+		ARG 1 tagKey
+		ARG 2 random
+	CLASS Provider
+		METHOD get (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+			ARG 1 key
+		METHOD getOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Holder$Reference;
+			ARG 1 key
+		METHOD lookup (Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+			ARG 1 registryKey
+		METHOD lookupOrThrow (Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/HolderGetter;
+			ARG 1 registryKey

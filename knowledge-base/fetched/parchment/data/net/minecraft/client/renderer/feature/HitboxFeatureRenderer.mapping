@@ -1,0 +1,13 @@
+CLASS net/minecraft/client/renderer/feature/HitboxFeatureRenderer
+	METHOD render (Lnet/minecraft/client/renderer/SubmitNodeCollection;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V
+		ARG 1 nodeCollection
+		ARG 2 bufferSource
+	METHOD renderHitbox (Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/renderer/entity/state/HitboxRenderState;)V
+		ARG 0 poseStack
+		ARG 1 consumer
+		ARG 2 renderState
+	METHOD renderHitboxesAndViewVector (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/entity/state/HitboxesRenderState;Lcom/mojang/blaze3d/vertex/VertexConsumer;F)V
+		ARG 0 poseStack
+		ARG 1 renderState
+		ARG 2 consumer
+		ARG 3 eyeHeight

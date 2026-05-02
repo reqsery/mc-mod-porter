@@ -1,0 +1,24 @@
+CLASS net/minecraft/client/gui/screens/BackupConfirmScreen
+	METHOD <init> (Ljava/lang/Runnable;Lnet/minecraft/client/gui/screens/BackupConfirmScreen$Listener;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 onCancel
+		ARG 2 onProceed
+		ARG 3 title
+		ARG 4 description
+		ARG 5 confirmation
+		ARG 6 promptForCacheErase
+	METHOD <init> (Ljava/lang/Runnable;Lnet/minecraft/client/gui/screens/BackupConfirmScreen$Listener;Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 onCancel
+		ARG 2 onProceed
+		ARG 3 title
+		ARG 4 description
+		ARG 5 promptForCacheErase
+	METHOD lambda$init$0 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$1 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD lambda$init$2 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	CLASS Listener
+		METHOD proceed (ZZ)V
+			ARG 1 confirmed
+			ARG 2 eraseCache

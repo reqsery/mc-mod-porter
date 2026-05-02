@@ -1,0 +1,7 @@
+CLASS com/mojang/blaze3d/font/UnbakedGlyph
+	METHOD bake (Lcom/mojang/blaze3d/font/UnbakedGlyph$Stitcher;)Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;
+		ARG 1 stitcher
+	CLASS Stitcher
+		METHOD stitch (Lcom/mojang/blaze3d/font/GlyphInfo;Lcom/mojang/blaze3d/font/GlyphBitmap;)Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;
+			ARG 1 info
+			ARG 2 bitmap

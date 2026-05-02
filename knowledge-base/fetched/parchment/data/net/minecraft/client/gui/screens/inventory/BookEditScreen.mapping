@@ -1,0 +1,20 @@
+CLASS net/minecraft/client/gui/screens/inventory/BookEditScreen
+	METHOD <init> (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/WritableBookContent;)V
+		ARG 1 owner
+		ARG 2 book
+		ARG 3 hand
+		ARG 4 content
+	METHOD appendPageToBook ()V
+		COMMENT Adds a new page to the book (capped at 100 pages)
+	METHOD getNumPages ()I
+		COMMENT Returns the number of pages in the book
+	METHOD lambda$init$4 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	METHOD pageBack ()V
+		COMMENT Displays the previous page
+	METHOD pageForward ()V
+		COMMENT Displays the next page (creating it if necessary)
+	METHOD updateButtonVisibility ()V
+		COMMENT Sets visibility for book buttons
+	METHOD visitText (Lnet/minecraft/client/gui/ActiveTextCollector;)V
+		ARG 1 activeTextCollector

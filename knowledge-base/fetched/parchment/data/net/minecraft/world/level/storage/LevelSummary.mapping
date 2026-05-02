@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/level/storage/LevelSummary
+	METHOD <init> (Lnet/minecraft/world/level/LevelSettings;Lnet/minecraft/world/level/storage/LevelVersion;Ljava/lang/String;ZZZLjava/nio/file/Path;)V
+		ARG 1 settings
+		ARG 2 levelVersion
+		ARG 3 levelId
+		ARG 4 requiresManualConversion
+		ARG 5 locked
+		ARG 6 experimental
+		ARG 7 icon
+	METHOD compareTo (Lnet/minecraft/world/level/storage/LevelSummary;)I
+		ARG 1 other
+	METHOD getGameMode ()Lnet/minecraft/world/level/GameType;
+		COMMENT Gets the EnumGameType.
+	METHOD getLevelId ()Ljava/lang/String;
+		COMMENT Returns the file name.
+	METHOD getLevelName ()Ljava/lang/String;
+		COMMENT Return the display name of the save.
+	CLASS BackupStatus
+		METHOD <init> (Ljava/lang/String;IZZLjava/lang/String;)V
+			ARG 3 shouldBackup
+			ARG 4 severe
+			ARG 5 translationKey
+	CLASS SymlinkLevelSummary
+		METHOD <init> (Ljava/lang/String;Ljava/nio/file/Path;)V
+			ARG 1 levelId
+			ARG 2 icon
+	CLASS CorruptedLevelSummary
+		METHOD <init> (Ljava/lang/String;Ljava/nio/file/Path;J)V
+			ARG 1 levelId
+			ARG 2 icon
+			ARG 3 lastPlayed

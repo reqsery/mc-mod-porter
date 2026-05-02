@@ -1,0 +1,12 @@
+CLASS com/mojang/realmsclient/gui/screens/RealmsNotificationsScreen
+	METHOD addNewsAndInvitesSubscriptions (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;)V
+		ARG 1 dataFetcher
+		ARG 2 subscription
+	METHOD addNotificationsSubscriptions (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;)V
+		ARG 1 dataFetcher
+		ARG 2 subscription
+	METHOD drawIcons (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	CLASS DataFetcherConfiguration
+		METHOD initDataFetcher (Lcom/mojang/realmsclient/gui/RealmsDataFetcher;)Lcom/mojang/realmsclient/gui/task/DataFetcher$Subscription;
+			ARG 1 dataFetcher

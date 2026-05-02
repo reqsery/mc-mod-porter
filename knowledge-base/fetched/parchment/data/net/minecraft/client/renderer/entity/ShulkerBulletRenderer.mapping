@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/renderer/entity/ShulkerBulletRenderer
+	METHOD getBlockLightLevel (Lnet/minecraft/world/entity/projectile/ShulkerBullet;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 entity
+		ARG 2 pos

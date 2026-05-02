@@ -1,0 +1,9 @@
+CLASS net/minecraft/network/chat/contents/data/BlockDataSource
+	METHOD <init> (Ljava/lang/String;)V
+		ARG 1 posPattern
+	METHOD compilePos (Ljava/lang/String;)Lnet/minecraft/commands/arguments/coordinates/Coordinates;
+		ARG 0 posPattern
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

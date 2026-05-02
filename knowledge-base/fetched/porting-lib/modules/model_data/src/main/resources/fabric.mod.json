@@ -1,0 +1,8 @@
+
+{
+  "schemaVersion": 1,
+  "id": "porting_lib_model_data",
+  "version": "${version}",
+  "name": "Porting Lib Model Data",
+  "description": "Addon to model api to make building model data easier."
+}

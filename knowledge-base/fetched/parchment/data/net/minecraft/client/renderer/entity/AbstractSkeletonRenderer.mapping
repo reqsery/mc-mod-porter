@@ -1,0 +1,13 @@
+CLASS net/minecraft/client/renderer/entity/AbstractSkeletonRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/geom/ModelLayerLocation;Lnet/minecraft/client/renderer/entity/ArmorModelSet;)V
+		ARG 1 context
+		ARG 2 skeletonLayer
+		ARG 3 armorModelSet
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/renderer/entity/ArmorModelSet;Lnet/minecraft/client/model/SkeletonModel;)V
+		ARG 1 context
+		ARG 2 armorModelSet
+		ARG 3 model
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/renderer/entity/ArmorModelSet;Lnet/minecraft/client/model/monster/skeleton/SkeletonModel;)V
+		ARG 1 context
+		ARG 2 armorModelSet
+		ARG 3 model

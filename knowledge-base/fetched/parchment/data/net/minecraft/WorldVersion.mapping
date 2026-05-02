@@ -1,0 +1,3 @@
+CLASS net/minecraft/WorldVersion
+	METHOD packVersion (Lnet/minecraft/server/packs/PackType;)Lnet/minecraft/server/packs/metadata/pack/PackFormat;
+		ARG 1 packType

@@ -1,0 +1,32 @@
+CLASS net/minecraft/client/resources/SkinManager
+	METHOD <init> (Ljava/nio/file/Path;Lnet/minecraft/server/Services;Lnet/minecraft/client/renderer/texture/SkinTextureDownloader;Ljava/util/concurrent/Executor;)V
+		ARG 1 skinDirectory
+		ARG 2 services
+		ARG 3 skinTextureDownloader
+		ARG 4 executor
+	METHOD createLookup (Lcom/mojang/authlib/GameProfile;Z)Ljava/util/function/Supplier;
+		ARG 1 profile
+		ARG 2 requireSecure
+	METHOD get (Lcom/mojang/authlib/GameProfile;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 profile
+	METHOD registerTextures (Ljava/util/UUID;Lcom/mojang/authlib/minecraft/MinecraftProfileTextures;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 uuid
+		ARG 2 textures
+	CLASS 1
+		METHOD lambda$load$1 (Lnet/minecraft/client/resources/SkinManager$CacheKey;Lcom/mojang/authlib/minecraft/MinecraftProfileTextures;)Ljava/util/concurrent/CompletionStage;
+			ARG 2 profileTextures
+		METHOD load (Lnet/minecraft/client/resources/SkinManager$CacheKey;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 cacheKey
+	CLASS CacheKey
+		METHOD equals (Ljava/lang/Object;)Z
+			ARG 1 other
+	CLASS TextureCache
+		METHOD <init> (Lnet/minecraft/client/resources/SkinManager;Ljava/nio/file/Path;Lcom/mojang/authlib/minecraft/MinecraftProfileTexture$Type;)V
+			ARG 2 root
+			ARG 3 type
+		METHOD getOrLoad (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 texture
+		METHOD getTextureLocation (Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+			ARG 1 name
+		METHOD registerTexture (Lcom/mojang/authlib/minecraft/MinecraftProfileTexture;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 texture

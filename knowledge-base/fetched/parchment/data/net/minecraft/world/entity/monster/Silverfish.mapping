@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/entity/monster/Silverfish
+	METHOD checkSilverfishSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getWalkTargetValue (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/LevelReader;)F
+		ARG 1 pos
+		ARG 2 level
+	METHOD playStepSound (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 block
+	METHOD setYBodyRot (F)V
+		COMMENT Set the render yaw offset
+		ARG 1 offset
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS SilverfishWakeUpFriendsGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Silverfish;)V
+			ARG 1 silverfish
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS SilverfishMergeWithStoneGoal
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Silverfish;)V
+			ARG 1 silverfish
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task

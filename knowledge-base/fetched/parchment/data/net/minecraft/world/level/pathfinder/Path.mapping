@@ -1,0 +1,53 @@
+CLASS net/minecraft/world/level/pathfinder/Path
+	METHOD <init> (Ljava/util/List;Lnet/minecraft/core/BlockPos;Z)V
+		ARG 1 nodes
+		ARG 2 target
+		ARG 3 reached
+	METHOD advance ()V
+		COMMENT Directs this path to the next point in its array
+	METHOD createFromStream (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Path;
+		ARG 0 buf
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getEndNode ()Lnet/minecraft/world/level/pathfinder/Node;
+		COMMENT Returns the last {@link net.minecraft.world.level.pathfinder.Node} of the Array.
+	METHOD getEntityPosAtNode (Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/phys/Vec3;
+		COMMENT Gets the vector of the {@link net.minecraft.world.level.pathfinder.Node} associated with the given index.
+		ARG 1 entity
+		ARG 2 index
+	METHOD getNextEntityPos (Lnet/minecraft/world/entity/Entity;)Lnet/minecraft/world/phys/Vec3;
+		COMMENT @return the current {@code PathEntity} target node as a {@code Vec3D}
+		ARG 1 entity
+	METHOD getNode (I)Lnet/minecraft/world/level/pathfinder/Node;
+		COMMENT Returns the {@link net.minecraft.world.level.pathfinder.Node} located at the specified index, usually the current one.
+		ARG 1 index
+	METHOD getNodePos (I)Lnet/minecraft/core/BlockPos;
+		ARG 1 index
+	METHOD isDone ()Z
+		COMMENT Returns {@code true} if this path has reached the end
+	METHOD readNodeArray (Lnet/minecraft/network/FriendlyByteBuf;)[Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 0 buffer
+	METHOD replaceNode (ILnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 1 index
+		ARG 2 point
+	METHOD sameAs (Lnet/minecraft/world/level/pathfinder/Path;)Z
+		COMMENT Returns {@code true} if the EntityPath are the same. Non instance related equals.
+		ARG 1 pathEntity
+	METHOD setDebug ([Lnet/minecraft/world/level/pathfinder/Node;[Lnet/minecraft/world/level/pathfinder/Node;Ljava/util/Set;)V
+		ARG 1 openSet
+		ARG 2 closedSet
+		ARG 3 targetNodes
+	METHOD setNextNodeIndex (I)V
+		ARG 1 currentPathIndex
+	METHOD truncateNodes (I)V
+		ARG 1 length
+	METHOD writeNodeArray (Lnet/minecraft/network/FriendlyByteBuf;[Lnet/minecraft/world/level/pathfinder/Node;)V
+		ARG 0 buffer
+		ARG 1 nodeArray
+	METHOD writeToStream (Lnet/minecraft/network/FriendlyByteBuf;)V
+		ARG 1 buffer
+	CLASS DebugData
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/world/level/pathfinder/Path$DebugData;
+			ARG 0 buffer
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

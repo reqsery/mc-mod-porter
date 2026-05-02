@@ -1,0 +1,4 @@
+CLASS net/minecraft/server/jsonrpc/methods/RemoteRpcErrorException
+	METHOD <init> (Lcom/google/gson/JsonElement;Lcom/google/gson/JsonObject;)V
+		ARG 1 id
+		ARG 2 error

@@ -1,0 +1,8 @@
+CLASS net/minecraft/world/food/FoodProperties
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	CLASS Builder
+		METHOD nutrition (I)Lnet/minecraft/world/food/FoodProperties$Builder;
+			ARG 1 nutrition
+		METHOD saturationModifier (F)Lnet/minecraft/world/food/FoodProperties$Builder;
+			ARG 1 saturationModifier

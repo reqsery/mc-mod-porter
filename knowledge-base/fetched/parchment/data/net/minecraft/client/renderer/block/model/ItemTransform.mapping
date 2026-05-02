@@ -1,0 +1,15 @@
+CLASS net/minecraft/client/renderer/block/model/ItemTransform
+	METHOD apply (ZLcom/mojang/blaze3d/vertex/PoseStack$Pose;)V
+		ARG 1 leftHand
+		ARG 2 pose
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	CLASS Deserializer
+		METHOD deserialize (Lcom/google/gson/JsonElement;Ljava/lang/reflect/Type;Lcom/google/gson/JsonDeserializationContext;)Lnet/minecraft/client/renderer/block/model/ItemTransform;
+			ARG 1 json
+			ARG 2 type
+			ARG 3 context
+		METHOD getVector3f (Lcom/google/gson/JsonObject;Ljava/lang/String;Lorg/joml/Vector3f;)Lorg/joml/Vector3f;
+			ARG 1 json
+			ARG 2 key
+			ARG 3 fallback

@@ -1,0 +1,15 @@
+CLASS net/minecraft/util/valueproviders/IntProvider
+	METHOD codec (II)Lcom/mojang/serialization/Codec;
+		COMMENT Creates a codec for an IntProvider that only accepts numbers in the given range.
+		ARG 0 minInclusive
+		ARG 1 maxInclusive
+	METHOD sample (Lnet/minecraft/util/RandomSource;)I
+		ARG 1 random
+	METHOD validate (IILnet/minecraft/util/valueproviders/IntProvider;)Lcom/mojang/serialization/DataResult;
+		ARG 0 min
+		ARG 1 max
+		ARG 2 provider
+	METHOD validateCodec (IILcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 min
+		ARG 1 max
+		ARG 2 codec

@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/level/storage/loot/predicates/CompositeLootItemCondition
+	METHOD <init> (Ljava/util/List;Ljava/util/function/Predicate;)V
+		ARG 1 terms
+		ARG 2 composedPredicate
+	METHOD createCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
+		ARG 0 factory
+	METHOD createInlineCodec (Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+		ARG 0 factory
+	METHOD test (Lnet/minecraft/world/level/storage/loot/LootContext;)Z
+		ARG 1 context
+	CLASS Builder
+		METHOD <init> ([Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)V
+			ARG 1 conditions
+		METHOD addTerm (Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;)V
+			ARG 1 condition
+		METHOD create (Ljava/util/List;)Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition;
+			ARG 1 conditions

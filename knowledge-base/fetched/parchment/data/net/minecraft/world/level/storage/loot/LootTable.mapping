@@ -1,0 +1,62 @@
+CLASS net/minecraft/world/level/storage/loot/LootTable
+	METHOD <init> (Lnet/minecraft/util/context/ContextKeySet;Ljava/util/Optional;Ljava/util/List;Ljava/util/List;)V
+		ARG 1 paramSet
+		ARG 2 randomSequence
+		ARG 3 pools
+		ARG 4 functions
+	METHOD createStackSplitter (Lnet/minecraft/server/level/ServerLevel;Ljava/util/function/Consumer;)Ljava/util/function/Consumer;
+		ARG 0 level
+		ARG 1 output
+	METHOD fill (Lnet/minecraft/world/Container;Lnet/minecraft/world/level/storage/loot/LootParams;J)V
+		ARG 1 container
+		ARG 2 params
+		ARG 3 seed
+	METHOD getAvailableSlots (Lnet/minecraft/world/Container;Lnet/minecraft/util/RandomSource;)Ljava/util/List;
+		ARG 1 inventory
+		ARG 2 random
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		COMMENT Generate random items to a List.
+		ARG 1 context
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		COMMENT Generate random items to the given Consumer, ensuring they do not exceed their maximum stack size.
+		ARG 1 contextData
+		ARG 2 output
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		ARG 1 params
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;J)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		ARG 1 params
+		ARG 2 seed
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;JLjava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 seed
+		ARG 4 output
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;Ljava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 output
+	METHOD getRandomItems (Lnet/minecraft/world/level/storage/loot/LootParams;Lnet/minecraft/util/RandomSource;)Lit/unimi/dsi/fastutil/objects/ObjectArrayList;
+		ARG 1 params
+		ARG 2 random
+	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootContext;Ljava/util/function/Consumer;)V
+		COMMENT Generate items to the given Consumer, ignoring maximum stack size.
+		ARG 1 context
+		ARG 2 output
+	METHOD getRandomItemsRaw (Lnet/minecraft/world/level/storage/loot/LootParams;Ljava/util/function/Consumer;)V
+		ARG 1 params
+		ARG 2 output
+	METHOD lambda$static$4 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance
+	METHOD shuffleAndSplitItems (Lit/unimi/dsi/fastutil/objects/ObjectArrayList;ILnet/minecraft/util/RandomSource;)V
+		COMMENT Shuffles items by changing their order and splitting stacks
+		ARG 1 stacks
+		ARG 2 emptySlotsCount
+		ARG 3 random
+	METHOD validate (Lnet/minecraft/world/level/storage/loot/ValidationContext;)V
+		COMMENT Validate this LootTable using the given ValidationContext.
+		ARG 1 validator
+	CLASS Builder
+		METHOD setParamSet (Lnet/minecraft/util/context/ContextKeySet;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 paramSet
+		METHOD setRandomSequence (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 randomSequence
+		METHOD withPool (Lnet/minecraft/world/level/storage/loot/LootPool$Builder;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
+			ARG 1 lootPool

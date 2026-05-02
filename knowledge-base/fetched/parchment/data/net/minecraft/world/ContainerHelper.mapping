@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/ContainerHelper
+	METHOD clearOrCountMatchingItems (Lnet/minecraft/world/Container;Ljava/util/function/Predicate;IZ)I
+		COMMENT Clears items from the inventory matching a predicate.
+		COMMENT @return The amount of items cleared
+		ARG 0 container
+		ARG 1 itemPredicate
+		ARG 2 maxItems
+			COMMENT The maximum amount of items to be cleared. A negative value means unlimited and 0 means count how many items are found that could be cleared.
+		ARG 3 simulate
+	METHOD clearOrCountMatchingItems (Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Predicate;IZ)I
+		ARG 0 stack
+		ARG 1 itemPredicate
+		ARG 2 maxItems
+		ARG 3 simulate
+	METHOD loadAllItems (Lnet/minecraft/world/level/storage/ValueInput;Lnet/minecraft/core/NonNullList;)V
+		ARG 0 input
+		ARG 1 items
+	METHOD removeItem (Ljava/util/List;II)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stacks
+		ARG 1 index
+		ARG 2 amount
+	METHOD saveAllItems (Lnet/minecraft/world/level/storage/ValueOutput;Lnet/minecraft/core/NonNullList;)V
+		ARG 0 output
+		ARG 1 items
+	METHOD saveAllItems (Lnet/minecraft/world/level/storage/ValueOutput;Lnet/minecraft/core/NonNullList;Z)V
+		ARG 0 output
+		ARG 1 items
+		ARG 2 allowEmpty
+	METHOD takeItem (Ljava/util/List;I)Lnet/minecraft/world/item/ItemStack;
+		ARG 0 stacks
+		ARG 1 index

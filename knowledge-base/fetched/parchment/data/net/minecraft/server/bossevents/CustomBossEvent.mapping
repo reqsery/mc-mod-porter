@@ -1,0 +1,30 @@
+CLASS net/minecraft/server/bossevents/CustomBossEvent
+	METHOD <init> (Lnet/minecraft/resources/Identifier;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 id
+		ARG 2 name
+	METHOD addOfflinePlayer (Ljava/util/UUID;)V
+		ARG 1 player
+	METHOD addPlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Makes the boss visible to the given player.
+		ARG 1 player
+	METHOD lambda$getDisplayName$0 (Lnet/minecraft/network/chat/Style;)Lnet/minecraft/network/chat/Style;
+		ARG 1 style
+	METHOD load (Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/bossevents/CustomBossEvent$Packed;)Lnet/minecraft/server/bossevents/CustomBossEvent;
+		ARG 0 id
+		ARG 1 packed
+	METHOD onPlayerConnect (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD onPlayerDisconnect (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD removePlayer (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Makes the boss non-visible to the given player.
+		ARG 1 player
+	METHOD setMax (I)V
+		ARG 1 max
+	METHOD setPlayers (Ljava/util/Collection;)Z
+		ARG 1 serverPlayerList
+	METHOD setValue (I)V
+		ARG 1 value
+	CLASS Packed
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

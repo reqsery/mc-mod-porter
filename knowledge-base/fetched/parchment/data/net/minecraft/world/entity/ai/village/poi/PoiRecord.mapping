@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/entity/ai/village/poi/PoiRecord
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;ILjava/lang/Runnable;)V
+		ARG 1 pos
+		ARG 2 poiType
+		ARG 3 freeTickets
+		ARG 4 setDirty
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Holder;Ljava/lang/Runnable;)V
+		ARG 1 pod
+		ARG 2 poiType
+		ARG 3 setDirty
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	CLASS Packed
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD unpack (Ljava/lang/Runnable;)Lnet/minecraft/world/entity/ai/village/poi/PoiRecord;
+			ARG 1 setDirty

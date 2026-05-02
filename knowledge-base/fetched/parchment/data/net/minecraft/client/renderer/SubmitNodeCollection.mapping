@@ -1,0 +1,3 @@
+CLASS net/minecraft/client/renderer/SubmitNodeCollection
+	METHOD <init> (Lnet/minecraft/client/renderer/SubmitNodeStorage;)V
+		ARG 1 submitNodeStorage

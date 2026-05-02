@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/level/gameevent/PositionSourceType
+	FIELD BLOCK Lnet/minecraft/world/level/gameevent/PositionSourceType;
+		COMMENT This PositionSource type represents blocks within the world and a fixed position.
+	FIELD ENTITY Lnet/minecraft/world/level/gameevent/PositionSourceType;
+		COMMENT This PositionSource type represents an entity within the world. This source type will keep a reference to the entity itself.
+	METHOD register (Ljava/lang/String;Lnet/minecraft/world/level/gameevent/PositionSourceType;)Lnet/minecraft/world/level/gameevent/PositionSourceType;
+		COMMENT Registers a new PositionSource type with the game registry.
+		COMMENT @see net.minecraft.core.Registry#POSITION_SOURCE_TYPE
+		COMMENT @return The newly registered source type.
+		ARG 0 id
+			COMMENT The Id to register the type to.
+		ARG 1 type
+			COMMENT The type to register.

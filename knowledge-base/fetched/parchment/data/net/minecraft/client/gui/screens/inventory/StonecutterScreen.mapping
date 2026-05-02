@@ -1,0 +1,24 @@
+CLASS net/minecraft/client/gui/screens/inventory/StonecutterScreen
+	FIELD scrolling Z
+		COMMENT Is {@code true} if the player clicked on the scroll wheel in the GUI.
+	FIELD startIndex I
+		COMMENT The index of the first recipe to display.
+		COMMENT The number of recipes displayed at any time is 12 (4 recipes per row, and 3 rows). If the player scrolled down one row, this value would be 4 (representing the index of the first slot on the second row).
+	METHOD <init> (Lnet/minecraft/world/inventory/StonecutterMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 menu
+		ARG 2 playerInventory
+		ARG 3 title
+	METHOD containerChanged ()V
+		COMMENT Called every time this screen's container is changed (is marked as dirty).
+	METHOD renderButtons (Lnet/minecraft/client/gui/GuiGraphics;IIIII)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 x
+		ARG 5 y
+		ARG 6 lastVisibleElementIndex
+	METHOD renderRecipes (Lnet/minecraft/client/gui/GuiGraphics;III)V
+		ARG 1 guiGraphics
+		ARG 2 x
+		ARG 3 y
+		ARG 4 startIndex

@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/level/levelgen/structure/templatesystem/ProcessorRule
+	METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 inputPredicate
+		ARG 2 locPredicate
+		ARG 3 outputState
+	METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/levelgen/structure/templatesystem/PosRuleTest;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 inputPredicate
+		ARG 2 locPredicate
+		ARG 3 posPredicate
+		ARG 4 outputState
+	METHOD <init> (Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/levelgen/structure/templatesystem/RuleTest;Lnet/minecraft/world/level/levelgen/structure/templatesystem/PosRuleTest;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/levelgen/structure/templatesystem/rule/blockentity/RuleBlockEntityModifier;)V
+		ARG 1 inputPredicate
+		ARG 2 locPredicate
+		ARG 3 posPredicate
+		ARG 4 outputState
+		ARG 5 blockEntityModifier
+	METHOD getOutputTag (Lnet/minecraft/util/RandomSource;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/nbt/CompoundTag;
+		ARG 1 random
+		ARG 2 tag
+	METHOD test (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 1 inputState
+			COMMENT The incoming state from the structure.
+		ARG 2 existingState
+			COMMENT The current state in the world.
+		ARG 3 localPos
+			COMMENT The local position of the target state, relative to the structure origin.
+		ARG 4 relativePos
+			COMMENT The actual position of the target state. {@code existingState} is the current in world state at this position.
+		ARG 5 structurePos
+			COMMENT The origin position of the structure.
+		ARG 6 random

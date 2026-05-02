@@ -1,0 +1,33 @@
+CLASS net/minecraft/server/packs/repository/Pack
+	METHOD <init> (Lnet/minecraft/server/packs/PackLocationInfo;Lnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;Lnet/minecraft/server/packs/repository/Pack$Metadata;Lnet/minecraft/server/packs/PackSelectionConfig;)V
+		ARG 1 location
+		ARG 2 resources
+		ARG 3 metadata
+		ARG 4 selectionConfig
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD getChatLink (Z)Lnet/minecraft/network/chat/Component;
+		ARG 1 green
+			COMMENT used to indicate either a successful operation or datapack enabled status
+	METHOD readMetaAndCreate (Lnet/minecraft/server/packs/PackLocationInfo;Lnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;Lnet/minecraft/server/packs/PackType;Lnet/minecraft/server/packs/PackSelectionConfig;)Lnet/minecraft/server/packs/repository/Pack;
+		ARG 0 location
+		ARG 1 resources
+		ARG 2 packType
+		ARG 3 selectionConfig
+	METHOD readPackMetadata (Lnet/minecraft/server/packs/PackLocationInfo;Lnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;Lnet/minecraft/server/packs/metadata/pack/PackFormat;Lnet/minecraft/server/packs/PackType;)Lnet/minecraft/server/packs/repository/Pack$Metadata;
+		ARG 0 location
+		ARG 1 resources
+		ARG 2 format
+		ARG 3 packType
+	CLASS Position
+		METHOD insert (Ljava/util/List;Ljava/lang/Object;Ljava/util/function/Function;Z)I
+			ARG 1 list
+			ARG 2 element
+			ARG 3 packFactory
+			ARG 4 flipPosition
+	CLASS ResourcesSupplier
+		METHOD openFull (Lnet/minecraft/server/packs/PackLocationInfo;Lnet/minecraft/server/packs/repository/Pack$Metadata;)Lnet/minecraft/server/packs/PackResources;
+			ARG 1 location
+			ARG 2 metadata
+		METHOD openPrimary (Lnet/minecraft/server/packs/PackLocationInfo;)Lnet/minecraft/server/packs/PackResources;
+			ARG 1 location

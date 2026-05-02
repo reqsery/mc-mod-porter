@@ -1,0 +1,18 @@
+CLASS net/minecraft/network/ConnectionProtocol
+	COMMENT Describes the set of packets a connection understands at a given point.
+	COMMENT A connection always starts out in state {@link #HANDSHAKING}. In this state the client sends its desired protocol using
+	COMMENT {@link ClientIntentionPacket}. The server then either accepts the connection and switches to the desired protocol or it disconnects the client (for example in case of an outdated client).
+	COMMENT
+	COMMENT Each protocol has a {@link PacketListener} implementation tied to it for server and client respectively.
+	COMMENT
+	COMMENT Every packet must correspond to exactly one protocol.
+	FIELD HANDSHAKING Lnet/minecraft/network/ConnectionProtocol;
+		COMMENT The handshake protocol. This is the initial protocol, in which the client tells the server its intention (i.e. which protocol it wants to use).
+	FIELD LOGIN Lnet/minecraft/network/ConnectionProtocol;
+		COMMENT The login protocol. This is the first protocol the client switches to to join a server. It handles authentication with the mojang servers. After it is complete, the connection is switched to the PLAY protocol.
+	FIELD PLAY Lnet/minecraft/network/ConnectionProtocol;
+		COMMENT The play protocol. This is the main protocol that is used while "in game" and most normal packets reside in here.
+	FIELD STATUS Lnet/minecraft/network/ConnectionProtocol;
+		COMMENT The status protocol. This protocol is used when a client pings a server while on the multiplayer screen.
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+		ARG 3 id

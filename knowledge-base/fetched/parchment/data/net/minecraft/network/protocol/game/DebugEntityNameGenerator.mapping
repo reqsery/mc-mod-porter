@@ -1,0 +1,10 @@
+CLASS net/minecraft/network/protocol/game/DebugEntityNameGenerator
+	METHOD getEntityName (Ljava/util/UUID;)Ljava/lang/String;
+		ARG 0 uuid
+	METHOD getEntityName (Lnet/minecraft/world/entity/Entity;)Ljava/lang/String;
+		ARG 0 entity
+	METHOD getRandom (Ljava/util/UUID;)Lnet/minecraft/util/RandomSource;
+		ARG 0 uuid
+	METHOD getRandomString (Lnet/minecraft/util/RandomSource;[Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 random
+		ARG 1 strings

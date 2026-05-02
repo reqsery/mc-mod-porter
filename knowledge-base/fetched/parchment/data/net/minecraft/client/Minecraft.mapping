@@ -1,0 +1,181 @@
+CLASS net/minecraft/client/Minecraft
+	FIELD blockRenderer Lnet/minecraft/client/renderer/block/BlockRenderDispatcher;
+		COMMENT The BlockRenderDispatcher instance that will be used based off gamesettings
+	FIELD lastNanoTime J
+		COMMENT Time in nanoseconds of when the class is loaded
+	METHOD <init> (Lnet/minecraft/client/main/GameConfig;)V
+		ARG 1 gameConfig
+	METHOD addInitialScreens (Ljava/util/List;)Z
+		ARG 1 output
+	METHOD addResourcePackLoadFailToast (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 message
+	METHOD archiveProfilingReport (Lnet/minecraft/SystemReport;Ljava/util/List;)Ljava/nio/file/Path;
+		ARG 1 report
+		ARG 2 paths
+	METHOD buildInitialScreens (Lnet/minecraft/client/Minecraft$GameLoadCookie;)Ljava/lang/Runnable;
+		ARG 1 gameLoadCookie
+	METHOD clearClientLevel (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 nextScreen
+	METHOD clearResourcePacksOnError (Ljava/lang/Throwable;Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 throwable
+		ARG 2 errorMessage
+		ARG 3 gameLoadCookie
+	METHOD constructProfiler (ZLnet/minecraft/util/profiling/SingleTickProfiler;)Lnet/minecraft/util/profiling/ProfilerFiller;
+		ARG 1 renderFpsPie
+		ARG 2 singleTickProfiler
+	METHOD continueAttack (Z)V
+		ARG 1 leftClick
+	METHOD countryEqualsISO3 (Ljava/lang/Object;)Z
+		ARG 0 country
+	METHOD crash (Lnet/minecraft/client/Minecraft;Ljava/io/File;Lnet/minecraft/CrashReport;)V
+		ARG 0 minecraft
+		ARG 1 gameDirectory
+		ARG 2 crashReport
+	METHOD createUserApiService (Lcom/mojang/authlib/yggdrasil/YggdrasilAuthenticationService;Lnet/minecraft/client/main/GameConfig;)Lcom/mojang/authlib/minecraft/UserApiService;
+		ARG 1 authenticationService
+		ARG 2 gameConfig
+	METHOD debugClientMetricsStart (Ljava/util/function/Consumer;)Z
+		ARG 1 logger
+	METHOD delayCrash (Lnet/minecraft/CrashReport;)V
+		ARG 1 report
+	METHOD delayCrashRaw (Lnet/minecraft/CrashReport;)V
+		ARG 1 report
+	METHOD destroy ()V
+		COMMENT Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff. Called when the application (or web page) is exited.
+	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;Z)V
+		ARG 1 nextScreen
+		ARG 2 keepResourcePacks
+	METHOD disconnect (Lnet/minecraft/client/gui/screens/Screen;ZZ)V
+		ARG 1 nextScreen
+		ARG 2 keepResourcePacks
+		ARG 3 stopSounds
+	METHOD disconnectFromWorld (Lnet/minecraft/network/chat/Component;)V
+		ARG 1 reason
+	METHOD disconnectWithProgressScreen (Z)V
+		ARG 1 stopSounds
+	METHOD doWorldLoad (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Z)V
+		ARG 1 levelStorage
+		ARG 2 packRepository
+		ARG 3 worldStem
+		ARG 4 newWorld
+	METHOD emergencySave ()V
+		COMMENT Attempts to free as much memory as possible, including leaving the world and running the garbage collector.
+	METHOD emergencySaveAndCrash (Lnet/minecraft/CrashReport;)V
+		ARG 1 crashReport
+	METHOD fillReport (Lnet/minecraft/CrashReport;)Lnet/minecraft/CrashReport;
+		COMMENT Adds core server Info (GL version, Texture pack, isModded, type), and the worldInfo to the crash report.
+		ARG 1 theCrash
+	METHOD fillReport (Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/resources/language/LanguageManager;Ljava/lang/String;Lnet/minecraft/client/Options;Lnet/minecraft/CrashReport;)V
+		ARG 0 minecraft
+		ARG 1 languageManager
+		ARG 2 launchVersion
+		ARG 3 options
+		ARG 4 report
+	METHOD fillSystemReport (Lnet/minecraft/SystemReport;Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/resources/language/LanguageManager;Ljava/lang/String;Lnet/minecraft/client/Options;)Lnet/minecraft/SystemReport;
+		ARG 0 report
+		ARG 1 minecraft
+		ARG 2 languageManager
+		ARG 3 launchVersion
+		ARG 4 options
+	METHOD fillUptime (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 category
+	METHOD finishProfilers (ZLnet/minecraft/util/profiling/SingleTickProfiler;)V
+		ARG 1 renderFpsPie
+		ARG 2 profiler
+	METHOD formatSeconds (D)Ljava/lang/String;
+		ARG 0 seconds
+	METHOD getInstance ()Lnet/minecraft/client/Minecraft;
+		COMMENT Return the singleton Minecraft instance for the game
+	METHOD getLaunchedVersion ()Ljava/lang/String;
+		COMMENT Gets the version that Minecraft was launched under (the name of a version JSON). Specified via the <code>--version</code> flag.
+	METHOD getLevelSource ()Lnet/minecraft/world/level/storage/LevelStorageSource;
+		COMMENT Returns the save loader that is currently being used
+	METHOD getMusicManager ()Lnet/minecraft/client/sounds/MusicManager;
+		COMMENT Return the musicTicker's instance
+	METHOD getSingleplayerServer ()Lnet/minecraft/client/server/IntegratedServer;
+		COMMENT Returns the currently running integrated server
+	METHOD getTickTargetMillis (F)F
+		ARG 1 defaultValue
+	METHOD getVersionType ()Ljava/lang/String;
+		COMMENT Gets the type of version that Minecraft was launched under (as specified in the version JSON). Specified via the <code>--versionType</code> flag.
+	METHOD grabPanoramixScreenshot (Ljava/io/File;)Lnet/minecraft/network/chat/Component;
+		ARG 1 gameDirectory
+	METHOD hasSingleplayerServer ()Z
+		COMMENT Returns {@code true} if there is only one player playing, and the current server is the integrated one.
+	METHOD isBlocked (Ljava/util/UUID;)Z
+		ARG 1 playerUUID
+	METHOD isDemo ()Z
+		COMMENT Gets whether this is a demo or not.
+	METHOD isLocalPlayer (Ljava/util/UUID;)Z
+		ARG 1 uuid
+	METHOD onFullscreenError (IJ)V
+		ARG 1 error
+		ARG 2 description
+	METHOD onGameLoadFinished (Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 gameLoadCookie
+	METHOD onResourceLoadFinished (Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 gameLoadCookie
+	METHOD openChatScreen (Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V
+		ARG 1 chatMethod
+	METHOD pauseGame (Z)V
+		COMMENT Displays the in-game menu
+		ARG 1 pauseOnly
+	METHOD pickBlock ()V
+		COMMENT Called when user clicked he's mouse middle button (pick block)
+	METHOD reloadResourcePacks (ZLnet/minecraft/client/Minecraft$GameLoadCookie;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 error
+		ARG 2 gameLoadCookie
+	METHOD rollbackResourcePacks (Ljava/lang/Throwable;Lnet/minecraft/client/Minecraft$GameLoadCookie;)V
+		ARG 1 throwable
+		ARG 2 gameLoadCookie
+	METHOD runTick (Z)V
+		ARG 1 renderLevel
+	METHOD saveReport (Ljava/io/File;Lnet/minecraft/CrashReport;)I
+		ARG 0 file
+		ARG 1 crashReport
+	METHOD setCameraEntity (Lnet/minecraft/world/entity/Entity;)V
+		ARG 1 viewingEntity
+	METHOD setLastInputType (Lnet/minecraft/client/InputType;)V
+		ARG 1 lastInputType
+	METHOD setLevel (Lnet/minecraft/client/multiplayer/ClientLevel;)V
+		ARG 1 level
+	METHOD setOverlay (Lnet/minecraft/client/gui/screens/Overlay;)V
+		ARG 1 loadingGui
+	METHOD setScreen (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 guiScreen
+	METHOD setScreenAndShow (Lnet/minecraft/client/gui/screens/Screen;)V
+		ARG 1 screen
+	METHOD setWindowActive (Z)V
+		ARG 1 focused
+	METHOD shouldEntityAppearGlowing (Lnet/minecraft/world/entity/Entity;)Z
+		ARG 1 entity
+	METHOD shouldRun (Ljava/lang/Runnable;)Z
+		ARG 1 runnable
+	METHOD showOnlyReducedInfo ()Z
+		COMMENT Whether to use reduced debug info
+	METHOD startUseItem ()V
+		COMMENT Called when user clicked he's mouse right button (place)
+	METHOD stop ()V
+		COMMENT Called when the window is closing. Sets 'running' to false which allows the game loop to exit cleanly.
+	METHOD tick ()V
+		COMMENT Runs the current tick.
+	METHOD triggerResourcePackRecovery (Ljava/lang/Exception;)V
+		ARG 1 error
+	METHOD updateLevelInEngines (Lnet/minecraft/client/multiplayer/ClientLevel;)V
+		ARG 1 level
+	METHOD updateLevelInEngines (Lnet/minecraft/client/multiplayer/ClientLevel;Z)V
+		ARG 1 level
+		ARG 2 stopSounds
+	METHOD updateMaxMipLevel (I)V
+		ARG 1 mipMapLevel
+	METHOD updateReportEnvironment (Lnet/minecraft/client/multiplayer/chat/report/ReportEnvironment;)V
+		ARG 1 reportEnvironment
+	METHOD useAmbientOcclusion ()Z
+		COMMENT Returns if ambient occlusion is enabled
+	METHOD wrapRunnable (Ljava/lang/Runnable;)Ljava/lang/Runnable;
+		ARG 1 runnable
+	CLASS ChatStatus
+		METHOD <init> (Ljava/lang/String;ILnet/minecraft/network/chat/Component;)V
+			ARG 3 message
+		METHOD isChatAllowed (Z)Z
+			ARG 1 isLocalServer

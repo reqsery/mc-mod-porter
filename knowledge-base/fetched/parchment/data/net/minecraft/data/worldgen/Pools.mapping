@@ -1,0 +1,13 @@
+CLASS net/minecraft/data/worldgen/Pools
+	METHOD bootstrap (Lnet/minecraft/data/worldgen/BootstrapContext;)V
+		ARG 0 context
+	METHOD createKey (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
+		ARG 0 name
+	METHOD createKey (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+		ARG 0 location
+	METHOD parseKey (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
+		ARG 0 key
+	METHOD register (Lnet/minecraft/data/worldgen/BootstrapContext;Ljava/lang/String;Lnet/minecraft/world/level/levelgen/structure/pools/StructureTemplatePool;)V
+		ARG 0 context
+		ARG 1 name
+		ARG 2 pool

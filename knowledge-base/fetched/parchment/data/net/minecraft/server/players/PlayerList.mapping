@@ -1,0 +1,144 @@
+CLASS net/minecraft/server/players/PlayerList
+	FIELD playersByUUID Ljava/util/Map;
+		COMMENT A map containing the key-value pairs for UUIDs and their EntityPlayerMP objects.
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/core/LayeredRegistryAccess;Lnet/minecraft/world/level/storage/PlayerDataStorage;Lnet/minecraft/server/notifications/NotificationService;)V
+		ARG 1 server
+		ARG 2 registries
+		ARG 3 playerIo
+		ARG 4 notificationService
+	METHOD addWorldborderListener (Lnet/minecraft/server/level/ServerLevel;)V
+		ARG 1 level
+	METHOD broadcast (Lnet/minecraft/world/entity/player/Player;DDDDLnet/minecraft/resources/ResourceKey;Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 except
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 radius
+		ARG 10 dimension
+		ARG 11 packet
+	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;)V
+		ARG 1 packet
+	METHOD broadcastAll (Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/resources/ResourceKey;)V
+		ARG 1 packet
+		ARG 2 dimension
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Ljava/util/function/Predicate;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 shouldFilterMessageTo
+		ARG 3 sender
+		ARG 4 boundChatType
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 boundChatType
+	METHOD broadcastChatMessage (Lnet/minecraft/network/chat/PlayerChatMessage;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/network/chat/ChatType$Bound;)V
+		ARG 1 message
+		ARG 2 sender
+		ARG 3 boundChatType
+	METHOD broadcastSystemMessage (Lnet/minecraft/network/chat/Component;Ljava/util/function/Function;Z)V
+		ARG 1 serverMessage
+		ARG 2 playerMessageFactory
+		ARG 3 bypassHiddenChat
+	METHOD broadcastSystemMessage (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 message
+		ARG 2 bypassHiddenChat
+	METHOD broadcastSystemToAllExceptTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
+	METHOD broadcastSystemToTeam (Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 player
+		ARG 2 message
+	METHOD canBypassPlayerLimit (Lnet/minecraft/server/players/NameAndId;)Z
+		ARG 1 nameAndId
+	METHOD canPlayerLogin (Ljava/net/SocketAddress;Lnet/minecraft/server/players/NameAndId;)Lnet/minecraft/network/chat/Component;
+		ARG 1 address
+		ARG 2 nameAndId
+	METHOD deop (Lnet/minecraft/server/players/NameAndId;)V
+		ARG 1 nameAndId
+	METHOD disconnectAllPlayersWithProfile (Ljava/util/UUID;)Z
+		ARG 1 uuid
+	METHOD getMaxPlayers ()I
+		COMMENT Returns the maximum number of players allowed on the server.
+	METHOD getPlayer (Ljava/lang/String;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 name
+	METHOD getPlayer (Ljava/util/UUID;)Lnet/minecraft/server/level/ServerPlayer;
+		COMMENT Gets the ServerPlayer object representing the player with the UUID.
+		ARG 1 playerUUID
+	METHOD getPlayerAdvancements (Lnet/minecraft/server/level/ServerPlayer;)Lnet/minecraft/server/PlayerAdvancements;
+		ARG 1 player
+	METHOD getPlayerByName (Ljava/lang/String;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 username
+	METHOD getPlayerCount ()I
+		COMMENT Returns the number of players currently on the server.
+	METHOD getPlayerNamesArray ()[Ljava/lang/String;
+		COMMENT Returns an array of the usernames of all the connected players.
+	METHOD getPlayerStats (Lnet/minecraft/world/entity/player/Player;)Lnet/minecraft/stats/ServerStatsCounter;
+		ARG 1 player
+	METHOD getPlayersWithAddress (Ljava/lang/String;)Ljava/util/List;
+		ARG 1 address
+	METHOD getSingleplayerData ()Lnet/minecraft/nbt/CompoundTag;
+		COMMENT On integrated servers, returns the host's player data to be written to level.dat.
+	METHOD getViewDistance ()I
+		COMMENT Gets the view distance, in chunks.
+	METHOD isOp (Lnet/minecraft/server/players/NameAndId;)Z
+		ARG 1 nameAndId
+	METHOD isWhiteListed (Lnet/minecraft/server/players/NameAndId;)Z
+		ARG 1 nameAndId
+	METHOD loadPlayerData (Lnet/minecraft/server/players/NameAndId;)Ljava/util/Optional;
+		ARG 1 nameAndId
+	METHOD locateStatsFile (Lcom/mojang/authlib/GameProfile;)Ljava/nio/file/Path;
+		ARG 1 profile
+	METHOD op (Lnet/minecraft/server/players/NameAndId;)V
+		ARG 1 nameAndId
+	METHOD op (Lnet/minecraft/server/players/NameAndId;Ljava/util/Optional;Ljava/util/Optional;)V
+		ARG 1 nameAndId
+		ARG 2 permissionLevel
+		ARG 3 canBypassPlayerLimit
+	METHOD placeNewPlayer (Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V
+		ARG 1 connection
+		ARG 2 player
+		ARG 3 cookie
+	METHOD remove (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Called when a player disconnects from the game. Writes player data to disk and removes them from the world.
+		ARG 1 player
+	METHOD removeAll ()V
+		COMMENT Kicks everyone with "Server closed" as reason.
+	METHOD respawn (Lnet/minecraft/server/level/ServerPlayer;ZLnet/minecraft/world/entity/Entity$RemovalReason;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 player
+		ARG 2 keepInventory
+		ARG 3 reason
+	METHOD save (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Also stores the NBTTags if this is an IntegratedPlayerList.
+		ARG 1 player
+	METHOD saveAll ()V
+		COMMENT Saves all of the players' current states.
+	METHOD sendActiveEffects (Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/server/network/ServerGamePacketListenerImpl;)V
+		ARG 1 entity
+		ARG 2 connection
+	METHOD sendActivePlayerEffects (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD sendAllPlayerInfo (Lnet/minecraft/server/level/ServerPlayer;)V
+		COMMENT Sends the players inventory to himself.
+		ARG 1 player
+	METHOD sendLevelInfo (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/level/ServerLevel;)V
+		COMMENT Updates the time and weather for the given player to those of the given world
+		ARG 1 player
+		ARG 2 level
+	METHOD sendPlayerPermissionLevel (Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 player
+	METHOD sendPlayerPermissionLevel (Lnet/minecraft/server/level/ServerPlayer;I)V
+		ARG 1 player
+		ARG 2 permLevel
+	METHOD sendPlayerPermissionLevel (Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/permissions/LevelBasedPermissionSet;)V
+		ARG 1 player
+		ARG 2 permissions
+	METHOD setAllowCommandsForAllPlayers (Z)V
+		ARG 1 allowCommandsForAllPlayers
+	METHOD setSimulationDistance (I)V
+		ARG 1 simulationDistance
+	METHOD setViewDistance (I)V
+		ARG 1 viewDistance
+	METHOD updateEntireScoreboard (Lnet/minecraft/server/ServerScoreboard;Lnet/minecraft/server/level/ServerPlayer;)V
+		ARG 1 scoreboard
+		ARG 2 player
+	METHOD verifyChatTrusted (Lnet/minecraft/network/chat/PlayerChatMessage;)Z
+		ARG 1 message

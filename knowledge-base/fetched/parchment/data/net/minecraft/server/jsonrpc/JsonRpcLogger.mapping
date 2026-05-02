@@ -1,0 +1,5 @@
+CLASS net/minecraft/server/jsonrpc/JsonRpcLogger
+	METHOD log (Lnet/minecraft/server/jsonrpc/methods/ClientInfo;Ljava/lang/String;[Ljava/lang/Object;)V
+		ARG 1 clientInfo
+		ARG 2 message
+		ARG 3 args

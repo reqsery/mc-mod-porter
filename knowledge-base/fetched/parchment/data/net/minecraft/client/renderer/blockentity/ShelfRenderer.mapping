@@ -1,0 +1,10 @@
+CLASS net/minecraft/client/renderer/blockentity/ShelfRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD submitItem (Lnet/minecraft/client/renderer/blockentity/state/ShelfRenderState;Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;IF)V
+		ARG 1 shelfRenderState
+		ARG 2 itemStackRenderState
+		ARG 3 poseStack
+		ARG 4 nodeCollector
+		ARG 5 index
+		ARG 6 rotation

@@ -1,0 +1,8 @@
+CLASS net/minecraft/world/level/block/entity/BedBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 blockState
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/DyeColor;)V
+		ARG 1 pos
+		ARG 2 blockState
+		ARG 3 color

@@ -1,0 +1,94 @@
+CLASS net/minecraft/world/level/levelgen/structure/BoundingBox
+	COMMENT A simple three-dimensional mutable integer bounding box.
+	COMMENT Note that this box is both mutable, and has an implementation of {@code hashCode()} and {@code equals()}.
+	COMMENT This can be used as {@code HashMap} keys for example, if the user can ensure the instances themselves are not modified.
+	METHOD <init> (IIIIII)V
+		ARG 1 minX
+		ARG 2 minY
+		ARG 3 minZ
+		ARG 4 maxX
+		ARG 5 maxY
+		ARG 6 maxZ
+	METHOD <init> (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 pos
+	METHOD encapsulate (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Expands this box to be at least large enough to contain {@code pos}.
+		ARG 1 pos
+	METHOD encapsulate (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Expands this box to be at least large enough to contain {@code box}.
+		ARG 1 box
+	METHOD encapsulating (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 0 box1
+		ARG 1 box2
+	METHOD encapsulatingBoxes (Ljava/lang/Iterable;)Ljava/util/Optional;
+		ARG 0 boxes
+	METHOD encapsulatingPositions (Ljava/lang/Iterable;)Ljava/util/Optional;
+		ARG 0 positions
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD forAllCorners (Ljava/util/function/Consumer;)V
+		ARG 1 pos
+	METHOD fromCorners (Lnet/minecraft/core/Vec3i;Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 0 first
+		ARG 1 second
+	METHOD getCenter ()Lnet/minecraft/core/BlockPos;
+		COMMENT @return The center of this bounding box. Note in even-sized dimensions the center position will be offset in the positive direction.
+	METHOD getLength ()Lnet/minecraft/core/Vec3i;
+		COMMENT Returns a vector describing the dimensions of this bounding box.
+		COMMENT Note that unlike {@code getXSpan()}, {@code getYSpan()}, and {@code getZSpan()}, the length is interpreted here as the difference in coordinates. So a box over a 1x1x1 area, which still contains a single point, will report length zero.
+	METHOD getXSpan ()I
+		COMMENT @return The length of this bounding box along the x-axis.
+	METHOD getYSpan ()I
+		COMMENT @return The length of this bounding box along the y-axis.
+	METHOD getZSpan ()I
+		COMMENT @return The length of this bounding box along the z-axis.
+	METHOD inflatedBy (I)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Expands this box by a fixed {@code value} in all directions.
+		ARG 1 value
+	METHOD inflatedBy (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD intersects (IIII)Z
+		COMMENT @return {@code true} if this bounding box intersects the horizontal x/z region described by the min and max parameters.
+		ARG 1 minX
+		ARG 2 minZ
+		ARG 3 maxX
+		ARG 4 maxZ
+	METHOD intersects (Lnet/minecraft/world/level/levelgen/structure/BoundingBox;)Z
+		COMMENT @return {@code true} if {@code box} intersects this box.
+		ARG 1 box
+	METHOD isInside (III)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD isInside (Lnet/minecraft/core/Vec3i;)Z
+		COMMENT @return {@code true} if the bounding box contains the {@code vector}.
+		ARG 1 vector
+	METHOD lambda$static$1 (Ljava/util/stream/IntStream;)Lcom/mojang/serialization/DataResult;
+		ARG 0 stream
+	METHOD move (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Translates this box by the given coordinates, modifying the current box.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD move (Lnet/minecraft/core/Vec3i;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Translates this box by the given vector, modifying the current box.
+		ARG 1 vector
+	METHOD moved (III)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT @return A new bounding box equal to this box, translated by the given coordinates.
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD orientBox (IIIIIIIIILnet/minecraft/core/Direction;)Lnet/minecraft/world/level/levelgen/structure/BoundingBox;
+		COMMENT Create a bounding box with the specified dimensions and rotate it. Used to project a possible new component Bounding Box - to check if it would cut anything already spawned.
+		ARG 0 structureMinX
+		ARG 1 structureMinY
+		ARG 2 structureMinZ
+		ARG 3 xMin
+		ARG 4 yMin
+		ARG 5 zMin
+		ARG 6 xMax
+		ARG 7 yMax
+		ARG 8 zMax
+		ARG 9 facing

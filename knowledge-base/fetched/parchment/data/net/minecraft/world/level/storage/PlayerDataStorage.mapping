@@ -1,0 +1,14 @@
+CLASS net/minecraft/world/level/storage/PlayerDataStorage
+	METHOD <init> (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;)V
+		ARG 1 levelStorageAccess
+		ARG 2 fixerUpper
+	METHOD backup (Lnet/minecraft/server/players/NameAndId;Ljava/lang/String;)V
+		ARG 1 nameAndId
+		ARG 2 suffix
+	METHOD load (Lnet/minecraft/server/players/NameAndId;)Ljava/util/Optional;
+		ARG 1 nameAndId
+	METHOD load (Lnet/minecraft/server/players/NameAndId;Ljava/lang/String;)Ljava/util/Optional;
+		ARG 1 nameAndId
+		ARG 2 suffix
+	METHOD save (Lnet/minecraft/world/entity/player/Player;)V
+		ARG 1 player

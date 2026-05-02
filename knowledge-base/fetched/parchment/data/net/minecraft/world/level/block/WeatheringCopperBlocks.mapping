@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/level/block/WeatheringCopperBlocks
+	METHOD create (Ljava/lang/String;Lorg/apache/commons/lang3/function/TriFunction;Ljava/util/function/Function;Ljava/util/function/BiFunction;Ljava/util/function/Function;)Lnet/minecraft/world/level/block/WeatheringCopperBlocks;
+		ARG 0 id
+		ARG 1 register
+		ARG 2 waxedBlockGetter
+		ARG 3 weatheredBlockGetter
+		ARG 4 propertiesGetter
+	METHOD forEach (Ljava/util/function/Consumer;)V
+		ARG 1 action

@@ -1,0 +1,18 @@
+CLASS net/minecraft/client/particle/ParticleResources
+	METHOD loadParticleDescription (Lnet/minecraft/resources/Identifier;Lnet/minecraft/server/packs/resources/Resource;)Ljava/util/Optional;
+		ARG 1 location
+		ARG 2 resource
+	METHOD onReload (Ljava/lang/Runnable;)V
+		ARG 1 onReload
+	METHOD register (Lnet/minecraft/core/particles/ParticleType;Lnet/minecraft/client/particle/ParticleProvider;)V
+		ARG 1 type
+		ARG 2 provider
+	METHOD register (Lnet/minecraft/core/particles/ParticleType;Lnet/minecraft/client/particle/ParticleResources$SpriteParticleRegistration;)V
+		ARG 1 type
+		ARG 2 registration
+	CLASS MutableSpriteSet
+		METHOD rebind (Ljava/util/List;)V
+			ARG 1 sprites
+	CLASS SpriteParticleRegistration
+		METHOD create (Lnet/minecraft/client/particle/SpriteSet;)Lnet/minecraft/client/particle/ParticleProvider;
+			ARG 1 spriteSet

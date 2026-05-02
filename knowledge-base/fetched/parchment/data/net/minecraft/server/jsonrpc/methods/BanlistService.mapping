@@ -1,0 +1,30 @@
+CLASS net/minecraft/server/jsonrpc/methods/BanlistService
+	METHOD add (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 entries
+		ARG 2 clientInfo
+	METHOD clear (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 clientInfo
+	METHOD get (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;)Ljava/util/List;
+		ARG 0 api
+	METHOD remove (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 players
+		ARG 2 clientInfo
+	METHOD set (Lnet/minecraft/server/jsonrpc/internalapi/MinecraftApi;Ljava/util/List;Lnet/minecraft/server/jsonrpc/methods/ClientInfo;)Ljava/util/List;
+		ARG 0 api
+		ARG 1 entries
+		ARG 2 clientInfo
+	CLASS UserBan
+		METHOD from (Lnet/minecraft/server/players/UserBanListEntry;)Lnet/minecraft/server/jsonrpc/methods/BanlistService$UserBan;
+			ARG 0 entry
+	CLASS UserBanDto
+		METHOD from (Lnet/minecraft/server/jsonrpc/methods/BanlistService$UserBan;)Lnet/minecraft/server/jsonrpc/methods/BanlistService$UserBanDto;
+			ARG 0 ban
+		METHOD from (Lnet/minecraft/server/players/UserBanListEntry;)Lnet/minecraft/server/jsonrpc/methods/BanlistService$UserBanDto;
+			ARG 0 entry
+		METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance
+		METHOD toUserBan (Lnet/minecraft/server/players/NameAndId;)Lnet/minecraft/server/jsonrpc/methods/BanlistService$UserBan;
+			ARG 1 nameAndId

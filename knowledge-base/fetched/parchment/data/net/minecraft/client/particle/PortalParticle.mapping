@@ -1,0 +1,12 @@
+CLASS net/minecraft/client/particle/PortalParticle
+	METHOD getLightColor (F)I
+		ARG 1 partialTick
+	METHOD getQuadSize (F)F
+		ARG 1 scaleFactor
+	METHOD move (DDD)V
+		ARG 1 x
+		ARG 3 y
+		ARG 5 z
+	CLASS Provider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprite

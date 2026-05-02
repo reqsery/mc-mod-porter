@@ -1,0 +1,146 @@
+CLASS net/minecraft/client/sounds/SoundEngine
+	COMMENT The {@code SoundEngine} class handles the management and playback of sounds in the game.
+	FIELD DEFAULT_DEVICE_CHECK_INTERVAL_MS J
+		COMMENT The default interval in milliseconds for checking the audio device state
+	FIELD MARKER Lorg/slf4j/Marker;
+		COMMENT The marker used for logging
+	FIELD ONLY_WARN_ONCE Ljava/util/Set;
+		COMMENT A set of resource locations for which a missing sound warning has been issued
+	FIELD devicePoolState Ljava/util/concurrent/atomic/AtomicReference;
+		COMMENT The current state of the audio device check
+	FIELD listener Lcom/mojang/blaze3d/audio/Listener;
+		COMMENT The listener object responsible for managing the sound listener position and orientation
+	FIELD loaded Z
+		COMMENT Set to true when the SoundManager has been initialised.
+	FIELD options Lnet/minecraft/client/Options;
+		COMMENT Reference to the GameSettings object.
+	FIELD queuedSounds Ljava/util/Map;
+		COMMENT Contains sounds to play in n ticks. Type: HashMap<ISound, Integer>
+	FIELD soundDeleteTime Ljava/util/Map;
+		COMMENT The future time in which to stop this sound. Type: HashMap<String, Integer>
+	FIELD soundManager Lnet/minecraft/client/sounds/SoundManager;
+		COMMENT A reference to the sound handler.
+	FIELD tickCount I
+		COMMENT A counter for how long the sound manager has been running
+	FIELD tickingSounds Ljava/util/List;
+		COMMENT A subset of playingSounds, this contains only {@linkplain TickableSoundInstance}
+	METHOD <init> (Lnet/minecraft/client/sounds/MusicManager;Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
+		ARG 1 musicManager
+		ARG 2 soundManager
+		ARG 3 options
+		ARG 4 resourceManager
+	METHOD <init> (Lnet/minecraft/client/sounds/SoundManager;Lnet/minecraft/client/Options;Lnet/minecraft/server/packs/resources/ResourceProvider;)V
+		ARG 1 soundManager
+		ARG 2 options
+		ARG 3 resourceManager
+	METHOD addEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD calculatePitch (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
+		COMMENT Calculates the pitch of the sound being played.
+		COMMENT <p>
+		COMMENT Clamps the sound between 0.5f and 2.0f.
+		ARG 1 sound
+			COMMENT the {@linkplain SoundInstance} being played
+	METHOD calculateVolume (FLnet/minecraft/sounds/SoundSource;)F
+		COMMENT Calculates the volume of the sound being played.
+		COMMENT <p>
+		COMMENT Clamps the sound between 0.0f and 1.0f.
+		ARG 1 volumeMultiplier
+		ARG 2 source
+	METHOD calculateVolume (Lnet/minecraft/client/resources/sounds/SoundInstance;)F
+		COMMENT Calculates the volume for the sound being played.
+		COMMENT <p>
+		COMMENT Delegates to {@code #calculateVolume(float, SoundSource)}
+		ARG 1 sound
+	METHOD destroy ()V
+		COMMENT Cleans up the Sound System
+	METHOD isActive (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		COMMENT {@return {@code true} if the {@linkplain SoundInstance} is active, {@code false} otherwise}
+		ARG 1 sound
+			COMMENT the SoundInstance to check
+	METHOD lambda$setVolume$2 (FLnet/minecraft/client/resources/sounds/SoundInstance;Lcom/mojang/blaze3d/audio/Channel;)V
+		ARG 3 channel
+	METHOD lambda$updateCategoryVolume$0 (FLcom/mojang/blaze3d/audio/Channel;)V
+		ARG 1 channel
+	METHOD lambda$updateCategoryVolume$1 (Lnet/minecraft/client/resources/sounds/SoundInstance;Lnet/minecraft/client/sounds/ChannelAccess$ChannelHandle;)V
+		ARG 1 instance
+		ARG 2 source
+	METHOD loadLibrary ()V
+		COMMENT Loads the sound library if it has not been loaded already.
+		COMMENT If loading is successful, the library is initialized, and the sound engine is started, otherwise, an error message is logged, and sounds and music are turned off.
+	METHOD pauseAllExcept ([Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 soundSources
+	METHOD play (Lnet/minecraft/client/resources/sounds/SoundInstance;)Lnet/minecraft/client/sounds/SoundEngine$PlayResult;
+		ARG 1 sound
+	METHOD playDelayed (Lnet/minecraft/client/resources/sounds/SoundInstance;I)V
+		COMMENT Adds a sound to play in n ticks
+		ARG 1 sound
+		ARG 2 delay
+	METHOD queueTickingSound (Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V
+		COMMENT Queues a new {@linkplain TickingCodeInstance}
+		ARG 1 tickableSound
+			COMMENT the {@linkplain TickableSoundInstance} to queue
+	METHOD refreshCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 source
+	METHOD reload ()V
+		COMMENT Reloads the sound engine.
+		COMMENT <p>
+		COMMENT This method clears the warning set, checks for missing sound events, destroys the current sound system, and reloads the library.
+	METHOD removeEventListener (Lnet/minecraft/client/sounds/SoundEventListener;)V
+		ARG 1 listener
+	METHOD requestPreload (Lnet/minecraft/client/resources/sounds/Sound;)V
+		COMMENT Requests a specific {@linkplain Sound} instance to be preloaded.
+		ARG 1 sound
+	METHOD requiresManualLooping (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		COMMENT {@return Returns {@code true} if the SoundInstance requires manual looping, {@code false} otherwise
+		ARG 0 sound
+			COMMENT the SoundInstance to check
+	METHOD resume ()V
+		COMMENT Resumes playing all currently playing sounds (after pauseAllSounds)
+	METHOD setVolume (Lnet/minecraft/client/resources/sounds/SoundInstance;F)V
+		ARG 1 soundInstance
+		ARG 2 volume
+	METHOD shouldChangeDevice ()Z
+		COMMENT The audio device change is checked by this method.
+		COMMENT <p>
+		COMMENT If the current audio device is disconnected, an informational message is logged, and this method returns {@code true} to indicate a change is needed.
+		COMMENT <p>
+		COMMENT Otherwise, the elapsed time since the last device check is examined.
+		COMMENT If the elapsed time is greater than or equal to 1000 milliseconds, the device check is performed.
+		COMMENT <p>
+		COMMENT During the device check, the current device state is compared with the preferred sound device specified in the options.
+		COMMENT <ul>
+		COMMENT   <li>If the preferred sound device is an empty string and the system default audio device has changed, an informational message is logged, and the device pool state is set to indicate a change has been detected.</li>
+		COMMENT   <li>If the preferred sound device is not an empty string, it is checked whether the current device name is different from the preferred device name and if the preferred device is available in the list of available sound devices. </li>
+		COMMENT   <li>If both conditions are true, an informational message is logged, and the device pool state is set to indicate a change has been detected.</li>
+		COMMENT </ul>
+		COMMENT <p>
+		COMMENT Finally, the device pool state is set to indicate that the device check is complete.
+		COMMENT <p>
+		COMMENT @return {@code true} if a change in the audio device is needed, {@code false} otherwise.
+	METHOD shouldLoopAutomatically (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		COMMENT @return Returns {@code true} if the SoundInstance should loop automatically, {@code false} otherwise
+		ARG 0 sound
+			COMMENT The SoundInstance to check
+	METHOD shouldLoopManually (Lnet/minecraft/client/resources/sounds/SoundInstance;)Z
+		COMMENT @return Returns {@code true} if the SoundInstance should loop manually, {@code false} otherwise
+		ARG 0 sound
+			COMMENT The SoundInstance to check
+	METHOD stop (Lnet/minecraft/client/resources/sounds/SoundInstance;)V
+		COMMENT Stops the provided {@linkplain SoundInstance} from continuing to play.
+		ARG 1 sound
+	METHOD stop (Lnet/minecraft/resources/Identifier;Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 soundName
+		ARG 2 category
+	METHOD stopAll ()V
+		COMMENT Stops all currently playing sounds
+	METHOD tick (Z)V
+		COMMENT Ticks all active instances of  {@code TickableSoundInstance}
+		ARG 1 isGamePaused
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;)V
+		ARG 1 category
+	METHOD updateCategoryVolume (Lnet/minecraft/sounds/SoundSource;F)V
+		ARG 1 source
+		ARG 2 value
+	METHOD updateSource (Lnet/minecraft/client/Camera;)V
+		ARG 1 renderInfo

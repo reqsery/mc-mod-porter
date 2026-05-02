@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/levelgen/PositionalRandomFactory
+	METHOD at (III)Lnet/minecraft/util/RandomSource;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD at (Lnet/minecraft/core/BlockPos;)Lnet/minecraft/util/RandomSource;
+		ARG 1 pos
+	METHOD fromHashOf (Ljava/lang/String;)Lnet/minecraft/util/RandomSource;
+		ARG 1 name
+	METHOD fromHashOf (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/util/RandomSource;
+		ARG 1 name
+	METHOD fromSeed (J)Lnet/minecraft/util/RandomSource;
+		ARG 1 seed
+	METHOD parityConfigString (Ljava/lang/StringBuilder;)V
+		ARG 1 builder

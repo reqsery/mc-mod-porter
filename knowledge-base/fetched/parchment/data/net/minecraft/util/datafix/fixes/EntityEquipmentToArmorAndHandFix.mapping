@@ -1,0 +1,8 @@
+CLASS net/minecraft/util/datafix/fixes/EntityEquipmentToArmorAndHandFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
+		ARG 1 outputSchema
+	METHOD cap (Lcom/mojang/datafixers/types/Type;Lcom/mojang/datafixers/types/Type;)Lcom/mojang/datafixers/TypeRewriteRule;
+		ARG 1 oldItemStackType
+		ARG 2 newItemStackType
+	METHOD fixDropChances (Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic;
+		ARG 0 data

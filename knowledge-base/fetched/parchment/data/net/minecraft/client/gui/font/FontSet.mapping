@@ -1,0 +1,31 @@
+CLASS net/minecraft/client/gui/font/FontSet
+	METHOD <init> (Lnet/minecraft/client/gui/font/GlyphStitcher;)V
+		ARG 1 stitcher
+	METHOD computeGlyphInfo (I)Lnet/minecraft/client/gui/font/FontSet$SelectedGlyphs;
+		ARG 1 character
+	METHOD getGlyph (I)Lnet/minecraft/client/gui/font/FontSet$SelectedGlyphs;
+		ARG 1 character
+	METHOD getRandomGlyph (Lnet/minecraft/util/RandomSource;I)Lnet/minecraft/client/gui/font/glyphs/BakedGlyph;
+		ARG 1 random
+		ARG 2 width
+	METHOD hasFishyAdvance (Lcom/mojang/blaze3d/font/GlyphInfo;)Z
+		ARG 0 glyph
+	METHOD reload (Ljava/util/List;Ljava/util/Set;)V
+		ARG 1 allProviders
+		ARG 2 options
+	METHOD reload (Ljava/util/Set;)V
+		ARG 1 options
+	METHOD selectProviders (Ljava/util/List;Ljava/util/Set;)Ljava/util/List;
+		ARG 1 providers
+		ARG 2 options
+	METHOD source (Z)Lnet/minecraft/client/gui/GlyphSource;
+		ARG 1 filterFishyGlyphs
+	CLASS Source
+		METHOD <init> (Lnet/minecraft/client/gui/font/FontSet;Z)V
+			ARG 2 filterFishyGlyphs
+	CLASS DelayedBake
+		METHOD <init> (Lnet/minecraft/client/gui/font/FontSet;Lcom/mojang/blaze3d/font/UnbakedGlyph;)V
+			ARG 2 unbaked
+	CLASS SelectedGlyphs
+		METHOD select (Z)Ljava/util/function/Supplier;
+			ARG 1 filterFishy

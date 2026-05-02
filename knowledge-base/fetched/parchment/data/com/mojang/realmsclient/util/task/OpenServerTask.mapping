@@ -1,0 +1,6 @@
+CLASS com/mojang/realmsclient/util/task/OpenServerTask
+	METHOD <init> (Lcom/mojang/realmsclient/dto/RealmsServer;Lnet/minecraft/client/gui/screens/Screen;ZLnet/minecraft/client/Minecraft;)V
+		ARG 1 serverData
+		ARG 2 returnScreen
+		ARG 3 join
+		ARG 4 minecraft

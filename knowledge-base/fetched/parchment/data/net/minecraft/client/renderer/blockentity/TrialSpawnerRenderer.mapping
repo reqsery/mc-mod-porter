@@ -1,0 +1,10 @@
+CLASS net/minecraft/client/renderer/blockentity/TrialSpawnerRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD extractSpawnerData (Lnet/minecraft/client/renderer/blockentity/state/SpawnerRenderState;FLnet/minecraft/world/entity/Entity;Lnet/minecraft/client/renderer/entity/EntityRenderDispatcher;DD)V
+		ARG 0 renderState
+		ARG 1 partialTick
+		ARG 2 entity
+		ARG 3 entityRenderer
+		ARG 4 oSpin
+		ARG 6 spin

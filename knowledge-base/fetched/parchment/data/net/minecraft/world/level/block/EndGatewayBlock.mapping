@@ -1,0 +1,4 @@
+CLASS net/minecraft/world/level/block/EndGatewayBlock
+	METHOD canBeReplaced (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/Fluid;)Z
+		ARG 1 state
+		ARG 2 fluid

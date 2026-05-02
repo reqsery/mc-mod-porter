@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/renderer/CubeMap
+	METHOD <init> (Lnet/minecraft/resources/Identifier;)V
+		ARG 1 baseImageLocation
+	METHOD registerTextures (Lnet/minecraft/client/renderer/texture/TextureManager;)V
+		ARG 1 textureManager
+	METHOD render (Lnet/minecraft/client/Minecraft;FF)V
+		ARG 1 minecraft
+		ARG 2 xRot
+		ARG 3 yRot

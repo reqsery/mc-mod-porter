@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/particle/ElderGuardianParticleGroup
+	CLASS ElderGuardianParticleRenderState
+		METHOD fromParticle (Lnet/minecraft/client/particle/ElderGuardianParticle;Lnet/minecraft/client/Camera;F)Lnet/minecraft/client/particle/ElderGuardianParticleGroup$ElderGuardianParticleRenderState;
+			ARG 0 particle
+			ARG 1 camera
+			ARG 2 partialTick

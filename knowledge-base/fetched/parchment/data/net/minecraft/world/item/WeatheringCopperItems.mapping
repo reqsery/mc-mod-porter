@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/item/WeatheringCopperItems
+	METHOD create (Lnet/minecraft/world/level/block/WeatheringCopperBlocks;Ljava/util/function/Function;)Lnet/minecraft/world/item/WeatheringCopperItems;
+		ARG 0 blocks
+		ARG 1 itemGetter
+	METHOD forEach (Ljava/util/function/Consumer;)V
+		ARG 1 action

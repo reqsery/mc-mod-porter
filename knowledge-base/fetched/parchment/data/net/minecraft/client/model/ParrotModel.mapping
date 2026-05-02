@@ -1,0 +1,7 @@
+CLASS net/minecraft/client/model/ParrotModel
+	METHOD <init> (Lnet/minecraft/client/model/geom/ModelPart;)V
+		ARG 1 root
+	METHOD getPose (Lnet/minecraft/world/entity/animal/Parrot;)Lnet/minecraft/client/model/ParrotModel$Pose;
+		ARG 0 parrot
+	METHOD prepare (Lnet/minecraft/client/model/ParrotModel$Pose;)V
+		ARG 1 pose

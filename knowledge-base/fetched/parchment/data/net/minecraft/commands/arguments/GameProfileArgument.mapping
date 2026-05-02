@@ -1,0 +1,23 @@
+CLASS net/minecraft/commands/arguments/GameProfileArgument
+	METHOD getGameProfiles (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/util/Collection;
+		ARG 0 context
+		ARG 1 name
+	METHOD lambda$parse$0 (Ljava/lang/String;Lnet/minecraft/commands/CommandSourceStack;)Ljava/util/Collection;
+		ARG 1 source
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 context
+		ARG 2 builder
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/commands/arguments/GameProfileArgument$Result;
+		ARG 1 reader
+	METHOD parse (Lcom/mojang/brigadier/StringReader;Ljava/lang/Object;)Lnet/minecraft/commands/arguments/GameProfileArgument$Result;
+		ARG 1 reader
+		ARG 2 suggestionProvider
+	METHOD parse (Lcom/mojang/brigadier/StringReader;Z)Lnet/minecraft/commands/arguments/GameProfileArgument$Result;
+		ARG 0 reader
+		ARG 1 allowSelectors
+	CLASS Result
+		METHOD getNames (Lnet/minecraft/commands/CommandSourceStack;)Ljava/util/Collection;
+			ARG 1 source
+	CLASS SelectorResult
+		METHOD <init> (Lnet/minecraft/commands/arguments/selector/EntitySelector;)V
+			ARG 1 selector

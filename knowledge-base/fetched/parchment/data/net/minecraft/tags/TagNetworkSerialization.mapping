@@ -1,0 +1,21 @@
+CLASS net/minecraft/tags/TagNetworkSerialization
+	METHOD deserializeTagsFromNetwork (Lnet/minecraft/core/Registry;Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;)Lnet/minecraft/tags/TagLoader$LoadResult;
+		ARG 0 registry
+		ARG 1 payload
+	METHOD lambda$serializeTagsToNetwork$0 (Lnet/minecraft/core/RegistryAccess$RegistryEntry;)Lcom/mojang/datafixers/util/Pair;
+		ARG 0 registry
+	METHOD lambda$serializeTagsToNetwork$1 (Lcom/mojang/datafixers/util/Pair;)Z
+		ARG 0 pair
+	METHOD serializeTagsToNetwork (Lnet/minecraft/core/LayeredRegistryAccess;)Ljava/util/Map;
+		ARG 0 registryAccess
+	METHOD serializeToNetwork (Lnet/minecraft/core/Registry;)Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;
+		ARG 0 registry
+	CLASS NetworkPayload
+		METHOD <init> (Ljava/util/Map;)V
+			ARG 1 tags
+		METHOD read (Lnet/minecraft/network/FriendlyByteBuf;)Lnet/minecraft/tags/TagNetworkSerialization$NetworkPayload;
+			ARG 0 buffer
+		METHOD resolve (Lnet/minecraft/core/Registry;)Lnet/minecraft/tags/TagLoader$LoadResult;
+			ARG 1 registry
+		METHOD write (Lnet/minecraft/network/FriendlyByteBuf;)V
+			ARG 1 buffer

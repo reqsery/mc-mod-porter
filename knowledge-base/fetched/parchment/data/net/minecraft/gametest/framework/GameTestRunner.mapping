@@ -1,0 +1,44 @@
+CLASS net/minecraft/gametest/framework/GameTestRunner
+	METHOD <init> (Lnet/minecraft/gametest/framework/GameTestRunner$GameTestBatcher;Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/gametest/framework/GameTestTicker;Lnet/minecraft/gametest/framework/GameTestRunner$StructureSpawner;Lnet/minecraft/gametest/framework/GameTestRunner$StructureSpawner;ZZ)V
+		ARG 1 testBatcher
+		ARG 2 batches
+		ARG 3 level
+		ARG 4 testTicker
+		ARG 5 existingStructureSpawner
+		ARG 6 newStructureSpawner
+		ARG 7 haltOnError
+		ARG 8 clearBetweenBatches
+	METHOD addListener (Lnet/minecraft/gametest/framework/GameTestBatchListener;)V
+		ARG 1 listener
+	METHOD createStructuresForBatch (Ljava/util/Collection;)Ljava/util/Collection;
+		ARG 1 batch
+	METHOD rerunTest (Lnet/minecraft/gametest/framework/GameTestInfo;)V
+		ARG 1 test
+	METHOD runBatch (I)V
+		ARG 1 index
+	METHOD spawn (Lnet/minecraft/gametest/framework/GameTestInfo;)Ljava/util/Optional;
+		ARG 1 test
+	CLASS Builder
+		METHOD <init> (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;)V
+			ARG 1 batches
+			ARG 2 level
+		METHOD batcher (Lnet/minecraft/gametest/framework/GameTestRunner$GameTestBatcher;)Lnet/minecraft/gametest/framework/GameTestRunner$Builder;
+			ARG 1 batcher
+		METHOD existingStructureSpawner (Lnet/minecraft/gametest/framework/StructureGridSpawner;)Lnet/minecraft/gametest/framework/GameTestRunner$Builder;
+			ARG 1 existingStructureSpawner
+		METHOD fromBatches (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/gametest/framework/GameTestRunner$Builder;
+			ARG 0 batches
+			ARG 1 level
+		METHOD fromInfo (Ljava/util/Collection;Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/gametest/framework/GameTestRunner$Builder;
+			ARG 0 infos
+			ARG 1 level
+		METHOD newStructureSpawner (Lnet/minecraft/gametest/framework/GameTestRunner$StructureSpawner;)Lnet/minecraft/gametest/framework/GameTestRunner$Builder;
+			ARG 1 newStructureSpawner
+	CLASS GameTestBatcher
+		METHOD batch (Ljava/util/Collection;)Ljava/util/Collection;
+			ARG 1 infos
+	CLASS StructureSpawner
+		METHOD onBatchStart (Lnet/minecraft/server/level/ServerLevel;)V
+			ARG 1 level
+		METHOD spawnStructure (Lnet/minecraft/gametest/framework/GameTestInfo;)Ljava/util/Optional;
+			ARG 1 gameTestInfo

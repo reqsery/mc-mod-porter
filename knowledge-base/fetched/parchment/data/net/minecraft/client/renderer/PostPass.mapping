@@ -1,0 +1,21 @@
+CLASS net/minecraft/client/renderer/PostPass
+	METHOD <init> (Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;Ljava/util/Map;Ljava/util/List;)V
+		ARG 1 pipeline
+		ARG 2 outputTargetId
+		ARG 3 uniforms
+		ARG 4 inputs
+	METHOD addToFrame (Lcom/mojang/blaze3d/framegraph/FrameGraphBuilder;Ljava/util/Map;Lcom/mojang/blaze3d/buffers/GpuBufferSlice;)V
+		ARG 1 frameGraphBuilder
+		ARG 2 targets
+		ARG 3 projectionMatrixBuffer
+	CLASS Input
+		METHOD addToPass (Lcom/mojang/blaze3d/framegraph/FramePass;Ljava/util/Map;)V
+			ARG 1 pass
+			ARG 2 targets
+		METHOD cleanup (Ljava/util/Map;)V
+			ARG 1 targets
+		METHOD texture (Ljava/util/Map;)Lcom/mojang/blaze3d/textures/GpuTextureView;
+			ARG 1 targets
+	CLASS TargetInput
+		METHOD getHandle (Ljava/util/Map;)Lcom/mojang/blaze3d/resource/ResourceHandle;
+			ARG 1 targets

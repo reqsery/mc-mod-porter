@@ -1,0 +1,63 @@
+CLASS net/minecraft/world/entity/monster/Phantom
+	METHOD canAttack (Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;)Z
+		ARG 1 level
+		ARG 2 entity
+		ARG 3 targetingConditions
+	METHOD canAttackType (Lnet/minecraft/world/entity/EntityType;)Z
+		ARG 1 type
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getSoundVolume ()F
+		COMMENT Returns the volume for the sounds this mob makes.
+	METHOD onSyncedDataUpdated (Lnet/minecraft/network/syncher/EntityDataAccessor;)V
+		ARG 1 key
+	METHOD setPhantomSize (I)V
+		ARG 1 phantomSize
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.
+	CLASS PhantomLookControl
+		METHOD tick ()V
+			COMMENT Updates look
+	CLASS PhantomMoveControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Phantom;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
+	CLASS PhantomSweepAttackGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS PhantomAttackStrategyGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD stop ()V
+			COMMENT Reset the task's internal state. Called when this task is interrupted by another one
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started
+	CLASS PhantomBodyRotationControl
+		METHOD <init> (Lnet/minecraft/world/entity/monster/Phantom;Lnet/minecraft/world/entity/Mob;)V
+			ARG 2 mob
+		METHOD clientTick ()V
+			COMMENT Update the Head and Body rendering angles
+	CLASS PhantomAttackPlayerTargetGoal
+		METHOD canContinueToUse ()Z
+			COMMENT Returns whether an in-progress EntityAIBase should continue executing
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+	CLASS PhantomCircleAroundAnchorGoal
+		METHOD canUse ()Z
+			COMMENT Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+		METHOD start ()V
+			COMMENT Execute a one shot task or start executing a continuous task
+		METHOD tick ()V
+			COMMENT Keep ticking a continuous task that has already been started

@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/model/VillagerLikeModel
+	METHOD translateToArms (Lnet/minecraft/client/renderer/entity/state/EntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V
+		ARG 1 renderState
+		ARG 2 poseStack

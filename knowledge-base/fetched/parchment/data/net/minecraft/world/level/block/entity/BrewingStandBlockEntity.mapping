@@ -1,0 +1,36 @@
+CLASS net/minecraft/world/level/block/entity/BrewingStandBlockEntity
+	FIELD items Lnet/minecraft/core/NonNullList;
+		COMMENT The items currently placed in the slots of the brewing stand.
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 state
+	METHOD canPlaceItem (ILnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 index
+		ARG 2 stack
+	METHOD canPlaceItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
+		ARG 1 index
+		ARG 2 itemStack
+		ARG 3 direction
+	METHOD canTakeItemThroughFace (ILnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Direction;)Z
+		ARG 1 index
+		ARG 2 stack
+		ARG 3 direction
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD doBrew (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/NonNullList;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 items
+	METHOD getPotionBits ()[Z
+		COMMENT @return an array of size 3 where every element represents whether the respective slot is not empty
+	METHOD getSlotsForFace (Lnet/minecraft/core/Direction;)[I
+		ARG 1 side
+	METHOD isBrewable (Lnet/minecraft/world/item/alchemy/PotionBrewing;Lnet/minecraft/core/NonNullList;)Z
+		ARG 0 potionBrewing
+		ARG 1 items
+	METHOD serverTick (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BrewingStandBlockEntity;)V
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 state
+		ARG 3 blockEntity

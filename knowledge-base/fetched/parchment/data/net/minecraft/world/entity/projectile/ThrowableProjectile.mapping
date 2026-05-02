@@ -1,0 +1,12 @@
+CLASS net/minecraft/world/entity/projectile/ThrowableProjectile
+	METHOD <init> (Lnet/minecraft/world/entity/EntityType;DDDLnet/minecraft/world/level/Level;)V
+		ARG 1 entityType
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 level
+	METHOD shouldRenderAtSqrDistance (D)Z
+		COMMENT Checks if the entity is in range to render.
+		ARG 1 distance
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

@@ -1,0 +1,7 @@
+CLASS net/minecraft/client/renderer/entity/ZombifiedPiglinRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/geom/ModelLayerLocation;Lnet/minecraft/client/model/geom/ModelLayerLocation;Lnet/minecraft/client/renderer/entity/ArmorModelSet;Lnet/minecraft/client/renderer/entity/ArmorModelSet;)V
+		ARG 1 context
+		ARG 2 modelLayer
+		ARG 3 babyModelLayer
+		ARG 4 armorModelSet
+		ARG 5 babyArmorModelSet

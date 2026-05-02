@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/waypoints/Waypoint
+	METHOD addHideAttribute (Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item$Properties;
+		ARG 0 properties
+	CLASS Icon
+		METHOD <init> (Lnet/minecraft/resources/ResourceKey;Ljava/util/Optional;)V
+			ARG 1 style
+			ARG 2 color
+		METHOD cloneAndAssignStyle (Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/waypoints/Waypoint$Icon;
+			ARG 1 entity
+		METHOD copyFrom (Lnet/minecraft/world/waypoints/Waypoint$Icon;)V
+			ARG 1 other
+		METHOD lambda$static$2 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 0 instance

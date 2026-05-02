@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/pathfinder/SwimNodeEvaluator
+	METHOD <init> (Z)V
+		ARG 1 allowBreaching
+	METHOD findAcceptedNode (III)Lnet/minecraft/world/level/pathfinder/Node;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD getCachedBlockType (III)Lnet/minecraft/world/level/pathfinder/PathType;
+		ARG 1 x
+		ARG 2 y
+		ARG 3 z
+	METHOD hasMalus (Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 0 node
+	METHOD isNodeValid (Lnet/minecraft/world/level/pathfinder/Node;)Z
+		ARG 1 node

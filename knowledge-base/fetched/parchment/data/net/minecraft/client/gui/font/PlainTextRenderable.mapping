@@ -1,0 +1,9 @@
+CLASS net/minecraft/client/gui/font/PlainTextRenderable
+	METHOD renderSprite (Lorg/joml/Matrix4f;Lcom/mojang/blaze3d/vertex/VertexConsumer;IFFFI)V
+		ARG 1 pose
+		ARG 2 consumer
+		ARG 3 packedLight
+		ARG 4 x
+		ARG 5 y
+		ARG 6 z
+		ARG 7 color

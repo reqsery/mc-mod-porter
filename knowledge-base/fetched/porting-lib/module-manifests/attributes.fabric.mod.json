@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "porting_lib_attributes",
+  "version": "${version}",
+  "name": "Porting Lib Attributes",
+  "description": "Adds entity attributes missing from Fabric.",
+  "entrypoints": {
+    "main": [
+      "io.github.fabricators_of_create.porting_lib.attributes.PortingLibAttributes"
+    ]
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1657": [
+        "io/github/fabricators_of_create/porting_lib/attributes/injections/PlayerAttributesInjection"
+      ]
+    }
+  }
+}

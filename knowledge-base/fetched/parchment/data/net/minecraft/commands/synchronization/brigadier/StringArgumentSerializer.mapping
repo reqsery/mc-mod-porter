@@ -1,0 +1,4 @@
+CLASS net/minecraft/commands/synchronization/brigadier/StringArgumentSerializer
+	CLASS Template
+		METHOD <init> (Lnet/minecraft/commands/synchronization/brigadier/StringArgumentSerializer;Lcom/mojang/brigadier/arguments/StringArgumentType$StringType;)V
+			ARG 2 type

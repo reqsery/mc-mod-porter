@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/ticks/ProtoChunkTicks
+	METHOD load (Ljava/util/List;)Lnet/minecraft/world/ticks/ProtoChunkTicks;
+		ARG 0 ticks
+	METHOD schedule (Lnet/minecraft/world/ticks/SavedTick;)V
+		ARG 1 tick

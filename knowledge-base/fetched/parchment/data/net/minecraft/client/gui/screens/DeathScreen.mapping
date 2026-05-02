@@ -1,0 +1,22 @@
+CLASS net/minecraft/client/gui/screens/DeathScreen
+	FIELD delayTicker I
+		COMMENT The integer value containing the number of ticks that have passed since the player's death
+	METHOD <init> (Lnet/minecraft/network/chat/Component;Z)V
+		ARG 1 causeOfDeath
+		ARG 2 hardcore
+	METHOD <init> (Lnet/minecraft/network/chat/Component;ZLnet/minecraft/client/player/LocalPlayer;)V
+		ARG 1 causeOfDeath
+		ARG 2 hardcore
+		ARG 3 player
+	METHOD getClickedComponentStyleAt (I)Lnet/minecraft/network/chat/Style;
+		ARG 1 x
+	METHOD lambda$handleExitToTitleScreen$2 (Z)V
+		ARG 1 confirmed
+	METHOD renderDeathBackground (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 0 guiGraphics
+		ARG 1 width
+		ARG 2 height
+	METHOD setButtonsActive (Z)V
+		ARG 1 active
+	METHOD visitText (Lnet/minecraft/client/gui/ActiveTextCollector;)V
+		ARG 1 activeTextCollector

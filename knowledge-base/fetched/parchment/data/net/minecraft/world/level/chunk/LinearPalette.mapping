@@ -1,0 +1,11 @@
+CLASS net/minecraft/world/level/chunk/LinearPalette
+	METHOD <init> (ILjava/util/List;)V
+		ARG 1 bits
+		ARG 2 values
+	METHOD <init> ([Ljava/lang/Object;II)V
+		ARG 1 values
+		ARG 2 bits
+		ARG 3 size
+	METHOD create (ILjava/util/List;)Lnet/minecraft/world/level/chunk/Palette;
+		ARG 0 bits
+		ARG 1 values

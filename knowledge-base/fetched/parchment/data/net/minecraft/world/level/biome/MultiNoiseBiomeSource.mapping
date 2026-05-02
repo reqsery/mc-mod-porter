@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/level/biome/MultiNoiseBiomeSource
+	METHOD <init> (Lcom/mojang/datafixers/util/Either;)V
+		ARG 1 parameters
+	METHOD createFromList (Lnet/minecraft/world/level/biome/Climate$ParameterList;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
+		ARG 0 parameters
+	METHOD createFromPreset (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;
+		ARG 0 parameters
+	METHOD getNoiseBiome (Lnet/minecraft/world/level/biome/Climate$TargetPoint;)Lnet/minecraft/core/Holder;
+		ARG 1 targetPoint
+	METHOD lambda$parameters$1 (Lnet/minecraft/world/level/biome/Climate$ParameterList;)Lnet/minecraft/world/level/biome/Climate$ParameterList;
+		ARG 0 parameters
+	METHOD lambda$parameters$2 (Lnet/minecraft/core/Holder;)Lnet/minecraft/world/level/biome/Climate$ParameterList;
+		ARG 0 parameterListHolder
+	METHOD lambda$static$0 (Lnet/minecraft/world/level/biome/MultiNoiseBiomeSource;)Lcom/mojang/datafixers/util/Either;
+		ARG 0 biomeSource
+	METHOD stable (Lnet/minecraft/resources/ResourceKey;)Z
+		ARG 1 resourceKey

@@ -1,0 +1,7 @@
+CLASS net/minecraft/core/particles/DustColorTransitionOptions
+	METHOD <init> (IIF)V
+		ARG 1 fromColor
+		ARG 2 toColor
+		ARG 3 scale
+	METHOD lambda$static$2 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

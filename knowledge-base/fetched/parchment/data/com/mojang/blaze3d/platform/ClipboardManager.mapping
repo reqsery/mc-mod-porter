@@ -1,0 +1,11 @@
+CLASS com/mojang/blaze3d/platform/ClipboardManager
+	METHOD getClipboard (Lcom/mojang/blaze3d/platform/Window;Lorg/lwjgl/glfw/GLFWErrorCallbackI;)Ljava/lang/String;
+		ARG 1 window
+		ARG 2 errorCallback
+	METHOD pushClipboard (Lcom/mojang/blaze3d/platform/Window;Ljava/nio/ByteBuffer;[B)V
+		ARG 0 window
+		ARG 1 buffer
+		ARG 2 bytes
+	METHOD setClipboard (Lcom/mojang/blaze3d/platform/Window;Ljava/lang/String;)V
+		ARG 1 window
+		ARG 2 clipboard

@@ -1,0 +1,4 @@
+CLASS com/mojang/blaze3d/shaders/ShaderSource
+	METHOD get (Lnet/minecraft/resources/Identifier;Lcom/mojang/blaze3d/shaders/ShaderType;)Ljava/lang/String;
+		ARG 1 id
+		ARG 2 type

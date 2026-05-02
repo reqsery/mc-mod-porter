@@ -1,0 +1,25 @@
+CLASS net/minecraft/core/component/DataComponentMap
+	METHOD composite (Lnet/minecraft/core/component/DataComponentMap;Lnet/minecraft/core/component/DataComponentMap;)Lnet/minecraft/core/component/DataComponentMap;
+		ARG 0 map1
+		ARG 1 map2
+	METHOD filter (Ljava/util/function/Predicate;)Lnet/minecraft/core/component/DataComponentMap;
+		ARG 1 predicate
+	METHOD has (Lnet/minecraft/core/component/DataComponentType;)Z
+		ARG 1 component
+	METHOD lambda$makeCodecFromMap$0 (Lnet/minecraft/core/component/DataComponentMap;)Lcom/mojang/serialization/DataResult;
+		ARG 0 map
+	METHOD makeCodec (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
+	METHOD makeCodecFromMap (Lcom/mojang/serialization/Codec;)Lcom/mojang/serialization/Codec;
+		ARG 0 codec
+	CLASS Builder
+		METHOD addAll (Lnet/minecraft/core/component/DataComponentMap;)Lnet/minecraft/core/component/DataComponentMap$Builder;
+			ARG 1 components
+		METHOD buildFromMapTrusted (Ljava/util/Map;)Lnet/minecraft/core/component/DataComponentMap;
+			ARG 0 map
+		METHOD set (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Lnet/minecraft/core/component/DataComponentMap$Builder;
+			ARG 1 component
+			ARG 2 value
+		METHOD setUnchecked (Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)V
+			ARG 1 component
+			ARG 2 value

@@ -1,0 +1,7 @@
+CLASS net/minecraft/world/item/FireworkRocketItem
+	METHOD getEntityJustOutsideOfBlockPos (Lnet/minecraft/core/dispenser/BlockSource;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/phys/Vec3;
+		ARG 0 blockSource
+		ARG 1 direction
+	METHOD useOn (Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;
+		COMMENT Called when this item is used when targeting a Block
+		ARG 1 context

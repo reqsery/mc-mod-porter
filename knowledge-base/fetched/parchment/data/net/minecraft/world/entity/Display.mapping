@@ -1,0 +1,97 @@
+CLASS net/minecraft/world/entity/Display
+	METHOD calculateInterpolationProgress (F)F
+		ARG 1 partialTick
+	METHOD createInterpolatedRenderState (Lnet/minecraft/world/entity/Display$RenderState;F)Lnet/minecraft/world/entity/Display$RenderState;
+		ARG 1 renderState
+		ARG 2 partialTick
+	METHOD createTransformation (Lnet/minecraft/network/syncher/SynchedEntityData;)Lcom/mojang/math/Transformation;
+		ARG 0 synchedEntityData
+	METHOD setBillboardConstraints (Lnet/minecraft/world/entity/Display$BillboardConstraints;)V
+		ARG 1 billboardConstraints
+	METHOD setBrightnessOverride (Lnet/minecraft/util/Brightness;)V
+		ARG 1 brightnessOverride
+	METHOD setGlowColorOverride (I)V
+		ARG 1 glowColorOverride
+	METHOD setHeight (F)V
+		ARG 1 height
+	METHOD setPosRotInterpolationDuration (I)V
+		ARG 1 posRotInterpolationDuration
+	METHOD setShadowRadius (F)V
+		ARG 1 shadowRadius
+	METHOD setShadowStrength (F)V
+		ARG 1 shadowStrength
+	METHOD setTransformation (Lcom/mojang/math/Transformation;)V
+		ARG 1 transformation
+	METHOD setTransformationInterpolationDelay (I)V
+		ARG 1 transformationInterpolationDelay
+	METHOD setTransformationInterpolationDuration (I)V
+		ARG 1 transformationInterpolationDuration
+	METHOD setViewRange (F)V
+		ARG 1 viewRange
+	METHOD setWidth (F)V
+		ARG 1 width
+	METHOD updateRenderSubState (ZF)V
+		ARG 1 interpolate
+		ARG 2 partialTick
+	CLASS ItemDisplay
+		METHOD setItemStack (Lnet/minecraft/world/item/ItemStack;)V
+			ARG 1 itemStack
+		METHOD setItemTransform (Lnet/minecraft/world/item/ItemDisplayContext;)V
+			ARG 1 itemTransform
+	CLASS TextDisplay
+		METHOD cacheDisplay (Lnet/minecraft/world/entity/Display$TextDisplay$LineSplitter;)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
+			ARG 1 splitter
+		METHOD createInterpolatedTextRenderState (Lnet/minecraft/world/entity/Display$TextDisplay$TextRenderState;F)Lnet/minecraft/world/entity/Display$TextDisplay$TextRenderState;
+			ARG 1 renderState
+			ARG 2 partialTick
+		METHOD getAlign (B)Lnet/minecraft/world/entity/Display$TextDisplay$Align;
+			ARG 0 flags
+		METHOD loadFlag (BLnet/minecraft/world/level/storage/ValueInput;Ljava/lang/String;B)B
+			ARG 0 flags
+			ARG 1 input
+			ARG 2 key
+			ARG 3 mask
+		METHOD setBackgroundColor (I)V
+			ARG 1 backgroundColor
+		METHOD setFlags (B)V
+			ARG 1 flags
+		METHOD setLineWidth (I)V
+			ARG 1 lineWidth
+		METHOD setText (Lnet/minecraft/network/chat/Component;)V
+			ARG 1 text
+		METHOD setTextOpacity (B)V
+			ARG 1 textOpacity
+		METHOD storeFlag (BLnet/minecraft/world/level/storage/ValueOutput;Ljava/lang/String;B)V
+			ARG 0 flags
+			ARG 1 output
+			ARG 2 key
+			ARG 3 name
+		CLASS Align
+			METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+				ARG 3 name
+		CLASS LineSplitter
+			METHOD split (Lnet/minecraft/network/chat/Component;I)Lnet/minecraft/world/entity/Display$TextDisplay$CachedInfo;
+				ARG 1 text
+				ARG 2 maxWidth
+	CLASS BlockDisplay
+		METHOD setBlockState (Lnet/minecraft/world/level/block/state/BlockState;)V
+			ARG 1 blockState
+	CLASS IntInterpolator
+		METHOD constant (I)Lnet/minecraft/world/entity/Display$IntInterpolator;
+			ARG 0 value
+		METHOD get (F)I
+			ARG 1 partialTick
+	CLASS FloatInterpolator
+		METHOD constant (F)Lnet/minecraft/world/entity/Display$FloatInterpolator;
+			ARG 0 value
+		METHOD get (F)F
+			ARG 1 partialTick
+	CLASS GenericInterpolator
+		METHOD constant (Ljava/lang/Object;)Lnet/minecraft/world/entity/Display$GenericInterpolator;
+			ARG 0 value
+		METHOD get (F)Ljava/lang/Object;
+			ARG 1 partialTick
+	CLASS BillboardConstraints
+		METHOD <init> (Ljava/lang/String;IBLjava/lang/String;)V
+			ARG 3 id
+			ARG 4 name

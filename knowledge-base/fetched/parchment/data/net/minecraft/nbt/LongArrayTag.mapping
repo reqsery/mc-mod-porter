@@ -1,0 +1,19 @@
+CLASS net/minecraft/nbt/LongArrayTag
+	METHOD <init> ([J)V
+		ARG 1 data
+	METHOD addTag (ILnet/minecraft/nbt/Tag;)Z
+		ARG 1 index
+		ARG 2 nbt
+	METHOD equals (Ljava/lang/Object;)Z
+		ARG 1 other
+	METHOD get (I)Lnet/minecraft/nbt/LongTag;
+		ARG 1 index
+	METHOD setTag (ILnet/minecraft/nbt/Tag;)Z
+		ARG 1 index
+		ARG 2 nbt
+	METHOD write (Ljava/io/DataOutput;)V
+		ARG 1 output
+	CLASS 1
+		METHOD readAccounted (Ljava/io/DataInput;Lnet/minecraft/nbt/NbtAccounter;)[J
+			ARG 0 input
+			ARG 1 accounter

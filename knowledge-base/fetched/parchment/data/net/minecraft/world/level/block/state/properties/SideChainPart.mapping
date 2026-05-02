@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/level/block/state/properties/SideChainPart
+	METHOD <init> (Ljava/lang/String;ILjava/lang/String;)V
+		ARG 3 name
+	METHOD isConnectionTowards (Lnet/minecraft/world/level/block/state/properties/SideChainPart;)Z
+		ARG 1 part

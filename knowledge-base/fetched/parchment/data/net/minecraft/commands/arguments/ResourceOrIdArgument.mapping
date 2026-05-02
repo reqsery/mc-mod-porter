@@ -1,0 +1,59 @@
+CLASS net/minecraft/commands/arguments/ResourceOrIdArgument
+	METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/Codec;)V
+		ARG 1 registryLookup
+		ARG 2 registryKey
+		ARG 3 codec
+	METHOD createGrammar (Lnet/minecraft/resources/ResourceKey;Lcom/mojang/serialization/DynamicOps;)Lnet/minecraft/util/parsing/packrat/commands/Grammar;
+		ARG 0 registryKey
+		ARG 1 ops
+	METHOD dialog (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$DialogArgument;
+		ARG 0 context
+	METHOD getDialog (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
+	METHOD getLootModifier (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
+	METHOD getLootPredicate (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
+	METHOD getLootTable (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
+	METHOD getResource (Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Lnet/minecraft/core/Holder;
+		ARG 0 context
+		ARG 1 name
+	METHOD listSuggestions (Lcom/mojang/brigadier/context/CommandContext;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+		ARG 1 context
+		ARG 2 builder
+	METHOD lootModifier (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$LootModifierArgument;
+		ARG 0 context
+	METHOD lootPredicate (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$LootPredicateArgument;
+		ARG 0 context
+	METHOD lootTable (Lnet/minecraft/commands/CommandBuildContext;)Lnet/minecraft/commands/arguments/ResourceOrIdArgument$LootTableArgument;
+		ARG 0 context
+	METHOD parse (Lcom/mojang/brigadier/StringReader;)Lnet/minecraft/core/Holder;
+		ARG 1 reader
+	METHOD parse (Lcom/mojang/brigadier/StringReader;Lnet/minecraft/util/parsing/packrat/commands/Grammar;Lcom/mojang/serialization/DynamicOps;)Lnet/minecraft/core/Holder;
+		ARG 1 reader
+		ARG 2 grammar
+		ARG 3 ops
+	CLASS Result
+		METHOD parse (Lcom/mojang/brigadier/ImmutableStringReader;Lnet/minecraft/core/HolderLookup$Provider;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Lnet/minecraft/core/HolderLookup$RegistryLookup;)Lnet/minecraft/core/Holder;
+			ARG 1 reader
+			ARG 2 registryLookup
+			ARG 3 ops
+			ARG 4 codec
+			ARG 5 elementLookup
+	CLASS DialogArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context
+	CLASS LootTableArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context
+	CLASS LootModifierArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context
+	CLASS LootPredicateArgument
+		METHOD <init> (Lnet/minecraft/commands/CommandBuildContext;)V
+			ARG 1 context

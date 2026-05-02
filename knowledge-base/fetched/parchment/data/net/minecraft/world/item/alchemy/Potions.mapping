@@ -1,0 +1,8 @@
+CLASS net/minecraft/world/item/alchemy/Potions
+	COMMENT Defines all of the potion types registered by Minecraft itself.
+	COMMENT @see net.minecraft.core.Registry#POTION
+	METHOD bootstrap (Lnet/minecraft/core/Registry;)Lnet/minecraft/core/Holder;
+		ARG 0 registry
+	METHOD register (Ljava/lang/String;Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/core/Holder;
+		ARG 0 name
+		ARG 1 potion

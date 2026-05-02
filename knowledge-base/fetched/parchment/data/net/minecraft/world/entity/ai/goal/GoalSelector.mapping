@@ -1,0 +1,32 @@
+CLASS net/minecraft/world/entity/ai/goal/GoalSelector
+	FIELD lockedFlags Ljava/util/Map;
+		COMMENT Goals currently using a particular flag
+	METHOD addGoal (ILnet/minecraft/world/entity/ai/goal/Goal;)V
+		COMMENT Add a goal to the GoalSelector with a certain priority. Lower numbers are higher priority.
+		ARG 1 priority
+		ARG 2 goal
+	METHOD disableControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
+		ARG 1 flag
+	METHOD enableControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;)V
+		ARG 1 flag
+	METHOD goalCanBeReplacedForAllFlags (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Ljava/util/Map;)Z
+		ARG 0 goal
+		ARG 1 flag
+	METHOD goalContainsAnyFlags (Lnet/minecraft/world/entity/ai/goal/WrappedGoal;Ljava/util/EnumSet;)Z
+		ARG 0 goal
+		ARG 1 flag
+	METHOD lambda$removeGoal$1 (Lnet/minecraft/world/entity/ai/goal/Goal;Lnet/minecraft/world/entity/ai/goal/WrappedGoal;)Z
+		ARG 1 wrappedGoal
+	METHOD removeAllGoals (Ljava/util/function/Predicate;)V
+		ARG 1 filter
+	METHOD removeGoal (Lnet/minecraft/world/entity/ai/goal/Goal;)V
+		COMMENT Remove the goal from the GoalSelector. This must be the same object as the goal you are trying to remove, which may not always be accessible.
+		ARG 1 goal
+	METHOD setControlFlag (Lnet/minecraft/world/entity/ai/goal/Goal$Flag;Z)V
+		ARG 1 flag
+		ARG 2 enabled
+	METHOD tick ()V
+		COMMENT Ticks every goal in the selector.
+		COMMENT Attempts to start each goal based on if it can be used, or stop it if it can't.
+	METHOD tickRunningGoals (Z)V
+		ARG 1 tickAllRunning

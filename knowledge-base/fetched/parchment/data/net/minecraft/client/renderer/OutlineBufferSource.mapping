@@ -1,0 +1,3 @@
+CLASS net/minecraft/client/renderer/OutlineBufferSource
+	METHOD setColor (I)V
+		ARG 1 color

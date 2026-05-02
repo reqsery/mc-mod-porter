@@ -1,0 +1,5 @@
+CLASS net/minecraft/server/jsonrpc/PendingRpcRequest
+	METHOD accept (Lcom/google/gson/JsonElement;)V
+		ARG 1 json
+	METHOD timedOut (J)Z
+		ARG 1 time

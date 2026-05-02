@@ -1,0 +1,17 @@
+CLASS net/minecraft/world/entity/projectile/EvokerFangs
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDFILnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 yRot
+		ARG 9 warmupDelay
+		ARG 10 owner
+	METHOD dealDamageTo (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 target
+	METHOD getAnimationProgress (F)F
+		ARG 1 partialTicks
+	METHOD setOwner (Lnet/minecraft/world/entity/LivingEntity;)V
+		ARG 1 owner
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

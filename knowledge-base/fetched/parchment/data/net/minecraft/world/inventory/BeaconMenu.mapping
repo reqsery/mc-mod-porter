@@ -1,0 +1,35 @@
+CLASS net/minecraft/world/inventory/BeaconMenu
+	METHOD <init> (ILnet/minecraft/world/Container;)V
+		ARG 1 containerId
+		ARG 2 container
+	METHOD <init> (ILnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+		ARG 1 containerId
+		ARG 2 container
+		ARG 3 beaconData
+		ARG 4 access
+	METHOD decodeEffect (I)Lnet/minecraft/core/Holder;
+		ARG 0 effectId
+	METHOD encodeEffect (Lnet/minecraft/core/Holder;)I
+		ARG 0 effect
+	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+		ARG 1 player
+		ARG 2 index
+	METHOD removed (Lnet/minecraft/world/entity/player/Player;)V
+		COMMENT Called when the container is closed.
+		ARG 1 player
+	METHOD setData (II)V
+		ARG 1 id
+		ARG 2 data
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Determines whether supplied player can use this container
+		ARG 1 player
+	METHOD updateEffects (Ljava/util/Optional;Ljava/util/Optional;)V
+		ARG 1 primaryEffect
+		ARG 2 secondaryEffect
+	CLASS PaymentSlot
+		METHOD getMaxStackSize ()I
+			COMMENT Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case of armor slots)
+		METHOD mayPlace (Lnet/minecraft/world/item/ItemStack;)Z
+			COMMENT Check if the stack is allowed to be placed in this slot, used for armor slots as well as furnace fuel.
+			ARG 1 stack

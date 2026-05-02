@@ -1,0 +1,11 @@
+CLASS com/mojang/blaze3d/opengl/GlTextureView
+	METHOD <init> (Lcom/mojang/blaze3d/opengl/GlTexture;II)V
+		ARG 1 texture
+		ARG 2 baseMipLevel
+		ARG 3 mipLevels
+	METHOD createFbo (Lcom/mojang/blaze3d/opengl/DirectStateAccess;I)I
+		ARG 1 directStateAccess
+		ARG 2 id
+	METHOD getFbo (Lcom/mojang/blaze3d/opengl/DirectStateAccess;Lcom/mojang/blaze3d/textures/GpuTexture;)I
+		ARG 1 directStateAccess
+		ARG 2 texture

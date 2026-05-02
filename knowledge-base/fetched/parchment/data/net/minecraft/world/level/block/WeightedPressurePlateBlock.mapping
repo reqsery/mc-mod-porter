@@ -1,0 +1,15 @@
+CLASS net/minecraft/world/level/block/WeightedPressurePlateBlock
+	METHOD <init> (ILnet/minecraft/world/level/block/state/properties/BlockSetType;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+		ARG 1 maxWeight
+		ARG 2 type
+		ARG 3 properties
+	METHOD createBlockStateDefinition (Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+		ARG 1 builder
+	METHOD getSignalForState (Lnet/minecraft/world/level/block/state/BlockState;)I
+		ARG 1 state
+	METHOD getSignalStrength (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)I
+		ARG 1 level
+		ARG 2 pos
+	METHOD setSignalForState (Lnet/minecraft/world/level/block/state/BlockState;I)Lnet/minecraft/world/level/block/state/BlockState;
+		ARG 1 state
+		ARG 2 strength

@@ -1,0 +1,11 @@
+CLASS net/minecraft/client/multiplayer/ClientExplosionTracker
+	METHOD addParticle (Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/client/multiplayer/ClientExplosionTracker$ExplosionInfo;)V
+		ARG 1 level
+		ARG 2 explosionInfo
+	METHOD tick (Lnet/minecraft/client/multiplayer/ClientLevel;)V
+		ARG 1 level
+	METHOD track (Lnet/minecraft/world/phys/Vec3;FILnet/minecraft/util/random/WeightedList;)V
+		ARG 1 center
+		ARG 2 radius
+		ARG 3 blockCount
+		ARG 4 blockParticles

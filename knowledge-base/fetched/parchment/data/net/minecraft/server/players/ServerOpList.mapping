@@ -1,0 +1,5 @@
+CLASS net/minecraft/server/players/ServerOpList
+	METHOD canBypassPlayerLimit (Lnet/minecraft/server/players/NameAndId;)Z
+		ARG 1 nameAndId
+	METHOD createEntry (Lcom/google/gson/JsonObject;)Lnet/minecraft/server/players/StoredUserEntry;
+		ARG 1 entryData

@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/resources/metadata/animation/AnimationMetadataSection
+	METHOD calculateFrameSize (II)Lnet/minecraft/client/resources/metadata/animation/FrameSize;
+		ARG 1 width
+		ARG 2 height

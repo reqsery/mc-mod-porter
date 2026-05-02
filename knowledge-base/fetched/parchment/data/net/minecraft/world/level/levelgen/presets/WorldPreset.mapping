@@ -1,0 +1,5 @@
+CLASS net/minecraft/world/level/levelgen/presets/WorldPreset
+	METHOD <init> (Ljava/util/Map;)V
+		ARG 1 dimensions
+	METHOD requireOverworld (Lnet/minecraft/world/level/levelgen/presets/WorldPreset;)Lcom/mojang/serialization/DataResult;
+		ARG 0 preset

@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "priority": 951,
+  "package": "io.github.fabricators_of_create.porting_lib.client_events.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "AbstractClientPlayerMixin",
+    "CameraMixin",
+    "ClientLevelMixin",
+    "ClientPacketListenerMixin",
+    "EntityRenderDispatcherMixin",
+    "FogRendererMixin",
+    "GameRendererMixin",
+    "ItemInHandRendererMixin",
+    "KeyboardHandlerMixin",
+    "LocalPlayerMixin",
+    "MinecraftMixin",
+    "MouseHandlerMixin",
+    "MusicManagerMixin",
+    "PlayerRendererMixin",
+    "SkullBlockRendererMixin",
+    "SoundEngineMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1,
+    "maxShiftBy": 5
+  }
+}

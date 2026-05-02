@@ -1,0 +1,22 @@
+CLASS net/minecraft/world/item/crafting/AbstractCookingRecipe
+	METHOD <init> (Ljava/lang/String;Lnet/minecraft/world/item/crafting/CookingBookCategory;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;FI)V
+		ARG 1 group
+		ARG 2 category
+		ARG 3 input
+		ARG 4 result
+		ARG 5 experience
+		ARG 6 cookingTime
+	CLASS Factory
+		METHOD create (Ljava/lang/String;Lnet/minecraft/world/item/crafting/CookingBookCategory;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;FI)Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;
+			ARG 1 group
+			ARG 2 category
+			ARG 3 ingredient
+			ARG 4 result
+			ARG 5 experience
+			ARG 6 cookingTime
+	CLASS Serializer
+		METHOD <init> (Lnet/minecraft/world/item/crafting/AbstractCookingRecipe$Factory;I)V
+			ARG 1 factory
+			ARG 2 defaultCookingTime
+		METHOD lambda$new$0 (ILnet/minecraft/world/item/crafting/AbstractCookingRecipe$Factory;Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+			ARG 2 instance

@@ -1,0 +1,29 @@
+CLASS net/minecraft/world/entity/item/FallingBlockEntity
+	METHOD <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 state
+	METHOD callOnBrokenAfterFall (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/core/BlockPos;)V
+		ARG 1 block
+		ARG 2 pos
+	METHOD displayFireAnimation ()Z
+		COMMENT Return whether this entity should be rendered as on fire.
+	METHOD fall (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/entity/item/FallingBlockEntity;
+		ARG 0 level
+		ARG 1 pos
+		ARG 2 blockState
+	METHOD fillCrashReportCategory (Lnet/minecraft/CrashReportCategory;)V
+		ARG 1 category
+	METHOD isAttackable ()Z
+		COMMENT Returns {@code true} if it's possible to attack this entity with an item.
+	METHOD isPickable ()Z
+		COMMENT Returns {@code true} if other Entities should be prevented from moving through this Entity.
+	METHOD setHurtsEntities (FI)V
+		ARG 1 fallDamagePerDistance
+		ARG 2 fallDamageMax
+	METHOD setStartPos (Lnet/minecraft/core/BlockPos;)V
+		ARG 1 startPos
+	METHOD tick ()V
+		COMMENT Called to update the entity's position/logic.

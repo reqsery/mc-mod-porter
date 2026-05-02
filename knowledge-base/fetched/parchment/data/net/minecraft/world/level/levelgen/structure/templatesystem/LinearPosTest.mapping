@@ -1,0 +1,6 @@
+CLASS net/minecraft/world/level/levelgen/structure/templatesystem/LinearPosTest
+	METHOD <init> (FFII)V
+		ARG 1 minChance
+		ARG 2 maxChance
+		ARG 3 minDist
+		ARG 4 maxDist

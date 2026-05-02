@@ -1,0 +1,5 @@
+CLASS net/minecraft/client/animation/Keyframe
+	METHOD <init> (FLorg/joml/Vector3fc;Lnet/minecraft/client/animation/AnimationChannel$Interpolation;)V
+		ARG 1 timestamp
+		ARG 2 target
+		ARG 3 interpolation

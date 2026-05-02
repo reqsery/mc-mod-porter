@@ -1,0 +1,9 @@
+CLASS net/minecraft/world/item/crafting/RecipePropertySet
+	METHOD <init> (Ljava/util/Set;)V
+		ARG 1 items
+	METHOD create (Ljava/util/Collection;)Lnet/minecraft/world/item/crafting/RecipePropertySet;
+		ARG 0 ingredients
+	METHOD registerVanilla (Ljava/lang/String;)Lnet/minecraft/resources/ResourceKey;
+		ARG 0 name
+	METHOD test (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack

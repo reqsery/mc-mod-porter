@@ -1,0 +1,20 @@
+CLASS com/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen
+	METHOD <init> (Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 lastScreen
+		ARG 2 title
+	METHOD lambda$init$1 (Lcom/mojang/realmsclient/dto/PendingInvite;)Lcom/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen$Entry;
+		ARG 1 invite
+	METHOD lambda$init$3 (Lnet/minecraft/client/gui/components/Button;)V
+		ARG 1 button
+	CLASS Entry
+		METHOD <init> (Lcom/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen;Lcom/mojang/realmsclient/dto/PendingInvite;)V
+			ARG 2 pendingInvite
+		METHOD getCreateNarration (Lcom/mojang/realmsclient/dto/PendingInvite;)Lnet/minecraft/client/gui/components/Button$CreateNarration;
+			ARG 1 invite
+		METHOD handleInvitation (Z)V
+			ARG 1 accept
+	CLASS PendingInvitationSelectionList
+		METHOD <init> (Lcom/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen;Lnet/minecraft/client/Minecraft;)V
+			ARG 2 minecraft
+		METHOD removeInvitation (Lcom/mojang/realmsclient/gui/screens/RealmsPendingInvitesScreen$Entry;)V
+			ARG 1 entry

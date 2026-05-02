@@ -1,0 +1,32 @@
+CLASS net/minecraft/client/resources/model/AtlasManager
+	METHOD <init> (Lnet/minecraft/client/renderer/texture/TextureManager;I)V
+		ARG 1 textureManager
+		ARG 2 maxMipmapLevels
+	METHOD forEach (Ljava/util/function/BiConsumer;)V
+		ARG 1 action
+	METHOD getAtlasOrThrow (Lnet/minecraft/resources/Identifier;)Lnet/minecraft/client/renderer/texture/TextureAtlas;
+		ARG 1 id
+	METHOD updateMaxMipLevel (I)V
+		ARG 1 maxMipLevel
+	METHOD updateSpriteMaps (Lnet/minecraft/client/resources/model/AtlasManager$PendingStitchResults;)V
+		ARG 1 pendingStitchResults
+	CLASS AtlasEntry
+		METHOD scheduleLoad (Lnet/minecraft/server/packs/resources/ResourceManager;Ljava/util/concurrent/Executor;I)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 resourceManager
+			ARG 2 executor
+			ARG 3 mipLevel
+	CLASS AtlasConfig
+		METHOD <init> (Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Z)V
+			ARG 1 textureId
+			ARG 2 definitionLocation
+			ARG 3 createMipmaps
+	CLASS PendingStitch
+		METHOD joinAndUpload (Ljava/util/Map;)V
+			ARG 1 output
+	CLASS PendingStitchResults
+		METHOD <init> (Ljava/util/List;Ljava/util/Map;Ljava/util/concurrent/CompletableFuture;)V
+			ARG 1 pendingStitches
+			ARG 2 stitchFutureById
+			ARG 3 allReadyToUpload
+		METHOD get (Lnet/minecraft/resources/Identifier;)Ljava/util/concurrent/CompletableFuture;
+			ARG 1 id

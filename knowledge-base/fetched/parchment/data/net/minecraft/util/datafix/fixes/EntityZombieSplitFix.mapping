@@ -1,0 +1,6 @@
+CLASS net/minecraft/util/datafix/fixes/EntityZombieSplitFix
+	METHOD <init> (Lcom/mojang/datafixers/schemas/Schema;)V
+		ARG 1 outputSchema
+	METHOD changeSchemaToZombieVillager (Lcom/mojang/datafixers/Typed;I)Lcom/mojang/datafixers/Typed;
+		ARG 1 typed
+		ARG 2 profession

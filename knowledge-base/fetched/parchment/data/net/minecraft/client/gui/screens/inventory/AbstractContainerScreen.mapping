@@ -1,0 +1,117 @@
+CLASS net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
+	FIELD INVENTORY_LOCATION Lnet/minecraft/resources/Identifier;
+		COMMENT The location of the inventory background texture
+	FIELD clickedSlot Lnet/minecraft/world/inventory/Slot;
+		COMMENT Used when touchscreen is enabled
+	FIELD draggingItem Lnet/minecraft/world/item/ItemStack;
+		COMMENT Used when touchscreen is enabled
+	FIELD hoveredSlot Lnet/minecraft/world/inventory/Slot;
+		COMMENT Holds the slot currently hovered
+	FIELD imageHeight I
+		COMMENT The Y size of the inventory window in pixels.
+	FIELD imageWidth I
+		COMMENT The X size of the inventory window in pixels.
+	FIELD isSplittingStack Z
+		COMMENT Used when touchscreen is enabled.
+	FIELD leftPos I
+		COMMENT Starting X position for the Gui. Inconsistent use for Gui backgrounds.
+	FIELD menu Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		COMMENT A list of the players inventory slots
+	FIELD topPos I
+		COMMENT Starting Y position for the Gui. Inconsistent use for Gui backgrounds.
+	METHOD <init> (Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+		ARG 1 menu
+		ARG 2 playerInventory
+		ARG 3 title
+	METHOD addItemSlotMouseAction (Lnet/minecraft/client/gui/ItemSlotMouseAction;)V
+		ARG 1 itemSlotMouseAction
+	METHOD checkHotbarKeyPressed (Lnet/minecraft/client/input/KeyEvent;)Z
+		ARG 1 event
+	METHOD checkHotbarMouseClicked (Lnet/minecraft/client/input/MouseButtonEvent;)V
+		ARG 1 event
+	METHOD getHoveredSlot (DD)Lnet/minecraft/world/inventory/Slot;
+		ARG 1 mouseX
+		ARG 3 mouseY
+	METHOD getTooltipFromContainerItem (Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+		ARG 1 stack
+	METHOD handleSlotStateChanged (IIZ)V
+		ARG 1 slotId
+		ARG 2 containerId
+		ARG 3 newState
+	METHOD hasClickedOutside (DDII)Z
+		ARG 1 x
+		ARG 3 y
+		ARG 5 left
+		ARG 6 top
+	METHOD isHovering (IIIIDD)Z
+		ARG 1 x
+		ARG 2 y
+		ARG 3 width
+		ARG 4 height
+		ARG 5 mouseX
+		ARG 7 mouseY
+	METHOD isHovering (Lnet/minecraft/world/inventory/Slot;DD)Z
+		ARG 1 slot
+		ARG 2 mouseX
+		ARG 4 mouseY
+	METHOD onMouseClickAction (Lnet/minecraft/world/inventory/Slot;Lnet/minecraft/world/inventory/ClickType;)V
+		ARG 1 slot
+		ARG 2 type
+	METHOD onStopHovering (Lnet/minecraft/world/inventory/Slot;)V
+		ARG 1 slot
+	METHOD renderBg (Lnet/minecraft/client/gui/GuiGraphics;FII)V
+		ARG 1 guiGraphics
+		ARG 2 partialTick
+		ARG 3 mouseX
+		ARG 4 mouseY
+	METHOD renderCarriedItem (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+	METHOD renderContents (Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+		ARG 4 partialTick
+	METHOD renderFloatingItem (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V
+		ARG 1 guiGraphics
+		ARG 2 stack
+		ARG 3 x
+		ARG 4 y
+		ARG 5 text
+	METHOD renderLabels (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;)V
+		ARG 1 guiGraphics
+		ARG 2 slot
+	METHOD renderSlot (Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/inventory/Slot;II)V
+		ARG 1 guiGraphics
+		ARG 2 slot
+		ARG 3 mouseX
+		ARG 4 mouseY
+	METHOD renderSlotHighlightBack (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSlotHighlightFront (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSlots (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderSlots (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 mouseX
+		ARG 3 mouseY
+	METHOD renderSnapbackItem (Lnet/minecraft/client/gui/GuiGraphics;)V
+		ARG 1 guiGraphics
+	METHOD renderTooltip (Lnet/minecraft/client/gui/GuiGraphics;II)V
+		ARG 1 guiGraphics
+		ARG 2 x
+		ARG 3 y
+	METHOD showTooltipWithItemInHand (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD slotClicked (Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V
+		COMMENT Called when the mouse is clicked over a slot or outside the gui.
+		ARG 1 slot
+		ARG 2 slotId
+		ARG 3 mouseButton
+		ARG 4 type

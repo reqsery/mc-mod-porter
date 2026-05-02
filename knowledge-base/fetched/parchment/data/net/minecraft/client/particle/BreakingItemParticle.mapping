@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/particle/BreakingItemParticle
+	CLASS ItemParticleProvider
+		METHOD getSprite (Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/util/RandomSource;)Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;
+			ARG 1 stack
+			ARG 2 level
+			ARG 3 random

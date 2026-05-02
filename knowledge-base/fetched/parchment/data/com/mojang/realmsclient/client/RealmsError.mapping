@@ -1,0 +1,16 @@
+CLASS com/mojang/realmsclient/client/RealmsError
+	METHOD parse (ILjava/lang/String;)Lcom/mojang/realmsclient/client/RealmsError;
+		ARG 0 httpCode
+		ARG 1 payload
+	CLASS CustomError
+		METHOD connectivityError (Lcom/mojang/realmsclient/exception/RealmsHttpException;)Lcom/mojang/realmsclient/client/RealmsError$CustomError;
+			ARG 0 payload
+		METHOD htmlPayload (ILjava/lang/String;)Lcom/mojang/realmsclient/client/RealmsError$CustomError;
+			ARG 0 httpCode
+			ARG 1 payload
+		METHOD noPayload (I)Lcom/mojang/realmsclient/client/RealmsError$CustomError;
+			ARG 0 httpCode
+		METHOD retry (I)Lcom/mojang/realmsclient/client/RealmsError$CustomError;
+			ARG 0 httpCode
+		METHOD unknownCompatibilityResponse (Ljava/lang/String;)Lcom/mojang/realmsclient/client/RealmsError$CustomError;
+			ARG 0 payload

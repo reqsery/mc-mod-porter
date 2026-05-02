@@ -1,0 +1,14 @@
+CLASS net/minecraft/client/gui/screens/worldselection/EditWorldScreen
+	METHOD <init> (Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Ljava/lang/String;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;)V
+		ARG 1 minecraft
+		ARG 2 levelAccess
+		ARG 3 levelName
+		ARG 4 callback
+	METHOD create (Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;)Lnet/minecraft/client/gui/screens/worldselection/EditWorldScreen;
+		ARG 0 minecraft
+		ARG 1 levelAccess
+		ARG 2 callback
+	METHOD makeBackupAndShowToast (Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;)Z
+		ARG 0 levelAccess
+	METHOD onRename (Ljava/lang/String;)V
+		ARG 1 saveName

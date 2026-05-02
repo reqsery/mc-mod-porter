@@ -1,0 +1,37 @@
+CLASS net/minecraft/client/server/IntegratedServer
+	METHOD <init> (Ljava/lang/Thread;Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lnet/minecraft/server/packs/repository/PackRepository;Lnet/minecraft/server/WorldStem;Lnet/minecraft/server/Services;Lnet/minecraft/server/level/progress/LevelLoadListener;)V
+		ARG 1 serverThread
+		ARG 2 minecraft
+		ARG 3 storageSource
+		ARG 4 packRepository
+		ARG 5 worldStem
+		ARG 6 services
+		ARG 7 levelLoadListener
+	METHOD getPort ()I
+		COMMENT Gets serverPort.
+	METHOD halt (Z)V
+		COMMENT Sets the serverRunning variable to false, in order to get the server to shut down.
+		ARG 1 waitForServer
+	METHOD initServer ()Z
+		COMMENT Initialises the server and starts it.
+	METHOD isEpollEnabled ()Z
+		COMMENT Get if native transport should be used. Native transport means linux server performance improvements and optimized packet sending/receiving on linux
+	METHOD isPublished ()Z
+		COMMENT Returns {@code true} if this integrated server is open to LAN
+	METHOD onServerCrash (Lnet/minecraft/CrashReport;)V
+		COMMENT Called on exit from the main run() loop.
+		ARG 1 report
+	METHOD publishServer (Lnet/minecraft/world/level/GameType;ZI)Z
+		ARG 1 gameMode
+		ARG 2 cheats
+		ARG 3 port
+	METHOD setDefaultGameType (Lnet/minecraft/world/level/GameType;)V
+		COMMENT Sets the game type for all worlds.
+		ARG 1 gameMode
+	METHOD setUUID (Ljava/util/UUID;)V
+		ARG 1 uuid
+	METHOD stopServer ()V
+		COMMENT Saves all necessary data as preparation for stopping the server.
+	METHOD tickServer (Ljava/util/function/BooleanSupplier;)V
+		COMMENT Main function called by run() every loop.
+		ARG 1 hasTimeLeft

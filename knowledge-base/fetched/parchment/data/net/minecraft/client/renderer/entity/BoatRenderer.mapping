@@ -1,0 +1,6 @@
+CLASS net/minecraft/client/renderer/entity/BoatRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/geom/ModelLayerLocation;)V
+		ARG 1 context
+		ARG 2 modelLayer
+	METHOD lambda$new$0 (Ljava/lang/String;)Ljava/lang/String;
+		ARG 0 type

@@ -1,0 +1,4 @@
+portingLib.addModuleDependencies([
+		"registry",
+		"fluids"
+])

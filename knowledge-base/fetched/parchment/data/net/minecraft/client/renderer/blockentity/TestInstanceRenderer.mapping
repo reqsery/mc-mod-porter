@@ -1,0 +1,10 @@
+CLASS net/minecraft/client/renderer/blockentity/TestInstanceRenderer
+	METHOD <init> (Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider$Context;)V
+		ARG 1 context
+	METHOD submitErrorMarker (Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity$ErrorMarker;Lnet/minecraft/client/renderer/state/CameraRenderState;)V
+		ARG 1 poseStack
+		ARG 2 nodeCollector
+		ARG 3 marker
+		ARG 4 cameraRenderState
+	METHOD submitErrorMarker (Lnet/minecraft/world/level/block/entity/TestInstanceBlockEntity$ErrorMarker;)V
+		ARG 1 errorMarker

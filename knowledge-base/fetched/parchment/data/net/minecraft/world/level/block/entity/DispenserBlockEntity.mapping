@@ -1,0 +1,13 @@
+CLASS net/minecraft/world/level/block/entity/DispenserBlockEntity
+	METHOD <init> (Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)V
+		ARG 1 pos
+		ARG 2 blockState
+	METHOD createMenu (ILnet/minecraft/world/entity/player/Inventory;)Lnet/minecraft/world/inventory/AbstractContainerMenu;
+		ARG 1 id
+		ARG 2 player
+	METHOD getRandomSlot (Lnet/minecraft/util/RandomSource;)I
+		ARG 1 random
+	METHOD insertItem (Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/ItemStack;
+		ARG 1 stack
+	METHOD setItems (Lnet/minecraft/core/NonNullList;)V
+		ARG 1 items

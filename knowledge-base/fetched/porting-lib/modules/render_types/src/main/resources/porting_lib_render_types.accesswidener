@@ -1,0 +1,7 @@
+accessWidener v2 named
+
+mutable field net/minecraft/client/renderer/RenderStateShard$TextureStateShard blur Z
+mutable field net/minecraft/client/renderer/RenderStateShard$TextureStateShard mipmap Z
+
+accessible field net/minecraft/client/renderer/RenderStateShard$TextureStateShard blur Z
+accessible field net/minecraft/client/renderer/RenderStateShard$TextureStateShard mipmap Z

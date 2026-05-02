@@ -1,0 +1,8 @@
+CLASS com/mojang/blaze3d/audio/Listener
+	COMMENT The Listener class represents the listener in a 3D audio environment.
+	COMMENT
+	COMMENT The listener's position and orientation determine how sounds are perceived by the listener.
+	METHOD reset ()V
+		COMMENT Resets the listener's position and orientation to default values.
+	METHOD setTransform (Lcom/mojang/blaze3d/audio/ListenerTransform;)V
+		ARG 1 transform

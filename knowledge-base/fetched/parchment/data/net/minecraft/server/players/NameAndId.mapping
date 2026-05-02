@@ -1,0 +1,13 @@
+CLASS net/minecraft/server/players/NameAndId
+	METHOD <init> (Lcom/mojang/authlib/GameProfile;)V
+		ARG 1 profile
+	METHOD <init> (Lcom/mojang/authlib/yggdrasil/response/NameAndId;)V
+		ARG 1 nameAndId
+	METHOD appendTo (Lcom/google/gson/JsonObject;)V
+		ARG 1 json
+	METHOD createOffline (Ljava/lang/String;)Lnet/minecraft/server/players/NameAndId;
+		ARG 0 username
+	METHOD fromJson (Lcom/google/gson/JsonObject;)Lnet/minecraft/server/players/NameAndId;
+		ARG 0 json
+	METHOD lambda$static$0 (Lcom/mojang/serialization/codecs/RecordCodecBuilder$Instance;)Lcom/mojang/datafixers/kinds/App;
+		ARG 0 instance

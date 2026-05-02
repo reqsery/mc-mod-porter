@@ -1,0 +1,20 @@
+CLASS net/minecraft/world/entity/monster/MagmaCube
+	METHOD checkMagmaCubeSpawnRules (Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)Z
+		ARG 0 entityType
+		ARG 1 level
+		ARG 2 spawnReason
+		ARG 3 pos
+		ARG 4 random
+	METHOD getHurtSound (Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;
+		ARG 1 damageSource
+	METHOD getJumpDelay ()I
+		COMMENT Gets the amount of time the slime needs to wait between jumps.
+	METHOD isDealsDamage ()Z
+		COMMENT Indicates weather the slime is able to damage the player (based upon the slime's size)
+	METHOD isOnFire ()Z
+		COMMENT Returns {@code true} if the entity is on fire. Used by render to add the fire effect on rendering.
+	METHOD jumpFromGround ()V
+		COMMENT Causes this entity to do an upwards motion (jumping).
+	METHOD setSize (IZ)V
+		ARG 1 size
+		ARG 2 resetHealth

@@ -1,0 +1,17 @@
+CLASS net/minecraft/client/particle/CampfireSmokeParticle
+	METHOD <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDDDDZLnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V
+		ARG 1 level
+		ARG 2 x
+		ARG 4 y
+		ARG 6 z
+		ARG 8 xSpeed
+		ARG 10 ySpeed
+		ARG 12 zSpeed
+		ARG 14 boosted
+		ARG 15 sprite
+	CLASS CosyProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites
+	CLASS SignalProvider
+		METHOD <init> (Lnet/minecraft/client/particle/SpriteSet;)V
+			ARG 1 sprites

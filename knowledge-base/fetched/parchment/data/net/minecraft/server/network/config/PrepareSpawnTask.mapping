@@ -1,0 +1,20 @@
+CLASS net/minecraft/server/network/config/PrepareSpawnTask
+	METHOD <init> (Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/server/players/NameAndId;)V
+		ARG 1 server
+		ARG 2 nameAndId
+	METHOD spawnPlayer (Lnet/minecraft/network/Connection;Lnet/minecraft/server/network/CommonListenerCookie;)Lnet/minecraft/server/level/ServerPlayer;
+		ARG 1 connection
+		ARG 2 cookie
+	CLASS Ready
+		METHOD <init> (Lnet/minecraft/server/network/config/PrepareSpawnTask;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/phys/Vec2;)V
+			ARG 2 spawnLevel
+			ARG 3 spawnPosition
+			ARG 4 spawnAngle
+		METHOD spawn (Lnet/minecraft/network/Connection;Lnet/minecraft/server/network/CommonListenerCookie;)Lnet/minecraft/server/level/ServerPlayer;
+			ARG 1 connection
+			ARG 2 cookie
+	CLASS Preparing
+		METHOD <init> (Lnet/minecraft/server/network/config/PrepareSpawnTask;Lnet/minecraft/server/level/ServerLevel;Ljava/util/concurrent/CompletableFuture;Lnet/minecraft/world/phys/Vec2;)V
+			ARG 2 spawnLevel
+			ARG 3 spawnPosition
+			ARG 4 spawnAngle

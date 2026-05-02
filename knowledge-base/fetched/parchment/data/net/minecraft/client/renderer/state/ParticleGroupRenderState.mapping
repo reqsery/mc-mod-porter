@@ -1,0 +1,4 @@
+CLASS net/minecraft/client/renderer/state/ParticleGroupRenderState
+	METHOD submit (Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/CameraRenderState;)V
+		ARG 1 nodeCollector
+		ARG 2 cameraRenderState

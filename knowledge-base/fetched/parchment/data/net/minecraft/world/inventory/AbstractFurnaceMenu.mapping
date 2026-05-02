@@ -1,0 +1,31 @@
+CLASS net/minecraft/world/inventory/AbstractFurnaceMenu
+	METHOD <init> (Lnet/minecraft/world/inventory/MenuType;Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/inventory/RecipeBookType;ILnet/minecraft/world/entity/player/Inventory;)V
+		ARG 1 menuType
+		ARG 2 recipeType
+		ARG 3 acceptedInputs
+		ARG 4 recipeBookType
+		ARG 5 containerId
+		ARG 6 inventory
+	METHOD <init> (Lnet/minecraft/world/inventory/MenuType;Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/inventory/RecipeBookType;ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/Container;Lnet/minecraft/world/inventory/ContainerData;)V
+		ARG 1 menuType
+		ARG 2 recipeType
+		ARG 3 acceptedInputs
+		ARG 4 recipeBookType
+		ARG 5 containerId
+		ARG 6 inventory
+		ARG 7 container
+		ARG 8 data
+	METHOD canSmelt (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD isFuel (Lnet/minecraft/world/item/ItemStack;)Z
+		ARG 1 stack
+	METHOD quickMoveStack (Lnet/minecraft/world/entity/player/Player;I)Lnet/minecraft/world/item/ItemStack;
+		COMMENT Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player inventory and the other inventory(s).
+		ARG 1 player
+		ARG 2 index
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Determines whether supplied player can use this container
+		ARG 1 player
+	CLASS 1
+		METHOD lambda$clearCraftingContent$0 (Lnet/minecraft/world/inventory/Slot;)V
+			ARG 0 slot

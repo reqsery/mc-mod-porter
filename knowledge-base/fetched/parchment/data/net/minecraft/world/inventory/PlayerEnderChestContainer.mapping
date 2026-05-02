@@ -1,0 +1,12 @@
+CLASS net/minecraft/world/inventory/PlayerEnderChestContainer
+	METHOD fromSlots (Lnet/minecraft/world/level/storage/ValueInput$TypedInputList;)V
+		ARG 1 input
+	METHOD isActiveChest (Lnet/minecraft/world/level/block/entity/EnderChestBlockEntity;)Z
+		ARG 1 enderChest
+	METHOD setActiveChest (Lnet/minecraft/world/level/block/entity/EnderChestBlockEntity;)V
+		ARG 1 enderChestBlockEntity
+	METHOD stillValid (Lnet/minecraft/world/entity/player/Player;)Z
+		COMMENT Don't rename this method to canInteractWith due to conflicts with Container
+		ARG 1 player
+	METHOD storeAsSlots (Lnet/minecraft/world/level/storage/ValueOutput$TypedOutputList;)V
+		ARG 1 output
