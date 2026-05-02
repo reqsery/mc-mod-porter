@@ -97,7 +97,15 @@ public class BuildFilePatcher {
             content = after;
         }
 
-        // 3. modImplementation → implementation for fabric-api
+        // 3. modImplementation → implementation for fabric-loader and fabric-api
+        //    Both use modImplementation pre-26.x; 26.x uses plain implementation.
+        after = content.replaceAll(
+            "modImplementation (['\"])net\\.fabricmc:fabric-loader:",
+            "implementation $1net.fabricmc:fabric-loader:");
+        if (!after.equals(content)) {
+            log.add(name + ": changed modImplementation → implementation for fabric-loader");
+            content = after;
+        }
         after = content.replaceAll(
             "modImplementation (['\"])net\\.fabricmc\\.fabric-api:fabric-api:",
             "implementation $1net.fabricmc.fabric-api:fabric-api:");
@@ -173,7 +181,14 @@ public class BuildFilePatcher {
             }
         }
 
-        // 2. Revert implementation → modImplementation for fabric-api
+        // 2. Revert implementation → modImplementation for fabric-loader and fabric-api
+        after = content.replaceAll(
+            "(?<!mod)implementation (['\"])net\\.fabricmc:fabric-loader:",
+            "modImplementation $1net.fabricmc:fabric-loader:");
+        if (!after.equals(content)) {
+            log.add(name + ": reverted implementation → modImplementation for fabric-loader");
+            content = after;
+        }
         after = content.replaceAll(
             "(?<!mod)implementation (['\"])net\\.fabricmc\\.fabric-api:fabric-api:",
             "modImplementation $1net.fabricmc.fabric-api:fabric-api:");
