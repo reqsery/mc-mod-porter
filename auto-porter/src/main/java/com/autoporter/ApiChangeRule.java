@@ -550,6 +550,62 @@ public record ApiChangeRule(
             "new ChunkPos(blockPos)",
             "ChunkPos.containing(blockPos)",
             "new ChunkPos(BlockPos) constructor removed; use ChunkPos.containing(blockPos) in 26.1");
+        // ChunkPos.asLong → ChunkPos.pack
+        addBidirectional(rules, "1.21.11", "26.1", RuleType.TEXT_REPLACE,
+            "ChunkPos.asLong(",
+            "ChunkPos.pack(",
+            "ChunkPos.asLong() → ChunkPos.pack() in 26.1");
+        // GuiGraphics → GuiGraphicsExtractor (GUI rendering refactor in 26.1)
+        addBidirectional(rules, "1.21.11", "26.1", RuleType.CLASS_RENAME,
+            "GuiGraphicsExtractor",
+            "GuiGraphics",
+            "GuiGraphicsExtractor (26.1) ↔ GuiGraphics (pre-26.1)");
+        addBidirectional(rules, "1.21.11", "26.1", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.client.gui.GuiGraphics;",
+            "import net.minecraft.client.gui.GuiGraphicsExtractor;",
+            "GuiGraphics import → GuiGraphicsExtractor in 26.1");
+        // renderSlot → extractSlot (mixin target method rename in 26.1)
+        addBidirectional(rules, "1.21.11", "26.1", RuleType.METHOD_RENAME,
+            "method = \"extractSlot\"",
+            "method = \"renderSlot\"",
+            "extractSlot (26.1) ↔ renderSlot (pre-26.1) in mixin targets");
+        // renderItem → item in GuiGraphicsExtractor context
+        addBidirectional(rules, "1.21.11", "26.1", RuleType.METHOD_RENAME,
+            "target = \"GuiGraphicsExtractor.item(",
+            "target = \"GuiGraphics.renderItem(",
+            "GuiGraphicsExtractor.item (26.1) ↔ GuiGraphics.renderItem (pre-26.1)");
+
+        // ── 1.21.9/1.21.10 Entity API ─────────────────────────────────────────
+        // Entity#getWorld → Entity#getEntityWorld (Fabric 1.21.9/1.21.10)
+        addBidirectional(rules, "1.21.8", "1.21.9", RuleType.METHOD_RENAME,
+            ".getEntityWorld()",
+            ".getWorld()",
+            "Entity#getEntityWorld() (1.21.9+) ↔ Entity#getWorld() (pre-1.21.9)");
+        // MinecraftClient.IS_SYSTEM_MAC → SystemKeycodes.IS_MAC_OS
+        addBidirectional(rules, "1.21.8", "1.21.9", RuleType.TEXT_REPLACE,
+            "SystemKeycodes.IS_MAC_OS",
+            "MinecraftClient.IS_SYSTEM_MAC",
+            "SystemKeycodes.IS_MAC_OS (1.21.9+) ↔ MinecraftClient.IS_SYSTEM_MAC (pre-1.21.9)");
+
+        // ── 1.21.5/1.21.6 BlockRenderLayerMap ────────────────────────────────
+        addBidirectional(rules, "1.21.5", "1.21.6", RuleType.TEXT_REPLACE,
+            "BlockRenderLayerMap.putBlock(",
+            "BlockRenderLayerMap.INSTANCE.putBlock(",
+            "BlockRenderLayerMap.INSTANCE removed in 1.21.6; use static method");
+        addBidirectional(rules, "1.21.5", "1.21.6", RuleType.IMPORT_CHANGE,
+            "import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;",
+            "import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;",
+            "BlockRenderLayerMap import moved in 1.21.6");
+
+        // ── 1.20.6/1.21 Identifier constructor ───────────────────────────────
+        rules.add(new ApiChangeRule("1.20.6", "1.21", RuleType.TEXT_REPLACE,
+            "new Identifier(",
+            "Identifier.of(",
+            "Identifier constructor protected in 1.21; use Identifier.of()"));
+        rules.add(new ApiChangeRule("1.21", "1.20.6", RuleType.TEXT_REPLACE,
+            "Identifier.of(",
+            "new Identifier(",
+            "Identifier.of() → new Identifier() for pre-1.21"));
 
         // ── Screen API (general - applies to many versions) ─────────────────
         addBidirectional(rules, "1.20.1", "1.21.10", RuleType.IMPORT_CHANGE,
