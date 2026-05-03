@@ -1,13 +1,26 @@
-MIT License
+MIT License + Commons Clause
 
 Copyright (c) 2026 Reqsery
+
+"Commons Clause" License Condition v1.0
+
+The Software is provided to you by the Licensor under the MIT License,
+subject to the following condition: without limiting other conditions in
+the License, the grant of rights will not include, and the License does
+not grant to you, the right to Sell the Software. For purposes of the
+foregoing, "Sell" means practicing any or all of the rights granted to
+you under the License in exchange for a fee or other consideration,
+including without limitation fees for hosting or consulting/support
+services related to the Software.
+
+---
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+to use, copy, modify, merge, publish, distribute, and/or sublicense copies
+of the Software, and to permit persons to whom the Software is furnished to
+do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
