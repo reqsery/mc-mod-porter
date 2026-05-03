@@ -16,14 +16,26 @@ public class BuildRunner {
             return new BuildResult(false, -1, "", "No gradlew found at " + modRoot, "");
         }
 
-        System.out.println("  Running: " + gradlew.getFileName() + " genSources downloadAssets build --no-daemon");
-        ProcessBuilder pb = new ProcessBuilder(gradlew.toAbsolutePath().toString(), "genSources", "downloadAssets", "build", "--no-daemon");
+        // Determine the required Java version from the mod's build.gradle
+        int requiredJava = detectRequiredJavaVersion(modRoot);
+        String javaHome  = detectJavaHome(requiredJava);
+
+        System.out.println("  Requires Java " + requiredJava
+            + (javaHome != null ? " — found at: " + javaHome : " — NOT FOUND on this machine"));
+
+        if (javaHome == null && requiredJava >= 25) {
+            return new BuildResult(false, -1, "",
+                "Java " + requiredJava + " is required to build this mod but was not found.\n"
+                + "Install JDK " + requiredJava + " and make sure JAVA_HOME points to it, then retry.",
+                "");
+        }
+
+        System.out.println("  Running: " + gradlew.getFileName() + " compileJava --no-daemon");
+        ProcessBuilder pb = new ProcessBuilder(gradlew.toAbsolutePath().toString(), "compileJava", "--no-daemon");
         pb.directory(modRoot.toFile());
         pb.redirectErrorStream(true);
 
-        // Set JAVA_HOME to Java 21 if available
-        String java21 = detectJava21();
-        if (java21 != null) pb.environment().put("JAVA_HOME", java21);
+        if (javaHome != null) pb.environment().put("JAVA_HOME", javaHome);
 
         Process process = pb.start();
         StringBuilder output = new StringBuilder();
@@ -84,12 +96,69 @@ public class BuildRunner {
         return new BuildResult(success, exitCode, output.toString(), errors, logFile.toString());
     }
 
-    private String detectJava21() {
-        List<String> candidates = List.of(
-            System.getProperty("user.home") + "/AppData/Local/Programs/Eclipse Adoptium/jdk-21.0.10.7-hotspot",
-            "/usr/lib/jvm/java-21-openjdk-amd64",
-            "/usr/lib/jvm/java-21"
-        );
+    /**
+     * Read the Java toolchain version from the mod's build.gradle.
+     * Falls back to 21 if it can't be determined.
+     */
+    private int detectRequiredJavaVersion(Path modRoot) {
+        Path buildGradle = modRoot.resolve("build.gradle");
+        if (!Files.exists(buildGradle)) return 21;
+        try {
+            String content = Files.readString(buildGradle);
+            // Match: languageVersion = JavaLanguageVersion.of(25)
+            var m = java.util.regex.Pattern.compile("JavaLanguageVersion\\.of\\((\\d+)\\)").matcher(content);
+            if (m.find()) return Integer.parseInt(m.group(1));
+            // Match: sourceCompatibility = JavaVersion.VERSION_25 or = '25' or = 25
+            m = java.util.regex.Pattern.compile("sourceCompatibility\\s*=\\s*(?:JavaVersion\\.VERSION_)?(\\d+)").matcher(content);
+            if (m.find()) return Integer.parseInt(m.group(1));
+        } catch (IOException ignored) {}
+        return 21;
+    }
+
+    /**
+     * Find a JDK home for the requested Java version.
+     * Checks common install locations on Windows and Linux/Mac.
+     * Returns null if not found (caller decides what to do).
+     */
+    private String detectJavaHome(int version) {
+        String home = System.getProperty("user.home");
+        List<String> candidates = new ArrayList<>();
+
+        // Windows — Eclipse Adoptium / Temurin, Oracle, Microsoft, Amazon Corretto
+        candidates.add(home + "/AppData/Local/Programs/Eclipse Adoptium/jdk-" + version + ".0.0-hotspot");
+        candidates.add(home + "/AppData/Local/Programs/Eclipse Adoptium/jdk-" + version);
+        candidates.add("C:/Program Files/Eclipse Adoptium/jdk-" + version);
+        candidates.add("C:/Program Files/Microsoft/jdk-" + version);
+        candidates.add("C:/Program Files/Java/jdk-" + version);
+        candidates.add("C:/Program Files/Amazon Corretto/jdk" + version);
+        // Exact version strings seen on user's machine (from previous detection)
+        if (version == 21) {
+            candidates.add(home + "/AppData/Local/Programs/Eclipse Adoptium/jdk-21.0.10.7-hotspot");
+        }
+
+        // Linux / macOS
+        candidates.add("/usr/lib/jvm/java-" + version + "-openjdk-amd64");
+        candidates.add("/usr/lib/jvm/java-" + version + "-openjdk");
+        candidates.add("/usr/lib/jvm/java-" + version);
+        candidates.add("/usr/local/lib/jvm/java-" + version);
+        candidates.add("/Library/Java/JavaVirtualMachines/jdk-" + version + ".jdk/Contents/Home");
+
+        // Also check JAVA_HOME already set in environment
+        String envJavaHome = System.getenv("JAVA_HOME");
+        if (envJavaHome != null) {
+            // Verify it matches the required version
+            File releaseFile = new File(envJavaHome, "release");
+            if (releaseFile.exists()) {
+                try {
+                    String release = Files.readString(releaseFile.toPath());
+                    if (release.contains("JAVA_VERSION=\"" + version + ".")
+                        || release.contains("JAVA_VERSION=\"" + version + "\"")) {
+                        return envJavaHome;
+                    }
+                } catch (IOException ignored) {}
+            }
+        }
+
         for (String c : candidates) {
             if (new File(c).exists()) return c;
         }
