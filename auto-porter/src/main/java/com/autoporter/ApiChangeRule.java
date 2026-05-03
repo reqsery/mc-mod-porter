@@ -555,25 +555,30 @@ public record ApiChangeRule(
             "ChunkPos.asLong(",
             "ChunkPos.pack(",
             "ChunkPos.asLong() → ChunkPos.pack() in 26.1");
+        // NOTE: new ChunkPos(long) → ChunkPos.unpack(long) also changed in 26.1,
+        // but a safe text replacement is not possible (can't distinguish BlockPos vs long arg by text).
+        // The BlockPos variant is already handled above. The long variant requires manual migration.
         // GuiGraphics → GuiGraphicsExtractor (GUI rendering refactor in 26.1)
+        // oldPattern = name in SOURCE version, newPattern = name in TARGET version
         addBidirectional(rules, "1.21.11", "26.1", RuleType.CLASS_RENAME,
-            "GuiGraphicsExtractor",
             "GuiGraphics",
-            "GuiGraphicsExtractor (26.1) ↔ GuiGraphics (pre-26.1)");
+            "GuiGraphicsExtractor",
+            "GuiGraphics (pre-26.1) → GuiGraphicsExtractor (26.1)");
         addBidirectional(rules, "1.21.11", "26.1", RuleType.IMPORT_CHANGE,
             "import net.minecraft.client.gui.GuiGraphics;",
             "import net.minecraft.client.gui.GuiGraphicsExtractor;",
             "GuiGraphics import → GuiGraphicsExtractor in 26.1");
-        // renderSlot → extractSlot (mixin target method rename in 26.1)
+        // renderSlot → extractSlot in @Inject(method = "...") annotation strings
         addBidirectional(rules, "1.21.11", "26.1", RuleType.METHOD_RENAME,
-            "method = \"extractSlot\"",
             "method = \"renderSlot\"",
-            "extractSlot (26.1) ↔ renderSlot (pre-26.1) in mixin targets");
-        // renderItem → item in GuiGraphicsExtractor context
+            "method = \"extractSlot\"",
+            "renderSlot (pre-26.1) → extractSlot (26.1) in @Inject method attribute");
+        // renderItem → item in dot-notation @At(target = "ClassName.method(...)") strings
+        // JVM-format target strings (Lnet/.../Class;method(...)) are handled by MixinTargetResolver
         addBidirectional(rules, "1.21.11", "26.1", RuleType.METHOD_RENAME,
-            "target = \"GuiGraphicsExtractor.item(",
             "target = \"GuiGraphics.renderItem(",
-            "GuiGraphicsExtractor.item (26.1) ↔ GuiGraphics.renderItem (pre-26.1)");
+            "target = \"GuiGraphicsExtractor.item(",
+            "GuiGraphics.renderItem (pre-26.1) → GuiGraphicsExtractor.item (26.1) in dot-notation target");
 
         // ── 1.21.9/1.21.10 Entity API ─────────────────────────────────────────
         // Entity#getWorld → Entity#getEntityWorld (Fabric 1.21.9/1.21.10)

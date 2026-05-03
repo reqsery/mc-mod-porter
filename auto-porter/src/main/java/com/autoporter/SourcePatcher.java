@@ -22,7 +22,7 @@ public class SourcePatcher {
         List<String> allChanges = new ArrayList<>();
 
         for (Path src : sources) {
-            List<String> fileChanges = patchFile(src, rules, dryRun);
+            List<String> fileChanges = patchFile(src, rules, dryRun, fromVersion, toVersion);
             allChanges.addAll(fileChanges);
             if (fileChanges.isEmpty()) {
                 System.out.println("  [SKIP] " + src.getFileName() + " — no matching rules");
@@ -95,11 +95,13 @@ public class SourcePatcher {
         return results;
     }
 
-    private List<String> patchFile(Path file, List<ApiChangeRule> rules, boolean dryRun) throws IOException {
+    private List<String> patchFile(Path file, List<ApiChangeRule> rules, boolean dryRun,
+                                    String fromVersion, String toVersion) throws IOException {
         String original = Files.readString(file);
         String content  = original;
         List<String> changes = new ArrayList<>();
 
+        // Phase 1: apply text-replacement rules (class renames, import changes, etc.)
         for (ApiChangeRule rule : rules) {
             String before = content;
             content = applyRule(content, rule);
@@ -108,6 +110,17 @@ public class SourcePatcher {
                 changes.add(change);
                 System.out.println("  [INFO] " + change);
             }
+        }
+
+        // Phase 2: translate JVM-format mixin target strings (e.g. @At(target = "Lnet/.../Class;method(...)V"))
+        // Must run AFTER Phase 1 so that class renames in descriptors are already applied.
+        MixinTargetResolver mixinResolver = new MixinTargetResolver();
+        String afterMixin = mixinResolver.translateFile(content, fromVersion, toVersion);
+        if (!afterMixin.equals(content)) {
+            content = afterMixin;
+            String change = file.getFileName() + ": [MIXIN_TARGET] Translated JVM mixin @At target descriptors";
+            changes.add(change);
+            System.out.println("  [INFO] " + change);
         }
 
         if (!content.equals(original)) {
