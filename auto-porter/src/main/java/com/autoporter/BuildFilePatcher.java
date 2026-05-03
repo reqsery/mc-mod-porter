@@ -114,28 +114,23 @@ public class BuildFilePatcher {
             content = after;
         }
 
-        // 4. Java toolchain: 21 → 25
-        after = content.replaceAll(
-            "JavaLanguageVersion\\.of\\(21\\)",
-            "JavaLanguageVersion.of(25)");
-        if (!after.equals(content)) {
-            log.add(name + ": updated Java toolchain 21 → 25");
-            content = after;
-        }
-        after = content.replaceAll(
-            "sourceCompatibility\\s*=\\s*JavaVersion\\.VERSION_21",
-            "sourceCompatibility = JavaVersion.VERSION_25");
-        if (!after.equals(content)) {
-            log.add(name + ": updated sourceCompatibility 21 → 25");
-            content = after;
-        }
-        after = content.replaceAll(
-            "targetCompatibility\\s*=\\s*JavaVersion\\.VERSION_21",
-            "targetCompatibility = JavaVersion.VERSION_25");
-        if (!after.equals(content)) {
-            log.add(name + ": updated targetCompatibility 21 → 25");
-            content = after;
-        }
+        // 4. Java version: 21 → 25 (all common formats)
+        after = content.replaceAll("JavaLanguageVersion\\.of\\(21\\)", "JavaLanguageVersion.of(25)");
+        if (!after.equals(content)) { log.add(name + ": updated Java toolchain 21 → 25"); content = after; }
+
+        after = content.replaceAll("sourceCompatibility\\s*=\\s*JavaVersion\\.VERSION_21", "sourceCompatibility = JavaVersion.VERSION_25");
+        if (!after.equals(content)) { log.add(name + ": updated sourceCompatibility 21 → 25"); content = after; }
+
+        after = content.replaceAll("targetCompatibility\\s*=\\s*JavaVersion\\.VERSION_21", "targetCompatibility = JavaVersion.VERSION_25");
+        if (!after.equals(content)) { log.add(name + ": updated targetCompatibility 21 → 25"); content = after; }
+
+        // options.release = 21 (tasks.withType(JavaCompile).configureEach block)
+        after = content.replaceAll("(\\.options\\.release\\s*=\\s*)21", "$125");
+        if (!after.equals(content)) { log.add(name + ": updated options.release 21 → 25"); content = after; }
+
+        // Plain integer: sourceCompatibility = 21 / targetCompatibility = 21
+        after = content.replaceAll("((?:source|target)Compatibility\\s*=\\s*)21", "$125");
+        if (!after.equals(content)) { log.add(name + ": updated sourceCompatibility/targetCompatibility 21 → 25"); content = after; }
 
         if (!content.equals(original)) {
             Files.writeString(file, content);
@@ -197,28 +192,23 @@ public class BuildFilePatcher {
             content = after;
         }
 
-        // 3. Java toolchain: 25 → 21
-        after = content.replaceAll(
-            "JavaLanguageVersion\\.of\\(25\\)",
-            "JavaLanguageVersion.of(21)");
-        if (!after.equals(content)) {
-            log.add(name + ": updated Java toolchain 25 → 21");
-            content = after;
-        }
-        after = content.replaceAll(
-            "sourceCompatibility\\s*=\\s*JavaVersion\\.VERSION_25",
-            "sourceCompatibility = JavaVersion.VERSION_21");
-        if (!after.equals(content)) {
-            log.add(name + ": updated sourceCompatibility 25 → 21");
-            content = after;
-        }
-        after = content.replaceAll(
-            "targetCompatibility\\s*=\\s*JavaVersion\\.VERSION_25",
-            "targetCompatibility = JavaVersion.VERSION_21");
-        if (!after.equals(content)) {
-            log.add(name + ": updated targetCompatibility 25 → 21");
-            content = after;
-        }
+        // 3. Java version: 25 → 21 (all common formats)
+        after = content.replaceAll("JavaLanguageVersion\\.of\\(25\\)", "JavaLanguageVersion.of(21)");
+        if (!after.equals(content)) { log.add(name + ": updated Java toolchain 25 → 21"); content = after; }
+
+        after = content.replaceAll("sourceCompatibility\\s*=\\s*JavaVersion\\.VERSION_25", "sourceCompatibility = JavaVersion.VERSION_21");
+        if (!after.equals(content)) { log.add(name + ": updated sourceCompatibility 25 → 21"); content = after; }
+
+        after = content.replaceAll("targetCompatibility\\s*=\\s*JavaVersion\\.VERSION_25", "targetCompatibility = JavaVersion.VERSION_21");
+        if (!after.equals(content)) { log.add(name + ": updated targetCompatibility 25 → 21"); content = after; }
+
+        // options.release = 25 (tasks.withType(JavaCompile).configureEach block)
+        after = content.replaceAll("(\\.options\\.release\\s*=\\s*)25", "$121");
+        if (!after.equals(content)) { log.add(name + ": updated options.release 25 → 21"); content = after; }
+
+        // Plain integer: sourceCompatibility = 25 / targetCompatibility = 25
+        after = content.replaceAll("((?:source|target)Compatibility\\s*=\\s*)25", "$121");
+        if (!after.equals(content)) { log.add(name + ": updated sourceCompatibility/targetCompatibility 25 → 21"); content = after; }
 
         if (!content.equals(original)) {
             Files.writeString(file, content);
