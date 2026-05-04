@@ -24,26 +24,7 @@ Includes:
 
 ---
 
-## Using with AI (Recommended)
-
-The easiest way to use this tool is to let an AI run it for you. The best tools for this are ones that run **on your PC inside your editor** — they can read your mod folder, execute the porter, and fix remaining errors automatically.
-
-| Tool | Notes |
-|------|-------|
-| [Claude Code](https://claude.ai/claude-code) | Terminal agent. Best for autonomous multi-step tasks. **Max plan** handles large mods. |
-| [Cursor](https://cursor.sh) | AI-powered VS Code fork. Open your mod, chat with it directly. **Pro plan** recommended. |
-| [Windsurf](https://codeium.com/windsurf) | Similar to Cursor. Good free tier, paid for larger context. |
-| [GitHub Copilot](https://github.com/features/copilot) | Built into VS Code / JetBrains. Best for fixing individual files. |
-
-> Paid plans are worth it. Free tiers cut off on anything larger than a small mod.
-
-Once you have one set up, see **[AI_GUIDE.md](AI_GUIDE.md)** for the exact workflow and what to say.
-
----
-
-## Getting Started (Manual)
-
-If you want to run the tool yourself without AI:
+## Getting Started
 
 ### Step 1 — Clone the repository
 
