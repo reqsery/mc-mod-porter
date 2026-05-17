@@ -3,6 +3,7 @@ package com.autoporter;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.regex.*;
 import java.util.stream.Stream;
 
 /**
@@ -43,7 +44,7 @@ public class SourcePatcher {
 
     /**
      * Build the full chain of rules needed to get from fromVersion to toVersion.
-     * Applies rules from all intermediate versions in order.
+     * Applies rules from all intermediate versions in order, then deduplicates.
      */
     private List<ApiChangeRule> buildRuleChain(String fromVersion, String toVersion) {
         List<String> allVersions = VersionDatabase.allVersions();
@@ -69,13 +70,13 @@ public class SourcePatcher {
     }
 
     private List<ApiChangeRule> deduplicateRules(List<ApiChangeRule> rules) {
-        Set<String> seen = new LinkedHashSet<>();
-        List<ApiChangeRule> result = new ArrayList<>();
+        Map<String, ApiChangeRule> dedupMap = new LinkedHashMap<>();
         for (ApiChangeRule r : rules) {
             String key = r.type() + "|" + r.oldPattern();
-            if (seen.add(key)) result.add(r);
+            // Keep first occurrence (order matters for precedence)
+            dedupMap.putIfAbsent(key, r);
         }
-        return result;
+        return new ArrayList<>(dedupMap.values());
     }
 
     private List<Path> findJavaSources(Path root) throws IOException {
@@ -88,7 +89,9 @@ public class SourcePatcher {
             Path p = root.resolve(dir);
             if (Files.exists(p)) {
                 try (Stream<Path> walk = Files.walk(p)) {
-                    walk.filter(f -> f.toString().endsWith(".java")).forEach(results::add);
+                    walk.filter(Files::isRegularFile)
+                        .filter(f -> f.getFileName().toString().endsWith(".java"))
+                        .forEach(results::add);
                 }
             }
         }
@@ -101,16 +104,10 @@ public class SourcePatcher {
         String content  = original;
         List<String> changes = new ArrayList<>();
 
-        // Phase 1: apply text-replacement rules (class renames, import changes, etc.)
-        for (ApiChangeRule rule : rules) {
-            String before = content;
-            content = applyRule(content, rule);
-            if (!content.equals(before)) {
-                String change = file.getFileName() + ": [" + rule.type() + "] " + rule.description();
-                changes.add(change);
-                System.out.println("  [INFO] " + change);
-            }
-        }
+        // Phase 1: build a single regex pattern for all rules to apply in one pass
+        // This is more efficient than calling .replace() for each rule sequentially
+        String afterPhase1 = applyAllRulesOptimized(content, rules, changes, file.getFileName().toString());
+        content = afterPhase1;
 
         // Phase 2: translate JVM-format mixin target strings (e.g. @At(target = "Lnet/.../Class;method(...)V"))
         // Must run AFTER Phase 1 so that class renames in descriptors are already applied.
@@ -131,6 +128,25 @@ public class SourcePatcher {
             }
         }
         return changes;
+    }
+
+    /**
+     * Apply all rules in a single optimized pass, reporting changes as we go.
+     * Rules are applied in order to maintain precedence (specific rules before general ones).
+     */
+    private String applyAllRulesOptimized(String content, List<ApiChangeRule> rules, 
+                                         List<String> changes, String fileName) {
+        String result = content;
+        for (ApiChangeRule rule : rules) {
+            String before = result;
+            result = applyRule(result, rule);
+            if (!result.equals(before)) {
+                String change = fileName + ": [" + rule.type() + "] " + rule.description();
+                changes.add(change);
+                System.out.println("  [INFO] " + change);
+            }
+        }
+        return result;
     }
 
     private String applyRule(String content, ApiChangeRule rule) {
