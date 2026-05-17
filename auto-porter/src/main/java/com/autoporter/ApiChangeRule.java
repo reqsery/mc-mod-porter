@@ -9,6 +9,11 @@ import java.util.*;
  * NOTE: ApiChangeRule is temporary and should eventually be generated from the knowledge-base
  * (knowledge-base/minecraft/*.md). Rules here are manually kept in sync with the KB files.
  * When adding new version support, add a KB file first, then mirror the changes here.
+ *
+ * IMPORTANT: Rule order matters! When multiple rules can apply to the same content,
+ * the FIRST matching rule wins. Specific/longer patterns should be added BEFORE generic/shorter ones.
+ * See example: FriendlyByteBuf constructor rule at 1.20.4→1.20.5 must come before the
+ * general FriendlyByteBuf→RegistryFriendlyByteBuf rule.
  */
 public record ApiChangeRule(
     String fromVersion,
@@ -188,9 +193,10 @@ public record ApiChangeRule(
         // ── 1.20.4 → 1.20.5 (Networking API) ─────────────────────────────────
         // FriendlyByteBuf (pre-1.20.5) vs RegistryFriendlyByteBuf (1.20.5+)
         // Note: Mojang mappings use FriendlyByteBuf, not PacketByteBuf
-        // IMPORTANT: The specific constructor rule MUST come before the general FriendlyByteBuf
-        // rule. The general rule "FriendlyByteBuf" → "RegistryFriendlyByteBuf" matches as a
-        // substring — if it fires first, the specific constructor rule can never match.
+        // ⚠️ IMPORTANT: The specific constructor rule MUST come BEFORE the general FriendlyByteBuf rule.
+        // The general rule "FriendlyByteBuf" → "RegistryFriendlyByteBuf" matches as a substring.
+        // If it fires first, the specific constructor rule can never match.
+        // Order is enforced by addBidirectional() and addGeneralRule() placement.
         rules.add(new ApiChangeRule("1.20.4", "1.20.5", RuleType.TEXT_REPLACE,
             "new FriendlyByteBuf(io.netty.buffer.Unpooled.buffer())",
             "new RegistryFriendlyByteBuf(io.netty.buffer.Unpooled.buffer(), player.registryAccess())",
@@ -263,7 +269,7 @@ public record ApiChangeRule(
         // "fill(" → "guiGraphics.fill(" rule — it would corrupt already-converted
         // "graphics.fill(" calls since String.replace matches substrings.
 
-        // ── 1.20.1 → 1.20.2 (NeoForge split) ─────────────────────────────
+        // ── 1.20.1 → 1.20.2 (NeoForge split) ─────────────────────────
         addBidirectional(rules, "1.20.1", "1.20.2", RuleType.IMPORT_CHANGE,
             "net.minecraftforge",
             "net.neoforged",
@@ -273,7 +279,7 @@ public record ApiChangeRule(
             "neoforged",
             "minecraftforge → neoforged");
 
-        // ── 1.20.4 → 1.20.5 (Networking API) ─────────────────────────────
+        // ── 1.20.4 → 1.20.5 (Networking API) ─────────────────────────
         addBidirectional(rules, "1.20.4", "1.20.5", RuleType.TEXT_REPLACE,
             "PacketByteBuf",
             "RegistryFriendlyByteBuf",
