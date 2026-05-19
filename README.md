@@ -2,19 +2,22 @@
 
 A tool for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
 
-![Status](https://img.shields.io/badge/status-WIP-orange)
-## 🚧 Status
+![Status](https://img.shields.io/badge/status-Beta-brightgreen)
+[![License: MIT+Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-blue.svg)](LICENSE)
 
-Work in progress.
+## Download
 
-Recently:
-- Fixed a lot of bugs in the auto-porter
+**[Auto-Porter v1.0.0-beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.0.0-beta)**
 
-Next:
-- More testing
-- Releasing prebuilt JARs soon
+- `auto-porter-1.0.0.jar` — download and run directly, no install needed
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+```bash
+java -jar auto-porter-1.0.0.jar --help
+```
+
+> Requires Java 21+. See the [Java Requirements](#java-requirements) table below.
+
+---
 
 Includes:
 - **auto-porter** — CLI tool that applies known API changes automatically
@@ -26,28 +29,21 @@ Includes:
 
 ## Getting Started
 
-### Step 1 — Clone the repository
+### Option A — Use the prebuilt JAR (recommended)
+
+Download `auto-porter-1.0.0.jar` from the [Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.0.0-beta) and skip to Step 3.
+
+### Option B — Build from source
+
+Clone the repo and build:
 
 ```bash
 git clone https://github.com/reqsery/mc-mod-porter.git
-```
-
-This creates a folder called `mc-mod-porter`. Open it in your terminal:
-
-```bash
-cd mc-mod-porter
-```
-
-### Step 2 — Build the auto-porter
-
-You need **Java 21+** installed. Then:
-
-```bash
-cd auto-porter
+cd mc-mod-porter/auto-porter
 ./gradlew build
 ```
 
-> Windows: use `gradlew.bat build` instead of `./gradlew build`
+> Windows: use `gradlew.bat build`
 
 The built JAR will be at `auto-porter/build/libs/auto-porter-1.0.0.jar`.
 
