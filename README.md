@@ -4,7 +4,7 @@ A tool for porting Minecraft Java Edition mods across versions — from 1.16 thr
 
 ![Status](https://img.shields.io/badge/status-Beta-brightgreen)
 [![License: MIT+Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-blue.svg)](LICENSE)
-[![Discord](https://img.shields.io/discord/1012159299911475280?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/vV2USr9phF)
+[![Discord](https://img.shields.io/discord/1486308254257774602?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/vV2USr9phF)
 
 ## Download
 
