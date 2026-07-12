@@ -4,6 +4,7 @@ A tool for porting Minecraft Java Edition mods across versions — from 1.16 thr
 
 ![Status](https://img.shields.io/badge/status-Beta-brightgreen)
 [![License: MIT+Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-blue.svg)](LICENSE)
+[![Discord](https://img.shields.io/discord/1012159299911475280?color=5865F2&logo=discord&logoColor=white)](https://discord.gg/vV2USr9phF)
 
 ## Download
 
@@ -27,134 +28,65 @@ Includes:
 
 ---
 
-## Getting Started
+## Quick Start (30 seconds)
 
 ### Option A — Use the prebuilt JAR (recommended)
 
-Download `auto-porter-1.0.0.jar` from the [Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.0.0-beta) and skip to Step 3.
+```bash
+# 1. Download from releases page
+java -jar auto-porter-1.0.0.jar --list-versions
+
+# 2. Dry run (see what would change, no files touched)
+java -jar auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
+
+# 3. Port your mod
+java -jar auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5
+```
+
+The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is never touched.
 
 ### Option B — Build from source
-
-Clone the repo and build:
 
 ```bash
 git clone https://github.com/reqsery/mc-mod-porter.git
 cd mc-mod-porter/auto-porter
 ./gradlew build
+java -jar build/libs/auto-porter-1.0.0.jar --help
 ```
 
-> Windows: use `gradlew.bat build`
-
-The built JAR will be at `auto-porter/build/libs/auto-porter-1.0.0.jar`.
-
-### Step 3 — Check supported versions
-
-```bash
-java -jar auto-porter/build/libs/auto-porter-1.0.0.jar --list-versions
-```
-
-### Step 4 — Dry run first (always)
-
-See exactly what would change without touching any files:
-
-```bash
-java -jar auto-porter/build/libs/auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
-```
-
-### Step 5 — Port your mod
-
-```bash
-java -jar auto-porter/build/libs/auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5
-```
-
-Your original mod is never modified. The ported copy is created at `C:/path/to/mymod-ported-1_20_5`.
-
-The tool will:
-1. Update `build.gradle` plugin versions
-2. Update `gradle.properties` dependency versions
-3. Patch Java source files (renames, imports, signature changes)
-4. Update `fabric.mod.json` / `mods.toml` metadata
-5. Attempt a Gradle build and report remaining errors
-
-### Step 6 — Fix remaining errors
-
-The auto-porter handles mechanical changes. Anything requiring logic rewrites shows up as a build error. Open the relevant `knowledge-base/minecraft/` file for that version hop and follow the migration notes — or hand the errors to an AI using the prompt template in [AI_GUIDE.md](AI_GUIDE.md).
+**Windows?** Use `gradlew.bat build`
 
 ---
 
-## How It Works
+## What It Does
 
-1. Check `knowledge-base/minecraft/` for breaking API changes between versions
-2. Check `patterns/` for quick cross-version rename tables
-3. Check `knowledge-base/loaders/` for correct dependency versions
-4. Use `java/` for Java toolchain requirements
-5. Run `auto-porter` to automatically apply known patterns
+The auto-porter handles the **mechanical, repetitive part** of version porting:
+
+1. ✅ Updates `build.gradle` plugin versions
+2. ✅ Updates `gradle.properties` dependency versions
+3. ✅ Patches Java source files (renames, imports, signature changes)
+4. ✅ Updates `fabric.mod.json` / `mods.toml` metadata
+5. ✅ Attempts a Gradle build and reports remaining errors
+
+**What it doesn't do:** Logic changes. If your code uses APIs that were completely redesigned, you'll need to manually fix those (the tool tells you where).
 
 ---
 
-## Folder Structure
+## Getting Help
 
-```
-auto-porter/        — CLI tool: ports a mod folder to a target MC version
-visual-tester/      — Fabric mod: in-game automated UI testing
-deep-debugger/      — Static analyzer + fuzz-test generator
-scripts/            — Utility scripts (wrappers, validators)
+### The Tool Crashes or Gives an Error?
 
-knowledge-base/
-  minecraft/        — one file per adjacent version hop
-    1.16_to_1.17.md             — KeyMapping rename, addRenderableWidget, SLF4J
-    1.17.1_to_1.18.md           — Java 17 required
-    1.18_to_1.18.1.md           — No API changes
-    1.18.1_to_1.18.2.md         — No API changes
-    1.18.2_to_1.19.md           — No API changes
-    1.19_to_1.19.1.md           — Chat signing introduced
-    1.19.1_to_1.19.2.md         — No API changes
-    1.19.2_to_1.19.3.md         — Button.builder, getX/getY, EditBox.setHint
-    1.19.3_to_1.19.4.md         — No API changes
-    1.19.4_to_1.20.md           — GuiGraphics introduced
-    1.20_to_1.20.1.md           — No API changes
-    1.20.1_to_1.20.2.md         — NeoForge fork (net.minecraftforge → net.neoforged)
-    1.20.2_to_1.20.3.md         — No API changes
-    1.20.3_to_1.20.4.md         — No API changes
-    1.20.4_to_1.20.5.md         — RegistryFriendlyByteBuf, Java 21, NeoForge HUD API
-    1.20.5_to_1.20.6.md         — No API changes
-    1.20.6_to_1.21.md           — DeltaTracker introduced in HUD callbacks
-    1.21_to_1.21.1.md           — No API changes
-    1.21.1_to_1.21.2.md         — No API changes
-    1.21.2_to_1.21.3.md         — No API changes
-    1.21.3_to_1.21.4.md         — No API changes
-    1.21.4_to_1.21.5.md         — No API changes
-    1.21.5_to_1.21.6.md         — RenderType::guiTextured removed, player.server private
-    1.21.6_to_1.21.7.md         — No API changes
-    1.21.7_to_1.21.8.md         — No API changes
-    1.21.8_to_1.21.9.md         — PlayerSkin moved, KeyEvent, KeyMapping.Category (NeoForge)
-    1.21.9_to_1.21.10.md        — KeyMapping.Category (Fabric side)
-    1.21.10_to_1.21.11.md       — ResourceLocation → Identifier
-    1.21.11_to_26.1.md          — Java 25, deobfuscation, Loom plugin rename
-    26.1_to_26.1.1.md           — Hotfix only, no API changes
-    26.1.1_to_26.1.2.md         — Hotfix only, no API changes
-  loaders/
-    fabric/versions.md          — Fabric Loader + API version table (1.16 → 26.1.x)
-    neoforge/versions.md        — NeoForge version table + format explanation
+Check [**docs/TROUBLESHOOTING.md**](docs/TROUBLESHOOTING.md) for solutions to common build errors.
 
-patterns/
-  method-renames.md             — Verified method rename table (all versions)
-  class-moves.md                — Verified class move/rename table (all versions)
-  signatures.md                 — Before/after code for common signature changes
+### Want to Understand a Specific Version Change?
 
-java/
-  java17.md                     — Required for Minecraft 1.18+
-  java21.md                     — Required for Minecraft 1.20.5+
-  java25.md                     — Required for Minecraft 26.1+
+Look in [**knowledge-base/minecraft/**](knowledge-base/minecraft/) for that version hop. Example: `1.19_to_1.20.md` contains all API changes between those versions.
 
-docs/
-  CONTRIBUTING.md               — Rules for adding data
-  TROUBLESHOOTING.md            — Common build errors and fixes
-  FAQ.md                        — Common questions
+### Questions or Ideas?
 
-templates/
-  version-template.md           — Copy this to add a new version entry
-```
+- **Discord:** [https://discord.gg/vV2USr9phF](https://discord.gg/vV2USr9phF)
+- **Discussions:** [Start or join one here](../../discussions)
+- **FAQ:** [docs/FAQ.md](docs/FAQ.md)
 
 ---
 
@@ -179,12 +111,59 @@ See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 
 ---
 
-## Source of Truth
+## How It Works
 
-> **The knowledge-base is the single source of truth.**
-> If any rule in `auto-porter` conflicts with a knowledge-base file, the rule must be fixed or removed.
+1. **Check** `knowledge-base/minecraft/` for breaking API changes between versions
+2. **Look up** `patterns/` for quick cross-version rename tables
+3. **Find** `knowledge-base/loaders/` for correct dependency versions
+4. **Verify** `java/` for Java toolchain requirements
+5. **Run** `auto-porter` to automatically apply known patterns
 
-See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the full accuracy policy.
+---
+
+## Folder Structure
+
+```
+auto-porter/        — CLI tool: ports a mod folder to a target MC version
+visual-tester/      — Fabric mod: in-game automated UI testing
+deep-debugger/      — Static analyzer + fuzz-test generator
+scripts/            — Utility scripts (wrappers, validators)
+
+knowledge-base/
+  minecraft/        — one file per adjacent version hop
+    1.16_to_1.17.md
+    1.19.4_to_1.20.md      — all API changes documented here
+    ...
+  loaders/
+    fabric/versions.md     — Fabric Loader + API version table
+    neoforge/versions.md   — NeoForge version table
+
+patterns/
+  method-renames.md  — Verified method rename table
+  class-moves.md     — Verified class move/rename table
+  signatures.md      — Code change examples
+
+docs/
+  CONTRIBUTING.md    — How to add version data
+  TROUBLESHOOTING.md — Common build errors & fixes
+  FAQ.md             — Common questions
+```
+
+---
+
+## Want to Contribute?
+
+**Yes, please!** See [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) for:
+- How to set up locally
+- How to submit code changes
+- How to add migration data
+- How to report bugs or suggest features
+
+### Quick paths:
+- 🐛 **Found a bug?** → [Open a bug report](../../issues/new?template=bug_report.md)
+- 💡 **Have an idea?** → [Suggest a feature](../../issues/new?template=feature_request.md)
+- 🔧 **Want to code?** → [Read the contributor guide](.github/CONTRIBUTING.md)
+- 📚 **Want to improve docs?** → Fork & submit a PR
 
 ---
 
@@ -192,7 +171,31 @@ See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the full accuracy policy.
 
 | File | What it covers |
 |------|----------------|
-| [AI_GUIDE.md](AI_GUIDE.md) | How to use this repo with any AI assistant |
-| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | How to add or update version data |
+| [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) | How to contribute code or data |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Rules for adding version migration data |
 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common build errors and how to fix them |
 | [docs/FAQ.md](docs/FAQ.md) | Common questions about versioning and loaders |
+| [AI_GUIDE.md](AI_GUIDE.md) | How to use this repo with any AI assistant |
+
+---
+
+## The Golden Rule
+
+> **The knowledge-base is the single source of truth.**
+>
+> Every API change in `auto-porter` is backed by a verified source (Mojang, Fabric, NeoForge official docs).
+> No guessing. No hallucinations.
+
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for the full accuracy policy.
+
+---
+
+## License
+
+This project is licensed under **MIT + Commons Clause**. See [LICENSE](LICENSE) for details.
+
+---
+
+**Made with ❤️ for the Minecraft modding community.**
+
+Have feedback? Join us on [Discord](https://discord.gg/vV2USr9phF)!
