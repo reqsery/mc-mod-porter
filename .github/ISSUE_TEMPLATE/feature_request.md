@@ -1,20 +1,38 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+name: 💡 Feature Request
+about: Suggest an idea to improve mc-mod-porter
+title: "[FEATURE] "
+labels: enhancement
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 🎯 Problem Statement
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+What problem are you trying to solve? What's the use case?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+*(Example: "I'm porting mods to 1.21 but the auto-porter doesn't handle Fabric's new event system properly")*
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## 💭 Proposed Solution
+
+How should this feature work? What would the ideal behavior be?
+
+## 🤔 Alternative Approaches
+
+Any other ways to solve this that you've considered?
+
+## ✅ Why Is This Useful?
+
+Who benefits? How many people does this affect?
+
+*(Example: "This would help anyone porting to recent Minecraft versions with multiloader support")*
+
+## 📎 Additional Context
+
+- Related issues or discussions?
+- Links to Minecraft/Fabric/NeoForge docs that are relevant?
+- Code snippets or examples?
+
+---
+
+**Before proposing:** Check existing [issues](../../issues) and [discussions](../../discussions) to avoid duplicates!
