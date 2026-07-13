@@ -93,6 +93,14 @@ public class AutoPorterMain {
             PatchResult sourceResult = sourcePatcher.patch(srcRoot, fromVer, toVer, true);
             System.out.println();
             sourceResult.print();
+            ResourcePatcher resourcePatcher = new ResourcePatcher();
+            PatchResult resourceResult = resourcePatcher.patch(srcRoot, fromVer, toVer, true);
+            System.out.println();
+            resourceResult.print();
+            MigrationWarningScanner warningScanner = new MigrationWarningScanner();
+            PatchResult warningResult = warningScanner.scan(srcRoot, fromVer, toVer);
+            System.out.println();
+            warningResult.print();
             System.out.println("\n[DRY RUN] build.gradle and gradle.properties would also be updated.");
             System.out.println("[DRY RUN] No files were modified.");
             return;
@@ -147,35 +155,47 @@ public class AutoPorterMain {
         }
 
         // Step 0: Update Loom/plugin versions in build.gradle
-        System.out.println("[0/4] Updating build.gradle plugin versions...");
+        System.out.println("[1/7] Updating build.gradle plugin versions...");
         BuildFilePatcher buildPatcher = new BuildFilePatcher();
         PatchResult buildFileResult = buildPatcher.patch(modRoot, toVer, useYarn);
         buildFileResult.print();
         steps.add(stepMap("build.gradle", buildFileResult));
 
         // Step 1: Update gradle.properties
-        System.out.println("[1/4] Updating gradle.properties...");
+        System.out.println("[2/7] Updating gradle.properties...");
         GradlePropertiesPatcher gradlePatcher = new GradlePropertiesPatcher();
         PatchResult gradleResult = gradlePatcher.patch(modRoot, toVer, useYarn);
         gradleResult.print();
         steps.add(stepMap("gradle.properties", gradleResult));
 
         // Step 2: Patch Java sources
-        System.out.println("\n[2/4] Patching Java sources...");
+        System.out.println("\n[3/7] Patching Java sources...");
         SourcePatcher sourcePatcher = new SourcePatcher();
         PatchResult sourceResult = sourcePatcher.patch(modRoot, fromVer, toVer, false);
         sourceResult.print();
         steps.add(stepMap("sources", sourceResult));
 
+        System.out.println("\n[4/7] Patching resources and data files...");
+        ResourcePatcher resourcePatcher = new ResourcePatcher();
+        PatchResult resourceResult = resourcePatcher.patch(modRoot, fromVer, toVer, false);
+        resourceResult.print();
+        steps.add(stepMap("resources", resourceResult));
+
+        System.out.println("\n[5/7] Scanning for manual 26.2 migration items...");
+        MigrationWarningScanner warningScanner = new MigrationWarningScanner();
+        PatchResult warningResult = warningScanner.scan(modRoot, fromVer, toVer);
+        warningResult.print();
+        steps.add(stepMap("warnings", warningResult));
+
         // Step 3: Update mod metadata
-        System.out.println("\n[3/5] Updating mod metadata (fabric.mod.json / mods.toml)...");
+        System.out.println("\n[6/7] Updating mod metadata (fabric.mod.json / mods.toml)...");
         ModMetaPatcher metaPatcher = new ModMetaPatcher();
         PatchResult metaResult = metaPatcher.patch(modRoot, toVer);
         metaResult.print();
         steps.add(stepMap("metadata", metaResult));
 
         // Step 4: Patch access widener / class tweaker
-        System.out.println("\n[4/5] Patching access widener / class tweaker...");
+        System.out.println("\n[7/7] Patching access widener / class tweaker...");
         AccessWidenerPatcher awPatcher = new AccessWidenerPatcher();
         PatchResult awResult = awPatcher.patch(modRoot, toVer);
         awResult.print();
@@ -185,7 +205,7 @@ public class AutoPorterMain {
         Map<String, Object> buildStep = new LinkedHashMap<>();
         BuildRunner.BuildResult buildResult = null;
         if (buildAfter) {
-            System.out.println("\n[5/5] Building ported mod...");
+            System.out.println("\n[build] Building ported mod...");
             BuildRunner runner = new BuildRunner();
             buildResult = runner.build(modRoot);
             buildResult.print();
@@ -195,7 +215,7 @@ public class AutoPorterMain {
             buildStep.put("errors", buildResult.errors());
             buildStep.put("logFile", buildResult.logFile());
         } else {
-            System.out.println("\n[5/5] Build skipped (--no-build)");
+            System.out.println("\n[build] Build skipped (--no-build)");
             buildStep.put("step", "build");
             buildStep.put("success", "skipped");
         }
@@ -215,8 +235,9 @@ public class AutoPorterMain {
         System.out.println("\n═══════════════════════════════════");
         System.out.println("Port report: " + reportFile.toAbsolutePath());
 
-        boolean allOk = gradleResult.success() && sourceResult.success() && metaResult.success()
-                        && awResult.success() && (buildResult == null || buildResult.success());
+        boolean allOk = gradleResult.success() && sourceResult.success() && resourceResult.success()
+                        && warningResult.success() && metaResult.success() && awResult.success()
+                        && (buildResult == null || buildResult.success());
         if (allOk) {
             System.out.println("STATUS: ✓ Port complete — mod ready for " + toVer);
         } else {

@@ -588,6 +588,257 @@ public record ApiChangeRule(
 
         // ── 1.21.9/1.21.10 Entity API ─────────────────────────────────────────
         // Entity#getWorld → Entity#getEntityWorld (Fabric 1.21.9/1.21.10)
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Minecraft.getInstance().setScreen(",
+            "Minecraft.getInstance().gui.setScreen(",
+            "26.2 GUI: Minecraft#setScreen moved to Gui#setScreen");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "this.minecraft.setScreen(",
+            "this.minecraft.gui.setScreen(",
+            "26.2 GUI: this.minecraft#setScreen moved to Gui#setScreen");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "minecraft.setScreen(",
+            "minecraft.gui.setScreen(",
+            "26.2 GUI: minecraft#setScreen moved to Gui#setScreen");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Minecraft.getInstance().screen",
+            "Minecraft.getInstance().gui.screen()",
+            "26.2 GUI: Minecraft#screen moved to Gui#screen()");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "this.minecraft.screen",
+            "this.minecraft.gui.screen()",
+            "26.2 GUI: this.minecraft#screen moved to Gui#screen()");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "minecraft.screen",
+            "minecraft.gui.screen()",
+            "26.2 GUI: minecraft#screen moved to Gui#screen()");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Minecraft.getInstance().openChatScreen(",
+            "Minecraft.getInstance().gui.openChatScreen(",
+            "26.2 GUI: Minecraft#openChatScreen moved to Gui#openChatScreen");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Minecraft.getInstance().getToastManager()",
+            "Minecraft.getInstance().gui.toastManager()",
+            "26.2 GUI: Minecraft#getToastManager moved to Gui#toastManager");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Minecraft.getInstance().getChatListener()",
+            "Minecraft.getInstance().gui.chatListener()",
+            "26.2 GUI: Minecraft#getChatListener moved to Gui#chatListener");
+
+        String[][] hudMoves26_2 = {
+            {"setOverlayMessage", "26.2 HUD: Gui#setOverlayMessage moved to Hud#setOverlayMessage"},
+            {"resetTitleTimes",   "26.2 HUD: Gui#resetTitleTimes moved to Hud#resetTitleTimes"},
+            {"setNowPlaying",     "26.2 HUD: Gui#setNowPlaying moved to Hud#setNowPlaying"},
+            {"setTimes",          "26.2 HUD: Gui#setTimes moved to Hud#setTimes"},
+            {"setSubtitle",       "26.2 HUD: Gui#setSubtitle moved to Hud#setSubtitle"},
+            {"setTitle",          "26.2 HUD: Gui#setTitle moved to Hud#setTitle"},
+            {"clearTitles",       "26.2 HUD: Gui#clearTitles moved to Hud#clearTitles"},
+            {"getChat",           "26.2 HUD: Gui#getChat moved to Hud#getChat"},
+            {"getGuiTicks",       "26.2 HUD: Gui#getGuiTicks moved to Hud#getGuiTicks"},
+            {"getFont",           "26.2 HUD: Gui#getFont moved to Hud#getFont"},
+            {"getSpectatorGui",   "26.2 HUD: Gui#getSpectatorGui moved to Hud#getSpectatorGui"},
+            {"getTabList",        "26.2 HUD: Gui#getTabList moved to Hud#getTabList"},
+            {"onDisconnected",    "26.2 HUD: Gui#onDisconnected moved to Hud#onDisconnected"},
+            {"getBossOverlay",    "26.2 HUD: Gui#getBossOverlay moved to Hud#getBossOverlay"},
+            {"getDebugOverlay",   "26.2 HUD: Gui#getDebugOverlay moved to Hud#getDebugOverlay"},
+            {"clearCache",        "26.2 HUD: Gui#clearCache moved to Hud#clearCache"}
+        };
+        for (String[] move : hudMoves26_2) {
+            addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+                "Minecraft.getInstance().gui." + move[0] + "(",
+                "Minecraft.getInstance().gui.hud." + move[0] + "(",
+                move[1]);
+            addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+                "this.minecraft.gui." + move[0] + "(",
+                "this.minecraft.gui.hud." + move[0] + "(",
+                move[1]);
+            addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+                "minecraft.gui." + move[0] + "(",
+                "minecraft.gui.hud." + move[0] + "(",
+                move[1]);
+        }
+
+        addForward(rules, "26.1.2", "26.2", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.world.entity.monster.MagmaCube;",
+            "import net.minecraft.world.entity.monster.cubemob.MagmaCube;",
+            "26.2 class move: MagmaCube moved to monster.cubemob");
+        addForward(rules, "26.1.2", "26.2", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.world.entity.monster.Slime;",
+            "import net.minecraft.world.entity.monster.cubemob.Slime;",
+            "26.2 class move: Slime moved to monster.cubemob");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "net.minecraft.world.entity.monster.MagmaCube",
+            "net.minecraft.world.entity.monster.cubemob.MagmaCube",
+            "26.2 fully-qualified class move: MagmaCube moved to monster.cubemob");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "net.minecraft.world.entity.monster.Slime",
+            "net.minecraft.world.entity.monster.cubemob.Slime",
+            "26.2 fully-qualified class move: Slime moved to monster.cubemob");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "PointedDripstoneFeature", "SpeleothemFeature",
+            "26.2 worldgen rename: PointedDripstoneFeature -> SpeleothemFeature");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "DripstoneClusterFeature", "SpeleothemClusterFeature",
+            "26.2 worldgen rename: DripstoneClusterFeature -> SpeleothemClusterFeature");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "PointedDripstoneConfiguration", "SpeleothemConfiguration",
+            "26.2 worldgen rename: PointedDripstoneConfiguration -> SpeleothemConfiguration");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "DripstoneClusterConfiguration", "SpeleothemClusterConfiguration",
+            "26.2 worldgen rename: DripstoneClusterConfiguration -> SpeleothemClusterConfiguration");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "DripstoneUtils", "SpeleothemUtils",
+            "26.2 worldgen rename: DripstoneUtils -> SpeleothemUtils");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "DripstoneThickness", "SpeleothemThickness",
+            "26.2 block-state enum rename: DripstoneThickness -> SpeleothemThickness");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "BlockStateProperties.DRIPSTONE_THICKNESS", "BlockStateProperties.SPELEOTHEM_THICKNESS",
+            "26.2 property rename: DRIPSTONE_THICKNESS -> SPELEOTHEM_THICKNESS");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Feature.DRIPSTONE_CLUSTER", "Feature.SPELEOTHEM_CLUSTER",
+            "26.2 feature constant rename: DRIPSTONE_CLUSTER -> SPELEOTHEM_CLUSTER");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "Feature.POINTED_DRIPSTONE", "Feature.SPELEOTHEM",
+            "26.2 feature constant rename: POINTED_DRIPSTONE -> SPELEOTHEM");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "TreeConfiguration.CAN_PLACE_BELOW_OVERWORLD_TRUNKS", "TreeConfiguration.CAN_PLACE_BELOW_TREE_TRUNKS",
+            "26.2 tree config constant rename: CAN_PLACE_BELOW_OVERWORLD_TRUNKS -> CAN_PLACE_BELOW_TREE_TRUNKS");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "ChunkPos.MAX_COORDINATE_VALUE", "ChunkPyramid.MAX_CHUNK_COORDINATE_VALUE",
+            "26.2 chunk coordinate constant moved to ChunkPyramid");
+        addForward(rules, "26.1.2", "26.2", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.world.level.ChunkPos;",
+            "import net.minecraft.world.level.ChunkPos;\nimport net.minecraft.world.level.ChunkPyramid;",
+            "26.2 add ChunkPyramid import for MAX_CHUNK_COORDINATE_VALUE");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            ".markPosForPostprocessing(", ".markPosForPostProcessing(",
+            "26.2 method spelling change: markPosForPostprocessing -> markPosForPostProcessing");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            ".getLightBlockInto(", ".getLightDampeningInto(",
+            "26.2 lighting rename: getLightBlockInto -> getLightDampeningInto");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "WorldPresets.createFlatWorldDimensions(", "WorldPresets.createTestWorldDimensions(",
+            "26.2 world preset rename: createFlatWorldDimensions -> createTestWorldDimensions");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "PlayerSpawnFinder.getOverworldRespawnPos(", "PlayerSpawnFinder.getLevelRespawnPos(",
+            "26.2 respawn helper rename: getOverworldRespawnPos -> getLevelRespawnPos");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "GamePacketTypes.SERVERBOUND_SPECTATE_ENTITY", "GamePacketTypes.SERVERBOUND_SPECTATOR_ACTION",
+            "26.2 networking packet type rename: SERVERBOUND_SPECTATE_ENTITY -> SERVERBOUND_SPECTATOR_ACTION");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "handleSpectateEntity(", "handleSpectatorAction(",
+            "26.2 networking handler rename: handleSpectateEntity -> handleSpectatorAction");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "ServerboundSpectateEntityPacket", "ServerboundSpectatorActionPacket",
+            "26.2 networking class rename: ServerboundSpectateEntityPacket -> ServerboundSpectatorActionPacket");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "ColorArgument", "TeamColorArgument",
+            "26.2 command argument rename: ColorArgument -> TeamColorArgument");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "InstantenousMobEffect", "InstantaneousMobEffect",
+            "26.2 spelling fix: InstantenousMobEffect -> InstantaneousMobEffect");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "applyInstantenousEffect(", "applyInstantaneousEffect(",
+            "26.2 spelling fix: applyInstantenousEffect -> applyInstantaneousEffect");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "isInstantenous(", "isInstantaneous(",
+            "26.2 spelling fix: isInstantenous -> isInstantaneous");
+        addForward(rules, "26.1.2", "26.2", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.world.Bucketable;",
+            "import net.minecraft.world.entity.Bucketable;",
+            "26.2 class move: Bucketable moved to world.entity");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "ContextualBarRenderer", "ContextualBar",
+            "26.2 HUD class rename: ContextualBarRenderer -> ContextualBar");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "ExperienceBarRenderer", "ExperienceBar",
+            "26.2 HUD class rename: ExperienceBarRenderer -> ExperienceBar");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "JumpableVehicleBarRenderer", "JumpableVehicleBar",
+            "26.2 HUD class rename: JumpableVehicleBarRenderer -> JumpableVehicleBar");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "LocatorBarRenderer", "LocatorBar",
+            "26.2 HUD class rename: LocatorBarRenderer -> LocatorBar");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "GlyphRenderTypes.createForIntensityTexture(",
+            "GlyphRenderTypes.createForGrayscaleTexture(",
+            "26.2 font rendering rename: createForIntensityTexture -> createForGrayscaleTexture");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            ".isPauseScreen(",
+            ".isPausing(",
+            "26.2 overlay rename: Overlay#isPauseScreen -> isPausing");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "RenderType.TEXT_INTENSITY", "RenderType.TEXT_GRAYSCALE",
+            "26.2 render type rename: TEXT_INTENSITY -> TEXT_GRAYSCALE");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "RenderType.GUI_TEXT_INTENSITY", "RenderType.GUI_TEXT_GRAYSCALE",
+            "26.2 render type rename: GUI_TEXT_INTENSITY -> GUI_TEXT_GRAYSCALE");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "RenderType.TEXT_INTENSITY_SEE_THROUGH", "RenderType.TEXT_GRAYSCALE_SEE_THROUGH",
+            "26.2 render type rename: TEXT_INTENSITY_SEE_THROUGH -> TEXT_GRAYSCALE_SEE_THROUGH");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "createPointedDripstoneVariant(", "createSpeleothemVariant(",
+            "26.2 helper rename: createPointedDripstoneVariant -> createSpeleothemVariant");
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "createPointedDripstone(", "createSpeleothem(",
+            "26.2 helper rename: createPointedDripstone -> createSpeleothem");
+        String[][] advancementImports26_2 = {
+            {"net.minecraft.advancements.CriteriaTriggers", "net.minecraft.advancements.triggers.CriteriaTriggers"},
+            {"net.minecraft.advancements.Criterion", "net.minecraft.advancements.triggers.Criterion"},
+            {"net.minecraft.advancements.CriterionTrigger", "net.minecraft.advancements.triggers.CriterionTrigger"},
+            {"net.minecraft.advancements.BlockPredicate", "net.minecraft.advancements.predicates.BlockPredicate"},
+            {"net.minecraft.advancements.CollectionContentsPredicate", "net.minecraft.advancements.predicates.CollectionContentsPredicate"},
+            {"net.minecraft.advancements.CollectionCountsPredicate", "net.minecraft.advancements.predicates.CollectionCountsPredicate"},
+            {"net.minecraft.advancements.CollectionPredicate", "net.minecraft.advancements.predicates.CollectionPredicate"},
+            {"net.minecraft.advancements.ContextAwarePredicate", "net.minecraft.advancements.predicates.ContextAwarePredicate"},
+            {"net.minecraft.advancements.DamagePredicate", "net.minecraft.advancements.predicates.DamagePredicate"},
+            {"net.minecraft.advancements.DamageSourcePredicate", "net.minecraft.advancements.predicates.DamageSourcePredicate"},
+            {"net.minecraft.advancements.DataComponentMatchers", "net.minecraft.advancements.predicates.DataComponentMatchers"},
+            {"net.minecraft.advancements.DistancePredicate", "net.minecraft.advancements.predicates.DistancePredicate"},
+            {"net.minecraft.advancements.EnchantmentPredicate", "net.minecraft.advancements.predicates.EnchantmentPredicate"},
+            {"net.minecraft.advancements.EntityEquipmentPredicate", "net.minecraft.advancements.predicates.entity.EntityEquipmentPredicate"},
+            {"net.minecraft.advancements.EntityFlagsPredicate", "net.minecraft.advancements.predicates.entity.EntityFlagsPredicate"},
+            {"net.minecraft.advancements.EntityPredicate", "net.minecraft.advancements.predicates.entity.EntityPredicate"},
+            {"net.minecraft.advancements.EntitySubPredicate", "net.minecraft.advancements.predicates.entity.EntitySubPredicate"},
+            {"net.minecraft.advancements.EntitySubPredicates", "net.minecraft.advancements.predicates.entity.EntitySubPredicates"},
+            {"net.minecraft.advancements.EntityTypePredicate", "net.minecraft.advancements.predicates.entity.EntityTypePredicate"},
+            {"net.minecraft.advancements.FishingHookPredicate", "net.minecraft.advancements.predicates.entity.FishingHookPredicate"},
+            {"net.minecraft.advancements.FluidPredicate", "net.minecraft.advancements.predicates.FluidPredicate"},
+            {"net.minecraft.advancements.FoodPredicate", "net.minecraft.advancements.predicates.FoodPredicate"},
+            {"net.minecraft.advancements.GameTypePredicate", "net.minecraft.advancements.predicates.GameTypePredicate"},
+            {"net.minecraft.advancements.InputPredicate", "net.minecraft.advancements.predicates.InputPredicate"},
+            {"net.minecraft.advancements.ItemPredicate", "net.minecraft.advancements.predicates.ItemPredicate"},
+            {"net.minecraft.advancements.LightningBoltPredicate", "net.minecraft.advancements.predicates.entity.LightningBoltPredicate"},
+            {"net.minecraft.advancements.LightPredicate", "net.minecraft.advancements.predicates.LightPredicate"},
+            {"net.minecraft.advancements.LocationPredicate", "net.minecraft.advancements.predicates.LocationPredicate"},
+            {"net.minecraft.advancements.MinMaxBounds", "net.minecraft.advancements.predicates.MinMaxBounds"},
+            {"net.minecraft.advancements.MobEffectsPredicate", "net.minecraft.advancements.predicates.MobEffectsPredicate"},
+            {"net.minecraft.advancements.MovementPredicate", "net.minecraft.advancements.predicates.entity.MovementPredicate"},
+            {"net.minecraft.advancements.NbtPredicate", "net.minecraft.advancements.predicates.NbtPredicate"},
+            {"net.minecraft.advancements.PlayerPredicate", "net.minecraft.advancements.predicates.entity.PlayerPredicate"},
+            {"net.minecraft.advancements.RaiderPredicate", "net.minecraft.advancements.predicates.entity.RaiderPredicate"},
+            {"net.minecraft.advancements.SheepPredicate", "net.minecraft.advancements.predicates.entity.SheepPredicate"},
+            {"net.minecraft.advancements.SingleComponentItemPredicate", "net.minecraft.advancements.predicates.SingleComponentItemPredicate"},
+            {"net.minecraft.advancements.SlimePredicate", "net.minecraft.advancements.predicates.entity.CubeMobPredicate"},
+            {"net.minecraft.advancements.SlotsPredicate", "net.minecraft.advancements.predicates.SlotsPredicate"},
+            {"net.minecraft.advancements.StatePropertiesPredicate", "net.minecraft.advancements.predicates.StatePropertiesPredicate"},
+            {"net.minecraft.advancements.TagPredicate", "net.minecraft.advancements.predicates.TagPredicate"}
+        };
+        for (String[] move : advancementImports26_2) {
+            addForward(rules, "26.1.2", "26.2", RuleType.IMPORT_CHANGE,
+                "import " + move[0] + ";",
+                "import " + move[1] + ";",
+                "26.2 advancement package move: " + move[0] + " -> " + move[1]);
+            addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+                move[0],
+                move[1],
+                "26.2 fully-qualified advancement package move: " + move[0] + " -> " + move[1]);
+        }
+        addForward(rules, "26.1.2", "26.2", RuleType.TEXT_REPLACE,
+            "SlimePredicate", "CubeMobPredicate",
+            "26.2 advancement predicate rename: SlimePredicate -> CubeMobPredicate");
+
         addBidirectional(rules, "1.21.8", "1.21.9", RuleType.METHOD_RENAME,
             ".getEntityWorld()",
             ".getWorld()",
@@ -642,6 +893,12 @@ public record ApiChangeRule(
         String oldPattern, String newPattern, String desc) {
         list.add(new ApiChangeRule(v1, v2, type, oldPattern, newPattern, desc));
         list.add(new ApiChangeRule(v2, v1, type, newPattern, oldPattern, desc + " (reverse)"));
+    }
+
+    private static void addForward(List<ApiChangeRule> list,
+        String from, String to, RuleType type,
+        String oldPattern, String newPattern, String desc) {
+        list.add(new ApiChangeRule(from, to, type, oldPattern, newPattern, desc));
     }
 
     /** Get rules applicable for a specific version transition. */
