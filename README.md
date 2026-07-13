@@ -8,12 +8,12 @@ A tool for porting Minecraft Java Edition mods across versions — from 1.16 thr
 
 ## Download
 
-**[Auto-Porter v1.0.0-beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.0.0-beta)**
+**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.1.0-beta)**
 
-- `auto-porter-1.0.0.jar` — download and run directly, no install needed
+- `auto-porter.jar` — download and run directly, no install needed
 
 ```bash
-java -jar auto-porter-1.0.0.jar --help
+java -jar auto-porter.jar --help
 ```
 
 > Requires Java 21+. See the [Java Requirements](#java-requirements) table below.
@@ -34,13 +34,13 @@ Includes:
 
 ```bash
 # 1. Download from releases page
-java -jar auto-porter-1.0.0.jar --list-versions
+java -jar auto-porter.jar --list-versions
 
 # 2. Dry run (see what would change, no files touched)
-java -jar auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
+java -jar auto-porter.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
 
 # 3. Port your mod
-java -jar auto-porter-1.0.0.jar C:/path/to/mymod 1.20.4 1.20.5
+java -jar auto-porter.jar C:/path/to/mymod 1.20.4 1.20.5
 ```
 
 The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is never touched.
@@ -51,7 +51,7 @@ The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is 
 git clone https://github.com/reqsery/mc-mod-porter.git
 cd mc-mod-porter/auto-porter
 ./gradlew build
-java -jar build/libs/auto-porter-1.0.0.jar --help
+java -jar build/libs/auto-porter.jar --help
 ```
 
 **Windows?** Use `gradlew.bat build`

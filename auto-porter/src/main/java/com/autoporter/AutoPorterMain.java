@@ -26,7 +26,7 @@ public class AutoPorterMain {
 
     public static void main(String[] args) throws Exception {
         System.out.println("╔══════════════════════════════════╗");
-        System.out.println("║      MC Mod Auto-Porter v1.0     ║");
+        System.out.println("║        MC Mod Auto-Porter        ║");
         System.out.println("╚══════════════════════════════════╝\n");
 
         if (args.length == 0 || args[0].equals("--help")) {
