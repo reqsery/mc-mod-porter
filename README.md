@@ -29,6 +29,7 @@ Includes:
 ---
 
 ## Quick Start (30 seconds)
+> **Note:** Use the extracted mod source/project folder containing `build.gradle`, `gradle.properties`, and `src/` — not the compiled release `.jar`.
 
 ### Option A — Use the prebuilt JAR (recommended)
 
