@@ -64,6 +64,20 @@ public class AutoPorterMain {
 
     static void portMod(String modPath, String fromVer, String toVer, boolean buildAfter, boolean dryRun) throws Exception {
         Path srcRoot = Path.of(modPath);
+        if (Files.exists(srcRoot) && !Files.isDirectory(srcRoot)) {
+            String fileName = srcRoot.getFileName().toString().toLowerCase(Locale.ROOT);
+            System.err.println("ERROR: Auto-Porter needs a mod source/project folder, not a compiled file.");
+            System.err.println();
+            System.err.println("You provided: " + srcRoot.getFileName());
+            System.err.println();
+            if (fileName.endsWith(".jar")) {
+                System.err.println("Compiled mod JARs from Modrinth/CurseForge cannot be ported directly.");
+            } else if (fileName.endsWith(".zip")) {
+                System.err.println("If this is a source ZIP, extract it first and pass the extracted folder.");
+            }
+            System.err.println("Use a folder containing build.gradle, gradle.properties, gradlew/gradlew.bat, and src/.");
+            System.exit(1);
+        }
 
         if (dryRun) System.out.println("*** DRY RUN — no files will be modified ***\n");
 
