@@ -20,7 +20,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.11.0'
     implementation 'com.github.javaparser:javaparser-core:3.26.2'
     implementation 'org.slf4j:slf4j-simple:2.0.13'
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+
+test { useJUnitPlatform() }
 
 application {
     mainClass = 'com.autoporter.AutoPorterMain'

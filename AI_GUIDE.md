@@ -102,3 +102,5 @@ Do not guess — only apply changes that are documented in that file.
 > **DO NOT GUESS.** Every version number, class name, and API change must come from the knowledge-base or a verified source. If something is not documented, say so — do not invent it.
 >
 > **The knowledge-base is the source of truth.** If any rule in `auto-porter` conflicts with a knowledge-base file, the rule must be fixed, not the knowledge-base.
+>
+> **26.2 scope:** dependency/template support is verified, but rendering, registration/data generation, GUI/HUD, networking, mixin, and world-generation changes remain manual unless a focused, officially sourced rule is added.

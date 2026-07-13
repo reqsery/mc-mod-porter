@@ -6,7 +6,7 @@
 
 **No guessing. No hallucinations. Source required.**
 
-If you cannot link to an official source (Mojang GitHub, Fabric docs, NeoForge release notes, Yarn mappings, Minecraft Wiki), do not add the entry.
+If you cannot link to an official Mojang, FabricMC, NeoForged, or Gradle source, do not add the entry. Wikis, search snippets, and compile-only claims are not primary evidence.
 
 ---
 
@@ -49,30 +49,23 @@ If you cannot link to an official source (Mojang GitHub, Fabric docs, NeoForge r
 ## Required Sources
 
 Accepted sources:
-- `https://minecraft.wiki/w/Java_Edition_X.XX`
+- `https://minecraft.net/...` release notes and Mojang launcher/source metadata
 - `https://fabricmc.net/...`
 - `https://docs.fabricmc.net/...`
 - `https://neoforged.net/news/...`
 - GitHub commit/PR URLs from: `minecraft/minecraft`, `FabricMC/fabric`, `neoforged/neoforge`
-- Yarn mappings diffs
+- Official FabricMC and NeoForged Maven metadata
 
 Not accepted:
 - "I think"
 - "probably"
 - Other wikis (unofficial)
 - Reddit posts
-- Your own mod working (use "verified via compile" + version)
+- Your own mod compiling without a primary source
 
 ---
 
-## "Verified via compile" entries
-
-If you actually ported a mod and confirmed it compiles, you may add the entry with:
-```
-source: Verified via compile (ModName, MC X.XX → Y.YY)
-```
-
-This is acceptable evidence. Include the mod name for traceability.
+Compilation is validation, not evidence for inventing a version or API change. Record the primary source as well as the build result.
 
 ---
 

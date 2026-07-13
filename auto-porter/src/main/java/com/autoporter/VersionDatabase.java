@@ -3,8 +3,8 @@ package com.autoporter;
 import java.util.*;
 
 /**
- * Embedded knowledge base of all supported Minecraft versions (1.16 - 26.1.x).
- * Versions verified against live Modrinth/Fabric APIs where possible.
+ * Embedded knowledge base of all supported Minecraft versions (1.16 - 26.2).
+ * Version values are maintained from official Mojang, FabricMC, and NeoForged metadata.
  */
 public class VersionDatabase {
 
@@ -27,7 +27,7 @@ public class VersionDatabase {
 
     static {
         // Columns: mc, fabric-loader, fabric-api, neoforge, forge, architectury, loom, yarn, hasFabric, hasForge, hasNeoForge
-        // Fabric loader/loom/api/yarn verified from Fabric meta API and Modrinth.
+        // Fabric loader/loom/api/yarn verified from Fabric Meta and FabricMC Maven.
         // Yarn: https://meta.fabricmc.net/v2/versions/yarn/{mc_version}
         // 26.x has no Yarn mappings (code is fully unobfuscated).
 
@@ -74,7 +74,8 @@ public class VersionDatabase {
         // ── 26.x (calendar versioning, Java 25, fully unobfuscated — no Yarn) ──
         add("26.1",   "0.19.2", "0.145.1+26.1",    "26.1.0.1-beta", null,      null,     "1.16-SNAPSHOT", null,               true,false,true);
         add("26.1.1", "0.19.2", "0.145.4+26.1.1",  null,            null,      null,     "1.16-SNAPSHOT", null,               true,false,false);
-        add("26.1.2", "0.19.2", "0.147.0+26.1.2",  null,            null,      null,     "1.16-SNAPSHOT", null,               true,false,false);
+        add("26.1.2", "0.19.3", "0.154.2+26.1.2",  "26.1.2.78",     null,      null,     "1.17-SNAPSHOT", null,               true,false,true);
+        add("26.2",   "0.19.3", "0.154.2+26.2",    "26.2.0.10-beta", null,      null,     "1.17.13",       null,               true,false,true);
     }
 
     private static void add(String mc, String fl, String fa, String neo, String forge,

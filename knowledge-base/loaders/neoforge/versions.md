@@ -46,7 +46,8 @@ Examples:
 | 1.21.11    | 21.11.0-beta    | |
 | **26.1**   | **26.1.0.x-beta** | New 4-component format |
 | 26.1.1     | 26.1.1.x-beta   | |
-| 26.1.2     | 26.1.2.x-beta   | |
+| 26.1.2     | 26.1.2.78       | |
+| 26.2       | 26.2.0.10-beta  | Verified 26.2 beta artifact |
 
 ---
 

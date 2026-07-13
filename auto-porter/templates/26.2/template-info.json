@@ -1,12 +1,12 @@
 {
-  "mcVersion": "26.1.2",
+  "mcVersion": "26.2",
   "fabricLoader": "0.19.3",
-  "fabricApi": "0.154.2+26.1.2",
+  "fabricApi": "0.154.2+26.2",
   "architectury": null,
-  "neoforge": "26.1.2.78",
+  "neoforge": "26.2.0.10-beta",
   "forge": null,
   "hasFabric": true,
   "hasForge": false,
   "hasNeoForge": true,
-  "loom": "1.17-SNAPSHOT"
+  "loom": "1.17.13"
 }

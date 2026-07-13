@@ -18,6 +18,7 @@ Examples:
 - `26.1` = First content drop of 2026
 - `26.1.1` = First hotfix of 26.1
 - `26.1.2` = Second hotfix of 26.1
+- `26.2` = Second content drop of 2026
 
 Source: https://www.minecraft.net/en-us/article/minecraft-new-version-numbering-system
 

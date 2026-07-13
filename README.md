@@ -94,7 +94,7 @@ Look in [**knowledge-base/minecraft/**](knowledge-base/minecraft/) for that vers
 
 **1.x format:** `1.16` – `1.16.5` · `1.17.1` · `1.18` – `1.18.2` · `1.19` – `1.19.4` · `1.20` – `1.20.6` · `1.21` – `1.21.11`
 
-**26.x format** (calendar versioning, from 2026): `26.1` · `26.1.1` · `26.1.2`
+**26.x format** (calendar versioning, from 2026): `26.1` · `26.1.1` · `26.1.2` · `26.2`
 
 See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 

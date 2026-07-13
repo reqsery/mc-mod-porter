@@ -46,7 +46,8 @@
 | 1.21.11    | 0.19.2 | 0.141.3+1.21.11 | 1.16-SNAPSHOT | 1.21.11+build.5   |
 | 26.1       | 0.19.2 | 0.145.1+26.1    | 1.16-SNAPSHOT | *(none — unobfuscated)* |
 | 26.1.1     | 0.19.2 | 0.145.4+26.1.1  | 1.16-SNAPSHOT | *(none)*          |
-| 26.1.2     | 0.19.2 | 0.147.0+26.1.2  | 1.16-SNAPSHOT | *(none)*          |
+| 26.1.2     | 0.19.3 | 0.154.2+26.1.2  | 1.17-SNAPSHOT | *(none)*          |
+| 26.2       | 0.19.3 | 0.154.2+26.2    | 1.17.13       | *(none)*          |
 
 ---
 
@@ -59,3 +60,6 @@
 - Yarn format in `gradle.properties`: `yarn_mappings=1.21.9+build.1`
 - To verify the latest build number for any version: `https://meta.fabricmc.net/v2/versions/yarn/{mc_version}`
 - Source for 26.1 loader: https://fabricmc.net/2026/03/14/261.html
+- Source for 26.2 loader/Loom/migration notes: https://fabricmc.net/2026/06/15/262.html
+- Fabric API artifacts: https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/
+- Loom artifacts: https://maven.fabricmc.net/net/fabricmc/fabric-loom/
