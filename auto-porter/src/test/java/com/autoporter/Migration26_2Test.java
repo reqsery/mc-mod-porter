@@ -9,6 +9,13 @@ import org.junit.jupiter.api.io.TempDir;
 class Migration26_2Test {
     @TempDir Path temp;
 
+    @Test void outputDirectorySupportsRelativeSourcePathWithoutParent() {
+        Path output = AutoPorterMain.outputDirectoryFor(Path.of("Mekanism-1.21.1-10.7.19.85"), "26.2");
+
+        assertTrue(output.isAbsolute());
+        assertEquals("Mekanism-1.21.1-10.7.19.85-ported-26_2", output.getFileName().toString());
+    }
+
     @Test void sourcePatcherAppliesExactGuiAndSymbolRules() throws Exception {
         Path root = temp.resolve("mod");
         Path src = root.resolve("src/main/java/example/ExampleClient.java");

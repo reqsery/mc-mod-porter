@@ -63,7 +63,7 @@ public class AutoPorterMain {
     // ── Port a mod ────────────────────────────────────────────────────────────
 
     static void portMod(String modPath, String fromVer, String toVer, boolean buildAfter, boolean dryRun) throws Exception {
-        Path srcRoot = Path.of(modPath);
+        Path srcRoot = Path.of(modPath).toAbsolutePath().normalize();
         if (Files.exists(srcRoot) && !Files.isDirectory(srcRoot)) {
             String fileName = srcRoot.getFileName().toString().toLowerCase(Locale.ROOT);
             System.err.println("ERROR: Auto-Porter needs a mod source/project folder, not a compiled file.");
@@ -121,8 +121,7 @@ public class AutoPorterMain {
         }
 
         // Copy mod to a new output directory — never modify the original
-        String outName = srcRoot.getFileName() + "-ported-" + toVer.replace(".", "_");
-        Path modRoot = srcRoot.getParent().resolve(outName);
+        Path modRoot = outputDirectoryFor(srcRoot, toVer);
         if (Files.exists(modRoot)) {
             System.out.println("Output dir already exists, removing: " + modRoot);
             deleteDir(modRoot);
@@ -284,6 +283,12 @@ public class AutoPorterMain {
     }
 
     // ── Setup templates ───────────────────────────────────────────────────────
+
+    static Path outputDirectoryFor(Path srcRoot, String toVer) {
+        Path absoluteSource = srcRoot.toAbsolutePath().normalize();
+        String outName = absoluteSource.getFileName() + "-ported-" + toVer.replace(".", "_");
+        return absoluteSource.getParent().resolve(outName);
+    }
 
     static void setupTemplates() throws Exception {
         Path templatesDir = Path.of("templates");
