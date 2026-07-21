@@ -167,6 +167,22 @@ Fabric API modules can be deprecated, replaced, or removed. For example, current
 
 Sources: [Fabric API 26.2 source tree](https://github.com/FabricMC/fabric-api/tree/26.2), [Fabric API releases](https://github.com/FabricMC/fabric-api/releases)
 
+### Gradle cannot find a third-party mod API
+
+**Example:**
+
+```text
+Could not find mezz.jei:jei-26.2-neoforge-api:19.22.1.316
+```
+
+**Cause:** The ported project is asking Gradle for a dependency artifact that is not published in the configured Maven repositories. This can happen when a mod's build logic constructs dependency coordinates from the target Minecraft version, but that integration mod has not published a matching build yet.
+
+This is a dependency availability issue, not Auto-Porter crashing. Auto-Porter may still have copied the project, updated versions, patched sources, and written `port-report.json`; the final build fails because Gradle cannot download the requested API.
+
+**Fix:** Check the third-party mod's official Maven or release page for the exact artifact and version that supports the target Minecraft/loader combination. If no matching artifact exists, temporarily disable that integration, choose an available version, or wait for the dependency to publish support for the target version.
+
+Sources: [BlameJared Maven](https://maven.blamejared.com/), [JEI releases](https://github.com/mezz/JustEnoughItems/releases)
+
 ## Loom issues
 
 ### `Could not find dev.architectury.loom:...-SNAPSHOT`
