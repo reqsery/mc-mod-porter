@@ -73,13 +73,27 @@ public class MigrationWarningScanner {
     );
 
     public PatchResult scan(Path modRoot, String fromVersion, String toVersion) throws IOException {
-        if (!fromVersion.equals("26.1.2") || !toVersion.equals("26.2")) {
+        if (!includesTransition(fromVersion, toVersion, "26.1.2", "26.2")) {
             return PatchResult.success("No migration warnings for " + fromVersion + " -> " + toVersion, List.of());
         }
         List<String> warnings = new ArrayList<>();
         scanFiles(modRoot, JAVA_PROBES, warnings, ".java", ".gradle", ".kts");
         scanFiles(modRoot, RESOURCE_PROBES, warnings, ".json", ".mcmeta");
         return PatchResult.success("Migration warnings: " + warnings.size(), warnings);
+    }
+
+    private boolean includesTransition(String fromVersion, String toVersion, String stepFrom, String stepTo) {
+        List<String> versions = VersionDatabase.allVersions();
+        int fromIdx = versions.indexOf(VersionDatabase.normalize(fromVersion));
+        int toIdx = versions.indexOf(VersionDatabase.normalize(toVersion));
+        if (fromIdx < 0 || toIdx < 0 || fromIdx >= toIdx) return false;
+
+        for (int i = fromIdx; i < toIdx; i++) {
+            if (versions.get(i).equals(stepFrom) && versions.get(i + 1).equals(stepTo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void scanFiles(Path root, List<Probe> probes, List<String> warnings, String... suffixes) throws IOException {

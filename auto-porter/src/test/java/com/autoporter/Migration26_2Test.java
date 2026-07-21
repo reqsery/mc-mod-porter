@@ -105,4 +105,34 @@ class Migration26_2Test {
         assertTrue(result.changes().stream().anyMatch(s -> s.contains("StructureProcessorType")));
         assertTrue(result.changes().stream().anyMatch(s -> s.contains("minecraft:signs")));
     }
+
+    @Test void resourcePatcherRunsWhenLongUpgradePathIncludes26_2Hop() throws Exception {
+        Path resourcePack = temp.resolve("chained-resource-pack");
+        Files.createDirectories(resourcePack.resolve("assets/example"));
+        Files.writeString(resourcePack.resolve("pack.mcmeta"), """
+            {"pack":{"pack_format":84,"description":"test"}}
+            """);
+
+        PatchResult result = new ResourcePatcher().patch(resourcePack, "1.21.1", "26.2", false);
+
+        assertTrue(Files.readString(resourcePack.resolve("pack.mcmeta")).contains("\"pack_format\": 88"));
+        assertEquals(1, result.changes().size(), result.changes().toString());
+    }
+
+    @Test void warningScannerRunsWhenLongUpgradePathIncludes26_2Hop() throws Exception {
+        Path root = temp.resolve("chained-warning-mod");
+        Path src = root.resolve("src/main/java/example/DataGen.java");
+        Files.createDirectories(src.getParent());
+        Files.writeString(src, """
+            class DataGen {
+                void run() {
+                    valueLookupBuilder(null);
+                }
+            }
+            """);
+
+        PatchResult result = new MigrationWarningScanner().scan(root, "1.21.1", "26.2");
+
+        assertTrue(result.changes().stream().anyMatch(s -> s.contains("valueLookupBuilder")));
+    }
 }

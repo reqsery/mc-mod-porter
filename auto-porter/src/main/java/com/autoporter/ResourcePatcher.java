@@ -11,7 +11,7 @@ public class ResourcePatcher {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public PatchResult patch(Path modRoot, String fromVersion, String toVersion, boolean dryRun) throws IOException {
-        if (!fromVersion.equals("26.1.2") || !toVersion.equals("26.2")) {
+        if (!includesTransition(fromVersion, toVersion, "26.1.2", "26.2")) {
             return PatchResult.success("No resource rules for " + fromVersion + " -> " + toVersion, List.of());
         }
 
@@ -19,6 +19,20 @@ public class ResourcePatcher {
         changes.addAll(updatePackMcmeta(modRoot, dryRun));
         changes.addAll(renameCoreShaders(modRoot, dryRun));
         return PatchResult.success("Resource/data files patched", changes);
+    }
+
+    private boolean includesTransition(String fromVersion, String toVersion, String stepFrom, String stepTo) {
+        List<String> versions = VersionDatabase.allVersions();
+        int fromIdx = versions.indexOf(VersionDatabase.normalize(fromVersion));
+        int toIdx = versions.indexOf(VersionDatabase.normalize(toVersion));
+        if (fromIdx < 0 || toIdx < 0 || fromIdx >= toIdx) return false;
+
+        for (int i = fromIdx; i < toIdx; i++) {
+            if (versions.get(i).equals(stepFrom) && versions.get(i + 1).equals(stepTo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<String> updatePackMcmeta(Path root, boolean dryRun) throws IOException {
