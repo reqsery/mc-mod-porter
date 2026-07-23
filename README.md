@@ -20,6 +20,12 @@ java -jar auto-porter-1.1.3.jar --help
 
 ---
 
+## Video Tutorial
+
+Watch the showcase and porting walkthrough: [Auto-Porter demo on YouTube](https://www.youtube.com/watch?v=bEKUnVigAlw)
+
+---
+
 Includes:
 - **auto-porter** — CLI tool that applies known API changes automatically
 - **visual-tester** — Fabric mod for in-game screenshot capture and automated UI testing
