@@ -1,5 +1,9 @@
 # mc-mod-porter
 
+<p align="center">
+  <img src="assets/mc-mod-porter-logo.png" alt="MC Mod Porter" width="720">
+</p>
+
 A tool for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
 
 ![Status](https://img.shields.io/badge/status-Beta-brightgreen)
