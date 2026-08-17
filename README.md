@@ -1,5 +1,3 @@
-# mc-mod-porter
-
 <p align="center">
   <img src="assets/mc-mod-porter-logo.png" alt="MC Mod Porter" width="720">
 </p>
