@@ -100,7 +100,7 @@ public class BuildRunner {
      * Read the Java toolchain version from the mod's build.gradle.
      * Falls back to 21 if it can't be determined.
      */
-    private int detectRequiredJavaVersion(Path modRoot) {
+    int detectRequiredJavaVersion(Path modRoot) {
         Path buildGradle = modRoot.resolve("build.gradle");
         if (!Files.exists(buildGradle)) return 21;
         try {
@@ -120,7 +120,7 @@ public class BuildRunner {
      * Checks common install locations on Windows and Linux/Mac.
      * Returns null if not found (caller decides what to do).
      */
-    private String detectJavaHome(int version) {
+    String detectJavaHome(int version) {
         String home = System.getProperty("user.home");
         List<String> candidates = new ArrayList<>();
 

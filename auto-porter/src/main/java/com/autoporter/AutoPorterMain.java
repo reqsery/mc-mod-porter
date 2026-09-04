@@ -25,11 +25,16 @@ public class AutoPorterMain {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public static void main(String[] args) throws Exception {
+        if (shouldLaunchGui(args)) {
+            MainWindow.launch();
+            return;
+        }
+
         System.out.println("╔══════════════════════════════════╗");
         System.out.println("║        MC Mod Auto-Porter        ║");
         System.out.println("╚══════════════════════════════════╝\n");
 
-        if (args.length == 0 || args[0].equals("--help")) {
+        if (args[0].equals("--help")) {
             printHelp();
             return;
         }
@@ -58,6 +63,10 @@ public class AutoPorterMain {
         boolean buildAfter = !flags.contains("--no-build") && !dryRun;
 
         portMod(modPath, fromVer, toVer, buildAfter, dryRun);
+    }
+
+    static boolean shouldLaunchGui(String[] args) {
+        return args.length == 0;
     }
 
     // ── Port a mod ────────────────────────────────────────────────────────────

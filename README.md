@@ -2,7 +2,9 @@
   <img src="assets/mc-mod-porter-logo.png" alt="MC Mod Porter" width="720">
 </p>
 
-A tool for porting Minecraft Java Edition mods across versions — from 1.16 through the 26.x calendar versioning format.
+MC Mod Porter is a tool for porting Minecraft Java Edition mods across supported versions — from 1.16 through the 26.x calendar versioning format.
+
+Supported loaders are **Fabric** and **NeoForge** where support data is available for the selected Minecraft version.
 
 ![Status](https://img.shields.io/badge/status-Beta-brightgreen)
 [![License: MIT+Commons Clause](https://img.shields.io/badge/License-MIT%2BCommons%20Clause-blue.svg)](LICENSE)
@@ -10,12 +12,12 @@ A tool for porting Minecraft Java Edition mods across versions — from 1.16 thr
 
 ## Download
 
-**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.1.3-beta)**
+**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.2.0-beta)**
 
-- `auto-porter-1.1.3.jar` — download and run directly, no install needed
+- `auto-porter-1.2.0-beta.jar` — one cross-platform JAR for both the GUI and CLI
 
 ```bash
-java -jar auto-porter-1.1.3.jar --help
+java -jar auto-porter-1.2.0-beta.jar
 ```
 
 > Requires Java 21+. See the [Java Requirements](#java-requirements) table below.
@@ -28,39 +30,52 @@ Watch the showcase and porting walkthrough: [Auto-Porter demo on YouTube](https:
 
 ---
 
-Includes:
-- **auto-porter** — CLI tool that applies known API changes automatically
-- **visual-tester** — Fabric mod for in-game screenshot capture and automated UI testing
-- **deep-debugger** — Static analysis and fuzz-test generator for mod source code
-- **knowledge-base** — Verified migration docs, version tables, and patterns
-
----
-
 ## Quick Start (30 seconds)
 > **Note:** Use the extracted mod source/project folder containing `build.gradle`, `gradle.properties`, and `src/` — not the compiled release `.jar`.
 
-### Option A — Use the prebuilt JAR (recommended)
+### Option A — Use the GUI (recommended)
+
+Open the JAR without arguments, choose the mod project folder, confirm the detected source version and loader, select a target version, and click **Port Mod**.
 
 ```bash
+java -jar auto-porter-1.2.0-beta.jar
+```
+
+The same window can rebuild the ported project, run its Gradle client task where supported, open the output folder, and show live porter/build logs.
+
+#### GUI preview
+
+<p align="center">
+  <img src="assets/gui-v1.2.0.png" alt="MC Mod Porter v1.2.0-beta desktop GUI" width="860">
+</p>
+
+### Option B — Use the CLI
+
+Launching the same JAR with CLI arguments keeps the existing command-line behavior. Use `--help` to see every command.
+
+```bash
+# Show CLI help
+java -jar auto-porter-1.2.0-beta.jar --help
+
 # 1. Download from releases page
-java -jar auto-porter-1.1.3.jar --list-versions
+java -jar auto-porter-1.2.0-beta.jar --list-versions
 
 # 2. Dry run (see what would change, no files touched)
-java -jar auto-porter-1.1.3.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
+java -jar auto-porter-1.2.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
 
 # 3. Port your mod
-java -jar auto-porter-1.1.3.jar C:/path/to/mymod 1.20.4 1.20.5
+java -jar auto-porter-1.2.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5
 ```
 
 The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is never touched.
 
-### Option B — Build from source
+### Option C — Build from source
 
 ```bash
 git clone https://github.com/reqsery/mc-mod-porter.git
 cd mc-mod-porter/auto-porter
 ./gradlew build
-java -jar build/libs/auto-porter-1.1.3.jar --help
+java -jar build/libs/auto-porter-1.2.0-beta.jar --help
 ```
 
 **Windows?** Use `gradlew.bat build`
@@ -73,9 +88,10 @@ The auto-porter handles the **mechanical, repetitive part** of version porting:
 
 1. ✅ Updates `build.gradle` plugin versions
 2. ✅ Updates `gradle.properties` dependency versions
-3. ✅ Patches Java source files (renames, imports, signature changes)
-4. ✅ Updates `fabric.mod.json` / `mods.toml` metadata
-5. ✅ Attempts a Gradle build and reports remaining errors
+3. ✅ Applies Java source/API migration patches
+4. ✅ Updates Fabric/NeoForge mod metadata
+5. ✅ Runs build verification and reports remaining errors
+6. ✅ Uses the verified migration knowledge base for supported version hops
 
 **What it doesn't do:** Logic changes. If your code uses APIs that were completely redesigned, you'll need to manually fix those (the tool tells you where).
 
@@ -111,6 +127,8 @@ See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 
 ## Java Requirements
 
+MC Mod Porter itself requires **Java 21 or newer**. Building the generated project may require a different Java version based on its target Minecraft version:
+
 | Minecraft Versions  | Java Required |
 |---------------------|---------------|
 | 1.16 – 1.17.x       | Java 16       |
@@ -133,9 +151,7 @@ See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 ## Folder Structure
 
 ```
-auto-porter/        — CLI tool: ports a mod folder to a target MC version
-visual-tester/      — Fabric mod: in-game automated UI testing
-deep-debugger/      — Static analyzer + fuzz-test generator
+auto-porter/        — GUI + CLI tool: ports a mod folder to a target MC version
 scripts/            — Utility scripts (wrappers, validators)
 
 knowledge-base/

@@ -15,7 +15,7 @@ cd auto-porter && ./gradlew build
 ./scripts/port.sh --list-versions
 
 # Port a mod
-./scripts/port.sh --port /path/to/mymod --to 1.21.10
+./scripts/port.sh /path/to/mymod 1.20.4 1.21.10
 ```
 
 ### `validate-kb.sh`

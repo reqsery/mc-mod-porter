@@ -3,18 +3,19 @@
 #
 # Usage:
 #   ./scripts/port.sh --list-versions
-#   ./scripts/port.sh --port <modPath> --to <version>
+#   ./scripts/port.sh <modPath> <fromVersion> <toVersion> [--dry-run] [--no-build]
 #
-# The JAR is expected at auto-porter/build/libs/auto-porter-1.0.0.jar
+# The JAR is expected at auto-porter/build/libs/auto-porter-*.jar
 # Build it first with: cd auto-porter && ./gradlew build
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-JAR="$SCRIPT_DIR/../auto-porter/build/libs/auto-porter-1.0.0.jar"
+JAR_DIR="$SCRIPT_DIR/../auto-porter/build/libs"
+JAR="$(find "$JAR_DIR" -maxdepth 1 -type f -name 'auto-porter-*.jar' | sort -V | tail -n 1)"
 
-if [ ! -f "$JAR" ]; then
-  echo "ERROR: auto-porter JAR not found at $JAR"
+if [ -z "$JAR" ] || [ ! -f "$JAR" ]; then
+  echo "ERROR: auto-porter JAR not found in $JAR_DIR"
   echo "Build it first:"
   echo "  cd auto-porter && ./gradlew build"
   exit 1

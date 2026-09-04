@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.autoporter'
-version = '1.1.3-beta'
+version = '1.2.0-beta'
 
 java {
     toolchain {
@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.formdev:flatlaf:3.6.1'
     implementation 'com.google.code.gson:gson:2.11.0'
     implementation 'com.github.javaparser:javaparser-core:3.26.2'
     implementation 'org.slf4j:slf4j-simple:2.0.13'
@@ -36,18 +37,21 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
-    archiveFileName = 'auto-porter-1.1.3.jar'
+    archiveFileName = 'auto-porter-1.2.0-beta.jar'
     manifest {
-        attributes 'Main-Class': 'com.autoporter.AutoPorterMain'
+        attributes(
+            'Main-Class': 'com.autoporter.AutoPorterMain',
+            'Implementation-Version': project.version
+        )
     }
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.named('distZip') {
-    archiveFileName = 'auto-porter-1.1.3.zip'
+    archiveFileName = 'auto-porter-1.2.0-beta.zip'
 }
 
 tasks.named('distTar') {
-    archiveFileName = 'auto-porter-1.1.3.tar'
+    archiveFileName = 'auto-porter-1.2.0-beta.tar'
 }
