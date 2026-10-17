@@ -27,12 +27,27 @@ public class BuildFilePatcher {
         List<String> changes = new ArrayList<>();
 
         boolean is26x = targetVersion.startsWith("26.");
+        boolean fabricProject = false;
+        boolean neoForgeProject = false;
 
         for (Path file : buildFiles) {
+            String buildContent = Files.readString(file);
+            fabricProject |= buildContent.contains("fabric-loom");
+            neoForgeProject |= buildContent.contains("net.neoforged.moddev")
+                || buildContent.contains("net.neoforged.gradle");
             if (is26x) {
                 changes.addAll(patchFor26x(file));
             } else {
                 changes.addAll(revertFrom26x(file, useYarn, info));
+            }
+        }
+        if (targetVersion.equals("26.3")) {
+            if (fabricProject && !neoForgeProject) {
+                changes.addAll(patchGradleWrapper(modRoot, "9.6.0", "official Fabric 26.3 release guidance"));
+            } else if (neoForgeProject && !fabricProject) {
+                changes.addAll(patchGradleWrapper(modRoot, "9.2.1", "official NeoForge 26.3 MDK"));
+            } else if (fabricProject && neoForgeProject) {
+                changes.add("Mixed Fabric/NeoForge project: review the Gradle wrapper manually; official 26.3 templates use different Gradle versions");
             }
         }
 
@@ -136,6 +151,18 @@ public class BuildFilePatcher {
             Files.writeString(file, content);
         }
         return log;
+    }
+
+    private List<String> patchGradleWrapper(Path root, String version, String source) throws IOException {
+        Path wrapper = root.resolve("gradle/wrapper/gradle-wrapper.properties");
+        if (!Files.isRegularFile(wrapper)) return List.of();
+        String content = Files.readString(wrapper);
+        Pattern distribution = Pattern.compile("(gradle-)\\d+(?:\\.\\d+){1,2}(-(?:bin|all)\\.zip)");
+        String updated = distribution.matcher(content)
+            .replaceAll(match -> match.group(1) + version + match.group(2));
+        if (updated.equals(content)) return List.of();
+        Files.writeString(wrapper, updated);
+        return List.of(wrapper + ": updated Gradle wrapper to " + version + " (" + source + ")");
     }
 
     // ── Revert 26.x → pre-26.x ─────────────────────────────────────────────

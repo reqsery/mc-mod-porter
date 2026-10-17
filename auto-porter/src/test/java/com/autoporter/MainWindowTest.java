@@ -37,4 +37,10 @@ class MainWindowTest {
         assertEquals("26.2", info.version());
         assertEquals("NeoForge", info.loader());
     }
+
+    @Test void detectsModernNeoForgeProperty() throws Exception {
+        Files.writeString(tempDir.resolve("gradle.properties"), "minecraft_version=26.3\nneo_version=26.3.0.88\n");
+        assertEquals("NeoForge", MainWindow.inspectProject(tempDir).loader());
+        assertEquals("26.3", MainWindow.inspectProject(tempDir).version());
+    }
 }

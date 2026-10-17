@@ -12,12 +12,12 @@ Supported loaders are **Fabric** and **NeoForge** where support data is availabl
 
 ## Download
 
-**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.2.0-beta)**
+**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.3.0-beta)**
 
-- `auto-porter-1.2.0-beta.jar` — one cross-platform JAR for both the GUI and CLI
+- `auto-porter-1.3.0-beta.jar` — one cross-platform JAR for both the GUI and CLI
 
 ```bash
-java -jar auto-porter-1.2.0-beta.jar
+java -jar auto-porter-1.3.0-beta.jar
 ```
 
 > Requires Java 21+. See the [Java Requirements](#java-requirements) table below.
@@ -38,10 +38,12 @@ Watch the showcase and porting walkthrough: [Auto-Porter demo on YouTube](https:
 Open the JAR without arguments, choose the mod project folder, confirm the detected source version and loader, select a target version, and click **Port Mod**.
 
 ```bash
-java -jar auto-porter-1.2.0-beta.jar
+java -jar auto-porter-1.3.0-beta.jar
 ```
 
 The same window can rebuild the ported project, run its Gradle client task where supported, open the output folder, and show live porter/build logs.
+
+The bottom quick links open bug reports, feature requests, Discord, GitHub, and contributor guidance in your default browser.
 
 #### GUI preview
 
@@ -49,22 +51,24 @@ The same window can rebuild the ported project, run its Gradle client task where
   <img src="assets/gui-v1.2.0.png" alt="MC Mod Porter v1.2.0-beta desktop GUI" width="860">
 </p>
 
+The preview above was taken with v1.2.0-beta; v1.3.0-beta also includes the bottom quick links.
+
 ### Option B — Use the CLI
 
 Launching the same JAR with CLI arguments keeps the existing command-line behavior. Use `--help` to see every command.
 
 ```bash
 # Show CLI help
-java -jar auto-porter-1.2.0-beta.jar --help
+java -jar auto-porter-1.3.0-beta.jar --help
 
 # 1. Download from releases page
-java -jar auto-porter-1.2.0-beta.jar --list-versions
+java -jar auto-porter-1.3.0-beta.jar --list-versions
 
 # 2. Dry run (see what would change, no files touched)
-java -jar auto-porter-1.2.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
+java -jar auto-porter-1.3.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
 
 # 3. Port your mod
-java -jar auto-porter-1.2.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5
+java -jar auto-porter-1.3.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5
 ```
 
 The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is never touched.
@@ -75,7 +79,7 @@ The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is 
 git clone https://github.com/reqsery/mc-mod-porter.git
 cd mc-mod-porter/auto-porter
 ./gradlew build
-java -jar build/libs/auto-porter-1.2.0-beta.jar --help
+java -jar build/libs/auto-porter-1.3.0-beta.jar --help
 ```
 
 **Windows?** Use `gradlew.bat build`
@@ -119,7 +123,7 @@ Look in [**knowledge-base/minecraft/**](knowledge-base/minecraft/) for that vers
 
 **1.x format:** `1.16` – `1.16.5` · `1.17.1` · `1.18` – `1.18.2` · `1.19` – `1.19.4` · `1.20` – `1.20.6` · `1.21` – `1.21.11`
 
-**26.x format** (calendar versioning, from 2026): `26.1` · `26.1.1` · `26.1.2` · `26.2`
+**26.x format** (calendar versioning, from 2026): `26.1` · `26.1.1` · `26.1.2` · `26.2` · `26.3`
 
 See [docs/FAQ.md](docs/FAQ.md) for why the version format changed at 26.1.
 

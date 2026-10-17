@@ -48,6 +48,7 @@ Examples:
 | 26.1.1     | 26.1.1.x-beta   | |
 | 26.1.2     | 26.1.2.78       | |
 | 26.2       | 26.2.0.10-beta  | Verified 26.2 beta artifact |
+| 26.3       | 26.3.0.88       | Latest verified artifact in official Maven metadata on 2026-10-17 |
 
 ---
 

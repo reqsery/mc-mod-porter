@@ -57,14 +57,17 @@ public class GradlePropertiesPatcher {
         content = replaceProperty(content, "loader_version",       info.fabricLoaderVersion(),  changes);
         content = replaceProperty(content, "fabric_version",       info.fabricApiVersion(),     changes);
         content = replaceProperty(content, "fabric_api_version",   info.fabricApiVersion(),     changes);
+        content = replaceProperty(content, "loom_version",         info.loomVersion(),          changes);
         content = replaceProperty(content, "architectury_api_version", info.architecturyVersion(), changes);
 
         if (info.neoforgeVersion() != null) {
             content = replaceProperty(content, "neoforge_version", info.neoforgeVersion(), changes);
+            content = replaceProperty(content, "neo_version", info.neoforgeVersion(), changes);
         }
         if (info.forgeVersion() != null) {
             content = replaceProperty(content, "forge_version", info.forgeVersion(), changes);
         }
+        content = replaceProperty(content, "minecraft_version_range", "[" + info.mcVersion() + "]", changes);
 
         // Update yarn_mappings if Yarn was chosen and the version has a known build
         if (useYarn && info.yarnMappings() != null) {

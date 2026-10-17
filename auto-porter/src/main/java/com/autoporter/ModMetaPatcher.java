@@ -68,13 +68,13 @@ public class ModMetaPatcher {
     private List<String> patchModsToml(Path root, VersionDatabase.VersionInfo info) throws IOException {
         List<String> changes = new ArrayList<>();
         List<Path> files = findFiles(root, "mods.toml");
+        files.addAll(findFiles(root, "neoforge.mods.toml"));
         for (Path file : files) {
             String content = Files.readString(file);
             String updated = content;
 
-            // Patch loaderVersion
-            updated = patchTomlKey(updated, "loaderVersion", "\"[" + info.neoforgeVersion() + ",)\"", changes);
-            // Patch minecraft version dependency
+            // loaderVersion is the FML loader range, not the NeoForge artifact version.
+            // Preserve it; GradlePropertiesPatcher updates neo_version/neoforge_version.
             updated = patchTomlVersionRange(updated, "minecraft", info.mcVersion(), changes);
 
             if (!updated.equals(content)) Files.writeString(file, updated);

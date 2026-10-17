@@ -24,17 +24,18 @@ public class TemplateManager {
     );
 
     // Derived versions: version → base version to derive from
-    private static final Map<String, String> DERIVED_FROM = Map.of(
-        "1.21.11", "1.21.10",
-        "26.1",    "1.21.11",
-        "26.1.1",  "26.1",
-        "26.1.2",  "26.1.1",
-        "26.2",    "26.1.2",
-        "1.16.4",  "1.16.5",
-        "1.16.3",  "1.16.5",
-        "1.16.2",  "1.16.5",
-        "1.16.1",  "1.16.5",
-        "1.16",    "1.16.5"
+    private static final Map<String, String> DERIVED_FROM = Map.ofEntries(
+        Map.entry("1.21.11", "1.21.10"),
+        Map.entry("26.1",    "1.21.11"),
+        Map.entry("26.1.1",  "26.1"),
+        Map.entry("26.1.2",  "26.1.1"),
+        Map.entry("26.2",    "26.1.2"),
+        Map.entry("26.3",    "26.2"),
+        Map.entry("1.16.4",  "1.16.5"),
+        Map.entry("1.16.3",  "1.16.5"),
+        Map.entry("1.16.2",  "1.16.5"),
+        Map.entry("1.16.1",  "1.16.5"),
+        Map.entry("1.16",    "1.16.5")
     );
 
     public TemplateManager(Path templatesDir) {

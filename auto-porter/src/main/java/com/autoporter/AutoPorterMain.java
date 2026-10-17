@@ -137,6 +137,7 @@ public class AutoPorterMain {
         }
         System.out.println("Copying to : " + modRoot);
         copyDir(srcRoot, modRoot);
+        BuildRunner.ensureUnixGradleWrapperExecutable(modRoot);
         System.out.println();
 
         Map<String, Object> report = new LinkedHashMap<>();
@@ -203,7 +204,7 @@ public class AutoPorterMain {
         resourceResult.print();
         steps.add(stepMap("resources", resourceResult));
 
-        System.out.println("\n[5/7] Scanning for manual 26.2 migration items...");
+        System.out.println("\n[5/7] Scanning for manual migration items...");
         MigrationWarningScanner warningScanner = new MigrationWarningScanner();
         PatchResult warningResult = warningScanner.scan(modRoot, fromVer, toVer);
         warningResult.print();

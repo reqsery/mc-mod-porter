@@ -839,6 +839,106 @@ public record ApiChangeRule(
             "SlimePredicate", "CubeMobPredicate",
             "26.2 advancement predicate rename: SlimePredicate -> CubeMobPredicate");
 
+        // ── 26.2 → 26.3 ────────────────────────────────────────────────────
+        // Official sources:
+        // https://github.com/neoforged/.github/blob/main/primers/26.3/index.md
+        // https://fabricmc.net/2026/09/15/263.html
+        String primer26_3 = "https://github.com/neoforged/.github/blob/main/primers/26.3/index.md";
+
+        // Renderpearl split: exact fully-qualified moves only. Some types also changed
+        // semantics; those are additionally detected by MigrationWarningScanner.
+        String[][] renderpearlMoves26_3 = {
+            {"com.mojang.blaze3d.GpuDeviceLossException", "com.mojang.renderpearl.api.device.GpuDeviceLossException"},
+            {"com.mojang.blaze3d.GpuFormat", "com.mojang.renderpearl.api.GpuFormat"},
+            {"com.mojang.blaze3d.GpuOutOfMemoryException", "com.mojang.renderpearl.api.device.GpuOutOfMemoryException"},
+            {"com.mojang.blaze3d.buffers.GpuBuffer", "com.mojang.renderpearl.api.buffers.GpuBuffer"},
+            {"com.mojang.blaze3d.buffers.GpuBufferSlice", "com.mojang.renderpearl.api.buffers.GpuBufferSlice"},
+            {"com.mojang.blaze3d.buffers.GpuFence", "com.mojang.renderpearl.api.commands.GpuFence"},
+            {"com.mojang.blaze3d.pipeline.BindGroupLayout", "com.mojang.renderpearl.api.pipeline.BindGroupLayout"},
+            {"com.mojang.blaze3d.pipeline.BlendEquation", "com.mojang.renderpearl.api.pipeline.BlendEquation"},
+            {"com.mojang.blaze3d.pipeline.BlendFactor", "com.mojang.renderpearl.api.pipeline.BlendFactor"},
+            {"com.mojang.blaze3d.pipeline.BlendFunction", "com.mojang.renderpearl.api.pipeline.BlendFunction"},
+            {"com.mojang.blaze3d.pipeline.BlendOp", "com.mojang.renderpearl.api.pipeline.BlendOp"},
+            {"com.mojang.blaze3d.pipeline.CompareOp", "com.mojang.renderpearl.api.pipeline.CompareOp"},
+            {"com.mojang.blaze3d.pipeline.CompiledRenderPipeline", "com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline"},
+            {"com.mojang.blaze3d.pipeline.DepthStencilState", "com.mojang.renderpearl.api.pipeline.DepthStencilState"},
+            {"com.mojang.blaze3d.pipeline.IndexType", "com.mojang.renderpearl.api.pipeline.IndexType"},
+            {"com.mojang.blaze3d.pipeline.PolygonMode", "com.mojang.renderpearl.api.pipeline.PolygonMode"},
+            {"com.mojang.blaze3d.pipeline.PrimitiveTopology", "com.mojang.renderpearl.api.pipeline.PrimitiveTopology"},
+            {"com.mojang.blaze3d.pipeline.RenderPipeline", "com.mojang.renderpearl.api.pipeline.RenderPipeline"},
+            {"com.mojang.blaze3d.pipeline.ShaderSource", "com.mojang.renderpearl.api.pipeline.ShaderSource"},
+            {"com.mojang.blaze3d.pipeline.ShaderType", "com.mojang.renderpearl.api.pipeline.ShaderType"},
+            {"com.mojang.blaze3d.pipeline.UniformType", "com.mojang.renderpearl.api.pipeline.UniformType"},
+            {"com.mojang.blaze3d.textures.", "com.mojang.renderpearl.api.textures."},
+            {"com.mojang.blaze3d.opengl.", "com.mojang.renderpearl.backend.opengl."},
+            {"com.mojang.blaze3d.vulkan.", "com.mojang.renderpearl.backend.vulkan."},
+            {"com.mojang.blaze3d.vertex.VertexFormat", "com.mojang.renderpearl.api.vertex.VertexFormat"},
+            {"com.mojang.blaze3d.vertex.VertexFormatElement", "com.mojang.renderpearl.api.vertex.VertexFormatElement"},
+            {"com.mojang.blaze3d.shaders.GlslCompiler", "com.mojang.renderpearl.frontend.shaders.GlslCompiler"},
+            {"com.mojang.blaze3d.shaders.ShaderCompileException", "com.mojang.renderpearl.util.ShaderCompileException"}
+        };
+        for (String[] move : renderpearlMoves26_3) {
+            addForward(rules, "26.2", "26.3", RuleType.TEXT_REPLACE,
+                move[0], move[1],
+                "26.3 Renderpearl move: " + move[0] + " -> " + move[1] + ". Source: " + primer26_3);
+        }
+
+        String[][] exactRenames26_3 = {
+            {"ServerboundSwingPacket", "ServerboundPunchPacket", "network packet"},
+            {"handleAnimate", "handlePunch", "server packet handler"},
+            {"getStructureManager()", "getStructureTemplateManager()", "structure template manager accessor"},
+            {"ExtraCodecs.relaiveNormalizedSubPathCodec", "ExtraCodecs.relativeNormalizedSubPathCodec", "codec spelling"},
+            {"ClientboundAnimatePacket.SWING_MAIN_HAND", "ClientboundSwingAnimationPacket.SWING_MAIN_HAND", "swing animation constant owner"},
+            {"ClientboundAnimatePacket.SWING_OFF_HAND", "ClientboundSwingAnimationPacket.SWING_OFF_HAND", "swing animation constant owner"},
+            {"InteractionResult.SwingSource.CLIENT", "InteractionResult.SwingSource.PREDICTED", "swing source"},
+            {"InteractionResult.SwingSource.SERVER", "InteractionResult.SwingSource.SERVER_ONLY", "swing source"},
+            {"LivingEntity.INVULNERABLE_DURATION", "LivingEntity.DAMAGE_COOLDOWN_DURATION", "damage cooldown constant"},
+            {"StateHolder.NAME_TAG", "StateHolder.ID_TAG", "state holder serialized id tag"},
+            {"PushReaction.NORMAL", "PushReaction.PUSH_PULL", "push reaction"},
+            {"PushReaction.DESTROY", "PushReaction.POPPED", "push reaction"},
+            {"PushReaction.BLOCK", "PushReaction.IMMOVEABLE", "push reaction"},
+            {"PushReaction.IGNORE", "PushReaction.IGNORE_ENTITY", "push reaction"},
+            {"PushReaction.PUSH_ONLY", "PushReaction.PUSH", "push reaction"},
+            {"Registries.CONFIGURED_FEATURE", "Registries.FEATURE", "feature datapack registry"},
+            {"Registries.CONFIGURED_CARVER", "Registries.CARVER", "carver datapack registry"},
+            {"commandsAllowedForOtherPlayers()", "getGuestCommandAccess()", "integrated-server guest command accessor"},
+            {"setCommandsAllowedForOtherPlayers(", "setGuestCommandAccess(", "integrated-server guest command setter"},
+            {"setcubeMobHealth(", "setCubeMobHealth(", "cube mob health spelling"},
+            {"isDealsDamage(", "canDealDamage(", "cube mob damage query"},
+            {"ModConfig.Type.COMMON", "ModConfig.Type.LOCAL", "NeoForge local config type"},
+            {"ModConfig.Type.SERVER", "ModConfig.Type.SYNCED", "NeoForge synced config type"}
+        };
+        for (String[] rename : exactRenames26_3) {
+            addForward(rules, "26.2", "26.3", RuleType.TEXT_REPLACE,
+                rename[0], rename[1],
+                "26.3 " + rename[2] + ": " + rename[0] + " -> " + rename[1] + ". Source: " + primer26_3);
+        }
+
+        addForward(rules, "26.2", "26.3", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.core.Direction8;",
+            "import net.minecraft.core.CompositeDirection.Direction8;",
+            "26.3 Direction8 moved under CompositeDirection. Source: " + primer26_3);
+        addForward(rules, "26.2", "26.3", RuleType.TEXT_REPLACE,
+            "net.minecraft.core.Direction8",
+            "net.minecraft.core.CompositeDirection.Direction8",
+            "26.3 fully-qualified Direction8 move. Source: " + primer26_3);
+        addForward(rules, "26.2", "26.3", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.server.commands.ItemCommands;",
+            "import net.minecraft.server.commands.item.ItemCommands;",
+            "26.3 ItemCommands moved into server.commands.item. Source: " + primer26_3);
+        addForward(rules, "26.2", "26.3", RuleType.TEXT_REPLACE,
+            "net.minecraft.server.commands.ItemCommands",
+            "net.minecraft.server.commands.item.ItemCommands",
+            "26.3 fully-qualified ItemCommands move. Source: " + primer26_3);
+        addForward(rules, "26.2", "26.3", RuleType.IMPORT_CHANGE,
+            "import net.minecraft.util.AbortableIterationConsumer.Continuation;",
+            "import net.minecraft.util.Continuation;",
+            "26.3 Continuation moved out of AbortableIterationConsumer. Source: " + primer26_3);
+        addForward(rules, "26.2", "26.3", RuleType.TEXT_REPLACE,
+            "AbortableIterationConsumer.Continuation",
+            "Continuation",
+            "26.3 Continuation moved out of AbortableIterationConsumer. Source: " + primer26_3);
+
         addBidirectional(rules, "1.21.8", "1.21.9", RuleType.METHOD_RENAME,
             ".getEntityWorld()",
             ".getWorld()",

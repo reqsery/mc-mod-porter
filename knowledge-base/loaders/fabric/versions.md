@@ -48,6 +48,7 @@
 | 26.1.1     | 0.19.2 | 0.145.4+26.1.1  | 1.16-SNAPSHOT | *(none)*          |
 | 26.1.2     | 0.19.3 | 0.154.2+26.1.2  | 1.17-SNAPSHOT | *(none)*          |
 | 26.2       | 0.19.3 | 0.154.2+26.2    | 1.17.13       | *(none)*          |
+| 26.3       | 0.19.5 | 0.163.0+26.3    | 1.17.21       | *(none)*          |
 
 ---
 
@@ -61,5 +62,9 @@
 - To verify the latest build number for any version: `https://meta.fabricmc.net/v2/versions/yarn/{mc_version}`
 - Source for 26.1 loader: https://fabricmc.net/2026/03/14/261.html
 - Source for 26.2 loader/Loom/migration notes: https://fabricmc.net/2026/06/15/262.html
+- Source for the 26.3 Loom/Gradle guidance: https://fabricmc.net/2026/09/15/263.html
+- Source for published Loom 1.17 builds: https://maven.fabricmc.net/net/fabricmc/fabric-loom/
+- Source for the current 26.3 loader/API values: https://meta.fabricmc.net/v2/versions/loader/26.3 and https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/
+- Source for 26.3 migration notes: https://fabricmc.net/2026/09/15/263.html
 - Fabric API artifacts: https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/
 - Loom artifacts: https://maven.fabricmc.net/net/fabricmc/fabric-loom/

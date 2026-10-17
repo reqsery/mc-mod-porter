@@ -141,7 +141,7 @@ The runtime is older than the Java version used to compile the class. Common cla
 - `65`: Java 21
 - `69`: Java 25
 
-Run the tool or mod with a compatible JDK. Auto-Porter itself is configured for Java 21; Minecraft 26.2 development requires Java 25.
+Run the tool or mod with a compatible JDK. Auto-Porter itself is configured for Java 21; Minecraft 26.x development requires Java 25.
 
 Source: [Java Virtual Machine Specification, class-file format](https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-4.html)
 
@@ -165,7 +165,7 @@ Fabric API modules can be deprecated, replaced, or removed. For example, current
 
 **Fix:** Check the exact Fabric API release/source tree. If a major-version replacement exists, migrate its API and data semantics; merely renaming or deleting the dependency may leave broken imports or tags.
 
-Sources: [Fabric API 26.2 source tree](https://github.com/FabricMC/fabric-api/tree/26.2), [Fabric API releases](https://github.com/FabricMC/fabric-api/releases)
+Sources: [Fabric API source tree](https://github.com/FabricMC/fabric-api), [Fabric API releases](https://github.com/FabricMC/fabric-api/releases)
 
 ### Gradle cannot find a third-party mod API
 
@@ -195,9 +195,9 @@ Source: [Architectury Loom](https://github.com/architectury/architectury-loom)
 
 ### Fabric Loom fails after changing Minecraft versions
 
-Use the Loom line required by Fabric for the target Minecraft version and then select an actually published build from Fabric Maven. For Minecraft 26.2, Fabric requires Loom 1.17; this repository's verified preset uses `1.17.13`.
+Use the Loom line required by Fabric for the target Minecraft version and then select an actually published build from Fabric Maven. This repository uses `1.17.13` for Minecraft 26.2 and stable Loom `1.17.21` with Gradle `9.6.0` for Minecraft 26.3, matching Fabric's official 26.3 release guidance for the Loom 1.17 line.
 
-Sources: [Fabric development for Minecraft 26.2](https://fabricmc.net/2026/06/15/262.html), [Fabric Loom Maven](https://maven.fabricmc.net/net/fabricmc/fabric-loom/)
+Sources: [Fabric development for Minecraft 26.2](https://fabricmc.net/2026/06/15/262.html), [Fabric for Minecraft 26.3](https://fabricmc.net/2026/09/15/263.html), [Fabric Loom Maven](https://maven.fabricmc.net/net/fabricmc/fabric-loom/)
 
 ### `silentMojangMappingsLicense() not found`
 
@@ -217,6 +217,17 @@ Minecraft Java Edition 26.2 uses:
 Snapshot pack versions are provisional; use the final release notes for a release target.
 
 Source: [Minecraft Java Edition 26.2](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-2)
+
+## Minecraft 26.3 pack metadata
+
+Minecraft Java Edition 26.3 uses:
+
+- Data Pack version `121.0`
+- Resource Pack version `97.1`
+
+Snapshot and prerelease pack versions are provisional. Auto-Porter uses the final release values above.
+
+Source: [Minecraft Java Edition 26.3](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3)
 
 ## Gradle cache and daemon problems
 

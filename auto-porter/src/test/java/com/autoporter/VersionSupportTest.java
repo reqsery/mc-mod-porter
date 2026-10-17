@@ -17,10 +17,27 @@ class VersionSupportTest {
         assertEquals(versions.indexOf("26.1.2") + 1, versions.indexOf("26.2"));
     }
 
+    @Test void recognizesAndOrders263() {
+        assertTrue(VersionDatabase.supports("26.3"));
+        List<String> versions = VersionDatabase.allVersions();
+        assertEquals(versions.indexOf("26.2") + 1, versions.indexOf("26.3"));
+        var info = VersionDatabase.get("26.3");
+        assertEquals("0.19.5", info.fabricLoaderVersion());
+        assertEquals("0.163.0+26.3", info.fabricApiVersion());
+        assertEquals("26.3.0.88", info.neoforgeVersion());
+        assertEquals("1.17.21", info.loomVersion());
+    }
+
     @Test void resolvesTemplateFor262() throws Exception {
         TemplateManager manager = new TemplateManager(TEMPLATES);
         assertTrue(manager.hasTemplate("26.2"));
         assertEquals("26.2", manager.loadTemplateInfo("26.2").get("mcVersion"));
+    }
+
+    @Test void resolvesTemplateFor263() throws Exception {
+        TemplateManager manager = new TemplateManager(TEMPLATES);
+        assertTrue(manager.hasTemplate("26.3"));
+        assertEquals("26.3", manager.loadTemplateInfo("26.3").get("mcVersion"));
     }
 
     @Test void adjacentAndChainedMigrationPathsReach262() {
@@ -29,9 +46,17 @@ class VersionSupportTest {
         assertEquals(List.of("26.1", "26.1.1", "26.1.2", "26.2"), path(versions, "26.1", "26.2"));
     }
 
+    @Test void adjacentAndChainedMigrationPathsReach263() {
+        List<String> versions = VersionDatabase.allVersions();
+        assertEquals(List.of("26.2", "26.3"), path(versions, "26.2", "26.3"));
+        assertEquals(List.of("26.1.2", "26.2", "26.3"), path(versions, "26.1.2", "26.3"));
+        assertEquals("1.21.11", path(versions, "1.21.11", "26.3").getFirst());
+        assertEquals("26.3", path(versions, "1.21.11", "26.3").getLast());
+    }
+
     @Test void databaseAndTemplatesAreConsistent() throws Exception {
         Gson gson = new Gson();
-        for (String version : List.of("26.1.2", "26.2")) {
+        for (String version : List.of("26.1.2", "26.2", "26.3")) {
             var info = VersionDatabase.get(version);
             Path dir = TEMPLATES.resolve(info.mcVersion());
             assertTrue(Files.exists(dir.resolve("gradle.properties")), info.mcVersion());

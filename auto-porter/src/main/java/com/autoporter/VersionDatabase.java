@@ -3,7 +3,7 @@ package com.autoporter;
 import java.util.*;
 
 /**
- * Embedded knowledge base of all supported Minecraft versions (1.16 - 26.2).
+ * Embedded knowledge base of all supported Minecraft versions (1.16 - 26.3).
  * Version values are maintained from official Mojang, FabricMC, and NeoForged metadata.
  */
 public class VersionDatabase {
@@ -76,6 +76,7 @@ public class VersionDatabase {
         add("26.1.1", "0.19.2", "0.145.4+26.1.1",  null,            null,      null,     "1.16-SNAPSHOT", null,               true,false,false);
         add("26.1.2", "0.19.3", "0.154.2+26.1.2",  "26.1.2.78",     null,      null,     "1.17-SNAPSHOT", null,               true,false,true);
         add("26.2",   "0.19.3", "0.154.2+26.2",    "26.2.0.10-beta", null,      null,     "1.17.13",       null,               true,false,true);
+        add("26.3",   "0.19.5", "0.163.0+26.3",    "26.3.0.88",      null,      null,     "1.17.21",       null,               true,false,true);
     }
 
     private static void add(String mc, String fl, String fa, String neo, String forge,

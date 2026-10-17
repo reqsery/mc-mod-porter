@@ -14,12 +14,43 @@ import java.util.List;
 import java.util.*;
 import java.util.concurrent.CancellationException;
 import java.util.regex.*;
+import java.net.URI;
 
 /** Swing front end for the existing Auto-Porter CLI workflow. */
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     private static final String AUTO_DETECT = "Auto Detect";
 
+    private JButton createLinkButton(String text, String url, String iconName) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        java.net.URL iconUrl = MainWindow.class.getResource("/icons/" + iconName + ".png");
+        if (iconUrl != null) {
+            ImageIcon icon = new ImageIcon(iconUrl);
+            button.setIcon(new ImageIcon(icon.getImage().getScaledInstance(16, -1, Image.SCALE_SMOOTH)));
+            button.setIconTextGap(5);
+        }
+        button.setBorder(BorderFactory.createEmptyBorder(3, 5, 3, 5));
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.addActionListener(e -> openUrl(url));
+        return button;
+    }
+
+    private void openUrl(String url) {
+        try {
+            if (!Desktop.isDesktopSupported()
+                    || !Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                throw new IOException("Opening links is not supported.");
+            }
+
+            Desktop.getDesktop().browse(URI.create(url));
+        } catch (Exception e) {
+            showError("Could not open link:\n" + url);
+        }
+    }
     private final JTextField projectPathField = new JTextField();
     private final JComboBox<String> sourceVersionCombo = new JComboBox<>();
     private final JComboBox<String> targetVersionCombo = new JComboBox<>();
@@ -54,7 +85,7 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         super("MC Mod Porter");
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        setBounds(100, 100, 900, 650);
+        setBounds(100, 100, 900, 685);
         setResizable(false);
         buildUi();
         wireActions();
@@ -163,6 +194,30 @@ public class MainWindow extends JFrame {
         logArea.setFont(new Font("Consolas", Font.PLAIN, 12));
         logArea.setText("Ready.");
         scrollPane.setViewportView(logArea);
+        JPanel linksPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
+        linksPanel.setOpaque(false);
+        linksPanel.setBounds(15, 600, 850, 28);
+
+        linksPanel.add(createLinkButton("Discord",
+            "https://discord.gg/vV2USr9phF", "discord"));
+        linksPanel.add(new JLabel("·"));
+
+        linksPanel.add(createLinkButton("GitHub",
+            "https://github.com/reqsery/mc-mod-porter", "github"));
+        linksPanel.add(new JLabel("·"));
+
+        linksPanel.add(createLinkButton("Contribute",
+            "https://github.com/reqsery/mc-mod-porter/blob/main/.github/CONTRIBUTING.md", "contribute"));
+        linksPanel.add(new JLabel("·"));
+
+        linksPanel.add(createLinkButton("Report Bug",
+            "https://github.com/reqsery/mc-mod-porter/issues/new?template=bug_report.md", "bug"));
+        linksPanel.add(new JLabel("·"));
+
+        linksPanel.add(createLinkButton("Suggest Feature",
+            "https://github.com/reqsery/mc-mod-porter/issues/new?template=feature_request.md", "feature"));
+
+        contentPane.add(linksPanel);
     }
 
     private void wireActions() {
@@ -257,6 +312,7 @@ public class MainWindow extends JFrame {
 
         activeWorker = new SwingWorker<>() {
             @Override protected Integer doInBackground() throws Exception {
+                if (!porterProcess) BuildRunner.ensureUnixGradleWrapperExecutable(workingDirectory);
                 ProcessBuilder builder = new ProcessBuilder(command);
                 builder.directory(workingDirectory.toFile());
                 builder.redirectErrorStream(true);
@@ -286,11 +342,13 @@ public class MainWindow extends JFrame {
                     int exit = get();
                     if (exit == 0) {
                         progressBar.setValue(100);
-                        setStatus(activity + " complete");
+                        setStatus(porterProcess ? "Port complete" : activity + " complete");
+                        if (porterProcess) appendLog("Port complete. Found an issue? Use Report Bug below, or join Discord for help.");
                     } else if (exit == -1) setStatus("Cancelled");
                     else if (porterProcess && portedProject != null && Files.isDirectory(portedProject)) {
                         progressBar.setValue(100);
-                        setStatus("Port completed with issues — review the log/report");
+                        setStatus("Completed with issues");
+                        appendLog("Port completed with issues. Review the logs, then use Report Bug below if needed.");
                     } else setStatus(activity + " failed (exit " + exit + ")");
                 } catch (CancellationException exception) {
                     setStatus("Cancelled");
@@ -447,7 +505,8 @@ public class MainWindow extends JFrame {
             if (!(name.endsWith(".gradle") || name.endsWith(".gradle.kts") || name.equals("gradle.properties"))) continue;
             try {
                 String content = Files.readString(path, StandardCharsets.UTF_8).toLowerCase(Locale.ROOT);
-                if (content.contains("net.neoforged") || content.contains("neoforge_version")) return "NeoForge";
+                if (content.contains("net.neoforged") || content.contains("neoforge_version")
+                        || Pattern.compile("(?m)^\\s*neo_version\\s*=").matcher(content).find()) return "NeoForge";
             } catch (IOException ignored) { }
         }
         return null;
