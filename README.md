@@ -48,10 +48,8 @@ The bottom quick links open bug reports, feature requests, Discord, GitHub, and 
 #### GUI preview
 
 <p align="center">
-  <img src="assets/gui-v1.2.0.png" alt="MC Mod Porter v1.2.0-beta desktop GUI" width="860">
+  <img src="assets/gui-v1.3.0.png" alt="MC Mod Porter v1.3.0-beta desktop GUI with quick links" width="860">
 </p>
-
-The preview above was taken with v1.2.0-beta; v1.3.0-beta also includes the bottom quick links.
 
 ### Option B — Use the CLI
 
