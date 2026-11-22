@@ -44,32 +44,48 @@ public class SourcePatcher {
 
     /**
      * Build the full chain of rules needed to get from fromVersion to toVersion.
-     * Applies rules from all intermediate versions in order, then deduplicates.
+     *
+     * <ol>
+     *   <li>Rules of every adjacent hop on the path, in path order.</li>
+     *   <li>Rules defined over a wider span (e.g. 1.19.4 → 1.20.1) whose start and end both lie on the path, in the
+     *       same direction — ordered by where they start, then by span length. This includes the exact
+     *       fromVersion → toVersion pair, so a long jump such as 1.19.2 → 1.21 still gets the 1.19.4 → 1.20.1
+     *       rules instead of only an exact 1.19.4 → 1.20.1 port.</li>
+     * </ol>
+     * Duplicates (same type and find-text) are then removed, keeping the first.
      */
-    private List<ApiChangeRule> buildRuleChain(String fromVersion, String toVersion) {
+    static List<ApiChangeRule> buildRuleChain(String fromVersion, String toVersion) {
         List<String> allVersions = VersionDatabase.allVersions();
-        int fromIdx = allVersions.indexOf(fromVersion);
-        int toIdx   = allVersions.indexOf(toVersion);
-        if (fromIdx < 0 || toIdx < 0) return List.of();
+        int fromIdx = allVersions.indexOf(VersionDatabase.normalize(fromVersion));
+        int toIdx   = allVersions.indexOf(VersionDatabase.normalize(toVersion));
+        if (fromIdx < 0 || toIdx < 0 || fromIdx == toIdx) return List.of();
+        boolean upgrading = fromIdx < toIdx;
+        int step = upgrading ? 1 : -1;
 
         List<ApiChangeRule> rules = new ArrayList<>();
-        if (fromIdx <= toIdx) {
-            // Upgrading
-            for (int i = fromIdx; i < toIdx; i++) {
-                rules.addAll(ApiChangeRule.forTransition(allVersions.get(i), allVersions.get(i + 1)));
-            }
-        } else {
-            // Downgrading
-            for (int i = fromIdx; i > toIdx; i--) {
-                rules.addAll(ApiChangeRule.forTransition(allVersions.get(i), allVersions.get(i - 1)));
-            }
+        for (int i = fromIdx; i != toIdx; i += step) {
+            rules.addAll(ApiChangeRule.forTransition(allVersions.get(i), allVersions.get(i + step)));
         }
-        // Also add direct rules (for large jumps documented directly)
-        rules.addAll(ApiChangeRule.forTransition(fromVersion, toVersion));
+
+        List<ApiChangeRule> spans = new ArrayList<>();
+        for (ApiChangeRule rule : ApiChangeRule.all()) {
+            int start = allVersions.indexOf(rule.fromVersion());
+            int end = allVersions.indexOf(rule.toVersion());
+            if (start < 0 || end < 0 || Math.abs(end - start) < 2) continue;  // unknown or adjacent (done above)
+            boolean sameDirection = upgrading ? start < end : start > end;
+            boolean onPath = upgrading
+                ? start >= fromIdx && end <= toIdx
+                : start <= fromIdx && end >= toIdx;
+            if (sameDirection && onPath) spans.add(rule);
+        }
+        spans.sort(Comparator
+            .comparingInt((ApiChangeRule r) -> Math.abs(allVersions.indexOf(r.fromVersion()) - fromIdx))
+            .thenComparingInt(r -> Math.abs(allVersions.indexOf(r.toVersion()) - allVersions.indexOf(r.fromVersion()))));
+        rules.addAll(spans);
         return deduplicateRules(rules);
     }
 
-    private List<ApiChangeRule> deduplicateRules(List<ApiChangeRule> rules) {
+    private static List<ApiChangeRule> deduplicateRules(List<ApiChangeRule> rules) {
         Map<String, ApiChangeRule> dedupMap = new LinkedHashMap<>();
         for (ApiChangeRule r : rules) {
             String key = r.type() + "|" + r.oldPattern();
@@ -104,8 +120,7 @@ public class SourcePatcher {
         String content  = original;
         List<String> changes = new ArrayList<>();
 
-        // Phase 1: build a single regex pattern for all rules to apply in one pass
-        // This is more efficient than calling .replace() for each rule sequentially
+        // Phase 1: apply every rule as a literal find-and-replace, in chain order (see buildRuleChain)
         String afterPhase1 = applyAllRulesOptimized(content, rules, changes, file.getFileName().toString());
         content = afterPhase1;
 
@@ -131,7 +146,7 @@ public class SourcePatcher {
     }
 
     /**
-     * Apply all rules in a single optimized pass, reporting changes as we go.
+     * Apply every rule as a literal {@code String.replace}, one after another, reporting changes as we go.
      * Rules are applied in order to maintain precedence (specific rules before general ones).
      */
     private String applyAllRulesOptimized(String content, List<ApiChangeRule> rules, 

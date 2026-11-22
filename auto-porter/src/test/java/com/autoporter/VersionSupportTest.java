@@ -22,10 +22,10 @@ class VersionSupportTest {
         List<String> versions = VersionDatabase.allVersions();
         assertEquals(versions.indexOf("26.2") + 1, versions.indexOf("26.3"));
         var info = VersionDatabase.get("26.3");
-        assertEquals("0.19.5", info.fabricLoaderVersion());
-        assertEquals("0.163.0+26.3", info.fabricApiVersion());
-        assertEquals("26.3.0.88", info.neoforgeVersion());
-        assertEquals("1.17.21", info.loomVersion());
+        assertEquals("0.20.1", info.fabricLoaderVersion());
+        assertEquals("0.166.2+26.3", info.fabricApiVersion());
+        assertEquals("26.3.0.115", info.neoforgeVersion());
+        assertEquals("1.19-SNAPSHOT", info.loomVersion());
     }
 
     @Test void resolvesTemplateFor262() throws Exception {
@@ -56,7 +56,7 @@ class VersionSupportTest {
 
     @Test void databaseAndTemplatesAreConsistent() throws Exception {
         Gson gson = new Gson();
-        for (String version : List.of("26.1.2", "26.2", "26.3")) {
+        for (String version : VersionDatabase.allVersions()) {
             var info = VersionDatabase.get(version);
             Path dir = TEMPLATES.resolve(info.mcVersion());
             assertTrue(Files.exists(dir.resolve("gradle.properties")), info.mcVersion());

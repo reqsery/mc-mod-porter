@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.autoporter'
-version = '1.3.0-beta'
+version = '1.4.0-beta'
 
 java {
     toolchain {
@@ -19,10 +19,9 @@ repositories {
 dependencies {
     implementation 'com.formdev:flatlaf:3.6.1'
     implementation 'com.google.code.gson:gson:2.11.0'
-    implementation 'com.github.javaparser:javaparser-core:3.26.2'
-    implementation 'org.slf4j:slf4j-simple:2.0.13'
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'   // required by Gradle 9
 }
 
 test { useJUnitPlatform() }
@@ -54,4 +53,83 @@ tasks.named('distZip') {
 
 tasks.named('distTar') {
     archiveFileName = "auto-porter-${project.version}.tar"
+}
+
+// ── Windows app (jpackage) ────────────────────────────────────────────────────
+// gradlew packageWindowsApp        → build/jpackage/MC-Mod-Porter/MC-Mod-Porter.exe (+ MC-Mod-Porter-CLI.exe)
+// gradlew packageWindowsZip        → build/distributions/MC-Mod-Porter-<version>-windows.zip
+// gradlew packageWindowsInstaller  → build/jpackage/installer/*.exe (needs the WiX Toolset on PATH)
+// Then: packaging/windows/install-windows.ps1 adds Start Menu + Desktop shortcuts.
+
+def appImageVersion = project.version.toString().replaceAll(/[^0-9.].*$/, '')   // 1.4.0-beta → 1.4.0
+def jpackageJdk = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+    .map { it.metadata.installationPath }
+def jpackageDir = layout.buildDirectory.dir('jpackage')
+def runtimeModules = 'java.base,java.desktop,java.net.http,java.logging,java.sql,jdk.crypto.ec,jdk.charsets,jdk.zipfs,jdk.localedata'
+
+def jpackageCommon = { List<String> extra ->
+    [
+        '--name', 'MC-Mod-Porter',
+        '--app-version', appImageVersion,
+        '--vendor', 'reqsery',
+        '--description', 'Port Minecraft mod source projects between versions',
+        '--input', jpackageDir.get().dir('input').asFile.absolutePath,
+        '--main-jar', jar.archiveFileName.get(),
+        '--main-class', 'com.autoporter.AutoPorterMain',
+        '--icon', file('packaging/windows/mc-mod-porter.ico').absolutePath,
+        '--add-modules', runtimeModules,
+        '--jlink-options', '--strip-debug --no-man-pages --no-header-files',
+        '--java-options', '-Dfile.encoding=UTF-8'
+    ] + extra
+}
+
+tasks.register('jpackageInput', Sync) {
+    from jar
+    into jpackageDir.map { it.dir('input') }
+}
+
+tasks.register('packageWindowsApp', Exec) {
+    group = 'distribution'
+    description = 'Builds the Windows app image: build/jpackage/MC-Mod-Porter/MC-Mod-Porter.exe with a bundled Java runtime.'
+    dependsOn 'jpackageInput'
+    onlyIf { System.getProperty('os.name').toLowerCase().contains('windows') }
+    inputs.files(jar, 'packaging/windows/mc-mod-porter.ico', 'packaging/windows/cli-launcher.properties')
+    outputs.dir(jpackageDir.map { it.dir('MC-Mod-Porter') })
+    doFirst {
+        delete jpackageDir.get().dir('MC-Mod-Porter')
+        executable = new File(jpackageJdk.get().asFile, 'bin/jpackage.exe')
+        args jpackageCommon([
+            '--type', 'app-image',
+            '--dest', jpackageDir.get().asFile.absolutePath,
+            '--add-launcher', "MC-Mod-Porter-CLI=${file('packaging/windows/cli-launcher.properties').absolutePath}"
+        ])
+    }
+}
+
+tasks.register('packageWindowsZip', Zip) {
+    group = 'distribution'
+    description = 'Zips the Windows app image for a release download.'
+    dependsOn 'packageWindowsApp'
+    from(jpackageDir.map { it.dir('MC-Mod-Porter') }) { into 'MC-Mod-Porter' }
+    from('packaging/windows') { include '*.ps1'; into 'MC-Mod-Porter' }
+    archiveFileName = "MC-Mod-Porter-${project.version}-windows.zip"
+    destinationDirectory = layout.buildDirectory.dir('distributions')
+}
+
+tasks.register('packageWindowsInstaller', Exec) {
+    group = 'distribution'
+    description = 'Builds a Windows .exe installer with Start Menu and Desktop shortcuts (requires the WiX Toolset).'
+    dependsOn 'jpackageInput'
+    onlyIf { System.getProperty('os.name').toLowerCase().contains('windows') }
+    doFirst {
+        executable = new File(jpackageJdk.get().asFile, 'bin/jpackage.exe')
+        args jpackageCommon([
+            '--type', 'exe',
+            '--dest', jpackageDir.get().dir('installer').asFile.absolutePath,
+            '--win-menu', '--win-menu-group', 'MC Mod Porter', '--win-shortcut', '--win-dir-chooser',
+            '--win-per-user-install',
+            '--win-upgrade-uuid', '6f1d3a5e-2b8c-4f7a-9d61-4c0b8e2f7a13',
+            '--add-launcher', "MC-Mod-Porter-CLI=${file('packaging/windows/cli-launcher.properties').absolutePath}"
+        ])
+    }
 }

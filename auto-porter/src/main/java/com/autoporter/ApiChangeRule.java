@@ -94,24 +94,24 @@ public record ApiChangeRule(
 
         // ── 1.18 → 1.19 ────────────────────────────────────────────────────
         // Component.literal() introduced in 1.19.0; pre-1.19 uses new TextComponent()
-        rules.add(new ApiChangeRule("1.19.0", "1.18.2", RuleType.TEXT_REPLACE,
+        rules.add(new ApiChangeRule("1.19", "1.18.2", RuleType.TEXT_REPLACE,
             "Component.literal(",
             "new net.minecraft.network.chat.TextComponent(",
             "Component.literal() → new TextComponent() for pre-1.19"));
-        rules.add(new ApiChangeRule("1.18.2", "1.19.0", RuleType.TEXT_REPLACE,
+        rules.add(new ApiChangeRule("1.18.2", "1.19", RuleType.TEXT_REPLACE,
             "new net.minecraft.network.chat.TextComponent(",
             "Component.literal(",
             "new TextComponent() → Component.literal() in 1.19+"));
-        rules.add(new ApiChangeRule("1.19.0", "1.18.2", RuleType.IMPORT_CHANGE,
+        rules.add(new ApiChangeRule("1.19", "1.18.2", RuleType.IMPORT_CHANGE,
             "import net.minecraft.network.chat.Component;",
             "",
             "Remove Component import when downgrading to pre-1.19 (TextComponent is fully qualified)"));
         // rebuildWidgets() introduced in 1.19.x; pre-1.19 uses init(minecraft, width, height)
-        rules.add(new ApiChangeRule("1.19.0", "1.18.2", RuleType.TEXT_REPLACE,
+        rules.add(new ApiChangeRule("1.19", "1.18.2", RuleType.TEXT_REPLACE,
             "this.rebuildWidgets();",
             "this.init(this.minecraft, this.width, this.height);",
             "Screen.rebuildWidgets() → init(minecraft, width, height) for pre-1.19"));
-        rules.add(new ApiChangeRule("1.18.2", "1.19.0", RuleType.TEXT_REPLACE,
+        rules.add(new ApiChangeRule("1.18.2", "1.19", RuleType.TEXT_REPLACE,
             "this.init(this.minecraft, this.width, this.height);",
             "this.rebuildWidgets();",
             "init(minecraft,width,height) → rebuildWidgets() in 1.19+"));
@@ -185,7 +185,7 @@ public record ApiChangeRule(
             "",
             "GuiMessageTag.systemSinglePlayer() not in 1.19.1; remove the check"));
         // GuiMessageTag itself doesn't exist in 1.19.0 - need full mixin rewrite
-        rules.add(new ApiChangeRule("1.19.1", "1.19.0", RuleType.MIXIN_TARGET,
+        rules.add(new ApiChangeRule("1.19.1", "1.19", RuleType.MIXIN_TARGET,
             "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/GuiMessageTag;)V",
             "addMessage(Lnet/minecraft/network/chat/Component;)V",
             "GuiMessageTag not in 1.19.0; target 1-arg addMessage instead"));

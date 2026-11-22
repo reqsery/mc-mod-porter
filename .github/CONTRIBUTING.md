@@ -187,7 +187,7 @@ Acceptable sources include:
 * Official loader or API repositories
 * Verified upstream commits and release notes
 
-Do not add guessed, assumed, or AI-generated migration information without verification. Every knowledge-base entry must be supported by a source.
+Do not add guessed, assumed, or unverified migration information. Every knowledge-base entry must be supported by a source.
 
 ## Pull Request Guidelines
 
@@ -250,6 +250,5 @@ For development questions or contribution discussions:
 * FAQ: docs/FAQ.md
 * Troubleshooting: docs/TROUBLESHOOTING.md
 * Knowledge-base rules: docs/CONTRIBUTING.md
-* AI assistant guidance: AI_GUIDE.md
 
 Thank you for helping improve mc-mod-porter.

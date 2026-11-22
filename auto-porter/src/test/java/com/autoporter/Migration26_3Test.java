@@ -144,10 +144,10 @@ class Migration26_3Test {
 
         assertTrue(updated.contains("minecraft_version=26.3"));
         assertTrue(updated.contains("minecraft_version_range=[26.3]"));
-        assertTrue(updated.contains("loader_version=0.19.5"));
-        assertTrue(updated.contains("loom_version=1.17.21"));
-        assertTrue(updated.contains("fabric_api_version=0.163.0+26.3"));
-        assertTrue(updated.contains("neo_version=26.3.0.88"));
+        assertTrue(updated.contains("loader_version=0.20.1"));
+        assertTrue(updated.contains("loom_version=1.19-SNAPSHOT"));
+        assertTrue(updated.contains("fabric_api_version=0.166.2+26.3"));
+        assertTrue(updated.contains("neo_version=26.3.0.115"));
     }
 
     @Test void buildPatcherUsesLoaderSpecificOfficialGradleWrapper() throws Exception {
@@ -176,7 +176,7 @@ class Migration26_3Test {
         new BuildFilePatcher().patch(neo, "26.3");
 
         assertTrue(Files.readString(fabric.resolve("gradle/wrapper/gradle-wrapper.properties"))
-            .contains("gradle-9.6.0-bin.zip"));
+            .contains("gradle-9.8.2-bin.zip"));
         String fabricBuild = Files.readString(fabric.resolve("build.gradle"));
         assertTrue(fabricBuild.contains("id 'net.fabricmc.fabric-loom'"));
         assertFalse(fabricBuild.contains("mappings loom.officialMojangMappings()"));

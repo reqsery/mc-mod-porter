@@ -16,6 +16,14 @@ public class GradlePropertiesPatcher {
     }
 
     public PatchResult patch(Path modRoot, String targetVersion, boolean useYarn) throws IOException {
+        return patch(modRoot, targetVersion, useYarn, false);
+    }
+
+    /**
+     * @param useYarn          backport from 26.x and the user chose Yarn mappings
+     * @param sourcesRemapped  the sources were remapped Yarn → Mojang, so a yarn_mappings property is obsolete
+     */
+    public PatchResult patch(Path modRoot, String targetVersion, boolean useYarn, boolean sourcesRemapped) throws IOException {
         VersionDatabase.VersionInfo info = VersionDatabase.get(targetVersion);
         if (info == null) {
             return PatchResult.failure("Unknown version: " + targetVersion);
@@ -28,7 +36,7 @@ public class GradlePropertiesPatcher {
 
         List<String> changes = new ArrayList<>();
         for (Path props : propsFiles) {
-            changes.addAll(patchFile(props, info, useYarn));
+            changes.addAll(patchFile(props, info, useYarn, sourcesRemapped));
         }
 
         return PatchResult.success("gradle.properties updated", changes);
@@ -47,10 +55,13 @@ public class GradlePropertiesPatcher {
         return found;
     }
 
-    private List<String> patchFile(Path file, VersionDatabase.VersionInfo info, boolean useYarn) throws IOException {
+    private List<String> patchFile(Path file, VersionDatabase.VersionInfo info, boolean useYarn,
+                                   boolean sourcesRemapped) throws IOException {
         String content = Files.readString(file);
         List<String> changes = new ArrayList<>();
         String original = content;
+        BuildTooling.Tooling tooling = BuildTooling.get(info.mcVersion());
+        boolean is26x = VersionDatabase.isUnobfuscated(info.mcVersion());
 
         content = replaceProperty(content, "minecraft_version",    info.mcVersion(),           changes);
         content = replaceProperty(content, "fabric_loader_version",info.fabricLoaderVersion(),  changes);
@@ -63,11 +74,34 @@ public class GradlePropertiesPatcher {
         if (info.neoforgeVersion() != null) {
             content = replaceProperty(content, "neoforge_version", info.neoforgeVersion(), changes);
             content = replaceProperty(content, "neo_version", info.neoforgeVersion(), changes);
+            content = replaceProperty(content, "neo_version_range", "[" + info.neoforgeVersion() + ",)", changes);
+        }
+        if (tooling != null && tooling.modDevGradle() != null) {
+            content = replaceProperty(content, "moddev_version", tooling.modDevGradle(), changes);
+            content = replaceProperty(content, "mdg_version", tooling.modDevGradle(), changes);
+        }
+        if (tooling != null) {
+            content = replaceProperty(content, "java_version", String.valueOf(tooling.javaVersion()), changes);
         }
         if (info.forgeVersion() != null) {
             content = replaceProperty(content, "forge_version", info.forgeVersion(), changes);
         }
         content = replaceProperty(content, "minecraft_version_range", "[" + info.mcVersion() + "]", changes);
+
+        boolean hasYarn = Pattern.compile("(?m)^yarn_mappings\\s*=").matcher(content).find();
+        if (hasYarn && (is26x || sourcesRemapped)) {
+            // 26.x has no Yarn; remapped sources use Mojang names.
+            content = content.replaceAll("(?m)^(yarn_mappings\\s*=.*)$",
+                "# $1   (not used: " + (is26x ? "26.x is unobfuscated" : "sources were remapped to Mojang names") + ")");
+            changes.add("yarn_mappings: commented out (" + (is26x ? "26.x has no Yarn mappings" : "sources now use Mojang names") + ")");
+        } else if (hasYarn && !useYarn && info.yarnMappings() != null) {
+            content = replaceProperty(content, "yarn_mappings", info.yarnMappings(), changes);
+        }
+
+        if (is26x && Pattern.compile("(?m)^parchment_\\w+\\s*=").matcher(content).find()) {
+            content = content.replaceAll("(?m)^(parchment_\\w+\\s*=.*)$", "# $1   (not used: 26.x has no Parchment)");
+            changes.add("parchment_*: commented out (Parchment is not used on unobfuscated 26.x)");
+        }
 
         // Update yarn_mappings if Yarn was chosen and the version has a known build
         if (useYarn && info.yarnMappings() != null) {
@@ -94,7 +128,7 @@ public class GradlePropertiesPatcher {
     private String replaceProperty(String content, String key, String value, List<String> changes) {
         if (value == null) return content;
         // Match: key = old_value  (with optional spaces around =)
-        Pattern p = Pattern.compile("(?m)^(" + Pattern.quote(key) + "\s*=\s*)(.+)$");
+        Pattern p = Pattern.compile("(?m)^(" + Pattern.quote(key) + "\\s*=\\s*)(.+)$");
         Matcher m = p.matcher(content);
         if (m.find()) {
             String oldVal = m.group(2).trim();

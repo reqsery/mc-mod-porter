@@ -1,11 +1,16 @@
 {
   "mcVersion": "1.20.5",
-  "fabricLoader": "0.15.11+build.1",
-  "fabricApi": "0.97.2+1.20.5",
-  "architectury": "13.0.6",
+  "fabricLoader": "0.20.1",
+  "fabricApi": "0.97.8+1.20.5",
+  "architectury": "12.0.29",
   "neoforge": "20.5.21-beta",
+  "forge": null,
   "hasFabric": true,
   "hasForge": false,
   "hasNeoForge": true,
-  "loom": "1.6-SNAPSHOT"
+  "loom": "1.19-SNAPSHOT",
+  "java": 21,
+  "fabricGradle": "9.8.2",
+  "neoForgeGradle": "8.14.2",
+  "modDevGradle": "2.0.92"
 }

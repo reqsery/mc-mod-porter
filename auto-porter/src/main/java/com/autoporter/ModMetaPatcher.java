@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.regex.*;
 
 /**
- * Updates fabric.mod.json and mods.toml with correct version constraints
- * for the target Minecraft version.
+ * Updates mod metadata for the target Minecraft version: {@code fabric.mod.json}, {@code mods.toml} /
+ * {@code neoforge.mods.toml} and the {@code compatibilityLevel} of {@code *.mixins.json}.
+ *
+ * <p>Values that are Gradle template placeholders (e.g. {@code "~${minecraft_version}"}) are left alone — they are
+ * filled from {@code gradle.properties}, which {@link GradlePropertiesPatcher} already updates.
  */
 public class ModMetaPatcher {
 
@@ -20,50 +23,67 @@ public class ModMetaPatcher {
         List<String> changes = new ArrayList<>();
         changes.addAll(patchFabricModJson(modRoot, info));
         changes.addAll(patchModsToml(modRoot, info));
-        changes.addAll(patchMixinsJson(modRoot, info));
+        changes.addAll(patchMixinsJson(modRoot, BuildTooling.javaFor(targetVersion)));
         return PatchResult.success("Mod metadata updated", changes);
+    }
+
+    private static boolean isPlaceholder(JsonElement value) {
+        return value != null && value.isJsonPrimitive() && value.getAsString().contains("${");
     }
 
     // ── fabric.mod.json ──────────────────────────────────────────────────────
 
     private List<String> patchFabricModJson(Path root, VersionDatabase.VersionInfo info) throws IOException {
         List<String> changes = new ArrayList<>();
-        List<Path> files = findFiles(root, "fabric.mod.json");
-        for (Path file : files) {
-            String content = Files.readString(file);
+        for (Path file : findFiles(root, "fabric.mod.json")) {
             JsonObject obj;
-            try { obj = JsonParser.parseString(content).getAsJsonObject(); }
+            try { obj = JsonParser.parseString(Files.readString(file)).getAsJsonObject(); }
             catch (Exception e) { continue; }
 
-            JsonObject depends = obj.has("depends") ? obj.getAsJsonObject("depends") : new JsonObject();
+            JsonObject depends = obj.has("depends") && obj.get("depends").isJsonObject()
+                ? obj.getAsJsonObject("depends") : new JsonObject();
+            String name = root.relativize(file).toString().replace('\\', '/');
 
-            // Update minecraft version constraint
             String mcConstraint = "~" + info.mcVersion();
-            if (depends.has("minecraft")) {
-                changes.add("fabric.mod.json minecraft: " + depends.get("minecraft").getAsString() + " → " + mcConstraint);
+            if (isPlaceholder(depends.get("minecraft"))) {
+                changes.add(name + ": minecraft is a placeholder (" + depends.get("minecraft").getAsString()
+                    + ") — filled from gradle.properties");
+            } else {
+                if (depends.has("minecraft")) {
+                    changes.add(name + ": minecraft " + depends.get("minecraft").getAsString() + " → " + mcConstraint);
+                }
+                depends.addProperty("minecraft", mcConstraint);
             }
-            depends.addProperty("minecraft", mcConstraint);
 
-            // Update fabricloader constraint
-            String loaderConstraint = ">=" + info.fabricLoaderVersion();
-            depends.addProperty("fabricloader", loaderConstraint);
-            changes.add("fabric.mod.json fabricloader → " + loaderConstraint);
+            if (!isPlaceholder(depends.get("fabricloader"))) {
+                String loaderConstraint = ">=" + info.fabricLoaderVersion();
+                depends.addProperty("fabricloader", loaderConstraint);
+                changes.add(name + ": fabricloader → " + loaderConstraint);
+            }
 
-            // Update architectury constraint if present
-            if (depends.has("architectury") && info.architecturyVersion() != null) {
+            if (depends.has("architectury") && info.architecturyVersion() != null && !isPlaceholder(depends.get("architectury"))) {
                 String archConstraint = ">=" + info.architecturyVersion();
                 depends.addProperty("architectury", archConstraint);
-                changes.add("fabric.mod.json architectury → " + archConstraint);
+                changes.add(name + ": architectury → " + archConstraint);
+            }
+
+            // The legacy "fabric" mod id for Fabric API is gone in 26.x.
+            if (VersionDatabase.isUnobfuscated(info.mcVersion()) && depends.has("fabric") && !depends.has("fabric-api")) {
+                JsonObject renamed = new JsonObject();
+                for (var entry : depends.entrySet()) {
+                    renamed.add(entry.getKey().equals("fabric") ? "fabric-api" : entry.getKey(), entry.getValue());
+                }
+                depends = renamed;
+                changes.add(name + ": renamed dependency \"fabric\" → \"fabric-api\"");
             }
 
             obj.add("depends", depends);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            Files.writeString(file, gson.toJson(obj));
+            Files.writeString(file, new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(obj));
         }
         return changes;
     }
 
-    // ── META-INF/mods.toml (NeoForge) ────────────────────────────────────────
+    // ── META-INF/mods.toml / neoforge.mods.toml ──────────────────────────────
 
     private List<String> patchModsToml(Path root, VersionDatabase.VersionInfo info) throws IOException {
         List<String> changes = new ArrayList<>();
@@ -71,48 +91,52 @@ public class ModMetaPatcher {
         files.addAll(findFiles(root, "neoforge.mods.toml"));
         for (Path file : files) {
             String content = Files.readString(file);
-            String updated = content;
-
-            // loaderVersion is the FML loader range, not the NeoForge artifact version.
-            // Preserve it; GradlePropertiesPatcher updates neo_version/neoforge_version.
-            updated = patchTomlVersionRange(updated, "minecraft", info.mcVersion(), changes);
-
+            // loaderVersion is the FML loader range, not the NeoForge artifact version: left alone.
+            String updated = patchTomlVersionRange(content, "minecraft", "[" + info.mcVersion() + ",)", changes);
+            if (info.neoforgeVersion() != null) {
+                updated = patchTomlVersionRange(updated, "neoforge", "[" + info.neoforgeVersion() + ",)", changes);
+            }
             if (!updated.equals(content)) Files.writeString(file, updated);
         }
         return changes;
     }
 
-    private String patchTomlKey(String content, String key, String newVal, List<String> changes) {
-        Pattern p = Pattern.compile("(?m)^(" + Pattern.quote(key) + "\s*=\s*)(.+)$");
-        Matcher m = p.matcher(content);
-        if (m.find()) {
-            String old = m.group(2).trim();
-            if (!old.equals(newVal)) changes.add("mods.toml " + key + ": " + old + " → " + newVal);
-            return m.replaceAll("$1" + Matcher.quoteReplacement(newVal));
-        }
-        return content;
-    }
-
-    private String patchTomlVersionRange(String content, String depId, String mcVer, List<String> changes) {
-        // matches: versionRange = "[1.21.4,1.22)" near modId = "minecraft"
+    /** Replaces the literal versionRange of the dependency with {@code modId = depId}; placeholders are kept. */
+    private String patchTomlVersionRange(String content, String depId, String newRange, List<String> changes) {
         Pattern p = Pattern.compile(
-            "(modId\s*=\s*\"" + depId + "\".*?versionRange\s*=\s*\")([^\"]+)(\")",
-            Pattern.DOTALL
-        );
+            "(modId\\s*=\\s*\"" + Pattern.quote(depId) + "\"[^\\[]*?versionRange\\s*=\\s*\")([^\"]+)(\")", Pattern.DOTALL);
         Matcher m = p.matcher(content);
-        if (m.find()) {
-            String newRange = "[" + mcVer + ",)";
-            changes.add("mods.toml " + depId + " versionRange → " + newRange);
-            return m.replaceAll("$1" + Matcher.quoteReplacement(newRange) + "$3");
+        StringBuilder out = new StringBuilder();
+        while (m.find()) {
+            String old = m.group(2);
+            String value = old.contains("${") ? old : newRange;
+            if (!value.equals(old)) changes.add("mods.toml " + depId + " versionRange: " + old + " → " + newRange);
+            m.appendReplacement(out, Matcher.quoteReplacement(m.group(1) + value + m.group(3)));
         }
-        return content;
+        m.appendTail(out);
+        return out.toString();
     }
 
     // ── *.mixins.json ────────────────────────────────────────────────────────
 
-    private List<String> patchMixinsJson(Path root, VersionDatabase.VersionInfo info) throws IOException {
+    private List<String> patchMixinsJson(Path root, int java) throws IOException {
         List<String> changes = new ArrayList<>();
-        // Mixins don't usually need version changes, but compatibilityLevel should match Java
+        Pattern level = Pattern.compile("(\"compatibilityLevel\"\\s*:\\s*\")JAVA_(\\d+)(\")");
+        List<Path> files = new ArrayList<>();
+        try (var walk = Files.walk(root)) {
+            walk.filter(Files::isRegularFile)
+                .filter(p -> p.getFileName().toString().endsWith(".mixins.json"))
+                .filter(p -> !ProjectPaths.isGenerated(root, p))
+                .forEach(files::add);
+        }
+        for (Path file : files) {
+            String content = Files.readString(file);
+            Matcher m = level.matcher(content);
+            if (!m.find() || m.group(2).equals(String.valueOf(java))) continue;
+            String old = m.group(2);
+            Files.writeString(file, m.replaceAll(r -> Matcher.quoteReplacement(r.group(1) + "JAVA_" + java + r.group(3))));
+            changes.add(root.relativize(file) + ": compatibilityLevel JAVA_" + old + " → JAVA_" + java);
+        }
         return changes;
     }
 
@@ -121,10 +145,11 @@ public class ModMetaPatcher {
     private List<Path> findFiles(Path root, String filename) throws IOException {
         List<Path> found = new ArrayList<>();
         if (!Files.exists(root)) return found;
-        Files.walk(root)
-            .filter(p -> p.getFileName().toString().equals(filename))
-            .filter(p -> !p.toString().contains("build") && !p.toString().contains(".gradle"))
-            .forEach(found::add);
+        try (var walk = Files.walk(root)) {
+            walk.filter(p -> p.getFileName().toString().equals(filename))
+                .filter(p -> !ProjectPaths.isGenerated(root, p))
+                .forEach(found::add);
+        }
         return found;
     }
 }

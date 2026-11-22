@@ -20,6 +20,9 @@ import java.net.URI;
 public class MainWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     private static final String AUTO_DETECT = "Auto Detect";
+    static final String REMAP_AUTO = "Auto (Yarn → 26.x)";
+    static final String REMAP_ALWAYS = "Always";
+    static final String REMAP_NEVER = "Never";
 
     private JButton createLinkButton(String text, String url, String iconName) {
         JButton button = new JButton(text);
@@ -55,6 +58,8 @@ public class MainWindow extends JFrame {
     private final JComboBox<String> sourceVersionCombo = new JComboBox<>();
     private final JComboBox<String> targetVersionCombo = new JComboBox<>();
     private final JComboBox<String> loaderCombo = new JComboBox<>(new String[] { AUTO_DETECT, "Fabric", "NeoForge" });
+    private final JComboBox<String> mappingsCombo = new JComboBox<>(new String[] { AUTO_DETECT, "Yarn", "Mojang" });
+    private final JComboBox<String> remapCombo = new JComboBox<>(new String[] { REMAP_AUTO, REMAP_ALWAYS, REMAP_NEVER });
     private final JButton browseButton = new JButton("Browse...");
     private final JButton portButton = new JButton("Port Mod");
     private final JButton buildButton = new JButton("Build");
@@ -85,8 +90,10 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         super("MC Mod Porter");
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        setBounds(100, 100, 900, 685);
+        setBounds(100, 100, 900, 745);
         setResizable(false);
+        java.net.URL appIcon = MainWindow.class.getResource("/icons/app.png");
+        if (appIcon != null) setIconImage(new ImageIcon(appIcon).getImage());
         buildUi();
         wireActions();
         setWorking(false);
@@ -108,7 +115,7 @@ public class MainWindow extends JFrame {
         JPanel projectPanel = new JPanel();
         projectPanel.setLayout(null);
         projectPanel.setBorder(new javax.swing.border.LineBorder(new Color(185, 185, 185), 1));
-        projectPanel.setBounds(20, 20, 845, 165);
+        projectPanel.setBounds(20, 20, 845, 225);
         contentPane.add(projectPanel);
 
         JLabel projectLabel = new JLabel("Project");
@@ -150,43 +157,58 @@ public class MainWindow extends JFrame {
         loaderCombo.setBounds(580, 110, 243, 30);
         projectPanel.add(loaderCombo);
 
+        JLabel mappingsLabel = new JLabel("Source Mappings");
+        mappingsLabel.setBounds(18, 152, 150, 20);
+        projectPanel.add(mappingsLabel);
+
+        mappingsCombo.setToolTipText("Names used by the mod's sources: Yarn (Fabric) or Mojang/official. Auto Detect reads the build files.");
+        mappingsCombo.setBounds(18, 174, 230, 30);
+        projectPanel.add(mappingsCombo);
+
+        JLabel remapLabel = new JLabel("Remap to Mojang Names");
+        remapLabel.setBounds(300, 152, 200, 20);
+        projectPanel.add(remapLabel);
+
+        remapCombo.setToolTipText("Auto remaps Yarn sources when porting to 26.x (which has no Yarn). Always forces it, Never skips it.");
+        remapCombo.setBounds(300, 174, 230, 30);
+        projectPanel.add(remapCombo);
+
         portButton.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        portButton.setBounds(20, 205, 845, 38);
+        portButton.setBounds(20, 265, 845, 38);
         contentPane.add(portButton);
 
-        buildButton.setBounds(20, 260, 110, 32);
+        buildButton.setBounds(20, 320, 110, 32);
         contentPane.add(buildButton);
 
-        runClientButton.setBounds(140, 260, 110, 32);
+        runClientButton.setBounds(140, 320, 110, 32);
         contentPane.add(runClientButton);
 
-        openFolderButton.setBounds(260, 260, 110, 32);
+        openFolderButton.setBounds(260, 320, 110, 32);
         contentPane.add(openFolderButton);
 
-        cancelButton.setBounds(755, 260, 110, 32);
+        cancelButton.setBounds(755, 320, 110, 32);
         contentPane.add(cancelButton);
 
         JLabel statusLabel = new JLabel("Status:");
         statusLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        statusLabel.setBounds(20, 315, 55, 20);
+        statusLabel.setBounds(20, 375, 55, 20);
         contentPane.add(statusLabel);
 
-        statusValueLabel.setBounds(75, 315, 160, 20);
+        statusValueLabel.setBounds(75, 375, 790, 20);
         contentPane.add(statusValueLabel);
 
         progressBar.setValue(0);
-        progressBar.setStringPainted(true);
-        progressBar.setString("0%");
-        progressBar.setBounds(20, 340, 845, 20);
+        progressBar.setStringPainted(true); // shows the live percentage (no fixed text)
+        progressBar.setBounds(20, 400, 845, 20);
         contentPane.add(progressBar);
 
         JLabel logsLabel = new JLabel("Logs");
         logsLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        logsLabel.setBounds(20, 385, 100, 20);
+        logsLabel.setBounds(20, 445, 100, 20);
         contentPane.add(logsLabel);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(20, 410, 845, 180);
+        scrollPane.setBounds(20, 470, 845, 180);
         contentPane.add(scrollPane);
 
         logArea.setEditable(false);
@@ -196,7 +218,7 @@ public class MainWindow extends JFrame {
         scrollPane.setViewportView(logArea);
         JPanel linksPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
         linksPanel.setOpaque(false);
-        linksPanel.setBounds(15, 600, 850, 28);
+        linksPanel.setBounds(15, 660, 850, 28);
 
         linksPanel.add(createLinkButton("Discord",
             "https://discord.gg/vV2USr9phF", "discord"));
@@ -252,8 +274,22 @@ public class MainWindow extends JFrame {
         ProjectInfo info = inspectProject(project);
         sourceVersionCombo.setSelectedItem(info.version() == null ? AUTO_DETECT : info.version());
         loaderCombo.setSelectedItem(info.loader() == null ? AUTO_DETECT : info.loader());
+        String mappings = "unknown mappings";
+        try {
+            SourceRemapper.Mappings detected = SourceRemapper.detect(project, info.version() == null ? "" : info.version()).mappings();
+            mappingsCombo.setSelectedItem(switch (detected) {
+                case YARN -> "Yarn";
+                case MOJANG -> "Mojang";
+                default -> AUTO_DETECT;
+            });
+            if (detected == SourceRemapper.Mappings.YARN || detected == SourceRemapper.Mappings.MOJANG) {
+                mappings = detected == SourceRemapper.Mappings.YARN ? "Yarn" : "Mojang";
+            }
+        } catch (IOException ignored) {
+            mappingsCombo.setSelectedItem(AUTO_DETECT);
+        }
         setStatus("Detected " + (info.version() == null ? "unknown version" : info.version())
-            + " / " + (info.loader() == null ? "unknown loader" : info.loader()));
+            + " / " + (info.loader() == null ? "unknown loader" : info.loader()) + " / " + mappings);
     }
 
     private void startPort() {
@@ -285,7 +321,18 @@ public class MainWindow extends JFrame {
         command.add(source.toString());
         command.add(from);
         command.add(to);
+        command.addAll(portFlags(selected(mappingsCombo), selected(remapCombo)));
         startProcess(command, source.getParent(), "Porting mod", true);
+    }
+
+    /** CLI flags for the GUI's mappings and remap choices. */
+    static List<String> portFlags(String mappings, String remap) {
+        List<String> flags = new ArrayList<>();
+        if ("Yarn".equals(mappings)) flags.addAll(List.of("--source-mappings", "yarn"));
+        if ("Mojang".equals(mappings)) flags.addAll(List.of("--source-mappings", "mojang"));
+        if (REMAP_ALWAYS.equals(remap)) flags.add("--remap");
+        if (REMAP_NEVER.equals(remap)) flags.add("--no-remap");
+        return flags;
     }
 
     private void startGradleTask(String task, String activity) {
@@ -405,6 +452,8 @@ public class MainWindow extends JFrame {
         sourceVersionCombo.setEnabled(!working);
         targetVersionCombo.setEnabled(!working);
         loaderCombo.setEnabled(!working);
+        mappingsCombo.setEnabled(!working);
+        remapCombo.setEnabled(!working);
         portButton.setEnabled(!working);
         boolean hasOutput = portedProject != null && Files.isDirectory(portedProject);
         buildButton.setEnabled(!working && hasOutput);
@@ -414,15 +463,15 @@ public class MainWindow extends JFrame {
     }
 
     private void updatePortProgress(String line) {
-        Matcher step = Pattern.compile("^\\[(\\d)/7]").matcher(line);
-        if (step.find()) progressBar.setValue(Integer.parseInt(step.group(1)) * 11);
-        else if (line.startsWith("Copying to")) progressBar.setValue(8);
-        else if (line.startsWith("[build]")) progressBar.setValue(90);
-        else if (line.startsWith("STATUS:")) progressBar.setValue(100);
+        PortProgress.parse(line, progressBar.getValue()).ifPresent(update -> {
+            progressBar.setValue(update.percent());
+            if (update.status() != null) setStatus(update.status());
+        });
     }
 
     private void appendLog(String line) {
-        logArea.append(line + System.lineSeparator());
+        // Consolas has no ✓ / ⚠ glyphs: show their ASCII form instead of empty boxes
+        logArea.append(ConsoleText.toAscii(line, logArea.getFont()::canDisplay) + System.lineSeparator());
         logArea.setCaretPosition(logArea.getDocument().getLength());
     }
 
@@ -453,7 +502,9 @@ public class MainWindow extends JFrame {
             })
             .reduce((left, right) -> left + File.pathSeparator + right)
             .orElse("");
-        return new ArrayList<>(List.of(java.toString(), "-cp", absoluteClasspath));
+        // The log reader decodes UTF-8, so the child must write UTF-8 (a pipe otherwise uses the Windows code page).
+        return new ArrayList<>(List.of(java.toString(), "-Dstdout.encoding=UTF-8", "-Dstderr.encoding=UTF-8",
+            "-Dfile.encoding=UTF-8", "-cp", absoluteClasspath));
     }
 
     static ProjectInfo inspectProject(Path root) {

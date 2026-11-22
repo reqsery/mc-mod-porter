@@ -305,7 +305,7 @@ public class ResourcePatcher {
         try (Stream<Path> walk = Files.walk(root)) {
             walk.filter(Files::isDirectory)
                 .filter(path -> path.toString().replace('\\', '/').endsWith(normalizedSuffix))
-                .filter(path -> !isGeneratedPath(path))
+                .filter(path -> !ProjectPaths.isGenerated(root, path))
                 .forEach(found::add);
         }
         return found;
@@ -333,16 +333,11 @@ public class ResourcePatcher {
         if (!Files.exists(root)) return found;
         try (Stream<Path> walk = Files.walk(root)) {
             walk.filter(Files::isRegularFile)
-                .filter(path -> !isGeneratedPath(path))
+                .filter(path -> !ProjectPaths.isGenerated(root, path))
                 .filter(path -> Arrays.stream(suffixes).anyMatch(path.getFileName().toString()::endsWith))
                 .forEach(found::add);
         }
         return found;
-    }
-
-    private boolean isGeneratedPath(Path path) {
-        String normalized = path.toString().replace('\\', '/');
-        return normalized.contains("/build/") || normalized.contains("/.gradle/");
     }
 
     private List<Path> findCoreShaderDirs(Path root) throws IOException {
@@ -350,6 +345,7 @@ public class ResourcePatcher {
         if (!Files.exists(root)) return dirs;
         try (Stream<Path> walk = Files.walk(root)) {
             walk.filter(Files::isDirectory)
+                .filter(path -> !ProjectPaths.isGenerated(root, path))
                 .filter(path -> path.toString().replace("\\", "/").endsWith("/assets/minecraft/shaders/core"))
                 .forEach(dirs::add);
         }
@@ -362,7 +358,7 @@ public class ResourcePatcher {
         try (Stream<Path> walk = Files.walk(root)) {
             walk.filter(Files::isRegularFile)
                 .filter(path -> path.getFileName().toString().equals(filename))
-                .filter(path -> !path.toString().contains("build") && !path.toString().contains(".gradle"))
+                .filter(path -> !ProjectPaths.isGenerated(root, path))
                 .forEach(found::add);
         }
         return found;

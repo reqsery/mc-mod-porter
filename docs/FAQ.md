@@ -37,20 +37,12 @@ These are separate projects. A loader update does not mean a Minecraft update, a
 
 ---
 
-## Why is AI alone not enough for porting?
+## Why does the porter only use verified data?
 
-AI language models are trained on data up to a cutoff date. Minecraft releases frequently, and:
-
-1. **APIs change after training cutoff** — the model doesn't know about new method signatures
-2. **AI can hallucinate method names** that sound plausible but don't exist
-3. **Exact version numbers** (loader, API, NeoForge) cannot be reliably guessed
-
-This knowledge base solves all three problems by providing verified, sourced data that you inject into the AI's context.
-
-**Correct workflow:**
-1. Look up the version change in this knowledge base
-2. Give the relevant file to the AI as context
-3. Ask the AI to apply the documented changes
+Minecraft and its loaders release often, and a wrong method name or version number produces a mod that does not
+compile. Every rename rule, version number and migration note in this repository is backed by an official source
+(Mojang, FabricMC, NeoForged) and every version number was checked against the official templates and Maven
+metadata. Nothing is guessed.
 
 ---
 

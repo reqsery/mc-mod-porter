@@ -173,7 +173,7 @@ public class MigrationWarningScanner {
         if (!Files.exists(root)) return;
         try (Stream<Path> walk = Files.walk(root)) {
             walk.filter(Files::isRegularFile)
-                .filter(path -> !path.toString().contains("build") && !path.toString().contains(".gradle"))
+                .filter(path -> !ProjectPaths.isGenerated(root, path))
                 .filter(path -> hasSuffix(path, suffixes))
                 .forEach(path -> scanFile(root, path, probes, warnings, reviewVersion));
         }

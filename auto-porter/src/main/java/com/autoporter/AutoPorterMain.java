@@ -3,26 +3,50 @@ package com.autoporter;
 import com.google.gson.*;
 import java.io.*;
 import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
 
 /**
- * Auto-Porter — ports a Minecraft mod between versions.
+ * Auto-Porter — ports a Minecraft mod source project between versions.
  *
  * Usage:
- *   java -jar auto-porter.jar <modPath> <fromVersion> <toVersion> [--dry-run] [--no-build]
- *   java -jar auto-porter.jar --setup-templates        (generate all gradle.properties templates)
- *   java -jar auto-porter.jar --list-versions          (show all supported versions)
- *
- * Examples:
- *   java -jar auto-porter.jar C:/mods/mymod 1.21.4 1.21.10
- *   java -jar auto-porter.jar C:/mods/mymod 1.21.4 1.21.10 --dry-run
+ *   java -jar auto-porter.jar                                   (desktop GUI)
+ *   java -jar auto-porter.jar <modPath> <fromVersion> <toVersion> [options]
+ *   java -jar auto-porter.jar --list-versions | --setup-templates | --help
  */
 public class AutoPorterMain {
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    static final int STEPS = 9;
+
+    /** Command-line options for a port. */
+    record Options(boolean dryRun, boolean build, boolean remap, boolean noRemap, SourceRemapper.Mappings sourceMappings) {
+        static Options parse(List<String> flags) {
+            boolean dryRun = false, noBuild = false, remap = false, noRemap = false;
+            SourceRemapper.Mappings mappings = SourceRemapper.Mappings.AUTO;
+            for (int i = 0; i < flags.size(); i++) {
+                String flag = flags.get(i);
+                switch (flag) {
+                    case "--dry-run" -> dryRun = true;
+                    case "--no-build" -> noBuild = true;
+                    case "--remap" -> remap = true;
+                    case "--no-remap" -> noRemap = true;
+                    case "--source-mappings" -> {
+                        if (i + 1 >= flags.size()) throw new IllegalArgumentException("--source-mappings needs a value: auto, yarn or mojang");
+                        mappings = SourceRemapper.Mappings.parse(flags.get(++i));
+                    }
+                    default -> {
+                        if (flag.startsWith("--source-mappings=")) {
+                            mappings = SourceRemapper.Mappings.parse(flag.substring("--source-mappings=".length()));
+                        } else {
+                            throw new IllegalArgumentException("Unknown option: " + flag + " (see --help)");
+                        }
+                    }
+                }
+            }
+            if (remap && noRemap) throw new IllegalArgumentException("--remap and --no-remap cannot be used together");
+            return new Options(dryRun, !noBuild && !dryRun, remap, noRemap, mappings);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         if (shouldLaunchGui(args)) {
@@ -30,48 +54,46 @@ public class AutoPorterMain {
             return;
         }
 
+        ConsoleText.install();
         System.out.println("╔══════════════════════════════════╗");
         System.out.println("║        MC Mod Auto-Porter        ║");
         System.out.println("╚══════════════════════════════════╝\n");
 
-        if (args[0].equals("--help")) {
-            printHelp();
-            return;
-        }
-
-        if (args[0].equals("--list-versions")) {
-            listVersions();
-            return;
-        }
-
-        if (args[0].equals("--setup-templates")) {
-            setupTemplates();
-            return;
+        switch (args[0]) {
+            case "--help", "-h" -> { printHelp(); return; }
+            case "--list-versions" -> { listVersions(); return; }
+            case "--setup-templates" -> { setupTemplates(); return; }
+            default -> { }
         }
 
         if (args.length < 3) {
-            System.err.println("Usage: auto-porter <modPath> <fromVersion> <toVersion> [--dry-run] [--no-build]");
+            System.err.println("Usage: auto-porter <modPath> <fromVersion> <toVersion> [--dry-run] [--no-build] "
+                + "[--remap | --no-remap] [--source-mappings auto|yarn|mojang]");
             System.exit(1);
         }
 
-        String modPath = args[0];
-        String fromVer = args[1];
-        String toVer   = args[2];
-
-        List<String> flags = Arrays.asList(args).subList(3, args.length);
-        boolean dryRun     = flags.contains("--dry-run");
-        boolean buildAfter = !flags.contains("--no-build") && !dryRun;
-
-        portMod(modPath, fromVer, toVer, buildAfter, dryRun);
+        Options options;
+        try {
+            options = Options.parse(Arrays.asList(args).subList(3, args.length));
+        } catch (IllegalArgumentException e) {
+            System.err.println("ERROR: " + e.getMessage());
+            System.exit(1);
+            return;
+        }
+        portMod(args[0], args[1], args[2], options);
     }
 
     static boolean shouldLaunchGui(String[] args) {
         return args.length == 0;
     }
 
+    static void portMod(String modPath, String fromVer, String toVer, boolean buildAfter, boolean dryRun) throws Exception {
+        portMod(modPath, fromVer, toVer, new Options(dryRun, buildAfter && !dryRun, false, false, SourceRemapper.Mappings.AUTO));
+    }
+
     // ── Port a mod ────────────────────────────────────────────────────────────
 
-    static void portMod(String modPath, String fromVer, String toVer, boolean buildAfter, boolean dryRun) throws Exception {
+    static void portMod(String modPath, String fromVer, String toVer, Options options) throws Exception {
         Path srcRoot = Path.of(modPath).toAbsolutePath().normalize();
         if (Files.exists(srcRoot) && !Files.isDirectory(srcRoot)) {
             String fileName = srcRoot.getFileName().toString().toLowerCase(Locale.ROOT);
@@ -88,7 +110,7 @@ public class AutoPorterMain {
             System.exit(1);
         }
 
-        if (dryRun) System.out.println("*** DRY RUN — no files will be modified ***\n");
+        if (options.dryRun()) System.out.println("*** DRY RUN — no files will be modified ***\n");
 
         System.out.println("Source mod : " + srcRoot.getFileName());
         System.out.println("From       : " + fromVer);
@@ -109,22 +131,26 @@ public class AutoPorterMain {
             System.exit(1);
         }
 
+        System.out.println("Inspecting project...");
+        RemapPlan plan = RemapPlan.decide(srcRoot, fromVer, toVer, options);
+        System.out.println("  Source mappings: " + plan.detection().mappings() + " (" + plan.detection().reason() + ")");
+        System.out.println("  Remap sources  : " + (plan.remap() ? "yes (Yarn → Mojang)" : "no") + " — " + plan.why());
+        System.out.println();
+
         // In dry-run mode, scan the original source — no copy, no writes
-        if (dryRun) {
+        if (options.dryRun()) {
+            if (plan.remap()) {
+                System.out.println("[DRY RUN] Remapping preview...");
+                plan.run(srcRoot, true).print();
+                System.out.println();
+            }
             System.out.println("[DRY RUN] Scanning sources for changes...\n");
-            SourcePatcher sourcePatcher = new SourcePatcher();
-            PatchResult sourceResult = sourcePatcher.patch(srcRoot, fromVer, toVer, true);
+            new SourcePatcher().patch(srcRoot, fromVer, toVer, true).print();
             System.out.println();
-            sourceResult.print();
-            ResourcePatcher resourcePatcher = new ResourcePatcher();
-            PatchResult resourceResult = resourcePatcher.patch(srcRoot, fromVer, toVer, true);
+            new ResourcePatcher().patch(srcRoot, fromVer, toVer, true).print();
             System.out.println();
-            resourceResult.print();
-            MigrationWarningScanner warningScanner = new MigrationWarningScanner();
-            PatchResult warningResult = warningScanner.scan(srcRoot, fromVer, toVer);
-            System.out.println();
-            warningResult.print();
-            System.out.println("\n[DRY RUN] build.gradle and gradle.properties would also be updated.");
+            new MigrationWarningScanner().scan(srcRoot, fromVer, toVer).print();
+            System.out.println("\n[DRY RUN] build.gradle, gradle.properties, the Gradle wrapper and metadata would also be updated.");
             System.out.println("[DRY RUN] No files were modified.");
             return;
         }
@@ -145,14 +171,17 @@ public class AutoPorterMain {
         report.put("outputMod",   modRoot.toString());
         report.put("fromVersion", fromVer);
         report.put("toVersion",   toVer);
+        report.put("sourceMappings", plan.detection().mappings().name());
+        report.put("remapped",    plan.remap());
         report.put("startedAt",   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         List<Map<String, Object>> steps = new ArrayList<>();
+        StaleVersionCheck staleCheck = StaleVersionCheck.snapshot(modRoot, fromVer);
 
         // Ask about mappings when backporting from 26.x to a Fabric pre-26.x version
         // (26.x has no mappings; earlier versions need one re-added)
         boolean useYarn = false;
         VersionDatabase.VersionInfo toInfo = VersionDatabase.get(toVer);
-        if (fromVer.startsWith("26.") && !toVer.startsWith("26.") && toInfo != null && toInfo.hasFabric()) {
+        if (VersionDatabase.isUnobfuscated(fromVer) && !VersionDatabase.isUnobfuscated(toVer) && toInfo != null && toInfo.hasFabric()) {
             System.out.println("─────────────────────────────────────────");
             System.out.println("Mappings choice (required for pre-26.x Fabric builds):");
             System.out.println("  1) Mojang official  [loom.officialMojangMappings()]");
@@ -162,14 +191,12 @@ public class AutoPorterMain {
             System.out.println("  " + yarnLabel);
             System.out.print("Enter 1 or 2 [default: 1]: ");
             System.out.flush();
-            String choice = new Scanner(System.in).nextLine().trim();
-            if (choice.equals("2")) {
-                if (toInfo.yarnMappings() != null) {
-                    useYarn = true;
-                    System.out.println("→ Using Yarn mappings: " + toInfo.yarnMappings());
-                } else {
-                    System.out.println("→ Yarn not available for " + toVer + ", falling back to Mojang official.");
-                }
+            String choice = readLine();
+            if (choice.equals("2") && toInfo.yarnMappings() != null) {
+                useYarn = true;
+                System.out.println("→ Using Yarn mappings: " + toInfo.yarnMappings());
+            } else if (choice.equals("2")) {
+                System.out.println("→ Yarn not available for " + toVer + ", falling back to Mojang official.");
             } else {
                 System.out.println("→ Using Mojang official mappings.");
             }
@@ -177,95 +204,148 @@ public class AutoPorterMain {
             System.out.println();
         }
 
-        // Step 0: Update Loom/plugin versions in build.gradle
-        System.out.println("[1/7] Updating build.gradle plugin versions...");
-        BuildFilePatcher buildPatcher = new BuildFilePatcher();
-        PatchResult buildFileResult = buildPatcher.patch(modRoot, toVer, useYarn);
+        System.out.println(header(1, "Updating build scripts and Gradle wrapper..."));
+        PatchResult buildFileResult = new BuildFilePatcher().patch(modRoot, fromVer, toVer, useYarn, plan.remap());
         buildFileResult.print();
         steps.add(stepMap("build.gradle", buildFileResult));
 
-        // Step 1: Update gradle.properties
-        System.out.println("[2/7] Updating gradle.properties...");
-        GradlePropertiesPatcher gradlePatcher = new GradlePropertiesPatcher();
-        PatchResult gradleResult = gradlePatcher.patch(modRoot, toVer, useYarn);
+        System.out.println(header(2, "Updating gradle.properties..."));
+        PatchResult gradleResult = new GradlePropertiesPatcher().patch(modRoot, toVer, useYarn, plan.remap());
         gradleResult.print();
         steps.add(stepMap("gradle.properties", gradleResult));
 
-        // Step 2: Patch Java sources
-        System.out.println("\n[3/7] Patching Java sources...");
-        SourcePatcher sourcePatcher = new SourcePatcher();
-        PatchResult sourceResult = sourcePatcher.patch(modRoot, fromVer, toVer, false);
+        System.out.println("\n" + header(3, "Remapping sources (Yarn → Mojang)..."));
+        PatchResult remapResult = plan.run(modRoot, false);
+        remapResult.print();
+        steps.add(stepMap("remap", remapResult));
+
+        System.out.println("\n" + header(4, "Applying version rules to Java sources..."));
+        PatchResult sourceResult = new SourcePatcher().patch(modRoot, fromVer, toVer, false);
         sourceResult.print();
         steps.add(stepMap("sources", sourceResult));
 
-        System.out.println("\n[4/7] Patching resources and data files...");
-        ResourcePatcher resourcePatcher = new ResourcePatcher();
-        PatchResult resourceResult = resourcePatcher.patch(modRoot, fromVer, toVer, false);
+        System.out.println("\n" + header(5, "Patching resources and data files..."));
+        PatchResult resourceResult = new ResourcePatcher().patch(modRoot, fromVer, toVer, false);
         resourceResult.print();
         steps.add(stepMap("resources", resourceResult));
 
-        System.out.println("\n[5/7] Scanning for manual migration items...");
-        MigrationWarningScanner warningScanner = new MigrationWarningScanner();
-        PatchResult warningResult = warningScanner.scan(modRoot, fromVer, toVer);
+        System.out.println("\n" + header(6, "Scanning for manual migration items..."));
+        PatchResult warningResult = new MigrationWarningScanner().scan(modRoot, fromVer, toVer);
         warningResult.print();
         steps.add(stepMap("warnings", warningResult));
 
-        // Step 3: Update mod metadata
-        System.out.println("\n[6/7] Updating mod metadata (fabric.mod.json / mods.toml)...");
-        ModMetaPatcher metaPatcher = new ModMetaPatcher();
-        PatchResult metaResult = metaPatcher.patch(modRoot, toVer);
+        System.out.println("\n" + header(7, "Updating mod metadata (fabric.mod.json / mods.toml / mixins)..."));
+        PatchResult metaResult = new ModMetaPatcher().patch(modRoot, toVer);
         metaResult.print();
         steps.add(stepMap("metadata", metaResult));
 
-        // Step 4: Patch access widener / class tweaker
-        System.out.println("\n[7/7] Patching access widener / class tweaker...");
-        AccessWidenerPatcher awPatcher = new AccessWidenerPatcher();
-        PatchResult awResult = awPatcher.patch(modRoot, toVer);
+        System.out.println("\n" + header(8, "Patching access widener / class tweaker..."));
+        PatchResult awResult = new AccessWidenerPatcher().patch(modRoot, toVer);
         awResult.print();
         steps.add(stepMap("accesswidener", awResult));
 
-        // Step 5: Build
+        System.out.println("\n" + header(9, "Checking build files for stale version numbers..."));
+        PatchResult staleResult = staleCheck.verify(modRoot, toVer);
+        staleResult.print();
+        steps.add(stepMap("stale-versions", staleResult));
+
         Map<String, Object> buildStep = new LinkedHashMap<>();
         BuildRunner.BuildResult buildResult = null;
-        if (buildAfter) {
-            System.out.println("\n[build] Building ported mod...");
-            BuildRunner runner = new BuildRunner();
-            buildResult = runner.build(modRoot);
+        buildStep.put("step", "build");
+        if (options.build()) {
+            System.out.println("\n[build] Verifying with Gradle...");
+            buildResult = new BuildRunner().build(modRoot);
             buildResult.print();
-            buildStep.put("step", "build");
             buildStep.put("success", buildResult.success());
             buildStep.put("exitCode", buildResult.exitCode());
             buildStep.put("errors", buildResult.errors());
             buildStep.put("logFile", buildResult.logFile());
         } else {
             System.out.println("\n[build] Build skipped (--no-build)");
-            buildStep.put("step", "build");
             buildStep.put("success", "skipped");
         }
         steps.add(buildStep);
 
-        // Write report
         report.put("steps", steps);
         report.put("success", buildResult == null || buildResult.success());
         report.put("completedAt", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
-        // Write to mod's build dir
         Path reportDir = modRoot.resolve("build");
         Files.createDirectories(reportDir);
         Path reportFile = reportDir.resolve("port-report.json");
-        try (FileWriter w = new FileWriter(reportFile.toFile())) { GSON.toJson(report, w); }
+        try (Writer w = Files.newBufferedWriter(reportFile)) { GSON.toJson(report, w); }
 
         System.out.println("\n═══════════════════════════════════");
         System.out.println("Port report: " + reportFile.toAbsolutePath());
 
-        boolean allOk = gradleResult.success() && sourceResult.success() && resourceResult.success()
-                        && warningResult.success() && metaResult.success() && awResult.success()
+        boolean allOk = buildFileResult.success() && gradleResult.success() && remapResult.success()
+                        && sourceResult.success() && resourceResult.success() && warningResult.success()
+                        && metaResult.success() && awResult.success()
                         && (buildResult == null || buildResult.success());
         if (allOk) {
             System.out.println("STATUS: ✓ Port complete — mod ready for " + toVer);
         } else {
             System.out.println("STATUS: ⚠ Port complete with issues — review port-report.json");
             System.exit(1);
+        }
+    }
+
+    static String header(int step, String text) {
+        return "[" + step + "/" + STEPS + "] " + text;
+    }
+
+    private static String readLine() {
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            String line = in.readLine();
+            return line == null ? "" : line.trim();
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+    /** Whether (and why) the sources are remapped from Yarn to Mojang names. */
+    record RemapPlan(SourceRemapper.Detection detection, boolean remap, String why, String fromVersion) {
+        static RemapPlan decide(Path root, String from, String to, Options options) throws IOException {
+            SourceRemapper.Detection detected = SourceRemapper.detect(root, from);
+            SourceRemapper.Mappings mode = options.sourceMappings();
+            SourceRemapper.Detection effective = mode == SourceRemapper.Mappings.AUTO ? detected
+                : new SourceRemapper.Detection(mode, detected.yarnBuild(), "set with --source-mappings");
+            boolean yarn = effective.mappings() == SourceRemapper.Mappings.YARN;
+            if (options.noRemap()) return new RemapPlan(effective, false, "--no-remap", from);
+            if (VersionDatabase.isUnobfuscated(from)) {
+                return new RemapPlan(effective, false, "26.x sources already use official names", from);
+            }
+            if (!yarn) {
+                return new RemapPlan(effective, false, options.remap()
+                    ? "--remap given, but the sources do not use Yarn names" : "sources do not use Yarn names", from);
+            }
+            if (options.remap()) return new RemapPlan(effective, true, "--remap", from);
+            if (VersionDatabase.isUnobfuscated(to)) {
+                return new RemapPlan(effective, true, "26.x has no Yarn: official Mojang names are required", from);
+            }
+            return new RemapPlan(effective, false, "target still supports Yarn (use --remap to switch to Mojang names)", from);
+        }
+
+        PatchResult run(Path root, boolean dryRun) {
+            if (!remap) return PatchResult.success("Remapping skipped (" + why + ")", List.of());
+            String yarnBuild = detection.yarnBuild();
+            if (yarnBuild == null) {
+                VersionDatabase.VersionInfo info = VersionDatabase.get(fromVersion);
+                yarnBuild = info == null ? null : info.yarnMappings();
+            }
+            if (yarnBuild == null) return PatchResult.failure("Remapping failed: no Yarn build is known for " + fromVersion);
+            MappingProvider provider = new MappingProvider();
+            try {
+                System.out.println("  Loading Yarn " + yarnBuild + " + Mojang " + fromVersion + " mappings (cache: "
+                    + provider.cacheDir() + ")");
+                MappingTable table = provider.yarnToMojang(fromVersion, yarnBuild);
+                System.out.println("  " + table.classCount() + " classes mapped");
+                return SourceRemapper.remapProject(root, table, dryRun);
+            } catch (IOException e) {
+                return PatchResult.failure("Remapping failed: " + e.getMessage()
+                    + " — check your internet connection (mappings are downloaded once and cached)");
+            }
         }
     }
 
@@ -292,18 +372,17 @@ public class AutoPorterMain {
         }
     }
 
-    // ── Setup templates ───────────────────────────────────────────────────────
-
     static Path outputDirectoryFor(Path srcRoot, String toVer) {
         Path absoluteSource = srcRoot.toAbsolutePath().normalize();
         String outName = absoluteSource.getFileName() + "-ported-" + toVer.replace(".", "_");
         return absoluteSource.getParent().resolve(outName);
     }
 
+    // ── Setup templates ───────────────────────────────────────────────────────
+
     static void setupTemplates() throws Exception {
         Path templatesDir = Path.of("templates");
-        TemplateManager manager = new TemplateManager(templatesDir);
-        manager.downloadAll();
+        new TemplateManager(templatesDir).writeAll();
         System.out.println("\nTemplates ready in: " + templatesDir.toAbsolutePath());
     }
 
@@ -317,20 +396,29 @@ public class AutoPorterMain {
             if (info.hasFabric())   loaders.add("Fabric");
             if (info.hasForge())    loaders.add("Forge");
             if (info.hasNeoForge()) loaders.add("NeoForge");
-            System.out.printf("  %-10s  %s%n", v, String.join(", ", loaders));
+            System.out.printf("  %-10s  Java %-3d %s%n", v, BuildTooling.javaFor(v), String.join(", ", loaders));
         }
     }
 
     static void printHelp() {
         System.out.println("Usage:");
-        System.out.println("  auto-porter <modPath> <fromVer> <toVer> [--dry-run] [--no-build]");
-        System.out.println("  auto-porter --setup-templates");
+        System.out.println("  auto-porter                                  open the desktop GUI");
+        System.out.println("  auto-porter <modPath> <fromVer> <toVer> [options]");
         System.out.println("  auto-porter --list-versions");
+        System.out.println("  auto-porter --setup-templates");
+        System.out.println();
+        System.out.println("Options:");
+        System.out.println("  --dry-run                      preview changes on the original folder, write nothing");
+        System.out.println("  --no-build                     skip the gradlew compileJava check");
+        System.out.println("  --remap                        remap Yarn names to Mojang names in the sources");
+        System.out.println("  --no-remap                     never remap (default: remap when Yarn sources go to 26.x)");
+        System.out.println("  --source-mappings <mode>       auto (default), yarn or mojang");
         System.out.println();
         System.out.println("Examples:");
         System.out.println("  auto-porter C:/mods/mymod 1.21.4 1.21.10");
         System.out.println("  auto-porter C:/mods/mymod 1.21.4 1.21.10 --dry-run");
-        System.out.println("  auto-porter C:/mods/mymod 1.20.1 26.1 --no-build");
+        System.out.println("  auto-porter C:/mods/mymod 1.21.1 26.1.2              (Yarn sources are remapped automatically)");
+        System.out.println("  auto-porter C:/mods/mymod 1.20.1 1.21.1 --remap      (switch a Yarn mod to Mojang names)");
     }
 
     private static Map<String, Object> stepMap(String name, PatchResult r) {

@@ -12,15 +12,18 @@ Supported loaders are **Fabric** and **NeoForge** where support data is availabl
 
 ## Download
 
-**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.3.0-beta)**
+**[Auto-Porter Beta — Releases page](https://github.com/reqsery/mc-mod-porter/releases/tag/v1.4.0-beta)**
 
-- `auto-porter-1.3.0-beta.jar` — one cross-platform JAR for both the GUI and CLI
+- `auto-porter-1.4.0-beta.jar` — one cross-platform JAR for both the GUI and CLI (needs Java 21+)
+- **Windows:** `MC-Mod-Porter-1.4.0-beta-windows.zip` — `MC-Mod-Porter.exe` with its own Java runtime (no Java
+  install needed). Unzip it and run `MC-Mod-Porter.exe`, or run `install-windows.ps1` from the zip for Start Menu
+  and Desktop shortcuts (see [Windows app](#windows-app-mc-mod-porterexe))
 
 ```bash
-java -jar auto-porter-1.3.0-beta.jar
+java -jar auto-porter-1.4.0-beta.jar
 ```
 
-> Requires Java 21+. See the [Java Requirements](#java-requirements) table below.
+> The JAR requires Java 21+. Building the ported mod may need a different JDK — see [Java Requirements](#java-requirements).
 
 ---
 
@@ -35,20 +38,20 @@ Watch the showcase and porting walkthrough: [Auto-Porter demo on YouTube](https:
 
 ### Option A — Use the GUI (recommended)
 
-Open the JAR without arguments, choose the mod project folder, confirm the detected source version and loader, select a target version, and click **Port Mod**.
+Open the JAR (or `MC-Mod-Porter.exe`) without arguments, choose the mod project folder, confirm the detected source version, loader and **source mappings** (Yarn or Mojang), select a target version, and click **Port Mod**. **Remap to Mojang Names** controls whether Yarn sources are converted (Auto does it when porting to 26.x, which has no Yarn).
 
 ```bash
-java -jar auto-porter-1.3.0-beta.jar
+java -jar auto-porter-1.4.0-beta.jar
 ```
 
-The same window can rebuild the ported project, run its Gradle client task where supported, open the output folder, and show live porter/build logs.
+The same window shows live progress and logs, and can rebuild the ported project, run its Gradle client task where supported, and open the output folder.
 
 The bottom quick links open bug reports, feature requests, Discord, GitHub, and contributor guidance in your default browser.
 
 #### GUI preview
 
 <p align="center">
-  <img src="assets/gui-v1.3.0.png" alt="MC Mod Porter v1.3.0-beta desktop GUI with quick links" width="860">
+  <img src="assets/gui-v1.4.0.png" alt="MC Mod Porter v1.4.0-beta desktop GUI with detected source mappings and remap options" width="860">
 </p>
 
 ### Option B — Use the CLI
@@ -57,17 +60,31 @@ Launching the same JAR with CLI arguments keeps the existing command-line behavi
 
 ```bash
 # Show CLI help
-java -jar auto-porter-1.3.0-beta.jar --help
+java -jar auto-porter-1.4.0-beta.jar --help
 
 # 1. Download from releases page
-java -jar auto-porter-1.3.0-beta.jar --list-versions
+java -jar auto-porter-1.4.0-beta.jar --list-versions
 
 # 2. Dry run (see what would change, no files touched)
-java -jar auto-porter-1.3.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
+java -jar auto-porter-1.4.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5 --dry-run
 
 # 3. Port your mod
-java -jar auto-porter-1.3.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5
+java -jar auto-porter-1.4.0-beta.jar C:/path/to/mymod 1.20.4 1.20.5
+
+# Yarn (Fabric) sources going to 26.x are remapped to Mojang names automatically
+java -jar auto-porter-1.4.0-beta.jar C:/path/to/mymod 1.21.1 26.1.2
+
+# Switch a Yarn mod to Mojang names without changing version gaps
+java -jar auto-porter-1.4.0-beta.jar C:/path/to/mymod 1.20.1 1.21.1 --remap
 ```
+
+| Option | Meaning |
+|---|---|
+| `--dry-run` | Preview the changes on the original folder; nothing is written |
+| `--no-build` | Skip the `gradlew compileJava` check |
+| `--remap` | Remap Yarn names in the sources to Mojang names |
+| `--no-remap` | Never remap (by default Yarn sources are remapped when porting to 26.x) |
+| `--source-mappings auto\|yarn\|mojang` | Which names the sources use (default: detected from the build files) |
 
 The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is never touched.
 
@@ -77,10 +94,24 @@ The ported mod is created at `C:/path/to/mymod-ported-1_20_5`. Your original is 
 git clone https://github.com/reqsery/mc-mod-porter.git
 cd mc-mod-porter/auto-porter
 ./gradlew build
-java -jar build/libs/auto-porter-1.3.0-beta.jar --help
+java -jar build/libs/auto-porter-1.4.0-beta.jar --help
 ```
 
 **Windows?** Use `gradlew.bat build`
+
+### Windows app (`MC-Mod-Porter.exe`)
+
+```powershell
+cd mc-mod-porteruto-porter
+.\gradlew.bat packageWindowsApp
+powershell -ExecutionPolicy Bypass -File packaging\windows\install-windows.ps1
+```
+
+`packageWindowsApp` builds `auto-porter/build/jpackage/MC-Mod-Porter/` with `MC-Mod-Porter.exe` (GUI),
+`MC-Mod-Porter-CLI.exe` (command line) and a bundled Java runtime. The install script copies it to
+`%LOCALAPPDATA%\Programs\MC-Mod-Porter` and adds **MC Mod Porter** to the Start Menu (Windows search) and the
+Desktop. `packageWindowsZip` makes a release zip; `packageWindowsInstaller` makes a setup `.exe` if the
+[WiX Toolset](https://wixtoolset.org/) is installed.
 
 ---
 
@@ -88,12 +119,13 @@ java -jar build/libs/auto-porter-1.3.0-beta.jar --help
 
 The auto-porter handles the **mechanical, repetitive part** of version porting:
 
-1. ✅ Updates `build.gradle` plugin versions
-2. ✅ Updates `gradle.properties` dependency versions
-3. ✅ Applies Java source/API migration patches
-4. ✅ Updates Fabric/NeoForge mod metadata
-5. ✅ Runs build verification and reports remaining errors
-6. ✅ Uses the verified migration knowledge base for supported version hops
+1. ✅ Updates `build.gradle` / `build.gradle.kts` — hard-coded and property-driven versions alike: Loom and ModDevGradle plugins, `neoForge { version }`, Fabric Loader/API, Minecraft, Java toolchain, and the 26.x Loom changes (`net.fabricmc.fabric-loom`, no mappings, `mod*` → plain configurations, `remapJar` → `jar`)
+2. ✅ Updates `gradle.properties` (`minecraft_version`, `neo_version`, `moddev_version`, `loader_version`, `fabric_version`, `loom_version`, ranges, …)
+3. ✅ Updates the Gradle wrapper to the version the official Fabric example mod / NeoForge MDK use
+4. ✅ Remaps Yarn sources to Mojang names (downloads the official mappings once)
+5. ✅ Applies Java source/API migration rules for every version hop crossed
+6. ✅ Updates `fabric.mod.json`, `mods.toml` / `neoforge.mods.toml` and mixin `compatibilityLevel`
+7. ✅ Checks that no stale version numbers remain, then verifies the build with Gradle
 
 **What it doesn't do:** Logic changes. If your code uses APIs that were completely redesigned, you'll need to manually fix those (the tool tells you where).
 
@@ -133,10 +165,15 @@ MC Mod Porter itself requires **Java 21 or newer**. Building the generated proje
 
 | Minecraft Versions  | Java Required |
 |---------------------|---------------|
-| 1.16 – 1.17.x       | Java 16       |
+| 1.16 – 1.16.5       | Java 8        |
+| 1.17.1              | Java 16       |
 | 1.18 – 1.20.4       | Java 17       |
 | 1.20.5 – 1.21.11    | Java 21       |
 | 26.1+               | Java 25 (LTS) |
+
+The porter sets the ported project's Java toolchain, `JavaVersion`/`options.release` and mixin `compatibilityLevel`
+to this version. Gradle itself runs on whatever JDK you start it with (Gradle 9 needs Java 17+ to run), and the
+toolchain compiles for the version above.
 
 ---
 
@@ -154,6 +191,7 @@ MC Mod Porter itself requires **Java 21 or newer**. Building the generated proje
 
 ```
 auto-porter/        — GUI + CLI tool: ports a mod folder to a target MC version
+  packaging/windows/ — jpackage launcher config, app icon, install/uninstall scripts
 scripts/            — Utility scripts (wrappers, validators)
 
 knowledge-base/
@@ -202,7 +240,6 @@ docs/
 | [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Rules for adding version migration data |
 | [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common build errors and how to fix them |
 | [docs/FAQ.md](docs/FAQ.md) | Common questions about versioning and loaders |
-| [AI_GUIDE.md](AI_GUIDE.md) | How to use this repo with any AI assistant |
 
 ---
 

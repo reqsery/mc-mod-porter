@@ -16,7 +16,7 @@ Verified locally on 2026-10-17. No commit, push, tag, or GitHub release was crea
 - `RELEASE_NOTES_1.3.0-beta.md`: release notes draft.
 - `RELEASE_VERIFICATION_1.3.0-beta.md`: this report.
 
-The previous 26.3 task's migration rules, templates, version database, metadata/resource/build patchers, migration warnings, tests, and knowledge-base documentation remain in the working tree. This release task did not redo those rules. The pre-existing deletion of `AI_GUIDE.md` remains untouched.
+The previous 26.3 task's migration rules, templates, version database, metadata/resource/build patchers, migration warnings, tests, and knowledge-base documentation remain in the working tree. This release task did not redo those rules.
 
 ## Compilation and automated checks
 

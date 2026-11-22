@@ -195,9 +195,9 @@ Source: [Architectury Loom](https://github.com/architectury/architectury-loom)
 
 ### Fabric Loom fails after changing Minecraft versions
 
-Use the Loom line required by Fabric for the target Minecraft version and then select an actually published build from Fabric Maven. This repository uses `1.17.13` for Minecraft 26.2 and stable Loom `1.17.21` with Gradle `9.6.0` for Minecraft 26.3, matching Fabric's official 26.3 release guidance for the Loom 1.17 line.
+Use the Loom version and Gradle wrapper from the official Fabric example mod branch for the target Minecraft version, and select an actually published build from Fabric Maven. Every current example-mod branch (1.16 through 26.3) uses Loom `1.19-SNAPSHOT` with Gradle `9.8.2`, and MC Mod Porter writes those values. Loom `1.19` needs Gradle 9 — an old wrapper such as Gradle 8.x fails before your code compiles.
 
-Sources: [Fabric development for Minecraft 26.2](https://fabricmc.net/2026/06/15/262.html), [Fabric for Minecraft 26.3](https://fabricmc.net/2026/09/15/263.html), [Fabric Loom Maven](https://maven.fabricmc.net/net/fabricmc/fabric-loom/)
+Sources: [Fabric example mod](https://github.com/FabricMC/fabric-example-mod), [Fabric development for Minecraft 26.2](https://fabricmc.net/2026/06/15/262.html), [Fabric for Minecraft 26.3](https://fabricmc.net/2026/09/15/263.html), [Fabric Loom Maven](https://maven.fabricmc.net/net/fabricmc/fabric-loom/)
 
 ### `silentMojangMappingsLicense() not found`
 
